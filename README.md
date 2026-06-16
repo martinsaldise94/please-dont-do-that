@@ -1,32 +1,32 @@
 # Please Don't Do That (PDTD)
 
-## Visión
+## Vision
 
-PDTD es un CLI que analiza proyectos frontend y detecta patrones que hacen que una web parezca genérica, especialmente aquellos introducidos por herramientas de IA como Claude, ChatGPT, Lovable, Bolt, v0 o Cursor.
+PDTD is a CLI that analyzes frontend projects and detects patterns that make a website look generic — especially those introduced by AI tools like Claude, ChatGPT, Lovable, Bolt, v0, or Cursor.
 
-No intenta detectar si una web ha sido creada por IA.
+It does not try to detect whether a website was created by AI.
 
-Su objetivo es responder a una pregunta mucho más útil:
+Its goal is to answer a much more useful question:
 
-> ¿Esta web es específica para el negocio o podría pertenecer a miles de empresas distintas?
+> Is this website specific to the business, or could it belong to thousands of different companies?
 
 ---
 
-## Propuesta de valor
+## Value proposition
 
-La mayoría de herramientas analizan:
+Most tools analyze:
 
-* Calidad del código
-* Rendimiento
-* Accesibilidad
+* Code quality
+* Performance
+* Accessibility
 * SEO
 
-PDTD analiza:
+PDTD analyzes:
 
-* Especificidad del negocio
-* Originalidad del copy
-* Credibilidad
-* Patrones repetitivos de IA
+* Business specificity
+* Copy originality
+* Credibility
+* Repetitive AI patterns
 
 Tagline:
 
@@ -55,7 +55,7 @@ Business Specificity: 23/100
 
 ---
 
-## ARQUITECTURA
+## ARCHITECTURE
 
 ```txt
 please-dont-do-that/
@@ -74,9 +74,9 @@ please-dont-do-that/
 
 ---
 
-## 🧠 SISTEMA DE VERSIONES (CLAVE)
+## 🧠 VERSIONING SYSTEM (KEY)
 
-PDTD usa 3 capas de versionado independientes:
+PDTD uses 3 independent versioning layers:
 
 ### 1. CLI VERSION (SemVer)
 
@@ -84,11 +84,11 @@ PDTD usa 3 capas de versionado independientes:
 MAJOR.MINOR.PATCH
 ```
 
-* PATCH → fixes internos
-* MINOR → nuevas features
+* PATCH → internal fixes
+* MINOR → new features
 * MAJOR → breaking changes
 
-Ej:
+E.g.:
 
 * 0.1.0 MVP
 * 0.2.0 roast mode
@@ -97,13 +97,13 @@ Ej:
 
 ### 2. ENGINE VERSION
 
-Motor de análisis:
+Analysis engine:
 
-* v1 → heurísticas AST
-* v2 → scoring avanzado
+* v1 → AST heuristics
+* v2 → advanced scoring
 * v3 → LLM-assisted scoring
 
-Ej:
+E.g.:
 
 ```txt
 Engine: AST+Heuristics v1
@@ -111,7 +111,7 @@ Engine: AST+Heuristics v1
 
 ### 3. RULES VERSION
 
-Reglas independientes:
+Independent rules:
 
 ```txt
 rules/v1/
@@ -119,68 +119,68 @@ rules/v2/
 rules/v3/
 ```
 
-Uso:
+Usage:
 
 ```bash
 pdtd scan . --rules v2
 ```
 
-### 🧪 PRINCIPIO DE VERSIONADO
+### 🧪 VERSIONING PRINCIPLE
 
-* Nunca cambiar output sin MAJOR
-* Siempre reproducible
-* Engine y rules son intercambiables
-* CLI nunca debe romper integraciones sin aviso
+* Never change output without a MAJOR bump
+* Always reproducible
+* Engine and rules are interchangeable
+* The CLI must never break integrations without notice
 
 ---
 
-## 📊 MÉTRICAS
+## 📊 METRICS
 
 ### AI Smell Score
 
-Detecta patrones de landing genérica.
+Detects generic landing-page patterns.
 
 ### Business Specificity Score
 
-Mide si la web es realmente específica del negocio.
+Measures whether the website is truly specific to the business.
 
-> ¿Podría esta web ser de otra empresa sin cambios?
+> Could this website belong to another company without changes?
 
 ### Humanity Score
 
-Mide presencia de elementos reales vs genéricos.
+Measures the presence of real vs. generic elements.
 
 ---
 
-## 🧩 DETECCIÓN
+## 🧩 DETECTION
 
 ### Copy
 
 * innovation / excellence / solutions
-* CTAs genéricos
-* lenguaje vacío
+* generic CTAs
+* empty language
 
 ### Layout
 
-* SaaS template clásico
-* cards repetidas
-* estructura predecible
+* classic SaaS template
+* repeated cards
+* predictable structure
 
 ### Visual
 
-* gradients excesivos
+* excessive gradients
 * blur blobs
-* diseño genérico Tailwind
+* generic Tailwind look
 
-### Credibilidad
+### Credibility
 
-* testimonios falsos
-* stats sin fuente
-* dashboards inventados
+* fake testimonials
+* sourceless stats
+* invented dashboards
 
 ---
 
-## ⚙️ MODOS
+## ⚙️ MODES
 
 ```bash
 pdtd scan .
@@ -191,9 +191,9 @@ pdtd scan . --industry physiotherapy
 
 ---
 
-## 🚀 FUTURO (MCP / AGENTES)
+## 🚀 FUTURE (MCP / AGENTS)
 
-Flujo:
+Flow:
 
 ```txt
 Agent generates website
@@ -204,56 +204,56 @@ Agent generates website
 
 ---
 
-## 📦 DISTRIBUCIÓN
+## 📦 DISTRIBUTION
 
-### Estrategia recomendada
+### Recommended strategy
 
-* GitHub → v0.1 (validación)
-* npm → v0.2+ (adopción)
-* npx pdtd → uso masivo
+* GitHub → v0.1 (validation)
+* npm → v0.2+ (adoption)
+* npx pdtd → mass usage
 
 ---
 
-## 🧠 AGENT PROMPT (USO DIRECTO EN IA)
+## 🧠 AGENT PROMPT (DIRECT USE IN AI)
 
-Este bloque es para usar PDTD como "skill" en un agente:
+This block is for using PDTD as a "skill" within an agent:
 
-### INSTRUCCIÓN PARA AGENTE
+### INSTRUCTION FOR THE AGENT
 
-Eres un sistema de análisis frontend llamado PDTD.
+You are a frontend analysis system called PDTD.
 
-Tu objetivo es evaluar si una web generada por IA es genérica o específica.
+Your goal is to evaluate whether an AI-generated website is generic or specific.
 
-Debes:
+You must:
 
-1. Detectar patrones típicos de landing genérica
-2. Evaluar especificidad del negocio
-3. Penalizar lenguaje vacío
-4. Detectar estructura SaaS repetitiva
-5. Evaluar credibilidad del contenido
+1. Detect typical generic landing-page patterns
+2. Evaluate business specificity
+3. Penalize empty language
+4. Detect repetitive SaaS structure
+5. Evaluate content credibility
 
-### OUTPUT OBLIGATORIO
+### REQUIRED OUTPUT
 
-Devuelve siempre:
+Always return:
 
 * AI Smell Score (0-100)
 * Business Specificity Score (0-100)
-* Lista de issues
-* Recomendaciones concretas
+* List of issues
+* Concrete recommendations
 
-### PRINCIPIO CENTRAL
+### CORE PRINCIPLE
 
-Si la web podría pertenecer a otra empresa sin cambios → penaliza fuertemente.
+If the website could belong to another company without changes → penalize heavily.
 
-### ESTILO DE RESPUESTA
+### RESPONSE STYLE
 
-* directo
-* técnico
-* sin explicación innecesaria
-* orientado a mejora del código
+* direct
+* technical
+* no unnecessary explanation
+* oriented toward code improvement
 
 ### FINAL
 
-PDTD no detecta IA.
+PDTD does not detect AI.
 
-Detecta falta de especificidad real en el producto o negocio.
+It detects a lack of real specificity in the product or business.
