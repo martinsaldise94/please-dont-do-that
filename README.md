@@ -16,17 +16,17 @@ Its goal is to answer a much more useful question:
 
 Most tools analyze:
 
-* Code quality
-* Performance
-* Accessibility
-* SEO
+- Code quality
+- Performance
+- Accessibility
+- SEO
 
 PDTD analyzes:
 
-* Business specificity
-* Copy originality
-* Credibility
-* Repetitive AI patterns
+- Business specificity
+- Copy originality
+- Credibility
+- Repetitive AI patterns
 
 Tagline:
 
@@ -84,24 +84,24 @@ PDTD uses 3 independent versioning layers:
 MAJOR.MINOR.PATCH
 ```
 
-* PATCH → internal fixes
-* MINOR → new features
-* MAJOR → breaking changes
+- PATCH → internal fixes
+- MINOR → new features
+- MAJOR → breaking changes
 
 E.g.:
 
-* 0.1.0 MVP
-* 0.2.0 roast mode
-* 0.3.0 LLM scoring
-* 1.0.0 stable
+- 0.1.0 MVP
+- 0.2.0 roast mode
+- 0.3.0 LLM scoring
+- 1.0.0 stable
 
 ### 2. ENGINE VERSION
 
 Analysis engine:
 
-* v1 → AST heuristics
-* v2 → advanced scoring
-* v3 → LLM-assisted scoring
+- v1 → AST heuristics
+- v2 → advanced scoring
+- v3 → LLM-assisted scoring
 
 E.g.:
 
@@ -127,10 +127,10 @@ pdtd scan . --rules v2
 
 ### 🧪 VERSIONING PRINCIPLE
 
-* Never change output without a MAJOR bump
-* Always reproducible
-* Engine and rules are interchangeable
-* The CLI must never break integrations without notice
+- Never change output without a MAJOR bump
+- Always reproducible
+- Engine and rules are interchangeable
+- The CLI must never break integrations without notice
 
 ---
 
@@ -156,27 +156,27 @@ Measures the presence of real vs. generic elements.
 
 ### Copy
 
-* innovation / excellence / solutions
-* generic CTAs
-* empty language
+- innovation / excellence / solutions
+- generic CTAs
+- empty language
 
 ### Layout
 
-* classic SaaS template
-* repeated cards
-* predictable structure
+- classic SaaS template
+- repeated cards
+- predictable structure
 
 ### Visual
 
-* excessive gradients
-* blur blobs
-* generic Tailwind look
+- excessive gradients
+- blur blobs
+- generic Tailwind look
 
 ### Credibility
 
-* fake testimonials
-* sourceless stats
-* invented dashboards
+- fake testimonials
+- sourceless stats
+- invented dashboards
 
 ---
 
@@ -208,9 +208,9 @@ Agent generates website
 
 ### Recommended strategy
 
-* GitHub → v0.1 (validation)
-* npm → v0.2+ (adoption)
-* npx pdtd → mass usage
+- GitHub → v0.1 (validation)
+- npm → v0.2+ (adoption)
+- npx pdtd → mass usage
 
 ---
 
@@ -236,10 +236,10 @@ You must:
 
 Always return:
 
-* AI Smell Score (0-100)
-* Business Specificity Score (0-100)
-* List of issues
-* Concrete recommendations
+- AI Smell Score (0-100)
+- Business Specificity Score (0-100)
+- List of issues
+- Concrete recommendations
 
 ### CORE PRINCIPLE
 
@@ -247,10 +247,10 @@ If the website could belong to another company without changes → penalize heav
 
 ### RESPONSE STYLE
 
-* direct
-* technical
-* no unnecessary explanation
-* oriented toward code improvement
+- direct
+- technical
+- no unnecessary explanation
+- oriented toward code improvement
 
 ### FINAL
 

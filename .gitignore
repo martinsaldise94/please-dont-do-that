@@ -1,1 +1,13 @@
 CLAUDE.md
+plan.md
+
+# Dependencies & build artifacts
+node_modules/
+coverage/
+
+# Project working folders (ignored for now)
+cli/
+core/
+rules/
+prompts/
+docs/
