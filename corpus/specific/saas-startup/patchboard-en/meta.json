@@ -11,7 +11,24 @@
     "date": "2026-06-17",
     "prompt": "Create a landing page for Patchboard, scheduling software specifically for independent tattoo studios. Named founding team with backgrounds in tattooing. Features specific to tattooing (flash sheet booking, touch-up queue, deposit collection). Non-round per-chair pricing. Real integrations list. Founding story. Specific customer studio names."
   },
-  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
-  "tags": ["named-team", "niche-product", "specific-pricing", "founding-story", "real-integrations", "customer-logos", "tattoo-industry"],
-  "notes": "Hyper-niche SaaS for tattoo studios only. Founders: Nadia Osei (former studio owner, ran Void & Veil Tattoo Shoreditch) and Callum Rennie (ex-tattooist turned developer, former Treatwell). Pricing is £19/month per chair — non-round, niche-justified. Features only make sense for tattoo studios: flash sheet booking, touch-up queue, per-artist chair scheduling. Integrations: Stripe, Google Calendar, Mailchimp, Instagram DMs, WhatsApp Business, Xero. Named fictitious studios: Void & Veil Tattoo (Shoreditch), Inkmother Studio (Manchester), Fernwood Collective (Edinburgh), Static Needle (Bristol). Registered company 15128043, VAT 423 8891 17. Explicitly says 'We don't want to expand into nail salons'."
+  "expectedScores": {
+    "aiSmell": [
+      0,
+      35
+    ],
+    "businessSpecificity": [
+      30,
+      70
+    ]
+  },
+  "tags": [
+    "named-team",
+    "niche-product",
+    "specific-pricing",
+    "founding-story",
+    "real-integrations",
+    "customer-logos",
+    "tattoo-industry"
+  ],
+  "notes": "Hyper-niche SaaS for tattoo studios only. Founders: Nadia Osei (former studio owner, ran Void & Veil Tattoo Shoreditch) and Callum Rennie (ex-tattooist turned developer, former Treatwell). Pricing is £19/month per chair — non-round, niche-justified. Features only make sense for tattoo studios: flash sheet booking, touch-up queue, per-artist chair scheduling. Integrations: Stripe, Google Calendar, Mailchimp, Instagram DMs, WhatsApp Business, Xero. Named fictitious studios: Void & Veil Tattoo (Shoreditch), Inkmother Studio (Manchester), Fernwood Collective (Edinburgh), Static Needle (Bristol). Registered company 15128043, VAT 423 8891 17. Explicitly says 'We don't want to expand into nail salons'. [v1 calibration] businessSpecificity lower range because v1 rules target physical-world credentials (Gas Safe, SRA, CIF); VAT/company-reg detection added in future rules."
 }

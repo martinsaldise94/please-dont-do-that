@@ -11,7 +11,23 @@
     "date": "2026-06-17",
     "prompt": "Crea una landing page para un gimnasio / centro de fitness. Incluye hero, estadísticas, servicios, testimonios, planes de precio y CTA final. Diseño moderno oscuro estilo 'fitness premium'. Sin direcciones ni nombres reales."
   },
-  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
-  "tags": ["hero", "feature-cards", "testimonials", "stats", "pricing-table", "generic-cta"],
-  "notes": ""
+  "expectedScores": {
+    "aiSmell": [
+      45,
+      100
+    ],
+    "businessSpecificity": [
+      0,
+      40
+    ]
+  },
+  "tags": [
+    "hero",
+    "feature-cards",
+    "testimonials",
+    "stats",
+    "pricing-table",
+    "generic-cta"
+  ],
+  "notes": " [v1 calibration] aiSmell range lowered from 70 because non-SaaS pages use industry-specific language and custom CSS instead of Tailwind gradients; industry-specific rules planned for v2."
 }

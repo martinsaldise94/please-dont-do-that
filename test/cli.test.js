@@ -1,53 +1,102 @@
-import { test } from "node:test";
-import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const bin = fileURLToPath(new URL("../bin/pdtd.js", import.meta.url));
+const bin = fileURLToPath(new URL('../bin/pdtd.js', import.meta.url));
+const corpusGeneric = fileURLToPath(new URL('../corpus/generic/clinics/claude-en-01', import.meta.url));
+const corpusSpecific = fileURLToPath(new URL('../corpus/specific/clinics/clarke-martinez-physio-en', import.meta.url));
 
-function runCli(args) {
+function runCli(args, opts = {}) {
   try {
     const stdout = execFileSync(process.execPath, [bin, ...args], {
-      encoding: "utf8",
+      encoding: 'utf8',
+      timeout: opts.timeout ?? 15000,
     });
-    return { code: 0, stdout, stderr: "" };
+    return { code: 0, stdout, stderr: '' };
   } catch (err) {
     return {
       code: err.status ?? 1,
-      stdout: err.stdout?.toString() ?? "",
-      stderr: err.stderr?.toString() ?? "",
+      stdout: err.stdout?.toString() ?? '',
+      stderr: err.stderr?.toString() ?? '',
     };
   }
 }
 
-test("--version prints the package version", () => {
-  const { code, stdout } = runCli(["--version"]);
+test('--version prints the package version', () => {
+  const { code, stdout } = runCli(['--version']);
   assert.equal(code, 0);
   assert.match(stdout.trim(), /^\d+\.\d+\.\d+$/);
 });
 
-test("--help prints usage and the available commands", () => {
-  const { code, stdout } = runCli(["--help"]);
+test('--help prints usage and the available commands', () => {
+  const { code, stdout } = runCli(['--help']);
   assert.equal(code, 0);
   assert.match(stdout, /Usage:/);
   assert.match(stdout, /scan/);
   assert.match(stdout, /roast/);
 });
 
-test("no arguments shows help and exits 0", () => {
+test('no arguments shows help and exits 0', () => {
   const { code, stdout } = runCli([]);
   assert.equal(code, 0);
   assert.match(stdout, /Usage:/);
 });
 
-test("an unknown command exits non-zero", () => {
-  const { code, stderr } = runCli(["frobnicate"]);
+test('an unknown command exits non-zero', () => {
+  const { code, stderr } = runCli(['frobnicate']);
   assert.notEqual(code, 0);
   assert.match(stderr, /Unknown command/);
 });
 
-test("scan is recognized but not implemented yet", () => {
-  const { code, stderr } = runCli(["scan", "."]);
+test('scan without a path exits non-zero', () => {
+  const { code, stderr } = runCli(['scan']);
   assert.notEqual(code, 0);
-  assert.match(stderr, /not implemented/);
+  assert.match(stderr, /Usage:/);
+});
+
+test('scan on a non-existent path exits non-zero with error', () => {
+  const { code, stderr } = runCli(['scan', '/nonexistent/path/xyz']);
+  assert.notEqual(code, 0);
+  assert.match(stderr, /Error/i);
+});
+
+test('scan on a generic corpus example exits 0 and prints scores', () => {
+  const { code, stdout } = runCli(['scan', corpusGeneric]);
+  assert.equal(code, 0);
+  assert.match(stdout, /AI Smell Score/);
+  assert.match(stdout, /Business Specificity/);
+  assert.match(stdout, /Humanity Score/);
+});
+
+test('scan --json outputs valid JSON conforming to schema v1', () => {
+  const { code, stdout } = runCli(['scan', corpusGeneric, '--json']);
+  assert.equal(code, 0);
+  const parsed = JSON.parse(stdout);
+  assert.equal(parsed.schemaVersion, '1');
+  assert.match(parsed.pdtdVersion, /^\d+\.\d+\.\d+$/);
+  assert.equal(parsed.engineVersion, 'v1');
+  assert.equal(parsed.rulesVersion, 'v1');
+  assert.ok(['en', 'es', 'unknown'].includes(parsed.detectedLang));
+  assert.ok(parsed.scores.aiSmell >= 0 && parsed.scores.aiSmell <= 100);
+  assert.ok(parsed.scores.businessSpecificity >= 0 && parsed.scores.businessSpecificity <= 100);
+  assert.ok(parsed.scores.humanity >= 0 && parsed.scores.humanity <= 100);
+  assert.ok(Array.isArray(parsed.issues));
+});
+
+test('generic corpus example scores higher AI Smell than specific', () => {
+  const { stdout: gOut } = runCli(['scan', corpusGeneric, '--json']);
+  const { stdout: sOut } = runCli(['scan', corpusSpecific, '--json']);
+  const generic = JSON.parse(gOut);
+  const specific = JSON.parse(sOut);
+  assert.ok(
+    generic.scores.aiSmell > specific.scores.aiSmell,
+    `Expected generic aiSmell (${generic.scores.aiSmell}) > specific aiSmell (${specific.scores.aiSmell})`
+  );
+});
+
+test('--rules unknown-version exits non-zero', () => {
+  const { code, stderr } = runCli(['scan', corpusGeneric, '--rules', 'v99']);
+  assert.notEqual(code, 0);
+  assert.match(stderr, /Error/i);
 });
