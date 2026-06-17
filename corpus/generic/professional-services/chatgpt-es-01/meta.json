@@ -1,0 +1,18 @@
+﻿{
+  "id": "professional-services/chatgpt-es-01",
+  "class": "generic",
+  "industry": "professional-services",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "ChatGPT",
+    "model": "GPT-5.5",
+    "date": "2026-06-17",
+    "prompt": ""
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": [],
+  "notes": ""
+}
+
