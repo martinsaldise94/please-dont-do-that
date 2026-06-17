@@ -1,0 +1,22 @@
+{
+  "id": "<industry>/<folder-name>",
+  "class": "generic",
+  "industry": "clinics",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "",
+    "model": "",
+    "url": "",
+    "date": "YYYY-MM-DD",
+    "prompt": ""
+  },
+  "expectedScores": {
+    "aiSmell": [0, 100],
+    "businessSpecificity": [0, 100],
+    "humanity": [0, 100]
+  },
+  "tags": [],
+  "notes": ""
+}
