@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from '../cli/args.js';
 import { runScan } from '../core/scanner.js';
 import { formatHuman } from '../cli/output/human.js';
+import { formatRoast } from '../cli/output/roast.js';
 import { formatJSON } from '../cli/output/json.js';
 
 const pkg = JSON.parse(
@@ -54,6 +55,8 @@ export async function run(argv) {
 
       if (opts.json) {
         process.stdout.write(formatJSON(result) + '\n');
+      } else if (opts.command === 'roast') {
+        process.stdout.write(formatRoast(result));
       } else {
         process.stdout.write(formatHuman(result));
       }

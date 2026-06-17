@@ -100,3 +100,22 @@ test('--rules unknown-version exits non-zero', () => {
   assert.notEqual(code, 0);
   assert.match(stderr, /Error/i);
 });
+
+test('roast outputs different header than scan', () => {
+  const { code: rCode, stdout: rOut } = runCli(['roast', corpusGeneric]);
+  const { code: sCode, stdout: sOut } = runCli(['scan', corpusGeneric]);
+  assert.equal(rCode, 0);
+  assert.equal(sCode, 0);
+  assert.match(rOut, /Roast Mode/);
+  assert.doesNotMatch(rOut, /Scan Results/);
+  assert.doesNotMatch(sOut, /Roast Mode/);
+});
+
+test('roast --json produces same scores as scan --json', () => {
+  const { stdout: rOut } = runCli(['roast', corpusGeneric, '--json']);
+  const { stdout: sOut } = runCli(['scan', corpusGeneric, '--json']);
+  const roast = JSON.parse(rOut);
+  const scan = JSON.parse(sOut);
+  assert.deepEqual(roast.scores, scan.scores);
+  assert.deepEqual(roast.issues, scan.issues);
+});
