@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/martinsaldise94/please-dont-do-that/schemas/scan-output-v1.json",
+  "title": "PDTD Scan Output — Schema v1",
+  "description": "Machine-readable output of pdtd scan --json. Frozen at schema version 1. Never changed without a MAJOR CLI version bump.",
+  "type": "object",
+  "required": ["schemaVersion", "pdtdVersion", "engineVersion", "rulesVersion", "detectedLang", "scores", "issues"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1",
+      "description": "Schema contract version. Always '1' for this file."
+    },
+    "pdtdVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer of the pdtd CLI that produced this output."
+    },
+    "engineVersion": {
+      "type": "string",
+      "pattern": "^v\\d+$",
+      "description": "Analysis engine version (v1 = AST+heuristics)."
+    },
+    "rulesVersion": {
+      "type": "string",
+      "pattern": "^v\\d+$",
+      "description": "Rule set version used during the scan."
+    },
+    "detectedLang": {
+      "type": "string",
+      "enum": ["en", "es", "unknown"],
+      "description": "Language detected in the project content."
+    },
+    "scores": {
+      "type": "object",
+      "required": ["aiSmell", "businessSpecificity", "humanity"],
+      "additionalProperties": false,
+      "properties": {
+        "aiSmell": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How much the site matches generic AI-generated landing-page patterns. Higher = more generic."
+        },
+        "businessSpecificity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How specific the site is to its actual business. Higher = more specific."
+        },
+        "humanity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Presence of real, verifiable elements (names, credentials, prices). Higher = more real."
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "description": "List of detected issues, one per rule that fired.",
+      "items": {
+        "type": "object",
+        "required": ["ruleId", "dimension", "severity", "message"],
+        "additionalProperties": false,
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "description": "Stable rule identifier (e.g. 'C01'). Never changes within a rules version."
+          },
+          "dimension": {
+            "type": "string",
+            "enum": ["copy", "layout", "visual", "credibility"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable description of the issue."
+          },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Excerpts or class names that triggered the rule."
+          },
+          "location": {
+            "type": "string",
+            "description": "File path relative to the scanned root."
+          }
+        }
+      }
+    }
+  }
+}

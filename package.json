@@ -47,5 +47,8 @@
     "eslint": "^10.5.0",
     "globals": "^17.6.0",
     "prettier": "^3.8.4"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.1.0"
   }
 }
