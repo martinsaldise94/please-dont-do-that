@@ -1,0 +1,17 @@
+{
+  "id": "education/academia-molina-zaragoza-es",
+  "class": "specific",
+  "industry": "education",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Academia Molina, academia de refuerzo escolar e inglés Cambridge en Zaragoza (barrio Oliver). Profesores nombrados con titulaciones españolas reales. Precios concretos en euros por hora: ESO 18€/h, Bachillerato 22€/h, Selectividad intensivo 25€/h, inglés Cambridge 20€/h. Resultados EvAU junio 2025: 91% de 34 alumnos superaron la prueba. Convocatorias septiembre 2026 y enero 2027. Horarios de atención y clases. Todo el copy específico para este negocio."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "precios-especificos", "resultados-reales", "historia-fundacional", "direccion-real", "horarios-especificos", "titulaciones-universitarias", "cif-espanol"],
+  "notes": "Academia en Zaragoza barrio Oliver. 3 profesores nombrados con titulaciones reales (UZ, UAM). Precios no redondos: 18€/h ESO, 22€/h Bachillerato, 25€/h EvAU intensivo, 20€/h inglés Cambridge. Resultado EvAU junio 2025: 91% (31/34). Convocatorias sep 2026 y ene 2027. CIF B50234781. Dirección real con barrio. Testimonios con nombres y apellidos completos."
+}

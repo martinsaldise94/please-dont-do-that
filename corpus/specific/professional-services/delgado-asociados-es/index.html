@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delgado &amp; Asociados Abogados | Derecho Laboral y Civil · Madrid</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1c1c1c; background: #fafaf8; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 2.5rem; background: #1a2744; color: #fff;
+    }
+    nav .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: .5px; }
+    nav .logo span { color: #c9a84c; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a { color: #cbd5e1; text-decoration: none; font-size: .9rem; font-family: 'Segoe UI', Arial, sans-serif; transition: color .2s; }
+    nav ul li a:hover { color: #fff; }
+    nav .cta-nav {
+      background: #c9a84c; color: #1a2744 !important; padding: .45rem 1.1rem;
+      border-radius: 4px; font-weight: 700;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: #f0ece3; padding: .5rem 2.5rem;
+      display: flex; justify-content: flex-end; gap: 2rem; font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: .83rem; color: #555;
+    }
+    .topbar a { color: #1a2744; text-decoration: none; }
+    .topbar a:hover { text-decoration: underline; }
+
+    /* HERO */
+    .hero {
+      background: #1a2744; color: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 480px;
+    }
+    .hero-text { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-tag {
+      display: inline-block; background: #c9a84c; color: #1a2744;
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .78rem; font-weight: 700;
+      padding: .3rem .9rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+    .hero-text h1 { font-size: 2.2rem; line-height: 1.25; margin-bottom: 1rem; }
+    .hero-text h1 em { color: #c9a84c; font-style: normal; }
+    .hero-text p { font-family: 'Segoe UI', Arial, sans-serif; color: #cbd5e1; line-height: 1.8; font-size: .98rem; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold {
+      background: #c9a84c; color: #1a2744; padding: .75rem 1.8rem; border-radius: 4px;
+      font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; text-decoration: none; font-size: .95rem;
+    }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.4); color: #fff; padding: .75rem 1.8rem; border-radius: 4px;
+      font-family: 'Segoe UI', Arial, sans-serif; font-weight: 600; text-decoration: none; font-size: .95rem;
+    }
+    .hero-aside {
+      background: #243255; padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center;
+      border-left: 4px solid #c9a84c;
+    }
+    .contact-box h3 {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700;
+      color: #c9a84c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem;
+    }
+    .contact-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+    .contact-row .ci { font-size: 1.3rem; margin-top: .1rem; }
+    .contact-row .ct { font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; color: #cbd5e1; line-height: 1.5; }
+    .contact-row .ct strong { color: #fff; display: block; }
+    .contact-row .ct a { color: #c9a84c; text-decoration: none; }
+
+    /* ABOGADOS */
+    .abogados { padding: 4rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    .abogados h2 {
+      font-size: 1.7rem; color: #1a2744; margin-bottom: .5rem;
+      border-bottom: 3px solid #c9a84c; padding-bottom: .5rem; display: inline-block;
+    }
+    .abogados .intro {
+      font-family: 'Segoe UI', Arial, sans-serif; color: #555; margin: 1rem 0 2.5rem; font-size: .95rem;
+    }
+    .abogados-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .abogado-card {
+      background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 2rem;
+      border-top: 4px solid #c9a84c;
+    }
+    .abogado-card .nombre { font-size: 1.25rem; font-weight: 700; color: #1a2744; margin-bottom: .25rem; }
+    .abogado-card .colegiado {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .8rem;
+      background: #f0ece3; color: #7a6030; padding: .2rem .6rem; border-radius: 3px;
+      display: inline-block; margin-bottom: 1rem; letter-spacing: .5px;
+    }
+    .abogado-card .cargo {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .88rem; color: #666; margin-bottom: 1rem;
+    }
+    .abogado-card p {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; color: #444; line-height: 1.7; margin-bottom: 1rem;
+    }
+    .especialidades { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .etiqueta {
+      background: #e8f0fe; color: #1a2744; font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: .75rem; padding: .25rem .65rem; border-radius: 20px;
+    }
+
+    /* SERVICIOS */
+    .servicios { background: #1a2744; color: #fff; padding: 4rem 2.5rem; }
+    .servicios-inner { max-width: 1100px; margin: 0 auto; }
+    .servicios h2 {
+      font-size: 1.7rem; margin-bottom: .5rem;
+      border-bottom: 3px solid #c9a84c; padding-bottom: .5rem; display: inline-block;
+    }
+    .servicios p.intro {
+      font-family: 'Segoe UI', Arial, sans-serif; color: #94a3b8; margin: 1rem 0 2.5rem;
+    }
+    .servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .servicio-item {
+      background: #243255; border-radius: 8px; padding: 1.5rem;
+      border-left: 4px solid #c9a84c;
+    }
+    .servicio-item h4 {
+      font-size: 1rem; margin-bottom: .5rem; color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700;
+    }
+    .servicio-item p {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .85rem; color: #94a3b8; line-height: 1.6;
+    }
+    .servicio-item .casuistica {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .8rem; color: #c9a84c; margin-top: .75rem;
+    }
+
+    /* HONORARIOS */
+    .honorarios { padding: 4rem 2.5rem; max-width: 900px; margin: 0 auto; }
+    .honorarios h2 {
+      font-size: 1.7rem; color: #1a2744; margin-bottom: .5rem;
+      border-bottom: 3px solid #c9a84c; padding-bottom: .5rem; display: inline-block;
+    }
+    .honorarios p.intro {
+      font-family: 'Segoe UI', Arial, sans-serif; color: #555; margin: 1rem 0 2rem; font-size: .95rem;
+    }
+    table {
+      width: 100%; border-collapse: collapse; font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    thead tr { background: #1a2744; color: #fff; }
+    thead th { padding: .9rem 1.2rem; text-align: left; font-size: .88rem; }
+    tbody tr { border-bottom: 1px solid #e5e7eb; }
+    tbody tr:nth-child(even) { background: #f8f5ee; }
+    tbody tr:hover { background: #f0ece3; }
+    tbody td { padding: .85rem 1.2rem; font-size: .9rem; color: #1c1c1c; vertical-align: top; }
+    tbody td:last-child { font-weight: 700; color: #1a2744; white-space: nowrap; }
+    .nota-honorarios {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .82rem; color: #666;
+      margin-top: 1rem; padding: .75rem; background: #f0ece3; border-left: 3px solid #c9a84c; border-radius: 3px;
+    }
+
+    /* UBICACION */
+    .ubicacion { background: #f0ece3; padding: 4rem 2.5rem; }
+    .ubicacion-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .ubicacion h2 {
+      font-size: 1.7rem; color: #1a2744; margin-bottom: .5rem;
+      border-bottom: 3px solid #c9a84c; padding-bottom: .5rem; display: inline-block;
+    }
+    .ubicacion p.intro {
+      font-family: 'Segoe UI', Arial, sans-serif; color: #555; margin: 1rem 0 1.5rem; font-size: .95rem;
+    }
+    .datos-despacho { display: flex; flex-direction: column; gap: 1rem; }
+    .dato-row {
+      display: flex; gap: 1rem; align-items: flex-start;
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem;
+    }
+    .dato-row .di { font-size: 1.2rem; }
+    .dato-row .dd { color: #333; line-height: 1.6; }
+    .dato-row .dd strong { color: #1a2744; display: block; }
+    .horario-table { margin-top: 1.5rem; }
+    .horario-table h4 {
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; font-weight: 700;
+      color: #1a2744; margin-bottom: .75rem;
+    }
+    .horario-row {
+      display: flex; justify-content: space-between;
+      font-family: 'Segoe UI', Arial, sans-serif; font-size: .85rem;
+      padding: .4rem 0; border-bottom: 1px solid #ddd; color: #444;
+    }
+    .map-placeholder {
+      background: #ddd; border-radius: 8px; height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      color: #888; font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: .9rem; text-align: center; border: 1px solid #ccc;
+    }
+
+    /* FOOTER */
+    footer { background: #111827; color: #6b7280; padding: 2.5rem; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; font-size: .85rem; }
+    footer .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    footer .footer-links a { color: #9ca3af; text-decoration: none; }
+    footer .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .abogados-grid { grid-template-columns: 1fr; }
+      .ubicacion-inner { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>📞 <a href="tel:+34912345678">91 234 56 78</a></span>
+    <span>✉️ <a href="mailto:consultas@delgado-asociados.es">consultas@delgado-asociados.es</a></span>
+    <span>🏛️ Ilustre Colegio de Abogados de Madrid</span>
+  </div>
+
+  <nav>
+    <div class="logo">D<span>ELGADO</span> <span style="color:#fff;font-weight:300;">&</span> <span>ASOCIADOS</span></div>
+    <ul>
+      <li><a href="#abogados">El Despacho</a></li>
+      <li><a href="#servicios">Áreas de Práctica</a></li>
+      <li><a href="#honorarios">Honorarios</a></li>
+      <li><a href="#ubicacion">Contacto</a></li>
+      <li><a href="tel:+34912345678" class="cta-nav">Llamar Ahora</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Derecho Laboral · Civil · Mercantil · Madrid</div>
+      <h1>Delgado &amp; Asociados<br /><em>Abogados en Madrid</em></h1>
+      <p>Despacho especializado en derecho laboral y civil con sede en el Paseo de la Castellana desde 2009. Defendemos a trabajadores y empresas en procedimientos laborales, despidos improcedentes, cláusulas abusivas y reclamaciones civiles.</p>
+      <div class="hero-actions">
+        <a href="tel:+34912345678" class="btn-gold">📞 Consulta: 60 €</a>
+        <a href="#honorarios" class="btn-outline">Ver Honorarios</a>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <div class="contact-box">
+        <h3>Contacto Directo</h3>
+        <div class="contact-row">
+          <div class="ci">📍</div>
+          <div class="ct">
+            <strong>Dirección</strong>
+            Paseo de la Castellana, 89 — 3.ª planta, Of. 302<br />
+            28046 Madrid (Metro: Nuevos Ministerios)
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci">📞</div>
+          <div class="ct">
+            <strong>Teléfono</strong>
+            <a href="tel:+34912345678">91 234 56 78</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci">🕐</div>
+          <div class="ct">
+            <strong>Horario de Atención</strong>
+            Lun–Vie: 9:00–19:00<br />
+            Urgencias laborales: 24 h previa cita
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci">✉️</div>
+          <div class="ct">
+            <strong>Email</strong>
+            <a href="mailto:consultas@delgado-asociados.es">consultas@delgado-asociados.es</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOGADOS -->
+  <section class="abogados" id="abogados">
+    <h2>Nuestros Abogados</h2>
+    <p class="intro">Dos abogados especializados, con número de colegiado activo en el ICAM y más de 30 años de experiencia combinada.</p>
+    <div class="abogados-grid">
+      <div class="abogado-card">
+        <div class="nombre">D. Fernando Delgado Ruiz</div>
+        <div class="colegiado">ICAM Núm. 28/58.342</div>
+        <div class="cargo">Socio Director — Derecho Laboral y Procesal Civil</div>
+        <p>Licenciado en Derecho por la Universidad Complutense de Madrid (1997). Máster en Dirección de Recursos Humanos por ESADE (2000). Ha ejercido más de 25 años en procedimientos laborales ante el Juzgado de lo Social de Madrid, con especial dedicación a despidos colectivos, ERE y reclamaciones de cantidad.</p>
+        <div class="especialidades">
+          <span class="etiqueta">Despidos improcedentes</span>
+          <span class="etiqueta">ERE / ERTE</span>
+          <span class="etiqueta">Acoso laboral</span>
+          <span class="etiqueta">Reclamaciones salariales</span>
+          <span class="etiqueta">Negociación colectiva</span>
+        </div>
+      </div>
+      <div class="abogado-card">
+        <div class="nombre">D.ª Lucía Martínez Olmos</div>
+        <div class="colegiado">ICAM Núm. 28/71.908</div>
+        <div class="cargo">Socia — Derecho Civil, Familia y Herencias</div>
+        <p>Licenciada en Derecho por la Universidad Autónoma de Madrid (2005). Especialista en Derecho de Familia e Infancia (CAM, 2008). Mediadora civil acreditada por el MJUS. Tramita más de 80 procedimientos de divorcio y herencias al año, con reconocida capacidad en mediación extrajudicial para reducir costes y tiempos.</p>
+        <div class="especialidades">
+          <span class="etiqueta">Divorcios y separaciones</span>
+          <span class="etiqueta">Custodia de hijos</span>
+          <span class="etiqueta">Herencias y testamentos</span>
+          <span class="etiqueta">Cláusulas suelo</span>
+          <span class="etiqueta">Mediación familiar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="servicios-inner">
+      <h2>Áreas de Práctica</h2>
+      <p class="intro">Nos centramos en las materias en las que tenemos experiencia real y documentada. No somos generalistas.</p>
+      <div class="servicios-grid">
+        <div class="servicio-item">
+          <h4>⚖️ Derecho Laboral del Trabajador</h4>
+          <p>Representación individual y colectiva ante el Juzgado de lo Social de Madrid en toda clase de conflictos laborales.</p>
+          <div class="casuistica">→ Despido improcedente · Baja voluntaria forzada · Deudas de nómina · Incapacidad permanente</div>
+        </div>
+        <div class="servicio-item">
+          <h4>🏢 Derecho Laboral de Empresa</h4>
+          <p>Asesoría preventiva a pymes y autónomos en contratación, sanciones, regulaciones de empleo y relaciones sindicales.</p>
+          <div class="casuistica">→ Contratos indefinidos / temporales · ERE / ERTE · Planes de igualdad · Inspección de Trabajo</div>
+        </div>
+        <div class="servicio-item">
+          <h4>🏠 Derecho de Familia</h4>
+          <p>Procedimientos de divorcio contencioso y de mutuo acuerdo, guarda y custodia, regímenes de visitas y pensiones.</p>
+          <div class="casuistica">→ Divorcio exprés desde €600 · Mediación familiar · Modificación de medidas</div>
+        </div>
+        <div class="servicio-item">
+          <h4>📜 Herencias y Sucesiones</h4>
+          <p>Tramitación completa de herencias, declaratorias de herederos, partición de bienes y conflictos entre coherederos.</p>
+          <div class="casuistica">→ Aceptación / renuncia · Impugnación de testamento · Liquidación ISD en CAM</div>
+        </div>
+        <div class="servicio-item">
+          <h4>🏦 Reclamaciones Bancarias</h4>
+          <p>Reclamación de cláusulas abusivas, suelo hipotecario, gastos de hipoteca y tarjetas revolving ante banca española.</p>
+          <div class="casuistica">→ Cláusula suelo · IRPH · Tarjetas Wizink/Cofidis · Gastos notariales</div>
+        </div>
+        <div class="servicio-item">
+          <h4>📋 Contratos y Reclamaciones Civiles</h4>
+          <p>Redacción, revisión e impugnación de contratos civiles y mercantiles. Procedimientos monitorios y ordinarios.</p>
+          <div class="casuistica">→ Arrendamientos · Obras y reformas · Reclamación de deudas · Responsabilidad civil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONORARIOS -->
+  <section class="honorarios" id="honorarios">
+    <h2>Honorarios</h2>
+    <p class="intro">Aplicamos honorarios conforme a las orientaciones del ICAM. Presupuesto cerrado por asunto antes de comenzar. Sin sorpresas.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Consulta inicial</td>
+          <td>60 min · análisis del caso · orientación jurídica · presupuesto sin compromiso</td>
+          <td>60 €</td>
+        </tr>
+        <tr>
+          <td>Minuta por hora</td>
+          <td>Servicios de consultoría, redacción de escritos y gestiones puntuales</td>
+          <td>150 €/h</td>
+        </tr>
+        <tr>
+          <td>Despido improcedente</td>
+          <td>Desde la carta hasta sentencia · incluye acto de conciliación SMAC</td>
+          <td>Desde 900 €</td>
+        </tr>
+        <tr>
+          <td>Divorcio de mutuo acuerdo</td>
+          <td>Incluye convenio regulador, presentación y gestión registral</td>
+          <td>Desde 600 €</td>
+        </tr>
+        <tr>
+          <td>Divorcio contencioso</td>
+          <td>Honorarios base + 12% sobre pensiones/compensaciones obtenidas</td>
+          <td>Desde 1.800 €</td>
+        </tr>
+        <tr>
+          <td>Herencia sencilla</td>
+          <td>Hasta 2 herederos, un inmueble · incluye cuaderno particional e ISD</td>
+          <td>Desde 1.200 €</td>
+        </tr>
+        <tr>
+          <td>Gestión laboral mensual (empresa)</td>
+          <td>Asesoría preventiva continua para pymes de hasta 20 empleados</td>
+          <td>Desde 350 €/mes</td>
+        </tr>
+        <tr>
+          <td>Reclamación bancaria (cláusula suelo)</td>
+          <td>Honorarios a éxito: 18% de las cantidades recuperadas</td>
+          <td>Sin coste inicial</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="nota-honorarios">
+      <strong>Nota:</strong> Los honorarios indicados no incluyen IVA (21 %). Para asuntos de mayor complejidad o cuantía, se facilita presupuesto individualizado en la consulta inicial. Aceptamos pago fraccionado. Los asuntos de turno de oficio se tramitan según el baremo del ICAM.
+    </div>
+  </section>
+
+  <!-- UBICACION -->
+  <section class="ubicacion" id="ubicacion">
+    <div class="ubicacion-inner">
+      <div>
+        <h2>Dónde Encontrarnos</h2>
+        <p class="intro">Estamos en el corazón del eje empresarial de Madrid, a dos minutos del metro de Nuevos Ministerios. Atención presencial y por videoconferencia (Zoom / Teams).</p>
+        <div class="datos-despacho">
+          <div class="dato-row">
+            <div class="di">📍</div>
+            <div class="dd">
+              <strong>Dirección postal</strong>
+              Paseo de la Castellana, 89 — 3.ª planta, Of. 302<br />
+              28046 Madrid
+            </div>
+          </div>
+          <div class="dato-row">
+            <div class="di">🚇</div>
+            <div class="dd">
+              <strong>Transporte público</strong>
+              Metro: Nuevos Ministerios (L10, L8, Cercanías)<br />
+              Bus: líneas 14, 27, 40, 149
+            </div>
+          </div>
+          <div class="dato-row">
+            <div class="di">🚗</div>
+            <div class="dd">
+              <strong>Aparcamiento</strong>
+              SABA Paseo de la Castellana (convenio descuento para clientes)
+            </div>
+          </div>
+        </div>
+        <div class="horario-table">
+          <h4>Horario de Atención</h4>
+          <div class="horario-row"><span>Lunes – Jueves</span><span>09:00 – 19:00</span></div>
+          <div class="horario-row"><span>Viernes</span><span>09:00 – 15:00</span></div>
+          <div class="horario-row"><span>Sábados</span><span>Solo con cita previa · mañanas</span></div>
+          <div class="horario-row"><span>Urgencias laborales</span><span>24 h · WhatsApp: 655 234 567</span></div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        📍 Mapa: Paseo de la Castellana 89, 28046 Madrid<br /><br />
+        <small>(Integración con Google Maps disponible previa instalación del complemento de consentimiento RGPD)</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Aviso Legal</a>
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Política de Cookies</a>
+      <a href="#">Colegio de Abogados de Madrid</a>
+    </div>
+    <p>© 2026 Delgado &amp; Asociados, S.L.P. · CIF: B-28 754 391 · Inscrita en el ICAM bajo la Sociedad Profesional núm. 312</p>
+    <p style="margin-top:.5rem">Paseo de la Castellana 89, 3.ª planta, Of. 302 · 28046 Madrid · Tel: 91 234 56 78</p>
+  </footer>
+
+</body>
+</html>

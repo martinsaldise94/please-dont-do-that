@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Papelería Casals – Desde 1978, Gràcia (Barcelona)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1e1e1e; background: #fefcf7; }
+
+    /* NAV */
+    nav {
+      background: #1a3a2a; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .85rem 2rem; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.3rem; font-weight: 700; letter-spacing: -.3px; }
+    .logo span { color: #7ec8a0; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav ul a { text-decoration: none; color: rgba(255,255,255,.8); font-size: .9rem; font-family: 'Segoe UI', sans-serif; }
+    nav ul a:hover { color: #fff; }
+    .tel-nav { color: #7ec8a0 !important; font-weight: 600; }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      gap: 3rem; padding: 4rem 3rem; max-width: 1100px; margin: 0 auto;
+    }
+    .hero-text h1 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2;
+      color: #1a3a2a; margin-bottom: .8rem;
+    }
+    .hero-text h1 em { font-style: normal; color: #2e7d52; }
+    .hero-text .founded {
+      display: inline-block; background: #e8f5ec; color: #1a3a2a;
+      padding: .3rem .8rem; border-radius: 4px; font-size: .85rem;
+      font-family: 'Segoe UI', sans-serif; margin-bottom: 1.2rem;
+    }
+    .hero-text p {
+      color: #444; line-height: 1.75; font-size: 1rem; margin-bottom: 1.5rem;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero-text .owner-note {
+      background: #f0f7f3; border-left: 3px solid #2e7d52; padding: .8rem 1rem;
+      border-radius: 0 6px 6px 0; font-size: .92rem; font-family: 'Segoe UI', sans-serif;
+      color: #1a3a2a; font-style: italic;
+    }
+    .hero-text .owner-note strong { font-style: normal; color: #2e7d52; }
+    .hero-image {
+      background: linear-gradient(135deg, #d4e9db, #a8d5bb);
+      border-radius: 12px; min-height: 340px; display: flex; align-items: center;
+      justify-content: center; font-size: 6rem; position: relative; overflow: hidden;
+    }
+    .hero-image::after {
+      content: 'Desde 1978'; position: absolute; bottom: 1rem; right: 1rem;
+      background: #1a3a2a; color: #fff; font-family: 'Segoe UI', sans-serif;
+      font-size: .8rem; padding: .4rem .8rem; border-radius: 4px;
+    }
+
+    /* INFO STRIP */
+    .info-strip {
+      background: #1a3a2a; color: rgba(255,255,255,.85);
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      font-family: 'Segoe UI', sans-serif; font-size: .88rem;
+    }
+    .info-item {
+      padding: 1rem 2rem; border-right: 1px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .info-item:last-child { border-right: none; }
+    .info-item strong { color: #7ec8a0; }
+
+    /* NOSOTROS */
+    .nosotros {
+      max-width: 900px; margin: 0 auto; padding: 4rem 2rem;
+      display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; align-items: start;
+    }
+    .nosotros h2 { font-size: 1.9rem; color: #1a3a2a; margin-bottom: 1rem; }
+    .nosotros p { color: #444; line-height: 1.8; font-family: 'Segoe UI', sans-serif; font-size: .97rem; margin-bottom: 1rem; }
+    .owner-card {
+      background: #f0f7f3; border-radius: 12px; padding: 1.8rem; text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .owner-avatar { font-size: 3.5rem; margin-bottom: .6rem; }
+    .owner-card h3 { font-size: 1.1rem; font-weight: 700; color: #1a3a2a; margin-bottom: .3rem; }
+    .owner-card .role { color: #2e7d52; font-size: .88rem; font-weight: 600; margin-bottom: .8rem; }
+    .owner-card p { color: #555; font-size: .88rem; line-height: 1.6; }
+
+    /* PRODUCTOS */
+    .productos { background: #f0f7f3; padding: 4rem 2rem; }
+    .productos h2 { text-align: center; font-size: 1.9rem; color: #1a3a2a; margin-bottom: .5rem; }
+    .productos .subtitulo { text-align: center; color: #555; font-family: 'Segoe UI', sans-serif; font-size: .95rem; margin-bottom: 2.5rem; }
+    .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; max-width: 960px; margin: 0 auto; }
+    .prod-card {
+      background: #fff; border-radius: 10px; padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .prod-cat { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: #2e7d52; font-family: 'Segoe UI', sans-serif; font-weight: 600; margin-bottom: .5rem; }
+    .prod-card h3 { font-size: 1rem; color: #1a3a2a; margin-bottom: .5rem; }
+    .prod-card p { font-size: .87rem; color: #666; font-family: 'Segoe UI', sans-serif; line-height: 1.5; margin-bottom: .8rem; }
+    .prod-price { font-size: 1.15rem; font-weight: 700; color: #2e7d52; }
+    .prod-price .desde { font-size: .78rem; color: #888; font-weight: 400; }
+
+    /* HORARIO */
+    .horario-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+    .horario-section h2 { font-size: 1.9rem; color: #1a3a2a; margin-bottom: 2rem; }
+    .horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-family: 'Segoe UI', sans-serif; }
+    .dia-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .7rem 1rem; background: #f9f9f6; border-radius: 6px;
+      font-size: .93rem;
+    }
+    .dia-row.hoy { background: #e8f5ec; border-left: 3px solid #2e7d52; }
+    .dia-row .dia { font-weight: 600; color: #1a3a2a; }
+    .dia-row .hrs { color: #444; }
+    .dia-row .cerrado { color: #c0392b; font-style: italic; }
+    .nota-horario {
+      margin-top: 1.5rem; background: #fff8e1; border-radius: 8px;
+      padding: 1rem 1.2rem; font-size: .88rem; color: #7a6000;
+      font-family: 'Segoe UI', sans-serif; border-left: 3px solid #f39c12;
+    }
+
+    /* PROVEEDOR */
+    .proveedores { background: #1a3a2a; color: rgba(255,255,255,.85); padding: 3rem 2rem; text-align: center; font-family: 'Segoe UI', sans-serif; }
+    .proveedores h2 { color: #7ec8a0; font-size: 1.4rem; margin-bottom: 1rem; }
+    .proveedores p { font-size: .95rem; line-height: 1.7; max-width: 680px; margin: 0 auto 1.5rem; }
+    .prov-tags { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+    .prov-tag { background: rgba(255,255,255,.1); padding: .4rem 1rem; border-radius: 20px; font-size: .83rem; }
+
+    /* CONTACTO */
+    .contacto { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contacto h2 { font-size: 1.9rem; color: #1a3a2a; margin-bottom: 1.2rem; }
+    .contacto p { font-family: 'Segoe UI', sans-serif; color: #444; line-height: 1.7; font-size: .95rem; margin-bottom: .6rem; }
+    .contacto strong { color: #1a3a2a; }
+    .map-placeholder {
+      background: linear-gradient(135deg, #d4e9db, #b8ddc8);
+      border-radius: 12px; min-height: 220px; display: flex;
+      align-items: center; justify-content: center; flex-direction: column;
+      gap: .5rem; color: #1a3a2a; font-family: 'Segoe UI', sans-serif;
+    }
+    .map-placeholder .pin { font-size: 2.5rem; }
+    .map-placeholder p { font-size: .85rem; font-weight: 600; text-align: center; }
+
+    /* FOOTER */
+    footer {
+      background: #111; color: rgba(255,255,255,.5);
+      text-align: center; padding: 1.8rem 2rem;
+      font-family: 'Segoe UI', sans-serif; font-size: .82rem;
+    }
+    footer a { color: #7ec8a0; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Papeler&iacute;a <span>Casals</span></div>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Productos</a></li>
+      <li><a href="#">Encuadernaci&oacute;n</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="tel:+34932176543" class="tel-nav">&#128222; 93 217 65 43</a></li>
+    </ul>
+  </nav>
+
+  <section style="background:#fefcf7">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="founded">&#127760; Carr. de Gràcia, 48 &mdash; Barrio de Gràcia, Barcelona</span>
+        <h1>La papeler&iacute;a del barrio que <em>ya conoces</em> desde 1978</h1>
+        <p>Lleva m&aacute;s de cuatro d&eacute;cadas atendiendo a las familias de Gr&agrave;cia. Cuadernos, material de dibujo art&iacute;stico, sellos, encuadernaci&oacute;n en r&uacute;stica y los bol&iacute;grafos que buscas —sin tener que pedir nada por internet.</p>
+        <div class="owner-note">
+          <strong>Montserrat Casals</strong>, tercera generaci&oacute;n de la familia, abre cada ma&ntilde;ana a las 9 h y te recomienda el cuaderno que de verdad necesitas.
+        </div>
+      </div>
+      <div class="hero-image">&#128221;</div>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <div class="info-item">&#128205; <span>Carrer de Gr&agrave;cia, 48, 08012 Barcelona</span></div>
+    <div class="info-item">&#128222; <strong>93 217 65 43</strong></div>
+    <div class="info-item">&#128337; <span>Lun–Vie 9:00–14:00 / 16:30–20:00 &nbsp;|&nbsp; S&aacute;b 9:30–14:00</span></div>
+    <div class="info-item">&#128393; <span>Encuadernaci&oacute;n en 24 h</span></div>
+  </div>
+
+  <section class="nosotros">
+    <div>
+      <h2>Tres generaciones en Gr&agrave;cia</h2>
+      <p>La papeler&iacute;a la fund&oacute; <strong>Ramon Casals i Vidal</strong> en 1978, cuando el barrio de Gr&agrave;cia todav&iacute;a era casi un pueblo dentro de Barcelona. Su hija Pilar moderniz&oacute; el stock en los 90, introdujo material de bellas artes y los primeros rotuladores Staedtler en el barrio. Ahora la lleva <strong>Montserrat</strong>, ni&eacute;ta de Ramon, que estudi&oacute; Dise&ntilde;o Gr&aacute;fico en la Llotja y conoce bien lo que piden artistas, estudiantes y oficinas.</p>
+      <p>Somos distribuidores oficiales de <strong>Fabriano</strong> en la zona de Gr&agrave;cia y traemos papel de acuarela por encargo en menos de 48 horas. Tambi&eacute;n hacemos fotocopias, plastificados y encuadernaci&oacute;n en r&uacute;stica para TFG y TFM.</p>
+      <p>El local es peque&ntilde;o, 42 m², pero sabemos d&oacute;nde est&aacute; cada cosa. Si no lo tenemos en stock, te lo conseguimos.</p>
+    </div>
+    <div class="owner-card">
+      <div class="owner-avatar">&#128105;</div>
+      <h3>Montserrat Casals</h3>
+      <div class="role">Propietaria &amp; Dise&ntilde;adora Gr&aacute;fica</div>
+      <p>Nieta del fundador. Graduada en Dise&ntilde;o por la Escola Llotja. Distribuidora oficial Fabriano. En el mostrador desde 2011.</p>
+    </div>
+  </section>
+
+  <section class="productos">
+    <h2>Nuestros productos con precio</h2>
+    <p class="subtitulo">Precios de tarifa julio 2025 — IVA incluido</p>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-cat">Cuadernos</div>
+        <h3>Leuchtturm1917 A5 punteado</h3>
+        <p>Papel 80 g/m², 249 p&aacute;ginas numeradas, bolsillo trasero. Colores: negro, azul marino, burdeos.</p>
+        <div class="prod-price">19,90 € <span class="desde">/ unidad</span></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-cat">Bellas Artes</div>
+        <h3>Papel acuarela Fabriano Artistico 300 g</h3>
+        <p>Pliego 56×76 cm. Grano fino. Stock permanente gracias a nuestro acuerdo de distribuci&oacute;n con Fabriano Espa&ntilde;a.</p>
+        <div class="prod-price">4,50 € <span class="desde">/ pliego</span></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-cat">Bol&iacute;grafos &amp; Rotuladores</div>
+        <h3>Staedtler Triplus Fineliner (set 20)</h3>
+        <p>20 colores, punta 0,3 mm. Stock continuo. Los preferidos de los estudiantes de la Escola Massana.</p>
+        <div class="prod-price">14,95 € <span class="desde">/ set</span></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-cat">Encuadernaci&oacute;n</div>
+        <h3>TFG / TFM en r&uacute;stica termoencolada</h3>
+        <p>Hasta 500 hojas. Portada en cartulina 300 g personalizada. Recogida en 24 horas laborables.</p>
+        <div class="prod-price">12,00 € <span class="desde">/ ejemplar</span></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-cat">Agendas</div>
+        <h3>Agenda Finocam Semana Vista 2026 A5</h3>
+        <p>Tapa dura, papel con&ocirc;mico de 70 g, marcapáginas de tela. Disponible en 6 colores.</p>
+        <div class="prod-price">11,50 € <span class="desde">/ unidad</span></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-cat">Sellos &amp; Timbres</div>
+        <h3>Sello personalizado Trodat 4911</h3>
+        <p>Huella 38×14 mm. Fabricaci&oacute;n en 3 d&iacute;as h&aacute;biles. Recambio de tinta disponible en tienda.</p>
+        <div class="prod-price">18,00 € <span class="desde">/ sello</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="horario-section">
+    <h2>Horario de apertura</h2>
+    <div class="horario-grid">
+      <div class="dia-row hoy">
+        <span class="dia">Lunes</span>
+        <span class="hrs">9:00 – 14:00 &nbsp;/&nbsp; 16:30 – 20:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Martes</span>
+        <span class="hrs">9:00 – 14:00 &nbsp;/&nbsp; 16:30 – 20:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Mi&eacute;rcoles</span>
+        <span class="hrs">9:00 – 14:00 &nbsp;/&nbsp; 16:30 – 20:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Jueves</span>
+        <span class="hrs">9:00 – 14:00 &nbsp;/&nbsp; 16:30 – 20:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Viernes</span>
+        <span class="hrs">9:00 – 14:00 &nbsp;/&nbsp; 16:30 – 20:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">S&aacute;bado</span>
+        <span class="hrs">9:30 – 14:00</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Domingo</span>
+        <span class="cerrado">Cerrado</span>
+      </div>
+      <div class="dia-row">
+        <span class="dia">Festivos locales</span>
+        <span class="cerrado">Cerrado (Sant Jordi: abierto 10–14 h)</span>
+      </div>
+    </div>
+    <div class="nota-horario">
+      &#128338; <strong>Agosto:</strong> del 5 al 25 de agosto cerramos por vacaciones. Reapertura el 26 de agosto a las 9:00 h.
+    </div>
+  </section>
+
+  <section class="proveedores">
+    <h2>Nuestros proveedores de confianza</h2>
+    <p>Trabajamos directamente con distribuidores y fabricantes para garantizar el mejor precio y stock estable en el barrio. Sin intermediarios innecesarios.</p>
+    <div class="prov-tags">
+      <span class="prov-tag">Fabriano (distribuidor oficial zona Gr&agrave;cia)</span>
+      <span class="prov-tag">Staedtler Espa&ntilde;a</span>
+      <span class="prov-tag">Moleskine B2B</span>
+      <span class="prov-tag">Leuchtturm1917</span>
+      <span class="prov-tag">Finocam (Barcelona)</span>
+      <span class="prov-tag">Trodat Espa&ntilde;a</span>
+      <span class="prov-tag">APLI Papers (Gav&agrave;)</span>
+    </div>
+  </section>
+
+  <section class="contacto">
+    <div>
+      <h2>C&oacute;mo llegar</h2>
+      <p><strong>Direcci&oacute;n:</strong> Carrer de Gr&agrave;cia, 48<br>08012 Barcelona (Barrio de Gr&agrave;cia)</p>
+      <p><strong>Tel&eacute;fono:</strong> <a href="tel:+34932176543" style="color:#2e7d52">93 217 65 43</a></p>
+      <p><strong>Email:</strong> <a href="mailto:info@papeleriacasals.cat" style="color:#2e7d52">info@papeleriacasals.cat</a></p>
+      <p style="margin-top:1rem"><strong>Metro:</strong> L3 Fontana (3 min a pie) &nbsp;|&nbsp; L3/L5 Diagonal (8 min)</p>
+      <p><strong>Bus:</strong> H6, V17, 22, 24 — parada Gr&agrave;cia / Pg. de Gr&agrave;cia</p>
+      <p><strong>Bicing:</strong> Estaci&oacute;n en Carrer Gran de Gr&agrave;cia, 52</p>
+    </div>
+    <div class="map-placeholder">
+      <div class="pin">&#128205;</div>
+      <p>Carrer de Gr&agrave;cia, 48<br>08012 Barcelona</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Papeler&iacute;a Casals &mdash; Carrer de Gr&agrave;cia, 48, 08012 Barcelona &mdash; CIF: B-12345678</p>
+    <p style="margin-top:.4rem"><a href="#">Aviso Legal</a> &nbsp;|&nbsp; <a href="#">Pol&iacute;tica de Privacidad</a> &nbsp;|&nbsp; Dise&ntilde;o web: Montserrat Casals</p>
+  </footer>
+
+</body>
+</html>

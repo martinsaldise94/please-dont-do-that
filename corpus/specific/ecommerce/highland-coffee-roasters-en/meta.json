@@ -1,0 +1,17 @@
+{
+  "id": "ecommerce/highland-coffee-roasters-en",
+  "class": "specific",
+  "industry": "ecommerce",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Highland Coffee Roasters at Unit 4, Crown Avenue Industrial Estate, Inverness IV3 8TH. Founded by Alasdair Munro in 2014. Named products with prices: Daye Bensa Natural (Ethiopia) £12.50/250g, Finca La Primavera Washed (Colombia) £11.00/250g, Las Flores Honey (Honduras) £10.50/250g, Cairngorm Espresso Blend £9.50/250g. Subscription plans with specific pricing. Roast days Tuesday and Thursday. All copy specific to this business and location only."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours", "niche-specialism", "direct-trade", "product-details"],
+  "notes": "Specific city (Inverness, Scotland), named founder with Q Grader certification, concrete GBP prices per bag, named farms and processing methods, tasting notes, roast schedule, subscription tiers with exact prices, local transport context."
+}

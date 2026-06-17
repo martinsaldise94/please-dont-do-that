@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oleander's — Portuguese Kitchen, Clifton, Bristol</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; color: #1c1c1c; background: #fffdf8; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #1c3a2f; color: #f0ead8;
+    }
+    .logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name { font-size: 1.4rem; font-style: italic; color: #e8d5a3; letter-spacing: .5px; }
+    .logo-tag { font-size: .7rem; color: #8aaa8a; letter-spacing: 2px; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #c8bea0; font-size: .88rem; font-family: 'Segoe UI', sans-serif; transition: color .2s; }
+    nav ul a:hover { color: #e8d5a3; }
+    .book-btn {
+      background: #c8793a; color: #fff !important; padding: .45rem 1.1rem;
+      border-radius: 4px; font-family: 'Segoe UI', sans-serif !important; font-size: .85rem !important;
+      transition: background .2s !important;
+    }
+    .book-btn:hover { background: #a5602e !important; }
+
+    /* HERO */
+    .hero {
+      background: #1c3a2f;
+      padding: 5rem 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-text h1 { font-size: clamp(2rem, 3.5vw, 3rem); color: #e8d5a3; line-height: 1.2; margin-bottom: 1rem; }
+    .hero-text h1 em { color: #8aaa8a; font-style: italic; }
+    .hero-text p { font-size: 1rem; line-height: 1.85; color: #a8c0a0; margin-bottom: 1.6rem; font-family: 'Segoe UI', sans-serif; }
+    .hero-details { font-family: 'Segoe UI', sans-serif; font-size: .88rem; color: #8aaa8a; line-height: 1.9; }
+    .hero-details strong { color: #e8d5a3; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .btn-terracotta {
+      background: #c8793a; color: #fff; padding: .8rem 1.8rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: .9rem; font-family: 'Segoe UI', sans-serif;
+      transition: background .2s;
+    }
+    .btn-terracotta:hover { background: #a5602e; }
+    .btn-outline {
+      background: transparent; color: #e8d5a3; padding: .8rem 1.8rem; border-radius: 4px;
+      text-decoration: none; font-size: .9rem; font-family: 'Segoe UI', sans-serif;
+      border: 1px solid #4a6a5a; transition: all .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.08); }
+    .hero-img-placeholder {
+      height: 340px; background: #2a4a3a; border-radius: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 4rem; color: #4a6a5a; gap: .5rem;
+    }
+    .hero-img-placeholder span { font-size: .8rem; font-family: 'Segoe UI', sans-serif; color: #5a7a6a; letter-spacing: 1px; }
+
+    /* BANNER */
+    .banner { background: #c8793a; color: #fff; text-align: center; padding: .7rem 1rem; font-family: 'Segoe UI', sans-serif; font-size: .88rem; }
+
+    /* STORY */
+    .story { padding: 4.5rem 2rem; max-width: 820px; margin: 0 auto; }
+    .story h2 { font-size: 1.7rem; color: #1c3a2f; margin-bottom: .4rem; }
+    .story .sub { font-family: 'Segoe UI', sans-serif; font-size: .85rem; color: #8aaa8a; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.4rem; }
+    .story p { font-size: 1rem; line-height: 1.9; color: #4a3a28; margin-bottom: 1rem; }
+    .chef-card {
+      display: flex; align-items: flex-start; gap: 1.5rem; margin-top: 2.2rem;
+      background: #f5f0e4; border-left: 4px solid #1c3a2f; border-radius: 0 8px 8px 0; padding: 1.6rem;
+    }
+    .chef-avatar { font-size: 3rem; flex-shrink: 0; }
+    .chef-info h3 { font-size: 1.1rem; color: #1c3a2f; margin-bottom: .15rem; }
+    .chef-info .role { font-size: .78rem; color: #8aaa8a; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Segoe UI', sans-serif; margin-bottom: .6rem; }
+    .chef-info p { font-size: .92rem; line-height: 1.75; color: #4a3a28; font-style: italic; }
+
+    /* MENU */
+    .menu-section { background: #1c3a2f; padding: 5rem 2rem; }
+    .menu-section h2 { text-align: center; font-size: 1.8rem; color: #e8d5a3; margin-bottom: .4rem; }
+    .menu-section .sub { text-align: center; font-family: 'Segoe UI', sans-serif; font-size: .83rem; color: #6a8a7a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3rem; }
+    .menu-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 900px; margin: 0 auto; }
+    .menu-cat h3 { font-size: 1rem; color: #8aaa8a; text-transform: uppercase; letter-spacing: 2px; font-family: 'Segoe UI', sans-serif; margin-bottom: 1.4rem; border-bottom: 1px solid #2a4a3a; padding-bottom: .6rem; }
+    .menu-item { display: flex; justify-content: space-between; align-items: baseline; padding: .6rem 0; border-bottom: 1px solid #223830; }
+    .menu-item:last-child { border-bottom: none; }
+    .item-left { flex: 1; }
+    .item-name { font-size: .95rem; color: #e8d5a3; }
+    .item-desc { font-size: .8rem; color: #7a9a8a; font-family: 'Segoe UI', sans-serif; margin-top: .15rem; font-style: italic; }
+    .item-price { font-size: .95rem; color: #c8793a; font-weight: 700; font-family: 'Segoe UI', sans-serif; margin-left: 1rem; white-space: nowrap; }
+    .menu-note { text-align: center; font-family: 'Segoe UI', sans-serif; font-size: .83rem; color: #5a7a6a; margin-top: 2.5rem; }
+
+    /* WINE */
+    .wine { padding: 4rem 2rem; max-width: 820px; margin: 0 auto; }
+    .wine h2 { font-size: 1.5rem; color: #1c3a2f; margin-bottom: .8rem; }
+    .wine p { font-size: .95rem; line-height: 1.8; color: #4a3a28; font-family: 'Segoe UI', sans-serif; }
+    .wine-highlights { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+    .wine-chip { background: #f5f0e4; border: 1px solid #d8c8a0; border-radius: 4px; padding: .5rem 1rem; font-size: .85rem; color: #4a3a28; font-family: 'Segoe UI', sans-serif; }
+    .wine-chip strong { color: #1c3a2f; }
+
+    /* HOURS & BOOKING */
+    .logistics { background: #f5f0e4; padding: 4rem 2rem; }
+    .logistics-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .logistics h2 { font-size: 1.4rem; color: #1c3a2f; margin-bottom: 1.2rem; }
+    .hours-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; font-size: .88rem; }
+    .hours-table td { padding: .5rem 0; color: #4a3a28; vertical-align: top; }
+    .hours-table td:last-child { text-align: right; color: #1c3a2f; font-weight: 600; }
+    .hours-table tr.closed td { color: #bbb; }
+    .hours-table tr.today td { color: #c8793a; font-weight: 700; }
+    .booking-info p { font-family: 'Segoe UI', sans-serif; font-size: .9rem; line-height: 1.8; color: #4a3a28; margin-bottom: .7rem; }
+    .booking-info strong { color: #1c3a2f; }
+    .btn-book-inline {
+      display: inline-block; background: #1c3a2f; color: #e8d5a3; padding: .8rem 1.8rem;
+      border-radius: 4px; text-decoration: none; font-family: 'Segoe UI', sans-serif;
+      font-size: .9rem; margin-top: .5rem; transition: background .2s;
+    }
+    .btn-book-inline:hover { background: #2a5040; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 4.5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .testimonials h2 { font-size: 1.7rem; color: #1c3a2f; text-align: center; margin-bottom: 2.5rem; }
+    .testi-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .testi { flex: 1 1 260px; max-width: 400px; background: #f5f0e4; border-radius: 8px; padding: 1.8rem; }
+    .stars { color: #c8793a; margin-bottom: .7rem; font-size: 1rem; }
+    .testi blockquote { font-size: .93rem; color: #4a3a28; line-height: 1.8; font-style: italic; margin-bottom: 1rem; }
+    .testi-author { font-weight: 700; font-size: .88rem; color: #1c3a2f; font-family: 'Segoe UI', sans-serif; }
+    .testi-detail { font-size: .78rem; color: #8aaa8a; font-family: 'Segoe UI', sans-serif; }
+
+    /* FIND US */
+    .find-us { background: #1c3a2f; color: #c8bea0; padding: 4rem 2rem; }
+    .find-us-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .find-us h2 { font-size: 1.5rem; color: #e8d5a3; margin-bottom: 1.2rem; }
+    .find-us p { font-family: 'Segoe UI', sans-serif; font-size: .88rem; line-height: 1.8; color: #9ab09a; margin-bottom: .4rem; }
+    .find-us strong { color: #e8d5a3; }
+    .transport-note { font-size: .82rem; color: #6a8a7a; margin-top: 1rem; line-height: 1.7; font-family: 'Segoe UI', sans-serif; }
+
+    footer { background: #111f18; color: #5a7a6a; padding: 1.4rem 2rem; text-align: center; font-family: 'Segoe UI', sans-serif; font-size: .8rem; }
+    footer a { color: #8aaa8a; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .menu-cols { grid-template-columns: 1fr; }
+      .logistics-inner { grid-template-columns: 1fr; }
+      .find-us-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">Lunch service Wed–Fri 12–2:30pm &middot; Dinner Tue–Sat from 6pm &middot; Bookings: 0117 946 3820</div>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-name">Oleander's</span>
+      <span class="logo-tag">Portuguese Kitchen · Clifton, Bristol</span>
+    </div>
+    <ul>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Wine List</a></li>
+      <li><a href="#">Private Events</a></li>
+      <li><a href="#" class="book-btn">Book a Table</a></li>
+    </ul>
+  </nav>
+
+  <div style="background:#1c3a2f;">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Home cooking from <em>the Alentejo</em>, served in Clifton</h1>
+        <p>Oleander's is a 36-cover neighbourhood restaurant on Regent Street. Chef-owner Ana Ferreira cooks the food she grew up with in Évora — slow-braised pork, salt cod, moreish custard tarts — using West Country produce where it makes sense.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-terracotta">Book a Table</a>
+          <a href="#" class="btn-outline">See the Menu</a>
+        </div>
+        <div class="hero-details">
+          <div><strong>Address:</strong> 22 Regent Street, Clifton, Bristol BS8 4HG</div>
+          <div><strong>Phone:</strong> 0117 946 3820</div>
+          <div><strong>Tonight (Tuesday):</strong> Dinner from 6 pm</div>
+        </div>
+      </div>
+      <div class="hero-img-placeholder">
+        🫒
+        <span>Restaurant photography by Lucía Barros</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="story">
+    <p class="sub">Our Story</p>
+    <h2>From Évora to Regent Street</h2>
+    <p>Ana Ferreira grew up in a farmhouse outside Évora, in the low cork-oak plains of the Alentejo. Her grandmother, Avó Lurdes, kept a wood-fired oven going six days a week. Ana moved to London at 22, trained at Leith's, then spent three years cooking under José Pizarro in Bermondsey before moving to Bristol with her partner Tom in 2018.</p>
+    <p>They opened Oleander's in April 2019 with 28 covers, a handwritten menu board, and a wine list of nothing but Portuguese labels. The Regent Street site — a former florist's, which explains the name — seats 36 now and has a small heated terrace for five months of the year.</p>
+    <p>Everything on the menu is cooked by Ana and her sous chef, <strong>Marcus Webb</strong>, a Bristol local who came via Wilsons and The Cauldron. The front of house is run by <strong>Tom Ferreira</strong>, who has an alarming enthusiasm for Alentejano wines and will talk you through them at length if you let him.</p>
+    <div class="chef-card">
+      <div class="chef-avatar">👩‍🍳</div>
+      <div class="chef-info">
+        <h3>Ana Ferreira</h3>
+        <div class="role">Chef-Owner</div>
+        <p>"I cook the food I'd want to eat after a long day. Nothing fussy. The bread comes from Hart's Bakery on Elder Road, the lamb is from Pipers Farm in Devon, and the salt cod I still buy from a supplier my mother has used in Évora for thirty years. That traceability matters to me."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section">
+    <h2>The Menu</h2>
+    <p class="sub">Changes weekly · Dinner Tuesday – Saturday</p>
+    <div class="menu-cols">
+      <div class="menu-cat">
+        <h3>Small Plates</h3>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Ameijoas à Bulhão Pato</div>
+            <div class="item-desc">Cornish clams, white wine, garlic, coriander, sourdough</div>
+          </div>
+          <div class="item-price">£13.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Ovos Verdes</div>
+            <div class="item-desc">Devilled eggs, smoked paprika mayo, crispy capers</div>
+          </div>
+          <div class="item-price">£7.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Queijo Serra da Estrela</div>
+            <div class="item-desc">Soft sheep's cheese, honey, toasted walnuts, quince paste</div>
+          </div>
+          <div class="item-price">£9.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Chouriço grelhado</div>
+            <div class="item-desc">Charred Portuguese chorizo, mustard greens</div>
+          </div>
+          <div class="item-price">£8.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Hart's bread &amp; Azeitão butter</div>
+            <div class="item-desc">Daily sourdough, cultured butter, sea salt</div>
+          </div>
+          <div class="item-price">£4.50</div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <h3>Main Courses</h3>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Bacalhau à Brás</div>
+            <div class="item-desc">Salt cod, scrambled egg, shoestring potatoes, olives, parsley</div>
+          </div>
+          <div class="item-price">£22.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Carne de Porco à Alentejana</div>
+            <div class="item-desc">Slow-braised pork shoulder, Cornish clams, fried potatoes, pickled peppers</div>
+          </div>
+          <div class="item-price">£24.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Pipers Farm lamb chops</div>
+            <div class="item-desc">Grilled, salsa verde, white beans, wilted greens</div>
+          </div>
+          <div class="item-price">£27.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Açorda de cogumelos</div>
+            <div class="item-desc">Bread porridge, wild mushrooms, poached egg, truffle oil (v)</div>
+          </div>
+          <div class="item-price">£18.00</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cols" style="margin-top:2rem;">
+      <div class="menu-cat">
+        <h3>Puddings</h3>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Pastel de nata</div>
+            <div class="item-desc">Oleander's custard tart (house recipe), cinnamon, icing sugar</div>
+          </div>
+          <div class="item-price">£5.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Arroz doce</div>
+            <div class="item-desc">Rice pudding, lemon zest, cinnamon, rosewater</div>
+          </div>
+          <div class="item-price">£7.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Mousse de chocolate</div>
+            <div class="item-desc">Dark chocolate, fleur de sel, olive oil</div>
+          </div>
+          <div class="item-price">£8.00</div>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <h3>Set Lunch (Wed–Fri)</h3>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">2-course lunch</div>
+            <div class="item-desc">Choice of 3 starters + 3 mains from weekly list</div>
+          </div>
+          <div class="item-price">£19.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">3-course lunch</div>
+            <div class="item-desc">Add a pudding or cheese</div>
+          </div>
+          <div class="item-price">£24.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Wine pairing (2 glasses)</div>
+            <div class="item-desc">Tom's choice — both Portuguese</div>
+          </div>
+          <div class="item-price">£14.00</div>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">Menu changes weekly based on what's available. Allergen information available on request. (v) = vegetarian.</p>
+  </section>
+
+  <section class="wine">
+    <h2>The Wine List</h2>
+    <p>Tom has put together a list of around 50 Portuguese wines — almost nothing else. There are everyday bottles from the Alentejo and Dão starting at £28, and a small back-list of older Bairrada and Colares if you want to push the boat out. By-the-glass selection rotates and is always at least 8 options.</p>
+    <div class="wine-highlights">
+      <div class="wine-chip"><strong>Herdade do Esporão Reserva Branco</strong> · £42 / £12 glass</div>
+      <div class="wine-chip"><strong>Cartuxa Évora Tinto</strong> · £36 / £10 glass</div>
+      <div class="wine-chip"><strong>Quinta do Crasto Douro Superior</strong> · £58</div>
+      <div class="wine-chip"><strong>Vinho Verde (Anselmo Mendes)</strong> · £28 / £8 glass</div>
+      <div class="wine-chip">Full wine list available on request or at the table</div>
+    </div>
+  </section>
+
+  <div style="background:#f5f0e4;">
+    <div class="logistics">
+      <div class="logistics-inner">
+        <div>
+          <h2>Opening Hours</h2>
+          <table class="hours-table">
+            <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+            <tr class="today"><td>Tuesday ★</td><td>Dinner 6 pm – 10 pm</td></tr>
+            <tr><td>Wednesday</td><td>Lunch 12–2:30 pm · Dinner 6–10 pm</td></tr>
+            <tr><td>Thursday</td><td>Lunch 12–2:30 pm · Dinner 6–10 pm</td></tr>
+            <tr><td>Friday</td><td>Lunch 12–2:30 pm · Dinner 6–10:30 pm</td></tr>
+            <tr><td>Saturday</td><td>Dinner 6–10:30 pm</td></tr>
+            <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+          </table>
+          <p style="font-family:'Segoe UI',sans-serif; font-size:.8rem; color:#8aaa8a; margin-top:.8rem;">Last orders 30 min before close. Terrace open April–October, weather permitting.</p>
+        </div>
+        <div class="booking-info">
+          <h2>Booking a Table</h2>
+          <p>We take bookings for up to 8 by phone or email. Tables for 9+ (we can seat a maximum of 16 for private hire on Sunday evenings) — please email us to discuss.</p>
+          <p><strong>Phone:</strong> 0117 946 3820</p>
+          <p><strong>Email:</strong> eat@oleanders-bristol.co.uk</p>
+          <p>Walk-ins welcome if space is available — best chance is Tuesday, lunch on Wednesday/Thursday, or before 6:30 pm on Fridays.</p>
+          <p>We hold tables for 15 minutes. Please let us know about allergies or dietary requirements when booking.</p>
+          <a href="tel:01179463820" class="btn-book-inline">Call to Book: 0117 946 3820</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="testimonials">
+    <h2>What People Say</h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The Carne de Porco à Alentejana is legitimately one of the best things I've eaten in Bristol. Ana cooks this food like it means something to her, because it does. Tom talked us through the wine list for about ten enjoyable minutes."</blockquote>
+        <div class="testi-author">Pete H., Clifton</div>
+        <div class="testi-detail">Google Review · May 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We went for the set lunch on a Thursday and have been back three times since. £19 for two courses of that quality in Clifton is a minor miracle. The pastéis de nata alone are worth a trip."</blockquote>
+        <div class="testi-author">Sophie &amp; Dan K., Redland</div>
+        <div class="testi-detail">Google Review · April 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Brought my parents here for their anniversary — they hadn't been to Portugal since the 80s but the food immediately took them back. Ana came out to chat at the end. A really special local restaurant."</blockquote>
+        <div class="testi-author">Naomi T., Bedminster</div>
+        <div class="testi-detail">Google Review · March 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="find-us">
+    <div class="find-us-inner">
+      <div>
+        <h2>Find Us</h2>
+        <p><strong>Address:</strong><br>Oleander's<br>22 Regent Street<br>Clifton, Bristol BS8 4HG</p>
+        <br>
+        <p><strong>Phone:</strong> 0117 946 3820</p>
+        <p><strong>Email:</strong> eat@oleanders-bristol.co.uk</p>
+        <p class="transport-note">We're on Regent Street between The Mall and Clifton Down station. Nearest parking is Clifton Down Shopping Centre (10 min walk) or on-street on Whiteladies Road evenings/weekends. Clifton Down station (Severn Beach line) is a 4-minute walk. No. 8 and No. 9 buses run along Whiteladies Road.</p>
+      </div>
+      <div>
+        <h2>Private Hire</h2>
+        <p>We can close the whole restaurant for private events on Sunday evenings — max 36 covers for a sit-down dinner, or 50 for a standing drinks event. We offer a set sharing menu for private hire from <strong>£45pp</strong> (food only). Contact us to discuss menus and availability.</p>
+        <br>
+        <p>We also have a downstairs room that seats <strong>12 privately</strong> on any evening — ideal for work dinners or birthday celebrations. Set menus from <strong>£38pp</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Oleander's &middot; 22 Regent Street, Clifton, Bristol BS8 4HG &middot; 0117 946 3820 &middot; <a href="mailto:eat@oleanders-bristol.co.uk">eat@oleanders-bristol.co.uk</a></p>
+    <p style="margin-top:.4rem;">&copy; 2026 Oleander's Ltd. Company No. 12048763. Registered in England &amp; Wales.</p>
+  </footer>
+
+</body>
+</html>

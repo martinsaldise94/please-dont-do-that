@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeakFit | Elevate Your Potential</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #0f0f23; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: -1px; }
+    .logo span { color: #f0c030; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #b0b0c8; font-size: .88rem; letter-spacing: .5px; transition: color .2s; }
+    nav ul a:hover { color: #fff; }
+    .join-btn {
+      background: #f0c030; color: #0f0f23 !important; padding: .5rem 1.3rem;
+      border-radius: 6px; font-weight: 800 !important; font-size: .85rem !important;
+      letter-spacing: .5px; text-transform: uppercase; transition: background .2s !important;
+    }
+    .join-btn:hover { background: #d4a820 !important; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 60%, #0d2240 100%);
+      padding: 7rem 2rem 6rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 60% 30%, rgba(240,192,48,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-tag { font-size: .72rem; color: #f0c030; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4.8rem); font-weight: 900; color: #fff; line-height: 1.08; margin-bottom: 1.2rem; letter-spacing: -1px; }
+    .hero h1 span { color: #f0c030; }
+    .hero p { font-size: 1.15rem; color: #8090b0; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-yellow {
+      background: #f0c030; color: #0f0f23; padding: 1rem 2.4rem; border-radius: 6px;
+      font-weight: 800; font-size: .95rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: .5px; transition: background .2s;
+    }
+    .btn-yellow:hover { background: #d4a820; }
+    .btn-outline {
+      background: transparent; color: #fff; padding: 1rem 2.4rem; border-radius: 6px;
+      font-size: .95rem; text-decoration: none; border: 1px solid rgba(255,255,255,.25);
+      text-transform: uppercase; letter-spacing: .5px; transition: all .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.07); }
+
+    /* STATS */
+    .stats {
+      background: #f0c030; display: flex; flex-wrap: wrap; justify-content: center;
+    }
+    .stat { text-align: center; padding: 2rem 3rem; border-right: 1px solid rgba(15,15,35,.1); }
+    .stat:last-child { border-right: none; }
+    .stat-number { font-size: 2.4rem; font-weight: 900; color: #0f0f23; }
+    .stat-label { font-size: .8rem; color: #4a4020; text-transform: uppercase; letter-spacing: 1.5px; margin-top: .2rem; font-weight: 600; }
+
+    /* FEATURES */
+    .features { padding: 5.5rem 2rem; background: #fff; }
+    .section-title { text-align: center; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 900; color: #0f0f23; margin-bottom: .5rem; letter-spacing: -0.5px; }
+    .section-sub { text-align: center; color: #7080a0; font-size: 1rem; max-width: 500px; margin: 0 auto 3.5rem; }
+    .cards { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 1000px; margin: 0 auto; }
+    .card {
+      flex: 1 1 260px; max-width: 300px; background: #f8f9ff;
+      border-radius: 12px; border: 1px solid #e8eaf8; padding: 2.4rem 2rem; text-align: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(15,15,35,.1); }
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.1rem; font-weight: 800; color: #0f0f23; margin-bottom: .6rem; }
+    .card p { color: #6070a0; font-size: .92rem; line-height: 1.7; }
+
+    /* MEMBERSHIP */
+    .membership { padding: 5.5rem 2rem; background: #0f0f23; }
+    .membership .section-title { color: #fff; }
+    .membership .section-sub { color: #6070a0; }
+    .price-cards { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 1000px; margin: 0 auto; }
+    .price-card {
+      flex: 1 1 240px; max-width: 280px; background: #1a1a3e; border-radius: 12px;
+      border: 1px solid #2a2a5e; padding: 2.2rem; text-align: center; position: relative;
+    }
+    .price-card.featured { border-color: #f0c030; background: #1e1e42; }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #f0c030; color: #0f0f23; font-size: .7rem; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase; padding: .3rem .9rem; border-radius: 20px;
+    }
+    .price-name { font-size: .82rem; color: #8090b0; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
+    .price-amount { font-size: 2.8rem; font-weight: 900; color: #fff; margin-bottom: .2rem; }
+    .price-period { font-size: .8rem; color: #6070a0; margin-bottom: 1.5rem; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 1.8rem; }
+    .price-features li { padding: .45rem 0; color: #9090b8; font-size: .88rem; border-bottom: 1px solid #252550; display: flex; align-items: center; gap: .5rem; }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before { content: '✓'; color: #f0c030; font-weight: 700; }
+    .price-btn {
+      display: block; background: #2a2a5e; color: #fff; padding: .8rem; border-radius: 8px;
+      text-decoration: none; font-weight: 700; font-size: .88rem; text-transform: uppercase;
+      letter-spacing: .5px; transition: background .2s;
+    }
+    .price-card.featured .price-btn { background: #f0c030; color: #0f0f23; }
+    .price-btn:hover { opacity: .88; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5.5rem 2rem; background: #f4f5ff; }
+    .testi-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .testi {
+      flex: 1 1 260px; max-width: 380px; background: #fff; border-radius: 12px;
+      padding: 2rem; box-shadow: 0 2px 16px rgba(15,15,35,.07);
+    }
+    .stars { color: #f0c030; font-size: 1.1rem; margin-bottom: .8rem; }
+    .testi blockquote { font-size: .95rem; color: #4a5080; line-height: 1.75; margin-bottom: 1.1rem; }
+    .testi-author { font-weight: 800; color: #0f0f23; font-size: .9rem; }
+    .testi-role { color: #a0a8c0; font-size: .8rem; }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, #f0c030, #d4a820);
+      text-align: center; padding: 5rem 2rem;
+    }
+    .cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #0f0f23; margin-bottom: .8rem; letter-spacing: -0.5px; }
+    .cta p { font-size: 1.05rem; color: #4a4020; max-width: 480px; margin: 0 auto 2.2rem; line-height: 1.7; }
+    .btn-dark {
+      background: #0f0f23; color: #fff; padding: 1rem 2.6rem; border-radius: 6px;
+      font-weight: 800; font-size: .95rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: .5px; display: inline-block; transition: transform .2s;
+    }
+    .btn-dark:hover { transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a1a; color: #6070a0; padding: 3.5rem 2rem 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2.5rem;
+    }
+    .footer-col h4 { color: #c0d0f0; font-size: .82rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul a { color: #6070a0; text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col ul a:hover { color: #f0c030; }
+    .footer-col p { font-size: .88rem; line-height: 1.7; }
+    .footer-bottom { grid-column: 1/-1; border-top: 1px solid #1a1a3e; padding-top: 1.2rem; text-align: center; font-size: .8rem; color: #3a3a5a; }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .stat { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Peak<span>Fit</span></span>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Classes</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#" class="join-btn">Join Now</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-tag">Transform Your Body · Transform Your Life</p>
+    <h1>Elevate Your <span>Potential</span></h1>
+    <p>We believe that fitness is more than just a workout — it's a lifestyle. Join our community of high achievers and discover what you're truly capable of.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-yellow">Start Your Journey</a>
+      <a href="#" class="btn-outline">View Classes</a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-number">2,500+</div><div class="stat-label">Active Members</div></div>
+    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Weekly Classes</div></div>
+    <div class="stat"><div class="stat-number">20+</div><div class="stat-label">Expert Trainers</div></div>
+    <div class="stat"><div class="stat-number">8</div><div class="stat-label">Years of Excellence</div></div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why PeakFit?</h2>
+    <p class="section-sub">Everything you need to achieve your fitness goals under one roof, guided by professionals who care.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">💪</div>
+        <h3>Quality Equipment</h3>
+        <p>Our facility is equipped with the latest cutting-edge fitness equipment, ensuring you have everything you need for an effective and enjoyable workout.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👥</div>
+        <h3>Expert Staff</h3>
+        <p>Our team of certified personal trainers and fitness coaches are dedicated to helping you reach your goals with personalised programmes and ongoing support.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Unmatched Community</h3>
+        <p>When you join PeakFit, you join a community. Our supportive and motivating atmosphere is unlike anything you've experienced at a gym before.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="membership">
+    <h2 class="section-title">Choose Your Plan</h2>
+    <p class="section-sub">Flexible membership options designed to suit every lifestyle and budget.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-name">Basic</div>
+        <div class="price-amount">£29</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li>Gym floor access</li>
+          <li>Locker room &amp; showers</li>
+          <li>2 group classes/month</li>
+          <li>Member app access</li>
+        </ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="popular-badge">Most Popular</div>
+        <div class="price-name">Premium</div>
+        <div class="price-amount">£49</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li>Unlimited gym access</li>
+          <li>Unlimited group classes</li>
+          <li>1 PT session/month</li>
+          <li>Nutrition guidance</li>
+          <li>Priority booking</li>
+        </ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Elite</div>
+        <div class="price-amount">£89</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li>Everything in Premium</li>
+          <li>4 PT sessions/month</li>
+          <li>Custom meal plan</li>
+          <li>Body composition scans</li>
+          <li>VIP lounge access</li>
+        </ul>
+        <a href="#" class="price-btn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2 class="section-title">Real Results, Real People</h2>
+    <p class="section-sub">Our members' success is our greatest achievement.</p>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"PeakFit completely transformed my life. I've lost 20kg, gained incredible confidence, and found a community I never expected. The trainers genuinely care about your progress. Couldn't recommend more."</blockquote>
+        <div class="testi-author">Sarah M.</div>
+        <div class="testi-role">Member for 18 months</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Best gym I've ever been a member of. The equipment is always clean and up to date, the classes are brilliant, and the staff remember your name. It doesn't feel like a gym — it feels like a community."</blockquote>
+        <div class="testi-author">John D.</div>
+        <div class="testi-role">Member for 2 years</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was nervous about starting at a gym for the first time at 45 but the team here made me feel welcome from day one. My personal trainer set realistic goals and I've already exceeded them. Amazing."</blockquote>
+        <div class="testi-author">Emma R.</div>
+        <div class="testi-role">Member for 8 months</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Elevate Your Potential?</h2>
+    <p>Join thousands of members already transforming their lives at PeakFit. Your first week is completely free — no strings attached.</p>
+    <a href="#" class="btn-dark">Claim Your Free Week</a>
+  </section>
+
+  <footer>
+    <div class="footer-col">
+      <h4>PeakFit</h4>
+      <p>The premium fitness destination for people who are serious about achieving their health and performance goals.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">Classes</a></li>
+        <li><a href="#">Personal Training</a></li>
+        <li><a href="#">Membership</a></li>
+        <li><a href="#">Nutrition</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Find Us</h4>
+      <p>📍 1 Fitness Boulevard, Your City</p>
+      <p>📞 (555) 987-6543</p>
+      <p>✉️ hello@peakfit.com</p>
+      <p>⏰ Mon–Sun: 5:30am – 11pm</p>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PeakFit. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

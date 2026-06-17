@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paco Fontanero Valencia · Francisco Ortega Solís · Urgencias 24h · Tel. 96 321 45 78</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1c1c1c; background: #f8f9fa; }
+
+    /* LLAMADA URGENTE */
+    .emergency-bar {
+      background: #b91c1c; color: #fff;
+      display: flex; justify-content: center; align-items: center; gap: 2rem;
+      padding: .65rem 1rem; font-size: .88rem; font-weight: 600; flex-wrap: wrap;
+    }
+    .emergency-bar a { color: #fef08a; text-decoration: none; font-size: 1.05rem; font-weight: 800; }
+
+    /* NAV */
+    nav {
+      background: #1e3a5f; display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+    }
+    .logo-block { display: flex; flex-direction: column; }
+    .logo-block .name { color: #fff; font-size: 1.15rem; font-weight: 800; }
+    .logo-block .tagline { color: #93c5fd; font-size: .78rem; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: #cbd5e1; text-decoration: none; font-size: .88rem; }
+    nav ul li a:hover { color: #fff; }
+    .nav-call {
+      background: #f97316; color: #fff !important; padding: .5rem 1.1rem;
+      border-radius: 5px; font-weight: 800;
+    }
+
+    /* HERO */
+    .hero {
+      background: #1e3a5f; color: #fff;
+      display: grid; grid-template-columns: 3fr 2fr; min-height: 440px;
+    }
+    .hero-left { padding: 3.5rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(249,115,22,.2); border: 1px solid #f97316;
+      color: #fed7aa; font-size: .78rem; padding: .3rem .8rem; border-radius: 20px;
+      margin-bottom: 1.25rem; width: fit-content;
+    }
+    .hero-left h1 { font-size: 2.1rem; line-height: 1.25; margin-bottom: .75rem; }
+    .hero-left h1 span { color: #f97316; }
+    .hero-left .desc { color: #93c5fd; line-height: 1.7; margin-bottom: 1.5rem; font-size: .97rem; }
+    .cobertura-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.75rem; }
+    .chip {
+      background: rgba(255,255,255,.12); color: #e2e8f0; font-size: .78rem;
+      padding: .25rem .7rem; border-radius: 12px; border: 1px solid rgba(255,255,255,.2);
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-orange {
+      background: #f97316; color: #fff; padding: .8rem 1.75rem; border-radius: 6px;
+      font-weight: 800; text-decoration: none;
+    }
+    .btn-wh {
+      background: #25d366; color: #fff; padding: .8rem 1.75rem; border-radius: 6px;
+      font-weight: 700; text-decoration: none;
+    }
+    .hero-right {
+      background: #162d4a; padding: 2.5rem; display: flex; flex-direction: column;
+      justify-content: center; border-left: 3px solid #f97316;
+    }
+    .contact-card h3 { color: #f97316; font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+    .cdata { margin-bottom: 1.1rem; }
+    .cdata .cl { color: #64748b; font-size: .75rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .2rem; }
+    .cdata .cv { color: #fff; font-size: .95rem; font-weight: 600; }
+    .cdata .cv a { color: #fbbf24; text-decoration: none; }
+    .pagos-box { margin-top: 1.5rem; }
+    .pagos-box .cl { color: #64748b; font-size: .75rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .5rem; }
+    .pagos { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .pago-badge {
+      background: rgba(255,255,255,.1); color: #e2e8f0; font-size: .78rem;
+      padding: .25rem .6rem; border-radius: 5px;
+    }
+
+    /* SOBRE PACO */
+    .sobre { background: #fff; padding: 4rem 2.5rem; }
+    .sobre-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+    .sobre-foto {
+      background: #dbeafe; border-radius: 10px; min-height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; border: 3px solid #93c5fd;
+    }
+    .sobre-texto h2 { font-size: 1.6rem; color: #1e3a5f; margin-bottom: 1rem; }
+    .cert-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+    .cert-tag {
+      background: #fef3c7; color: #92400e; border: 1px solid #fcd34d;
+      font-size: .78rem; padding: .25rem .65rem; border-radius: 4px; font-weight: 600;
+    }
+    .sobre-texto p { color: #374151; line-height: 1.8; margin-bottom: 1rem; font-size: .95rem; }
+    .datos-rapidos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .dato-r { background: #f0f9ff; border-left: 3px solid #f97316; padding: .75rem 1rem; border-radius: 4px; }
+    .dato-r .dr-l { font-size: .75rem; color: #64748b; text-transform: uppercase; letter-spacing: .5px; }
+    .dato-r .dr-v { font-size: .95rem; font-weight: 700; color: #1e3a5f; margin-top: .15rem; }
+
+    /* PRECIOS */
+    .precios { background: #f8f9fa; padding: 4rem 2.5rem; }
+    .precios-inner { max-width: 960px; margin: 0 auto; }
+    .precios h2 { font-size: 1.6rem; color: #1e3a5f; margin-bottom: .5rem; }
+    .precios .intro-p { color: #6b7280; margin-bottom: 2rem; font-size: .93rem; line-height: 1.7; }
+    .precio-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .precio-table h3 {
+      background: #1e3a5f; color: #fff; padding: .75rem 1.2rem;
+      font-size: .9rem; border-radius: 6px 6px 0 0;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #e0f2fe; }
+    thead th { padding: .65rem 1rem; font-size: .8rem; text-align: left; color: #0c4a6e; }
+    tbody tr { border-bottom: 1px solid #e5e7eb; }
+    tbody tr:hover { background: #fef9f0; }
+    tbody td { padding: .7rem 1rem; font-size: .85rem; color: #1c1c1c; }
+    tbody td:last-child { font-weight: 700; color: #1e3a5f; white-space: nowrap; }
+    .urgencias-box {
+      margin-top: 1.5rem; background: #fff7ed; border: 2px solid #f97316;
+      border-radius: 8px; padding: 1.2rem 1.5rem;
+    }
+    .urgencias-box h4 { color: #c2410c; font-size: .95rem; margin-bottom: .6rem; }
+    .urgencias-box ul { padding-left: 1.2rem; font-size: .85rem; color: #374151; line-height: 1.8; }
+    .nota-iva {
+      font-size: .8rem; color: #9ca3af; margin-top: 1rem;
+      padding: .6rem .8rem; background: #f9fafb; border-radius: 4px;
+    }
+
+    /* COBERTURA */
+    .cobertura { background: #1e3a5f; color: #fff; padding: 3.5rem 2.5rem; }
+    .cobertura-inner { max-width: 1000px; margin: 0 auto; }
+    .cobertura h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+    .cobertura p { color: #93c5fd; margin-bottom: 1.75rem; font-size: .93rem; }
+    .barrios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .6rem; }
+    .barrio {
+      background: rgba(255,255,255,.1); border-radius: 6px; padding: .5rem 1rem;
+      font-size: .82rem; color: #e2e8f0; border-left: 3px solid #f97316;
+    }
+
+    /* FOOTER */
+    footer { background: #0f172a; color: #64748b; padding: 2rem 2.5rem; font-size: .83rem; }
+    footer .fgrid {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    footer .fcol h4 { color: #fff; margin-bottom: .6rem; font-size: .9rem; }
+    footer .fcol p, footer .fcol a { color: #64748b; text-decoration: none; display: block; margin-bottom: .3rem; font-size: .82rem; }
+    footer .fcol a:hover { color: #fff; }
+    footer .copy { text-align: center; border-top: 1px solid #1e293b; padding-top: 1rem; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .sobre-inner { grid-template-columns: 1fr; }
+      .precio-tables { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="emergency-bar">
+    🚨 URGENCIAS 24H · AVERÍA DE FONTANERÍA EN VALENCIA →
+    <a href="tel:+34963214578">96 321 45 78</a>
+    &nbsp;·&nbsp; WhatsApp: <a href="https://wa.me/34655321457">655 321 457</a>
+  </div>
+
+  <nav>
+    <div class="logo-block">
+      <div class="name">🔧 Francisco Ortega Fontanero</div>
+      <div class="tagline">Valencia · Autónomo · Instalador autorizado nº VA-FO-4821</div>
+    </div>
+    <ul>
+      <li><a href="#sobre">Quién Soy</a></li>
+      <li><a href="#precios">Tarifas</a></li>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="tel:+34963214578" class="nav-call">📞 Llamar</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="cert-badge">✅ Instalador Autorizado AVEN · Carnet nº VA-FO-4821</div>
+      <h1>Fontanero en Valencia<br /><span>Paco Ortega</span> — Urgencias 24 h</h1>
+      <p class="desc">Autónomo fontanero en Valencia desde 2008. Especialista en roturas de tubería, averías de caldera, instalaciones de baño y cocina. Presupuesto en el mismo día. Sin desplazamiento mínimo dentro de Valencia capital.</p>
+      <div class="cobertura-chips">
+        <span class="chip">Campanar</span><span class="chip">Rascanya</span><span class="chip">Benimaclet</span>
+        <span class="chip">L'Eixample</span><span class="chip">Quatre Carreres</span><span class="chip">Patraix</span>
+        <span class="chip">Algirós</span><span class="chip">Poblats Marítims</span><span class="chip">+ Área Metropolitana</span>
+      </div>
+      <div class="hero-btns">
+        <a href="tel:+34963214578" class="btn-orange">📞 96 321 45 78</a>
+        <a href="https://wa.me/34655321457" class="btn-wh">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="contact-card">
+        <h3>Contacto Directo</h3>
+        <div class="cdata">
+          <div class="cl">Teléfono fijo</div>
+          <div class="cv"><a href="tel:+34963214578">96 321 45 78</a></div>
+        </div>
+        <div class="cdata">
+          <div class="cl">Móvil / WhatsApp</div>
+          <div class="cv"><a href="https://wa.me/34655321457">655 321 457</a></div>
+        </div>
+        <div class="cdata">
+          <div class="cl">Email</div>
+          <div class="cv"><a href="mailto:paco@fontanerovalencia.es">paco@fontanerovalencia.es</a></div>
+        </div>
+        <div class="cdata">
+          <div class="cl">Zona</div>
+          <div class="cv">Valencia ciudad + área metropolitana</div>
+        </div>
+        <div class="cdata">
+          <div class="cl">Certificación</div>
+          <div class="cv">Instalador autorizado AVEN<br />Carnet nº VA-FO-4821</div>
+        </div>
+        <div class="pagos-box">
+          <div class="cl">Formas de pago</div>
+          <div class="pagos">
+            <span class="pago-badge">💳 Tarjeta</span>
+            <span class="pago-badge">📱 Bizum</span>
+            <span class="pago-badge">💵 Efectivo</span>
+            <span class="pago-badge">🏦 Transferencia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE PACO -->
+  <section class="sobre" id="sobre">
+    <div class="sobre-inner">
+      <div class="sobre-foto">👷</div>
+      <div class="sobre-texto">
+        <h2>Francisco Ortega Solís — Fontanero Autónomo en Valencia</h2>
+        <div class="cert-row">
+          <span class="cert-tag">Instalador Autorizado AVEN nº VA-FO-4821</span>
+          <span class="cert-tag">Carnet Profesional CP-FO-2847 (IVAJ)</span>
+          <span class="cert-tag">Formación FP Instalaciones Térmicas (IES La Patacona, 2006)</span>
+        </div>
+        <p>Soy Francisco Ortega, fontanero autónomo en Valencia desde 2008. Empecé trabajando con mi padre en su taller de fontanería en el barrio de Benimaclet y desde 2012 trabajo por cuenta propia. Cuento con el carnet de instalador autorizado expedido por la AVEN (Agencia Valenciana de l'Energia) con número <strong>VA-FO-4821</strong>.</p>
+        <p>Me especializo en <strong>instalaciones de agua fría y caliente</strong>, reparación de calderas de gas (marcas Junkers, Vaillant, Roca), cambio de baterías de contadores y sustitución de tuberías de cobre y PEX-multicapa. También instalo sistemas de ósmosis inversa y descalcificadores.</p>
+        <p>Trabajo solo — sin subcontratar — para garantizar que soy yo quien acude a tu domicilio y soy yo quien responde del trabajo. Mis clientes habituales son particulares, comunidades de vecinos y pequeños negocios hosteleros de Valencia capital.</p>
+        <div class="datos-rapidos">
+          <div class="dato-r"><div class="dr-l">Años en activo</div><div class="dr-v">Desde 2008 (17 años)</div></div>
+          <div class="dato-r"><div class="dr-l">Zona de cobertura</div><div class="dr-v">Valencia + 20 km</div></div>
+          <div class="dato-r"><div class="dr-l">Urgencias nocturnas</div><div class="dr-v">Sí · recargo +50%</div></div>
+          <div class="dato-r"><div class="dr-l">NIF autónomo</div><div class="dr-v">48.763.291-K</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="precios" id="precios">
+    <div class="precios-inner">
+      <h2>Tarifas de Fontanería</h2>
+      <p class="intro-p">Todas las tarifas incluyen el desplazamiento dentro de Valencia capital. Se emite factura con IVA. Presupuesto escrito antes de comenzar cualquier trabajo.</p>
+      <div class="precio-tables">
+        <div>
+          <div class="precio-table">
+            <h3>🔧 Servicios Generales</h3>
+            <table>
+              <thead><tr><th>Concepto</th><th>Precio</th></tr></thead>
+              <tbody>
+                <tr><td>Desplazamiento (Valencia cap.)</td><td>30 €</td></tr>
+                <tr><td>Diagnóstico / peritaje</td><td>25 €</td></tr>
+                <tr><td>Mano de obra por hora</td><td>45 €/h</td></tr>
+                <tr><td>Cambio de grifo monomando</td><td>desde 55 €</td></tr>
+                <tr><td>Cambio de inodoro completo</td><td>desde 120 €</td></tr>
+                <tr><td>Reparación fuga tubo visto</td><td>desde 80 €</td></tr>
+                <tr><td>Instalación calentador eléctrico</td><td>desde 90 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="precio-table">
+            <h3>🔥 Calderas y Calefacción</h3>
+            <table>
+              <thead><tr><th>Concepto</th><th>Precio</th></tr></thead>
+              <tbody>
+                <tr><td>Revisión anual caldera gas</td><td>65 €</td></tr>
+                <tr><td>Sustitución caldera (mano obra)</td><td>desde 150 €</td></tr>
+                <tr><td>Purga radiadores (por unidad)</td><td>8 €</td></tr>
+                <tr><td>Sustitución válvula termost.</td><td>desde 45 €</td></tr>
+                <tr><td>Carga gas R-32 (split)</td><td>desde 85 €</td></tr>
+                <tr><td>Instalación suelo radiante/m²</td><td>desde 35 €/m²</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="urgencias-box" style="margin-top:1rem">
+            <h4>⚡ Urgencias fuera de horario</h4>
+            <ul>
+              <li>Lunes a viernes 20:00 – 08:00 → <strong>+50 %</strong> sobre tarifa</li>
+              <li>Sábados, domingos y festivos → <strong>+70 %</strong> sobre tarifa</li>
+              <li>Noche de Navidad / Año Nuevo → <strong>+100 %</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="nota-iva">* Todos los precios son orientativos, sin IVA (21%). El precio final puede variar según el material necesario, que se presupuesta a parte. Los materiales se facturan a precio de coste + 15%.</p>
+    </div>
+  </section>
+
+  <!-- COBERTURA -->
+  <section class="cobertura" id="cobertura">
+    <div class="cobertura-inner">
+      <h2>Zona de Cobertura</h2>
+      <p>Atiendo Valencia capital por distritos y municipios del área metropolitana. Para localidades a más de 20 km se aplica suplemento de desplazamiento de 0,45 €/km.</p>
+      <div class="barrios-grid">
+        <div class="barrio">Campanar</div>
+        <div class="barrio">Rascanya</div>
+        <div class="barrio">Benimaclet</div>
+        <div class="barrio">L'Eixample</div>
+        <div class="barrio">Quatre Carreres</div>
+        <div class="barrio">Patraix</div>
+        <div class="barrio">Algirós</div>
+        <div class="barrio">Poblats Marítims</div>
+        <div class="barrio">Jesús</div>
+        <div class="barrio">Zaidía</div>
+        <div class="barrio">El Pla del Real</div>
+        <div class="barrio">La Saïdia</div>
+        <div class="barrio">Burjassot</div>
+        <div class="barrio">Mislata</div>
+        <div class="barrio">Aldaia</div>
+        <div class="barrio">Torrent</div>
+        <div class="barrio">Alboraya</div>
+        <div class="barrio">Paterna</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fgrid">
+      <div class="fcol">
+        <h4>Francisco Ortega Solís</h4>
+        <p>Fontanero autónomo en Valencia</p>
+        <p>NIF: 48.763.291-K</p>
+        <p>Instalador AVEN nº VA-FO-4821</p>
+      </div>
+      <div class="fcol">
+        <h4>Contacto</h4>
+        <a href="tel:+34963214578">📞 96 321 45 78</a>
+        <a href="https://wa.me/34655321457">💬 655 321 457 (WhatsApp)</a>
+        <a href="mailto:paco@fontanerovalencia.es">✉️ paco@fontanerovalencia.es</a>
+      </div>
+      <div class="fcol">
+        <h4>Legal</h4>
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Política de Cookies</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 Francisco Ortega Solís · Fontanero Autónomo en Valencia · Todos los derechos reservados</div>
+  </footer>
+
+</body>
+</html>

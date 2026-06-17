@@ -1,0 +1,17 @@
+{
+  "id": "restaurants/bar-pepe-el-chato-es",
+  "class": "specific",
+  "industry": "restaurants",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Bar Pepe el Chato, taberna en Calle Embajadores 38, Lavapiés, Madrid. Fundada en 1963 por José Morales. Ahora la llevan Elena y Rodrigo Morales (3ª generación). Menú del día 12,50€. Carta con precios. Horario real. Proveedores nombrados (Embutidos Sierra de Cádiz, bodega La Solana, etc.)."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "proveedor-local", "historia-familiar", "menu-del-dia"],
+  "notes": "Taberna madrileña de tercera generación en Lavapiés. Menú del día 12,50€. Proveedores con nombres reales. Receta original de croquetas con historia familiar."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "saas-startup/tijeras-app-es",
+  "class": "specific",
+  "industry": "saas-startup",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Tijeras.app, software de gestión para peluquerías y barberías españolas. Dos fundadores nombrados con historia real: Sergi Palau (barbero, propietario de Barbería El Rincón en Gràcia Barcelona) y Raúl Figueras (ingeniero, ex-Factorial HR). Historia fundacional de frustración como clientes. Funcionalidades de nicho: cola sin cita por QR, historial de cortes con fotos, control de stock de tintes por marca. Precios no redondos: 19€/mes por silla, máximo 89€/mes. Integraciones reales: Stripe, Google Calendar, Holded, Factorial. 4 clientes ficticios pero plausibles con nombres completos y localizaciones en España. CIF español."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "precios-especificos", "historia-fundacional", "nicho-especifico", "clientes-nombrados", "integraciones-reales", "cif-espanol", "funcionalidades-nicho"],
+  "notes": "SaaS para peluquerías y barberías. Fundadores: Sergi Palau (CEO, barbero, Barbería El Rincón Gràcia Barcelona) y Raúl Figueras (CTO, ex-Factorial HR, UPC 2013). Historia: se conocieron como cliente frustrado en 2021, lanzaron junio 2022. Precios: 19€/silla/mes, techo 89€/mes, plan cadena a consultar. 47 clientes en España. Clientes ficticios plausibles: Barbería El Rincón, Salón Montse, The Fade Room, Peluquería Lucía. Integraciones: Stripe, Google Calendar, Holded, Factorial. CIF B67234519, sede Carrer de Provença 314 Barcelona. Funciones exclusivas de nicho: cola QR sin cita, historial por cliente con foto, stock de tintes por marca."
+}

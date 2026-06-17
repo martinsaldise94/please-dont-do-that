@@ -1,0 +1,17 @@
+{
+  "id": "restaurants/claude-es-01",
+  "class": "generic",
+  "industry": "restaurants",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para un restaurante. Incluye hero, filosofía culinaria, menú preview, testimonios y sección de reservas. Diseño moderno y elegante. Sin direcciones ni nombres reales."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats", "generic-cta"],
+  "notes": ""
+}

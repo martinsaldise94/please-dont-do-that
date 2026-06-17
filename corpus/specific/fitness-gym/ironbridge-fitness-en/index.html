@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ironbridge Fitness — Strength &amp; Conditioning Studio, Telford</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #f9f8f6; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; background: #1a1a1a; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo-name { font-size: 1.2rem; font-weight: 900; color: #e8a020; letter-spacing: 1px; text-transform: uppercase; }
+    .logo-tag { font-size: .65rem; color: #888; letter-spacing: 2.5px; text-transform: uppercase; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #aaa; font-size: .85rem; transition: color .2s; }
+    nav ul a:hover { color: #fff; }
+    .trial-btn {
+      background: #e8a020; color: #1a1a1a !important; padding: .45rem 1.1rem;
+      border-radius: 5px; font-weight: 800 !important; font-size: .82rem !important;
+      text-transform: uppercase; letter-spacing: .5px; transition: background .2s !important;
+    }
+    .trial-btn:hover { background: #c88018 !important; }
+    .tel-link { color: #e8a020 !important; font-weight: 700 !important; font-size: .85rem !important; }
+
+    /* HERO */
+    .hero {
+      background: #1a1a1a;
+      padding: 5rem 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero h1 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.12; margin-bottom: 1rem; letter-spacing: -0.5px; }
+    .hero h1 em { color: #e8a020; font-style: normal; }
+    .hero p { font-size: .97rem; line-height: 1.8; color: #9a9a9a; margin-bottom: 1.5rem; }
+    .hero-meta { font-size: .85rem; color: #7a7a7a; line-height: 2; }
+    .hero-meta strong { color: #e8a020; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .btn-orange {
+      background: #e8a020; color: #1a1a1a; padding: .8rem 1.8rem; border-radius: 5px;
+      text-decoration: none; font-weight: 800; font-size: .9rem; text-transform: uppercase;
+      letter-spacing: .5px; transition: background .2s;
+    }
+    .btn-orange:hover { background: #c88018; }
+    .btn-ghost {
+      background: transparent; color: #ccc; padding: .8rem 1.8rem; border-radius: 5px;
+      text-decoration: none; font-size: .9rem; border: 1px solid #333; transition: all .2s;
+    }
+    .btn-ghost:hover { background: #222; color: #fff; }
+    .hero-img-placeholder {
+      height: 340px; background: #252525; border-radius: 8px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #3a3a3a; font-size: 5rem; gap: .5rem;
+    }
+    .hero-img-placeholder span { font-size: .75rem; color: #555; letter-spacing: 1px; }
+
+    /* ALERT BANNER */
+    .banner { background: #e8a020; color: #1a1a1a; text-align: center; padding: .65rem 1rem; font-size: .85rem; font-weight: 600; }
+
+    /* ABOUT */
+    .about { padding: 4.5rem 2rem; max-width: 860px; margin: 0 auto; }
+    .about h2 { font-size: 1.7rem; font-weight: 900; color: #1a1a1a; margin-bottom: .8rem; }
+    .about p { font-size: .97rem; line-height: 1.85; color: #4a4a4a; margin-bottom: 1rem; }
+    .founder-card {
+      display: flex; align-items: flex-start; gap: 1.5rem; margin-top: 2rem;
+      background: #fff; border: 1px solid #e8e0d0; border-radius: 8px; padding: 1.8rem;
+    }
+    .founder-avatar { font-size: 3rem; flex-shrink: 0; }
+    .founder-info h3 { font-size: 1.05rem; font-weight: 800; color: #1a1a1a; margin-bottom: .1rem; }
+    .founder-info .role { font-size: .75rem; color: #e8a020; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: .6rem; }
+    .founder-info p { font-size: .9rem; line-height: 1.75; color: #4a4a4a; font-style: italic; }
+
+    /* TRAINERS */
+    .trainers { background: #1a1a1a; padding: 4.5rem 2rem; }
+    .trainers h2 { text-align: center; font-size: 1.7rem; font-weight: 900; color: #fff; margin-bottom: 2.5rem; }
+    .trainer-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 960px; margin: 0 auto; }
+    .trainer-card {
+      flex: 1 1 200px; max-width: 230px; background: #252525; border-radius: 8px; padding: 1.6rem 1.4rem; text-align: center;
+    }
+    .trainer-icon { font-size: 2.8rem; margin-bottom: .8rem; }
+    .trainer-card h3 { font-size: .95rem; font-weight: 800; color: #e8a020; margin-bottom: .1rem; }
+    .trainer-card .role { font-size: .72rem; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: .6rem; }
+    .trainer-card .quals { font-size: .78rem; color: #666; margin-bottom: .6rem; }
+    .trainer-card p { font-size: .83rem; color: #9a9a9a; line-height: 1.65; }
+
+    /* CLASSES TIMETABLE */
+    .timetable-section { padding: 4.5rem 2rem; background: #f9f8f6; }
+    .timetable-section h2 { font-size: 1.7rem; font-weight: 900; color: #1a1a1a; text-align: center; margin-bottom: .4rem; }
+    .timetable-section .sub { text-align: center; color: #7a7a7a; font-size: .88rem; margin-bottom: 2.5rem; }
+    .timetable-wrap { max-width: 960px; margin: 0 auto; overflow-x: auto; }
+    .timetable {
+      width: 100%; border-collapse: collapse; font-size: .83rem;
+      background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .timetable th {
+      background: #1a1a1a; color: #e8a020; text-transform: uppercase; letter-spacing: 1px;
+      font-size: .75rem; padding: .9rem .8rem; text-align: left; white-space: nowrap;
+    }
+    .timetable td { padding: .65rem .8rem; border-bottom: 1px solid #f0ede8; color: #4a4a4a; vertical-align: top; }
+    .timetable tr:last-child td { border-bottom: none; }
+    .timetable tr:nth-child(even) td { background: #fafaf8; }
+    .class-name { font-weight: 700; color: #1a1a1a; }
+    .class-trainer { font-size: .78rem; color: #888; margin-top: .1rem; }
+    .badge { display: inline-block; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .15rem .5rem; border-radius: 3px; margin-left: .4rem; }
+    .badge-beginner { background: #d0f0d8; color: #1a6830; }
+    .badge-all { background: #d8eaf8; color: #1a4870; }
+    .badge-adv { background: #fde8d0; color: #8a3010; }
+    .timetable-note { text-align: center; font-size: .8rem; color: #9a9a9a; margin-top: 1.2rem; }
+
+    /* MEMBERSHIP */
+    .membership { padding: 4.5rem 2rem; background: #1a1a1a; }
+    .membership h2 { text-align: center; font-size: 1.7rem; font-weight: 900; color: #fff; margin-bottom: .4rem; }
+    .membership .sub { text-align: center; color: #7a7a7a; font-size: .88rem; margin-bottom: 2.5rem; }
+    .price-cards { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 960px; margin: 0 auto; }
+    .price-card {
+      flex: 1 1 240px; max-width: 280px; background: #252525; border-radius: 8px;
+      border: 1px solid #333; padding: 2rem; position: relative;
+    }
+    .price-card.featured { border-color: #e8a020; }
+    .popular { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: #e8a020; color: #1a1a1a; font-size: .68rem; font-weight: 800; padding: .25rem .8rem; border-radius: 20px; text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+    .price-name { font-size: .75rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: .8rem; font-weight: 700; }
+    .price-amount { font-size: 2.4rem; font-weight: 900; color: #fff; }
+    .price-period { font-size: .78rem; color: #666; margin-bottom: .3rem; }
+    .price-setup { font-size: .75rem; color: #555; margin-bottom: 1.4rem; }
+    .price-features { list-style: none; margin-bottom: 1.6rem; }
+    .price-features li { padding: .45rem 0; color: #8a8a8a; font-size: .85rem; border-bottom: 1px solid #2e2e2e; display: flex; gap: .5rem; align-items: flex-start; }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before { content: '✓'; color: #e8a020; font-weight: 700; flex-shrink: 0; }
+    .price-btn {
+      display: block; text-align: center; background: #333; color: #fff; padding: .8rem;
+      border-radius: 5px; text-decoration: none; font-weight: 700; font-size: .85rem;
+      text-transform: uppercase; letter-spacing: .5px; transition: background .2s;
+    }
+    .price-card.featured .price-btn { background: #e8a020; color: #1a1a1a; }
+    .price-btn:hover { opacity: .85; }
+    .membership-note { text-align: center; font-size: .8rem; color: #5a5a5a; margin-top: 2rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 4.5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .testimonials h2 { font-size: 1.7rem; font-weight: 900; color: #1a1a1a; text-align: center; margin-bottom: 2.5rem; }
+    .testi-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .testi { flex: 1 1 260px; max-width: 400px; background: #fff; border-radius: 8px; border: 1px solid #e8e0d0; padding: 1.8rem; }
+    .stars { color: #e8a020; margin-bottom: .7rem; font-size: 1rem; }
+    .testi blockquote { font-size: .92rem; color: #4a4a4a; line-height: 1.78; margin-bottom: 1rem; }
+    .testi-author { font-weight: 800; font-size: .87rem; color: #1a1a1a; }
+    .testi-detail { font-size: .78rem; color: #aaa; }
+
+    /* FIND US */
+    .find-us { background: #1a1a1a; padding: 4rem 2rem; }
+    .find-us-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .find-us h2 { font-size: 1.5rem; font-weight: 900; color: #e8a020; margin-bottom: 1.2rem; }
+    .find-us p { font-size: .88rem; line-height: 1.8; color: #8a8a8a; margin-bottom: .4rem; }
+    .find-us strong { color: #ccc; }
+    .parking-note { font-size: .8rem; color: #666; margin-top: .8rem; line-height: 1.7; }
+
+    footer { background: #0f0f0f; color: #555; padding: 1.3rem 2rem; text-align: center; font-size: .78rem; }
+    footer a { color: #888; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .find-us-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">New members: first session FREE · No joining fee in June &amp; July 2026 · Call 01952 618 420</div>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-name">Ironbridge Fitness</span>
+      <span class="logo-tag">Strength &amp; Conditioning · Telford</span>
+    </div>
+    <ul>
+      <li><a href="#">Classes</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#">Trainers</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="tel:01952618420" class="tel-link">01952 618 420</a></li>
+      <li><a href="#" class="trial-btn">Free Trial</a></li>
+    </ul>
+  </nav>
+
+  <div style="background:#1a1a1a;">
+    <div class="hero">
+      <div>
+        <h1>Strength training built for<br><em>real people</em> in Telford</h1>
+        <p>Ironbridge Fitness is a small-group strength and conditioning studio on Stafford Park Business Estate. No treadmill farms — just proper barbells, bumper plates, and coaches who actually watch you lift.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn-orange">Book a Free Trial</a>
+          <a href="#" class="btn-ghost">See the Timetable</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>Address:</strong> Unit 14, Stafford Park 15, Telford TF3 3BB</div>
+          <div><strong>Phone:</strong> 01952 618 420</div>
+          <div><strong>Today (Tuesday):</strong> 6 am – 8 pm</div>
+        </div>
+      </div>
+      <div class="hero-img-placeholder">
+        🏋️
+        <span>Studio photography coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="about">
+    <h2>Not a gym. A studio.</h2>
+    <p>Ironbridge Fitness opened in September 2021 in a 3,200 sq ft industrial unit on Stafford Park. Founder <strong>Craig Hennessey</strong> spent eleven years coaching at Shrewsbury Athletic Club and three years running the strength programme at a CrossFit affiliate in Wolverhampton before deciding Telford needed a dedicated strength and conditioning facility that wasn't also trying to be a spa.</p>
+    <p>The studio has twelve squat racks, a full set of Eleiko barbells and bumper plates, a 40-metre turf sprint track, and eight Concept2 rowing machines. No rowing machines running daytime TV. No up-sell to a smoothie bar. Just a serious place to get stronger.</p>
+    <p>All classes are capped at <strong>10 people</strong>. All coaches hold at least a Level 3 Personal Training qualification plus UKSCA accreditation. Craig coaches the 6 am and 7 pm sessions personally on weekdays.</p>
+    <div class="founder-card">
+      <div class="founder-avatar">🏋️</div>
+      <div class="founder-info">
+        <h3>Craig Hennessey</h3>
+        <div class="role">Founder &amp; Head Coach</div>
+        <p>"I got fed up seeing people pay £40 a month and never actually get coached. Here, a coach watches every rep. If your hip hinge is off on your third set of Romanian deadlifts, someone will tell you before it becomes a back injury. That's the deal."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trainers">
+    <h2>The Coaching Team</h2>
+    <div class="trainer-grid">
+      <div class="trainer-card">
+        <div class="trainer-icon">🏋️</div>
+        <h3>Craig Hennessey</h3>
+        <div class="role">Head Coach</div>
+        <div class="quals">BSc Sport Science · UKSCA · Level 3 PT</div>
+        <p>11 years athletics coaching. Specialises in Olympic lifting and powerlifting transitions. Coaches the 6 am and 7 pm daily sessions.</p>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-icon">🤸</div>
+        <h3>Priya Nair</h3>
+        <div class="role">Conditioning Coach</div>
+        <div class="quals">Level 3 PT · NSCA CSCS · Nutrition L2</div>
+        <p>Former county 400m runner. Leads Tuesday/Thursday Barbell Conditioning and all Beginners Foundation sessions. Also handles nutrition check-ins for members.</p>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-icon">💪</div>
+        <h3>Dom Farquhar</h3>
+        <div class="role">Strength Coach</div>
+        <div class="quals">Level 3 PT · BPS Weightlifting</div>
+        <p>Competed at British powerlifting nationals 2022 and 2024. Runs Saturday Open Barbell and the monthly Technique Clinic. Takes 1-2-1 programming clients on Wednesdays.</p>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-icon">🧘</div>
+        <h3>Beth Whitmore</h3>
+        <div class="role">Mobility &amp; Recovery Coach</div>
+        <div class="quals">Level 3 PT · RYT-200 · CFSC</div>
+        <p>Leads Sunday Mobility &amp; Recovery class. Integrates movement screening into all Foundations onboarding. Background in physiotherapy support work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="timetable-section">
+    <h2>Weekly Timetable</h2>
+    <p class="sub">All classes capped at 10 · Book via the member app or by calling 01952 618 420</p>
+    <div class="timetable-wrap">
+      <table class="timetable">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>6:00 am</strong></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Craig H.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Craig H.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Craig H.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Craig H.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Craig H.</div></td>
+            <td style="color:#555;">—</td>
+            <td style="color:#555;">—</td>
+          </tr>
+          <tr>
+            <td><strong>9:30 am</strong></td>
+            <td><div class="class-name">Foundations <span class="badge badge-beginner">bgn</span></div><div class="class-trainer">Priya N.</div></td>
+            <td style="color:#555;">—</td>
+            <td><div class="class-name">Foundations <span class="badge badge-beginner">bgn</span></div><div class="class-trainer">Priya N.</div></td>
+            <td style="color:#555;">—</td>
+            <td><div class="class-name">Foundations <span class="badge badge-beginner">bgn</span></div><div class="class-trainer">Beth W.</div></td>
+            <td><div class="class-name">Open Barbell <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Mobility &amp; Recovery</div><div class="class-trainer">Beth W.</div></td>
+          </tr>
+          <tr>
+            <td><strong>12:00 pm</strong></td>
+            <td><div class="class-name">Barbell Cond. <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Barbell Cond. <span class="badge badge-all">all</span></div><div class="class-trainer">Priya N.</div></td>
+            <td><div class="class-name">Barbell Cond. <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Barbell Cond. <span class="badge badge-all">all</span></div><div class="class-trainer">Priya N.</div></td>
+            <td><div class="class-name">Barbell Cond. <span class="badge badge-all">all</span></div><div class="class-trainer">Priya N.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-adv">adv</span></div><div class="class-trainer">Craig H.</div></td>
+            <td style="color:#555;">—</td>
+          </tr>
+          <tr>
+            <td><strong>6:00 pm</strong></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Dom F.</div></td>
+            <td><div class="class-name">Strength <span class="badge badge-all">all</span></div><div class="class-trainer">Beth W.</div></td>
+            <td style="color:#555;">—</td>
+            <td style="color:#555;">—</td>
+          </tr>
+          <tr>
+            <td><strong>7:00 pm</strong></td>
+            <td><div class="class-name">Olympic Lift <span class="badge badge-adv">adv</span></div><div class="class-trainer">Craig H.</div></td>
+            <td><div class="class-name">Olympic Lift <span class="badge badge-adv">adv</span></div><div class="class-trainer">Craig H.</div></td>
+            <td style="color:#555;">—</td>
+            <td><div class="class-name">Olympic Lift <span class="badge badge-adv">adv</span></div><div class="class-trainer">Craig H.</div></td>
+            <td style="color:#555;">—</td>
+            <td style="color:#555;">—</td>
+            <td style="color:#555;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="timetable-note">Open gym (no class) available Mon–Fri 8am–5:30pm and Sat 11:30am–5pm for members. Closed Sundays except the 9:30am Mobility class.</p>
+  </section>
+
+  <section class="membership">
+    <h2>Membership Options</h2>
+    <p class="sub">All memberships are rolling monthly — cancel any time with 30 days' notice. No annual tie-ins.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-name">Open Gym Only</div>
+        <div class="price-amount">£38</div>
+        <div class="price-period">/ month</div>
+        <div class="price-setup">No joining fee</div>
+        <ul class="price-features">
+          <li>Open gym access Mon–Fri 8am–5:30pm, Sat 11:30am–5pm</li>
+          <li>Full equipment access (racks, bars, plates)</li>
+          <li>Induction session with a coach</li>
+          <li>Member app access</li>
+        </ul>
+        <a href="#" class="price-btn">Enquire</a>
+      </div>
+      <div class="price-card featured">
+        <div class="popular">Best Value</div>
+        <div class="price-name">Unlimited Classes</div>
+        <div class="price-amount">£65</div>
+        <div class="price-period">/ month</div>
+        <div class="price-setup">No joining fee in June/July 2026</div>
+        <ul class="price-features">
+          <li>Unlimited coached class attendance</li>
+          <li>Open gym access included</li>
+          <li>Monthly movement screen with Beth</li>
+          <li>Nutrition Q&amp;A with Priya (1/month)</li>
+          <li>Priority booking (48hr window)</li>
+        </ul>
+        <a href="#" class="price-btn">Enquire</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Classes + PT</div>
+        <div class="price-amount">£110</div>
+        <div class="price-period">/ month</div>
+        <div class="price-setup">Includes 4 × 1-2-1 PT sessions</div>
+        <ul class="price-features">
+          <li>Everything in Unlimited Classes</li>
+          <li>4 × 50-min 1-2-1 PT sessions/month</li>
+          <li>Custom 12-week strength programme</li>
+          <li>Monthly body composition assessment</li>
+          <li>WhatsApp coaching support</li>
+        </ul>
+        <a href="#" class="price-btn">Enquire</a>
+      </div>
+    </div>
+    <p class="membership-note">Drop-in class (non-member): £14. First session always free. Student discount (valid NUS card): 15% off Unlimited Classes.</p>
+  </section>
+
+  <section class="testimonials">
+    <h2>Member Stories</h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I'd been going to a big chain gym for four years and made almost no progress. Three months at Ironbridge with Craig and Dom coaching me and I've hit a 100kg squat for the first time. The difference is that someone actually watches you and fixes your form."</blockquote>
+        <div class="testi-author">Mike T., Telford</div>
+        <div class="testi-detail">Google Review · May 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Started as a complete beginner with Priya's Foundations class. Six months later I'm doing the regular 6am sessions and I've dropped 8kg without ever doing a cardio class. Beth's Sunday mobility sessions have also sorted out a hip problem I'd had for years."</blockquote>
+        <div class="testi-author">Claire A., Donnington</div>
+        <div class="testi-detail">Google Review · April 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I live in Shrewsbury and drive 25 minutes to train here. There's nothing comparable in the county. Small groups, brilliant coaches, proper equipment. The Olympic lifting sessions with Craig on Tuesday and Thursday evenings are the highlight of my week."</blockquote>
+        <div class="testi-author">Raj K., Shrewsbury</div>
+        <div class="testi-detail">Google Review · March 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="find-us">
+    <div class="find-us-inner">
+      <div>
+        <h2>Find the Studio</h2>
+        <p><strong>Address:</strong><br>Ironbridge Fitness<br>Unit 14, Stafford Park 15<br>Telford, TF3 3BB</p>
+        <br>
+        <p><strong>Phone:</strong> 01952 618 420</p>
+        <p><strong>Email:</strong> hello@ironbridgefitness.co.uk</p>
+        <br>
+        <p><strong>Studio hours:</strong></p>
+        <p>Mon–Fri: 6 am – 8 pm</p>
+        <p>Saturday: 9 am – 1:30 pm</p>
+        <p>Sunday: 9 am – 11 am (Mobility class only)</p>
+        <p class="parking-note">We're on Stafford Park Business Estate, Unit 14 is in the south cluster near the roundabout on Stafford Park Road. There's free parking directly outside the unit for around 30 cars. The 11A bus from Telford Bus Station stops on Stafford Park Road, a 5-minute walk away.</p>
+      </div>
+      <div>
+        <h2>Technique Clinics</h2>
+        <p>Dom runs a free 90-minute Technique Clinic on the <strong>last Saturday of every month</strong> (10 am – 11:30 am). Open to members and non-members. Covers squat, deadlift, and bench press fundamentals. Max 8 attendees — book by calling or emailing us.</p>
+        <br>
+        <p><strong>Next clinic:</strong> Saturday 28 June 2026, 10 am</p>
+        <br>
+        <p>We also run <strong>6-week Beginners Blocks</strong> three times a year (January, April, September). Six consecutive Foundations sessions with Priya for a flat fee of <strong>£85</strong>, priority scheduling, and a follow-up movement screen with Beth at the end of the block. Next block starts Monday 8 September 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Ironbridge Fitness &middot; Unit 14, Stafford Park 15, Telford TF3 3BB &middot; 01952 618 420 &middot; <a href="mailto:hello@ironbridgefitness.co.uk">hello@ironbridgefitness.co.uk</a></p>
+    <p style="margin-top:.4rem;">&copy; 2026 Ironbridge Fitness Ltd. Company No. 13491027. Registered in England &amp; Wales.</p>
+  </footer>
+
+</body>
+</html>

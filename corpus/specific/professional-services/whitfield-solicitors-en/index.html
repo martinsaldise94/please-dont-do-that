@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whitfield & Norbury Solicitors | Employment & Family Law | Sheffield</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: #222; background: #fff; }
+
+    /* NAV */
+    nav {
+      background: #1c2b1e;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { color: #fff; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.3px; }
+    .logo .reg { font-size: 0.75rem; font-weight: 400; color: #8aaa8c; font-family: Arial, sans-serif; display: block; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: #c8d8ca; text-decoration: none; font-family: Arial, sans-serif; font-size: 0.9rem; transition: color 0.2s; }
+    nav ul a:hover { color: #fff; }
+    .nav-phone { color: #8aaa8c; font-family: Arial, sans-serif; font-size: 0.9rem; }
+    .nav-phone strong { color: #fff; }
+
+    /* NOTICE BAR */
+    .notice-bar {
+      background: #2e5c32;
+      color: #d0ebd2;
+      text-align: center;
+      padding: 8px 5%;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+    }
+    .notice-bar strong { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: #f7f5f0;
+      border-bottom: 3px solid #2e5c32;
+      padding: 72px 5% 64px;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .hero-text { flex: 2; min-width: 300px; }
+    .hero-text .specialism {
+      display: inline-block;
+      background: #2e5c32;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .hero-text h1 { font-size: 2.2rem; line-height: 1.25; color: #1c2b1e; margin-bottom: 18px; }
+    .hero-text p { font-size: 1.05rem; line-height: 1.75; color: #444; margin-bottom: 12px; font-family: Arial, sans-serif; }
+    .hero-text ul { margin: 16px 0 28px 18px; }
+    .hero-text ul li { font-family: Arial, sans-serif; color: #444; line-height: 1.8; font-size: 0.95rem; }
+    .hero-text ul li::marker { color: #2e5c32; }
+
+    .btn-primary {
+      display: inline-block;
+      background: #2e5c32;
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: 3px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-right: 12px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #1c3d1f; }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: #2e5c32;
+      padding: 12px 28px;
+      border: 2px solid #2e5c32;
+      border-radius: 3px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #2e5c32; color: #fff; }
+
+    /* CONTACT BOX */
+    .hero-contact { flex: 1; min-width: 260px; }
+    .contact-box {
+      background: #fff;
+      border: 1px solid #d0d8d2;
+      border-top: 4px solid #2e5c32;
+      border-radius: 4px;
+      padding: 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .contact-box h3 { font-size: 1rem; color: #1c2b1e; margin-bottom: 18px; font-family: Arial, sans-serif; }
+    .contact-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+    .contact-row .icon { font-size: 1.1rem; margin-top: 2px; }
+    .contact-row div { font-family: Arial, sans-serif; font-size: 0.88rem; color: #444; line-height: 1.5; }
+    .contact-row div strong { color: #1c2b1e; display: block; }
+    .contact-box hr { border: none; border-top: 1px solid #e8ece9; margin: 18px 0; }
+    .fee-note { font-family: Arial, sans-serif; font-size: 0.8rem; color: #666; line-height: 1.5; }
+
+    /* TEAM */
+    .team { padding: 80px 5%; background: #fff; }
+    .team h2 { font-size: 1.8rem; color: #1c2b1e; margin-bottom: 8px; }
+    .team .sub { font-family: Arial, sans-serif; color: #555; margin-bottom: 44px; font-size: 0.95rem; line-height: 1.6; }
+    .team-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+    .team-card {
+      flex: 1;
+      min-width: 240px;
+      max-width: 340px;
+      border: 1px solid #d8e0da;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .team-photo {
+      background: #dce8de;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .team-info { padding: 20px 22px; }
+    .team-info h3 { font-size: 1.1rem; color: #1c2b1e; margin-bottom: 4px; }
+    .team-info .credentials { font-family: Arial, sans-serif; font-size: 0.8rem; color: #2e5c32; font-weight: 600; margin-bottom: 6px; }
+    .team-info .years { font-family: Arial, sans-serif; font-size: 0.82rem; color: #666; margin-bottom: 10px; }
+    .team-info p { font-family: Arial, sans-serif; font-size: 0.88rem; color: #444; line-height: 1.6; }
+
+    /* SERVICES & FEES */
+    .services { padding: 80px 5%; background: #f7f5f0; }
+    .services h2 { font-size: 1.8rem; color: #1c2b1e; margin-bottom: 8px; }
+    .services .sub { font-family: Arial, sans-serif; color: #555; margin-bottom: 44px; font-size: 0.95rem; }
+    .service-grid { display: flex; gap: 28px; flex-wrap: wrap; }
+    .service-block {
+      flex: 1;
+      min-width: 260px;
+      background: #fff;
+      border: 1px solid #d0d8d2;
+      border-radius: 4px;
+      padding: 28px;
+    }
+    .service-block h3 { font-size: 1.05rem; color: #1c2b1e; margin-bottom: 10px; border-bottom: 2px solid #2e5c32; padding-bottom: 8px; }
+    .service-block ul { list-style: none; margin: 0; padding: 0; }
+    .service-block ul li { font-family: Arial, sans-serif; font-size: 0.88rem; color: #444; padding: 7px 0; border-bottom: 1px solid #eee; line-height: 1.5; }
+    .service-block ul li:last-child { border-bottom: none; }
+    .fee { float: right; font-weight: 700; color: #2e5c32; }
+    .fee-range { float: right; font-weight: 700; color: #2e5c32; font-size: 0.82rem; }
+    .service-note { font-family: Arial, sans-serif; font-size: 0.78rem; color: #777; margin-top: 12px; font-style: italic; }
+
+    /* AREAS */
+    .areas { padding: 60px 5%; background: #fff; }
+    .areas h2 { font-size: 1.6rem; color: #1c2b1e; margin-bottom: 16px; }
+    .areas p { font-family: Arial, sans-serif; color: #555; line-height: 1.7; margin-bottom: 14px; font-size: 0.95rem; }
+    .postcode-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .postcode-tag {
+      background: #eef4ef;
+      border: 1px solid #b8d0ba;
+      border-radius: 3px;
+      padding: 5px 14px;
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      color: #1c3d1f;
+      font-weight: 600;
+    }
+
+    /* CASES */
+    .cases { padding: 80px 5%; background: #f0f5f1; }
+    .cases h2 { font-size: 1.8rem; color: #1c2b1e; margin-bottom: 8px; }
+    .cases .sub { font-family: Arial, sans-serif; color: #555; margin-bottom: 44px; font-size: 0.95rem; }
+    .case-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .case-card {
+      flex: 1;
+      min-width: 240px;
+      background: #fff;
+      border-left: 4px solid #2e5c32;
+      border-radius: 2px;
+      padding: 24px 22px;
+    }
+    .case-type { font-family: Arial, sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #2e5c32; margin-bottom: 8px; }
+    .case-card h4 { font-size: 1rem; color: #1c2b1e; margin-bottom: 8px; }
+    .case-card p { font-family: Arial, sans-serif; font-size: 0.87rem; color: #555; line-height: 1.6; }
+    .case-outcome { font-family: Arial, sans-serif; font-size: 0.82rem; color: #2e5c32; font-weight: 700; margin-top: 10px; }
+
+    /* ACCREDITATIONS */
+    .accreditations {
+      background: #1c2b1e;
+      padding: 40px 5%;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .accreditations p { color: #8aaa8c; font-family: Arial, sans-serif; font-size: 0.85rem; }
+    .accred-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      padding: 12px 22px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .accred-badge strong { display: block; font-size: 0.95rem; margin-bottom: 3px; }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #888;
+      padding: 56px 5% 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+    .footer-col h4 { color: #ddd; font-size: 0.95rem; font-family: Arial, sans-serif; margin-bottom: 14px; }
+    .footer-col p, .footer-col address { font-family: Arial, sans-serif; font-size: 0.85rem; line-height: 1.8; color: #888; font-style: normal; }
+    .footer-col a { color: #888; text-decoration: none; }
+    .footer-col a:hover { color: #fff; }
+    .footer-reg { font-size: 0.75rem; color: #555; margin-top: 12px; line-height: 1.6; }
+    .footer-bottom {
+      background: #0a0a0a;
+      text-align: center;
+      color: #444;
+      font-size: 0.78rem;
+      font-family: Arial, sans-serif;
+      padding: 14px 5%;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+
+<div class="notice-bar">
+  <strong>COVID-19 Update:</strong> We continue to offer in-person, phone and video appointments at our Sheffield office. Call us on <strong>0114 276 4490</strong>.
+</div>
+
+<nav>
+  <div class="logo">
+    Whitfield &amp; Norbury Solicitors
+    <span class="reg">Regulated by the Solicitors Regulation Authority</span>
+  </div>
+  <ul>
+    <li><a href="#">Employment Law</a></li>
+    <li><a href="#">Family Law</a></li>
+    <li><a href="#">Conveyancing</a></li>
+    <li><a href="#">Our Team</a></li>
+    <li><a href="#">Fees</a></li>
+  </ul>
+  <div class="nav-phone">Call us: <strong>0114 276 4490</strong></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="specialism">Employment &amp; Family Law — Sheffield S1 &amp; S2</span>
+    <h1>Sheffield Solicitors Specialising in Employment Rights &amp; Family Matters</h1>
+    <p>Whitfield &amp; Norbury has advised South Yorkshire workers and families since 1998. We are a two-partner firm — not a call centre — which means you speak directly to the solicitor handling your matter from the first call to the final outcome.</p>
+    <ul>
+      <li>Fixed fees on most family law matters — no surprise bills</li>
+      <li>Employment law consultations available same week</li>
+      <li>Conveyancing for properties across S1–S10 and S17–S20</li>
+      <li>Legal Aid available for qualifying family law cases</li>
+    </ul>
+    <a href="#" class="btn-primary">Book a Consultation — £95 + VAT (1 hr)</a>
+    <a href="#" class="btn-outline">Download Our Fee Guide (PDF)</a>
+  </div>
+  <div class="hero-contact">
+    <div class="contact-box">
+      <h3>Contact Our Sheffield Office</h3>
+      <div class="contact-row">
+        <span class="icon">📍</span>
+        <div>
+          <strong>Address</strong>
+          14 Campo Lane, Sheffield, S1 2EG
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📞</span>
+        <div>
+          <strong>Telephone</strong>
+          0114 276 4490
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📧</span>
+        <div>
+          <strong>Email</strong>
+          enquiries@whitfieldnorbury.co.uk
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="icon">🕐</span>
+        <div>
+          <strong>Office Hours</strong>
+          Mon–Fri 8:30am–6:00pm<br>
+          Sat 9:00am–12:00pm (by appointment)
+        </div>
+      </div>
+      <hr>
+      <p class="fee-note">Initial employment law consultation: <strong>£95 + VAT (60 min)</strong>. Family law first meeting: <strong>£75 + VAT (45 min)</strong>. Fixed-fee conveyancing quotes available within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <h2>The Partners</h2>
+  <p class="sub">Your matter is handled by one of our two partners — no handoffs to junior staff without your knowledge or agreement.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo">👨‍⚖️</div>
+      <div class="team-info">
+        <h3>James Whitfield</h3>
+        <div class="credentials">LLB (Hons), LPC — SRA No. 412885</div>
+        <div class="years">18 years in employment law</div>
+        <p>James qualified in 2006 after completing his LPC at Sheffield Hallam University. He has acted for claimants in over 340 Employment Tribunal cases, specialising in unfair dismissal, redundancy disputes, and TUPE transfers. He represented a group of 14 steel workers in a landmark collective redundancy case before Sheffield Employment Tribunal in 2021.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">👩‍⚖️</div>
+      <div class="team-info">
+        <h3>Claire Norbury</h3>
+        <div class="credentials">LLB (Hons), LPC — SRA No. 481902</div>
+        <div class="years">14 years in family &amp; conveyancing law</div>
+        <p>Claire qualified in 2010 and joined the firm as a partner in 2016. She handles all family law matters including divorce, financial remedy orders, and child arrangements. She is a Resolution-accredited specialist in complex finances on divorce and has been appointed as a Children's Guardian in three separate High Court proceedings.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">👨‍💼</div>
+      <div class="team-info">
+        <h3>Tariq Hussain</h3>
+        <div class="credentials">LLB, CILEx — SRA No. 593740</div>
+        <div class="years">Conveyancing Executive, 9 years' experience</div>
+        <p>Tariq manages residential conveyancing under Claire's supervision. He handles freehold and leasehold sales and purchases, re-mortgages, and transfer of equity. He is familiar with the specific title quirks affecting former council-owned properties across the S2 and S4 postcodes, where much of our conveyancing work originates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Services &amp; Fees</h2>
+  <p class="sub">We publish our fees rather than hiding them. All prices exclude VAT at 20% unless stated. Legal Aid availability noted where applicable.</p>
+  <div class="service-grid">
+    <div class="service-block">
+      <h3>Employment Law</h3>
+      <ul>
+        <li>Initial 60-min consultation <span class="fee">£95</span></li>
+        <li>Unfair dismissal — tribunal representation (per day) <span class="fee">£850</span></li>
+        <li>Settlement agreement review &amp; advice <span class="fee">£350–£600</span></li>
+        <li>Redundancy dispute — fixed fee (straightforward) <span class="fee">£750</span></li>
+        <li>Employment contract / staff handbook review <span class="fee-range">from £250</span></li>
+        <li>Discrimination claim (per hour, partner rate) <span class="fee">£175/hr</span></li>
+      </ul>
+      <p class="service-note">Many settlement agreements are funded by the employer. Ask us when you call.</p>
+    </div>
+    <div class="service-block">
+      <h3>Family Law</h3>
+      <ul>
+        <li>First 45-min family consultation <span class="fee">£75</span></li>
+        <li>Uncontested divorce — fixed fee <span class="fee">£695</span></li>
+        <li>Financial remedy order — fixed fee (agreed) <span class="fee">£1,400</span></li>
+        <li>Child Arrangements Order — per hour <span class="fee">£165/hr</span></li>
+        <li>Domestic abuse injunction <span class="fee">Legal Aid*</span></li>
+        <li>Cohabitation agreement <span class="fee-range">from £480</span></li>
+      </ul>
+      <p class="service-note">*Legal Aid available for qualifying domestic abuse and child protection cases. We are a Legal Aid contract holder (Contract Ref: 2WNSL43).</p>
+    </div>
+    <div class="service-block">
+      <h3>Residential Conveyancing</h3>
+      <ul>
+        <li>Freehold purchase (up to £250k) <span class="fee">£895</span></li>
+        <li>Freehold purchase (£250k–£500k) <span class="fee">£1,150</span></li>
+        <li>Leasehold purchase (add) <span class="fee">+£200</span></li>
+        <li>Freehold sale (up to £500k) <span class="fee">£795</span></li>
+        <li>Re-mortgage (straightforward) <span class="fee">£550</span></li>
+        <li>Transfer of equity <span class="fee-range">from £450</span></li>
+      </ul>
+      <p class="service-note">Disbursements (searches, Land Registry fees, SDLT) are quoted separately. We provide a full itemised quote within 24 hours of your enquiry.</p>
+    </div>
+  </div>
+</section>
+
+<section class="areas">
+  <h2>Areas We Cover</h2>
+  <p>Our main office is at 14 Campo Lane, Sheffield S1 2EG. The majority of our clients live or work in Sheffield and Rotherham, though we advise clients across England and Wales for employment law matters (which can be handled entirely by phone or video).</p>
+  <p>For conveyancing and family law, we primarily handle matters in the following postcode districts:</p>
+  <div class="postcode-list">
+    <span class="postcode-tag">S1</span>
+    <span class="postcode-tag">S2</span>
+    <span class="postcode-tag">S3</span>
+    <span class="postcode-tag">S4</span>
+    <span class="postcode-tag">S5</span>
+    <span class="postcode-tag">S6</span>
+    <span class="postcode-tag">S7</span>
+    <span class="postcode-tag">S8</span>
+    <span class="postcode-tag">S9</span>
+    <span class="postcode-tag">S10</span>
+    <span class="postcode-tag">S11</span>
+    <span class="postcode-tag">S13</span>
+    <span class="postcode-tag">S17</span>
+    <span class="postcode-tag">S20</span>
+    <span class="postcode-tag">S60 (Rotherham)</span>
+    <span class="postcode-tag">S61 (Rotherham)</span>
+  </div>
+</section>
+
+<section class="cases">
+  <h2>Recent Case Outcomes</h2>
+  <p class="sub">Examples of matters we have handled (details anonymised at clients' request).</p>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-type">Employment — Unfair Dismissal</div>
+      <h4>Long-serving warehouse manager dismissed following restructure</h4>
+      <p>Client employed for 11 years was made redundant without proper selection criteria. James Whitfield represented at Sheffield Employment Tribunal (Case ET/2400581/2023).</p>
+      <p class="case-outcome">Outcome: £18,400 compensatory award + costs contribution</p>
+    </div>
+    <div class="case-card">
+      <div class="case-type">Family — Financial Remedy</div>
+      <h4>Divorce after 22-year marriage with jointly owned business</h4>
+      <p>Claire Norbury negotiated a clean-break financial remedy order including the division of a Sheffield-based catering business valued at £340,000.</p>
+      <p class="case-outcome">Outcome: Agreed order sealed by Sheffield Family Court, November 2024</p>
+    </div>
+    <div class="case-card">
+      <div class="case-type">Conveyancing — Complex Leasehold</div>
+      <h4>Leasehold flat with short lease (68 years) in S2</h4>
+      <p>Tariq Hussain coordinated a simultaneous lease extension and purchase for a first-time buyer, navigating issues with a dormant freeholder.</p>
+      <p class="case-outcome">Outcome: Lease extended to 125 years; purchase completed in 14 weeks</p>
+    </div>
+    <div class="case-card">
+      <div class="case-type">Employment — Discrimination</div>
+      <h4>Pregnancy discrimination — early career professional</h4>
+      <p>Client passed over for promotion on return from maternity leave. James Whitfield prepared and filed ET1, securing a pre-hearing settlement.</p>
+      <p class="case-outcome">Outcome: Confidential settlement; client returned to role at revised grade</p>
+    </div>
+  </div>
+</section>
+
+<section class="accreditations">
+  <p>Regulated &amp; accredited:</p>
+  <div class="accred-badge">
+    <strong>SRA Regulated</strong>
+    Authorisation No. 618243
+  </div>
+  <div class="accred-badge">
+    <strong>Legal Aid Contract</strong>
+    Family &amp; Immigration — Ref 2WNSL43
+  </div>
+  <div class="accred-badge">
+    <strong>Resolution Member</strong>
+    Family Law Specialist — C. Norbury
+  </div>
+  <div class="accred-badge">
+    <strong>Law Society CQS</strong>
+    Conveyancing Quality Scheme
+  </div>
+</section>
+
+<footer>
+  <div class="footer-col">
+    <h4>Whitfield &amp; Norbury Solicitors</h4>
+    <address>
+      14 Campo Lane<br>
+      Sheffield<br>
+      S1 2EG<br><br>
+      Tel: 0114 276 4490<br>
+      Fax: 0114 276 4491<br>
+      enquiries@whitfieldnorbury.co.uk
+    </address>
+    <p class="footer-reg">
+      Whitfield &amp; Norbury LLP is a limited liability partnership registered in England &amp; Wales (OC412006). Authorised and regulated by the Solicitors Regulation Authority (SRA No. 618243). VAT Registration: 182 4471 90.
+    </p>
+  </div>
+  <div class="footer-col">
+    <h4>Employment Law</h4>
+    <p><a href="#">Unfair Dismissal</a><br><a href="#">Redundancy</a><br><a href="#">Discrimination</a><br><a href="#">Settlement Agreements</a><br><a href="#">TUPE</a><br><a href="#">Whistleblowing</a></p>
+  </div>
+  <div class="footer-col">
+    <h4>Family Law</h4>
+    <p><a href="#">Divorce &amp; Separation</a><br><a href="#">Financial Remedy</a><br><a href="#">Child Arrangements</a><br><a href="#">Domestic Abuse</a><br><a href="#">Cohabitation</a><br><a href="#">Legal Aid</a></p>
+  </div>
+  <div class="footer-col">
+    <h4>Conveyancing</h4>
+    <p><a href="#">Buying a Home</a><br><a href="#">Selling a Home</a><br><a href="#">Leasehold Issues</a><br><a href="#">Re-mortgage</a><br><a href="#">Transfer of Equity</a><br><a href="#">Get a Quote</a></p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  &copy; 2026 Whitfield &amp; Norbury LLP | 14 Campo Lane, Sheffield S1 2EG | 0114 276 4490 | SRA Authorised | <a href="#" style="color:#555">Privacy Notice</a> | <a href="#" style="color:#555">Complaints Procedure</a>
+</div>
+
+</body>
+</html>

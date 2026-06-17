@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProHome Services | Reliable Home Solutions</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e1e2e; background: #ffffff; }
+
+    /* NAV */
+    nav {
+      background: #d62828;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .logo { color: #fff; font-size: 1.35rem; font-weight: 800; letter-spacing: 0.5px; }
+    .logo span { color: #ffd166; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav ul a:hover { color: #ffd166; }
+    .nav-emergency {
+      background: #ffd166;
+      color: #d62828 !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    /* EMERGENCY BANNER */
+    .emergency-bar {
+      background: #1e1e2e;
+      color: #ffd166;
+      text-align: center;
+      padding: 10px 5%;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+    .emergency-bar span { color: #fff; font-weight: 400; margin: 0 8px; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e1e2e 0%, #d62828 100%);
+      color: #fff;
+      padding: 90px 5% 80px;
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-text { flex: 2; min-width: 280px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,209,102,0.2);
+      color: #ffd166;
+      border: 1px solid #ffd166;
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-text h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.2; margin-bottom: 18px; }
+    .hero-text h1 span { color: #ffd166; }
+    .hero-text p { font-size: 1.05rem; color: rgba(255,255,255,0.82); line-height: 1.7; margin-bottom: 28px; max-width: 500px; }
+    .btn-cta {
+      display: inline-block;
+      background: #ffd166;
+      color: #1e1e2e;
+      padding: 14px 34px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      margin-right: 12px;
+      transition: background 0.2s;
+    }
+    .btn-cta:hover { background: #ffe08a; }
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      padding: 13px 28px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: #fff; }
+
+    /* TRUST ICONS */
+    .trust-strip {
+      background: #f8f8f8;
+      padding: 32px 5%;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid #ececec;
+    }
+    .trust-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #444;
+      font-weight: 600;
+    }
+    .trust-item .icon { font-size: 1.5rem; }
+
+    /* FEATURES */
+    .features { padding: 88px 5%; text-align: center; }
+    .section-label { color: #d62828; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-size: 2rem; font-weight: 800; color: #1e1e2e; margin-bottom: 12px; }
+    .section-sub { color: #666; max-width: 500px; margin: 0 auto 48px; line-height: 1.7; }
+    .cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-top: 4px solid #d62828;
+      border-radius: 8px;
+      padding: 36px 28px;
+      flex: 1;
+      min-width: 230px;
+      max-width: 300px;
+      text-align: left;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card-icon { font-size: 2.2rem; margin-bottom: 18px; }
+    .card h3 { font-size: 1.05rem; font-weight: 700; color: #1e1e2e; margin-bottom: 10px; }
+    .card p { color: #666; line-height: 1.7; font-size: 0.9rem; }
+
+    /* STATS */
+    .stats {
+      background: #1e1e2e;
+      color: #fff;
+      padding: 70px 5%;
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .stat-item h3 { font-size: 2.6rem; font-weight: 800; color: #ffd166; }
+    .stat-item p { color: #aaa; font-size: 0.9rem; margin-top: 6px; }
+
+    /* SERVICES */
+    .services { padding: 88px 5%; background: #f8f8f8; }
+    .services h2 { font-size: 2rem; font-weight: 800; color: #1e1e2e; text-align: center; margin-bottom: 48px; }
+    .service-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .service-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      flex: 1;
+      min-width: 200px;
+      max-width: 260px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .service-item .icon { font-size: 2rem; margin-bottom: 14px; }
+    .service-item h3 { font-size: 0.95rem; font-weight: 700; color: #1e1e2e; margin-bottom: 8px; }
+    .service-item p { color: #666; font-size: 0.85rem; line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 88px 5%; text-align: center; }
+    .testi-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 44px; }
+    .testi-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 32px 28px;
+      flex: 1;
+      min-width: 250px;
+      max-width: 340px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .stars { color: #ffd166; font-size: 1rem; margin-bottom: 14px; }
+    .testi-card blockquote { font-size: 0.92rem; line-height: 1.75; color: #555; margin-bottom: 18px; font-style: italic; }
+    .testi-author { font-weight: 700; color: #1e1e2e; font-size: 0.9rem; }
+    .testi-role { color: #999; font-size: 0.82rem; }
+
+    /* CTA */
+    .cta { background: #d62828; text-align: center; padding: 80px 5%; color: #fff; }
+    .cta h2 { font-size: 2rem; font-weight: 800; margin-bottom: 14px; }
+    .cta p { color: rgba(255,255,255,0.82); margin-bottom: 32px; font-size: 1.05rem; }
+
+    /* FOOTER */
+    footer { background: #111; color: #888; padding: 56px 5% 24px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-col h4 { color: #eee; font-size: 0.95rem; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul a { color: #888; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #ffd166; }
+    .footer-bottom { background: #0a0a0a; text-align: center; color: #444; font-size: 0.8rem; padding: 14px 5%; border-top: 1px solid #222; }
+  </style>
+</head>
+<body>
+
+<div class="emergency-bar">
+  🚨 24/7 Emergency Service Available <span>|</span> Call Now: 0800 000 0000 <span>|</span> Fast Response Guaranteed
+</div>
+
+<nav>
+  <div class="logo">Pro<span>Home</span> Services</div>
+  <ul>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#" class="nav-emergency">Call Now</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Trusted Home Experts</div>
+    <h1>Professional Home Services <span>You Can Count On</span></h1>
+    <p>When something goes wrong at home, you need a reliable professional fast. Our expert team is on call around the clock to solve your home emergencies with speed and care.</p>
+    <a href="#" class="btn-cta">Get a Free Quote</a>
+    <a href="#" class="btn-ghost">Our Services</a>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item"><span class="icon">✅</span> Fully Insured</div>
+  <div class="trust-item"><span class="icon">⏱️</span> Fast Response</div>
+  <div class="trust-item"><span class="icon">⭐</span> 5-Star Rated</div>
+  <div class="trust-item"><span class="icon">🛡️</span> Guaranteed Work</div>
+  <div class="trust-item"><span class="icon">📞</span> 24/7 Availability</div>
+</div>
+
+<section class="features">
+  <p class="section-label">Why Choose Us</p>
+  <h2 class="section-title">Quality Home Services, Every Time</h2>
+  <p class="section-sub">We pride ourselves on delivering professional, reliable service that puts your needs first — every single call-out.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>Expertise You Can Trust</h3>
+      <p>Our highly trained and certified technicians have years of hands-on experience across all types of home services, ensuring every job is done right the first time.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Results-Driven Approach</h3>
+      <p>We don't cut corners. Each job is completed to the highest standard using quality materials and proven techniques, giving you lasting results you can rely on.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Client-Focused Service</h3>
+      <p>We understand that home problems are stressful. That's why we communicate clearly, arrive on time, and treat your home with the same respect we'd show our own.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item">
+    <h3>2,500+</h3>
+    <p>Jobs Completed</p>
+  </div>
+  <div class="stat-item">
+    <h3>10+</h3>
+    <p>Years Experience</p>
+  </div>
+  <div class="stat-item">
+    <h3>97%</h3>
+    <p>Satisfaction Rate</p>
+  </div>
+  <div class="stat-item">
+    <h3>24/7</h3>
+    <p>Emergency Cover</p>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Our Home Services</h2>
+  <div class="service-grid">
+    <div class="service-item">
+      <div class="icon">🚿</div>
+      <h3>Plumbing</h3>
+      <p>Leaks, blockages, burst pipes, and full installations handled swiftly and professionally.</p>
+    </div>
+    <div class="service-item">
+      <div class="icon">⚡</div>
+      <h3>Electrical</h3>
+      <p>Safe, certified electrical work — from fault finding to full rewires and smart home installs.</p>
+    </div>
+    <div class="service-item">
+      <div class="icon">🔥</div>
+      <h3>Boiler & Heating</h3>
+      <p>Boiler servicing, repairs, and replacement — Gas Safe registered engineers on call.</p>
+    </div>
+    <div class="service-item">
+      <div class="icon">🏠</div>
+      <h3>General Maintenance</h3>
+      <p>No job too small. Carpentry, tiling, painting, and all-round home maintenance solutions.</p>
+    </div>
+    <div class="service-item">
+      <div class="icon">🧹</div>
+      <h3>Cleaning</h3>
+      <p>Professional deep cleaning, end-of-tenancy, and regular domestic cleaning packages.</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <p class="section-label">Customer Reviews</p>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <p class="section-sub">We let our work — and our customers — speak for themselves.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Outstanding results! They arrived within the hour and fixed the problem quickly and cleanly. I wouldn't use anyone else for my home emergencies."</blockquote>
+      <div class="testi-author">Michael R.</div>
+      <div class="testi-role">Homeowner</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Truly professional from start to finish. The technician was polite, efficient, and left everything spotless. Excellent value for the quality of service received."</blockquote>
+      <div class="testi-author">Jennifer T.</div>
+      <div class="testi-role">Landlord</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I called at 11pm and they were here within 90 minutes. Fantastic service, very reasonably priced, and the issue was sorted before midnight. Highly recommended!"</blockquote>
+      <div class="testi-author">Robert H.</div>
+      <div class="testi-role">Property Manager</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Need a Home Service Expert Today?</h2>
+  <p>Don't let a home problem get worse. Call us now or book online — we're here 24 hours a day.</p>
+  <a href="#" class="btn-cta">Book a Free Quote</a>
+</section>
+
+<footer>
+  <div class="footer-col">
+    <h4>ProHome Services</h4>
+    <p style="font-size:0.88rem;line-height:1.7;max-width:240px;">Reliable, professional home services delivered by certified experts across the region.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Plumbing</a></li>
+      <li><a href="#">Electrical</a></li>
+      <li><a href="#">Boiler &amp; Heating</a></li>
+      <li><a href="#">General Repairs</a></li>
+      <li><a href="#">Cleaning</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Reviews</a></li>
+      <li><a href="#">Careers</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="#">0800 000 0000</a></li>
+      <li><a href="#">info@prohomeservices.com</a></li>
+      <li><a href="#">Available 24/7</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  &copy; 2026 ProHome Services Ltd. All rights reserved. | Privacy Policy | Terms &amp; Conditions
+</div>
+
+</body>
+</html>

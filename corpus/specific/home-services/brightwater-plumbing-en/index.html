@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brightwater Plumbing & Heating | Bristol BS6 BS7 BS8 | Gas Safe Reg. 553821</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; background: #fff; }
+
+    /* EMERGENCY HEADER */
+    .emergency-header {
+      background: #b31414;
+      color: #fff;
+      text-align: center;
+      padding: 10px 5%;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .emergency-header a { color: #ffd166; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      background: #0a2540;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+    .logo { color: #fff; font-size: 1.2rem; font-weight: 800; }
+    .logo .sub { font-size: 0.72rem; font-weight: 400; color: #7aaccc; display: block; }
+    nav ul { list-style: none; display: flex; gap: 26px; }
+    nav ul a { color: #b0c8dc; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    nav ul a:hover { color: #fff; }
+    .nav-call { background: #1a7fc1; color: #fff !important; padding: 8px 18px; border-radius: 3px; font-weight: 700; }
+
+    /* HERO */
+    .hero {
+      background: #0a2540;
+      padding: 60px 5%;
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .hero-left { flex: 2; min-width: 280px; color: #fff; }
+    .hero-left .area-tag {
+      background: #1a7fc1;
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+    .hero-left h1 { font-size: 2rem; line-height: 1.3; margin-bottom: 16px; }
+    .hero-left .hl { color: #ffd166; }
+    .hero-left .intro { color: #aac4dc; line-height: 1.75; margin-bottom: 20px; font-size: 0.95rem; }
+    .fee-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 4px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .fee-box p { color: #ccdde8; font-size: 0.88rem; line-height: 1.8; }
+    .fee-box strong { color: #ffd166; }
+    .btn-call {
+      display: inline-block;
+      background: #b31414;
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: 3px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+    .btn-quote {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      padding: 12px 24px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    /* BOOKING PANEL */
+    .booking-panel {
+      flex: 1;
+      min-width: 260px;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .panel-header { background: #1a7fc1; color: #fff; padding: 18px 22px; font-weight: 700; font-size: 0.95rem; }
+    .panel-body { padding: 22px; }
+    .panel-row { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
+    .panel-row .lbl { font-size: 0.8rem; font-weight: 700; color: #333; min-width: 100px; padding-top: 2px; }
+    .panel-row .val { font-size: 0.85rem; color: #1a1a1a; line-height: 1.5; }
+    .panel-row .val strong { color: #b31414; }
+    .panel-divider { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+    .gas-safe {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 3px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      color: #5a3e00;
+      line-height: 1.5;
+    }
+    .gas-safe strong { color: #333; }
+
+    /* CALLOUT FEES */
+    .fees-section { padding: 64px 5%; background: #f5f8fb; }
+    .fees-section h2 { font-size: 1.7rem; color: #0a2540; margin-bottom: 8px; }
+    .fees-section .sub { color: #555; font-size: 0.9rem; margin-bottom: 36px; line-height: 1.6; }
+    .fees-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .fees-table thead { background: #0a2540; color: #fff; }
+    .fees-table thead th { padding: 14px 18px; text-align: left; font-size: 0.88rem; }
+    .fees-table tbody tr:nth-child(even) { background: #f0f5fa; }
+    .fees-table tbody td { padding: 13px 18px; font-size: 0.88rem; color: #333; border-bottom: 1px solid #e8edf2; }
+    .fees-table tbody td:last-child { font-weight: 700; color: #0a2540; }
+    .fees-note { font-size: 0.8rem; color: #777; margin-top: 14px; font-style: italic; }
+
+    /* SERVICES */
+    .services { padding: 64px 5%; background: #fff; }
+    .services h2 { font-size: 1.7rem; color: #0a2540; margin-bottom: 36px; }
+    .service-cols { display: flex; gap: 32px; flex-wrap: wrap; }
+    .service-col { flex: 1; min-width: 240px; }
+    .service-col h3 { font-size: 1rem; color: #1a7fc1; border-bottom: 2px solid #1a7fc1; padding-bottom: 8px; margin-bottom: 14px; }
+    .service-col ul { list-style: none; }
+    .service-col ul li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.88rem; color: #444; line-height: 1.5; }
+    .service-col ul li::before { content: "✓ "; color: #1a7fc1; font-weight: 700; }
+
+    /* AREAS */
+    .areas { padding: 56px 5%; background: #0a2540; color: #fff; }
+    .areas h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    .areas .intro { color: #aac4dc; font-size: 0.92rem; line-height: 1.7; margin-bottom: 28px; max-width: 700px; }
+    .postcode-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pc {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 3px;
+      padding: 7px 16px;
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .areas .response-note { margin-top: 20px; color: #7aaccc; font-size: 0.85rem; }
+
+    /* ENGINEER */
+    .engineer { padding: 64px 5%; background: #f5f8fb; display: flex; gap: 48px; flex-wrap: wrap; align-items: flex-start; }
+    .engineer-text { flex: 2; min-width: 260px; }
+    .engineer-text h2 { font-size: 1.7rem; color: #0a2540; margin-bottom: 16px; }
+    .engineer-text p { font-size: 0.92rem; color: #444; line-height: 1.75; margin-bottom: 12px; }
+    .engineer-text ul { margin: 8px 0 20px 16px; }
+    .engineer-text ul li { font-size: 0.9rem; color: #444; line-height: 1.8; }
+    .creds-box {
+      flex: 1;
+      min-width: 240px;
+      background: #fff;
+      border: 1px solid #d0dce8;
+      border-radius: 4px;
+      padding: 24px;
+    }
+    .creds-box h3 { font-size: 0.95rem; color: #0a2540; margin-bottom: 16px; border-bottom: 2px solid #1a7fc1; padding-bottom: 8px; }
+    .cred-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; font-size: 0.85rem; color: #444; line-height: 1.5; }
+    .cred-row .cred-icon { font-size: 1.1rem; }
+
+    /* REVIEWS */
+    .reviews { padding: 64px 5%; background: #fff; }
+    .reviews h2 { font-size: 1.7rem; color: #0a2540; margin-bottom: 6px; }
+    .reviews .sub { color: #666; font-size: 0.9rem; margin-bottom: 36px; }
+    .review-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+    .review-card {
+      flex: 1;
+      min-width: 240px;
+      max-width: 360px;
+      border: 1px solid #e0e8f0;
+      border-radius: 4px;
+      padding: 22px;
+    }
+    .review-card .r-header { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; }
+    .review-card .r-name { font-weight: 700; font-size: 0.92rem; color: #0a2540; }
+    .review-card .r-source { font-size: 0.75rem; color: #999; }
+    .review-card .r-stars { color: #ffc107; font-size: 0.9rem; margin-bottom: 10px; }
+    .review-card .r-job { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: #1a7fc1; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .review-card blockquote { font-size: 0.87rem; color: #555; line-height: 1.65; font-style: italic; }
+    .review-card .r-date { font-size: 0.75rem; color: #bbb; margin-top: 10px; }
+
+    /* FOOTER */
+    footer { background: #07172a; color: #7a9ab8; padding: 52px 5% 22px; display: flex; flex-wrap: wrap; gap: 36px; justify-content: space-between; }
+    .footer-col h4 { color: #ddeeff; font-size: 0.9rem; margin-bottom: 14px; }
+    .footer-col address { font-style: normal; font-size: 0.85rem; line-height: 1.8; }
+    .footer-col a { color: #7a9ab8; text-decoration: none; font-size: 0.85rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-reg { font-size: 0.75rem; color: #4a6a88; margin-top: 12px; line-height: 1.6; }
+    .footer-bottom { background: #040e1a; text-align: center; color: #3a5a78; font-size: 0.78rem; padding: 12px 5%; border-top: 1px solid #102030; }
+  </style>
+</head>
+<body>
+
+<div class="emergency-header">
+  🚨 EMERGENCY PLUMBER — 24/7 Bristol Response &nbsp;|&nbsp; <a href="tel:01179638240">0117 963 8240</a> &nbsp;|&nbsp; Typical arrival within 75 min across BS6, BS7, BS8
+</div>
+
+<nav>
+  <div class="logo">
+    Brightwater Plumbing &amp; Heating
+    <span class="sub">Gas Safe Registered No. 553821 &nbsp;|&nbsp; Bristol &amp; North Somerset</span>
+  </div>
+  <ul>
+    <li><a href="#">Plumbing</a></li>
+    <li><a href="#">Boilers</a></li>
+    <li><a href="#">Bathrooms</a></li>
+    <li><a href="#">Areas</a></li>
+    <li><a href="#">About Phil</a></li>
+    <li><a href="#" class="nav-call">0117 963 8240</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="area-tag">Covering BS6 · BS7 · BS8 · BS9 · BS10 · BS16</span>
+    <h1>Bristol Emergency Plumber &amp;<br><span class="hl">Gas Safe Heating Engineer</span></h1>
+    <p class="intro">Phil Okafor started Brightwater in 2013 after 8 years as a Gas Safe engineer with Severn Trent. Most of our work comes from repeat customers in Redland, Cotham, Clifton, and Bishopston — people who have our number on the fridge. No call centres, no sub-contracting. Phil or his apprentice Marcus arrive in the van.</p>
+    <div class="fee-box">
+      <p>
+        <strong>Standard call-out (Mon–Fri, 7am–6pm): £65 + parts + £48/hr labour</strong><br>
+        Evening (6pm–10pm Mon–Fri): £85 call-out + £62/hr<br>
+        Weekend &amp; bank holiday: £95 call-out + £68/hr<br>
+        Overnight emergency (10pm–7am): £120 call-out + £78/hr<br>
+        <strong>No hidden fees. Quote given before work begins.</strong>
+      </p>
+    </div>
+    <a href="tel:01179638240" class="btn-call">📞 Call 0117 963 8240</a>
+    <a href="#" class="btn-quote">Get a Written Quote</a>
+  </div>
+
+  <div class="booking-panel">
+    <div class="panel-header">Contact Brightwater</div>
+    <div class="panel-body">
+      <div class="panel-row">
+        <span class="lbl">Telephone</span>
+        <span class="val"><strong>0117 963 8240</strong></span>
+      </div>
+      <div class="panel-row">
+        <span class="lbl">WhatsApp</span>
+        <span class="val">07841 552 903</span>
+      </div>
+      <div class="panel-row">
+        <span class="lbl">Email</span>
+        <span class="val">phil@brightwaterplumbing.co.uk</span>
+      </div>
+      <div class="panel-row">
+        <span class="lbl">Based in</span>
+        <span class="val">Redland, Bristol BS6 6TE</span>
+      </div>
+      <div class="panel-row">
+        <span class="lbl">Hours</span>
+        <span class="val">
+          Mon–Fri 7am–6pm (standard rate)<br>
+          6pm–10pm (evening rate)<br>
+          <strong>Emergencies: 24/7</strong>
+        </span>
+      </div>
+      <hr class="panel-divider">
+      <div class="gas-safe">
+        <strong>Gas Safe Register No. 553821</strong><br>
+        You can verify Phil's registration at gassaferegister.co.uk. Always ask to see the card before work begins.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fees-section">
+  <h2>Call-Out Fees &amp; Labour Rates</h2>
+  <p class="sub">These are our standard rates for 2026. All prices include VAT. We quote before starting so there are no surprises on the invoice.</p>
+  <table class="fees-table">
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>Call-Out Fee (first visit)</th>
+        <th>Labour Rate (per hour)</th>
+        <th>Parts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mon–Fri, 7am–6pm</td>
+        <td>£65</td>
+        <td>£48/hr</td>
+        <td>Cost + 15%</td>
+      </tr>
+      <tr>
+        <td>Mon–Fri, 6pm–10pm</td>
+        <td>£85</td>
+        <td>£62/hr</td>
+        <td>Cost + 15%</td>
+      </tr>
+      <tr>
+        <td>Weekends &amp; bank holidays</td>
+        <td>£95</td>
+        <td>£68/hr</td>
+        <td>Cost + 15%</td>
+      </tr>
+      <tr>
+        <td>Overnight (10pm–7am)</td>
+        <td>£120</td>
+        <td>£78/hr</td>
+        <td>Cost + 15%</td>
+      </tr>
+      <tr>
+        <td>Annual boiler service (included in call-out)</td>
+        <td>—</td>
+        <td colspan="2"><strong>Fixed fee: £89 (standard combi)</strong></td>
+      </tr>
+      <tr>
+        <td>Boiler service + landlord Gas Safety Certificate (CP12)</td>
+        <td>—</td>
+        <td colspan="2"><strong>Fixed fee: £115 (single appliance)</strong></td>
+      </tr>
+      <tr>
+        <td>Power flush (central heating system)</td>
+        <td>—</td>
+        <td colspan="2"><strong>From £350 (up to 8 radiators)</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fees-note">Call-out fee covers travel and first 30 minutes on site. Minimum labour charge 1 hour. We accept cash, BACS transfer, and card. We do not accept cheques.</p>
+</section>
+
+<section class="services">
+  <h2>What We Fix</h2>
+  <div class="service-cols">
+    <div class="service-col">
+      <h3>Emergency Plumbing</h3>
+      <ul>
+        <li>Burst and leaking pipes (copper, plastic, pushfit)</li>
+        <li>Blocked drains and toilets — internal</li>
+        <li>Overflowing tanks and cisterns</li>
+        <li>No hot water — cylinder and combi faults</li>
+        <li>Frozen pipe thawing (winter call-outs)</li>
+        <li>Leak detection under floors and behind tiles</li>
+        <li>Stopcock replacement and isolation</li>
+      </ul>
+    </div>
+    <div class="service-col">
+      <h3>Boiler &amp; Heating</h3>
+      <ul>
+        <li>Combi boiler faults — Worcester Bosch, Vaillant, Baxi, Ideal</li>
+        <li>Annual boiler service (Gas Safe certified)</li>
+        <li>Landlord Gas Safety Certificates (CP12)</li>
+        <li>Radiator bleeding, balancing, and replacement</li>
+        <li>Thermostatic radiator valve (TRV) replacement</li>
+        <li>Magnetic system filters (Magnaclean / Fernox)</li>
+        <li>Central heating power flush</li>
+      </ul>
+    </div>
+    <div class="service-col">
+      <h3>Planned Work</h3>
+      <ul>
+        <li>Bathroom suite installation (supply and fit)</li>
+        <li>Shower tray and enclosure installation</li>
+        <li>Outdoor tap supply (single or double)</li>
+        <li>Kitchen appliance connection (dishwasher, washing machine)</li>
+        <li>Full bathroom re-pipe</li>
+        <li>Underfloor heating (wet system) servicing</li>
+        <li>Pressure testing (new builds and extensions)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="areas">
+  <h2>Areas Covered</h2>
+  <p class="intro">Brightwater operates from our yard in Redland (BS6 6TE). We cover central and north Bristol day-to-day. We take emergency calls from the postcodes below 24/7 and aim to be on site within 75 minutes. Outside these postcodes — call us and we'll say honestly whether we can reach you in time.</p>
+  <div class="postcode-grid">
+    <span class="pc">BS1 (City Centre)</span>
+    <span class="pc">BS2 (St Pauls)</span>
+    <span class="pc">BS3 (Bedminster)</span>
+    <span class="pc">BS6 (Redland/Cotham)</span>
+    <span class="pc">BS7 (Bishopston)</span>
+    <span class="pc">BS8 (Clifton)</span>
+    <span class="pc">BS9 (Westbury)</span>
+    <span class="pc">BS10 (Brentry)</span>
+    <span class="pc">BS16 (Downend/Fishponds)</span>
+    <span class="pc">BS23 (Weston-super-Mare — planned work only)</span>
+  </div>
+  <p class="response-note">Average drive time from our Redland base: BS6/BS7 8 min, BS8 12 min, BS9 16 min, BS10 18 min, BS16 22 min.</p>
+</section>
+
+<section class="engineer">
+  <div class="engineer-text">
+    <h2>Phil Okafor — Lead Engineer</h2>
+    <p>Phil completed his plumbing and heating NVQ Level 3 at City of Bristol College in 2005 and worked as a gas engineer for Severn Trent Property Services between 2005 and 2013, servicing boilers across 2,400 managed properties in Avon and Somerset.</p>
+    <p>He set up Brightwater Plumbing in January 2013, initially as a sole trader and converting to a limited company (Brightwater Plumbing &amp; Heating Ltd, Company No. 09184723) in 2017. He took on apprentice Marcus Threlfall in 2022; Marcus passed his ACS assessments in October 2024 and now assists on all non-gas work independently.</p>
+    <p>Phil services approximately 180 boilers per year and has fitted over 60 complete bathroom suites in properties across BS6–BS8. He is familiar with the older Victorian pipe layouts common in Redland and Clifton terraces, including lead-to-copper transition work.</p>
+    <ul>
+      <li>Registered Gas Safe engineer since 2006</li>
+      <li>Worcester Bosch approved installer (since 2018)</li>
+      <li>CIPHE member (No. 84291)</li>
+      <li>Fully DBS checked (valid to April 2027)</li>
+    </ul>
+  </div>
+  <div class="creds-box">
+    <h3>Registrations &amp; Credentials</h3>
+    <div class="cred-row">
+      <span class="cred-icon">🔥</span>
+      <div><strong>Gas Safe Register</strong><br>Reg. No. 553821<br>Verify: gassaferegister.co.uk</div>
+    </div>
+    <div class="cred-row">
+      <span class="cred-icon">🏢</span>
+      <div><strong>Companies House</strong><br>Brightwater Plumbing &amp; Heating Ltd<br>Company No. 09184723</div>
+    </div>
+    <div class="cred-row">
+      <span class="cred-icon">🛡️</span>
+      <div><strong>Public Liability Insurance</strong><br>£2,000,000 — Hiscox<br>Policy No. HX-PL-2026-338821</div>
+    </div>
+    <div class="cred-row">
+      <span class="cred-icon">🔧</span>
+      <div><strong>Worcester Bosch</strong><br>Approved Installer<br>Since 2018</div>
+    </div>
+    <div class="cred-row">
+      <span class="cred-icon">📋</span>
+      <div><strong>CIPHE Member</strong><br>Chartered Institute of Plumbing<br>No. 84291</div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <h2>Recent Customer Reviews</h2>
+  <p class="sub">Pulled from Google Reviews (4.9 ★, 87 reviews) and Checkatrade. We don't cherry-pick — these are the most recent four.</p>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="r-header">
+        <div class="r-name">Sarah &amp; Dan Wylde</div>
+        <div class="r-source">Google Reviews</div>
+      </div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-job">Emergency burst pipe — BS7</div>
+      <blockquote>"Pipe burst behind the kitchen wall at 11pm on a Tuesday. Phil picked up on the second ring and was at our door in Bishopston within 55 minutes. Found the fault in the cavity without having to hack too much plaster. Back within 24 hours to replaster. We've used him for our annual boiler service ever since."</blockquote>
+      <div class="r-date">March 2026</div>
+    </div>
+    <div class="review-card">
+      <div class="r-header">
+        <div class="r-name">Marcus T.</div>
+        <div class="r-source">Checkatrade</div>
+      </div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-job">Boiler service + CP12 — BS8 (landlord)</div>
+      <blockquote>"I own four flats in Clifton and have been using Phil for CP12s and annual services since 2019. He always turns up on time, the certificates come through same day, and he flags any issues clearly rather than using scare tactics. £115 per certificate is very fair for the quality."</blockquote>
+      <div class="r-date">January 2026</div>
+    </div>
+    <div class="review-card">
+      <div class="r-header">
+        <div class="r-name">Alyssa Fernandez</div>
+        <div class="r-source">Google Reviews</div>
+      </div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-job">Full bathroom installation — BS6</div>
+      <blockquote>"Phil and Marcus fitted our new bathroom in our Redland Victorian terrace. The old bathroom had been bodged by previous owners and the waste pipe had dropped 30mm over time. Phil redesigned the layout to fix the fall properly. Quote was accurate to within £40. Took four days, tidy every evening."</blockquote>
+      <div class="r-date">November 2025</div>
+    </div>
+    <div class="review-card">
+      <div class="r-header">
+        <div class="r-name">Tom Brightwell</div>
+        <div class="r-source">Checkatrade</div>
+      </div>
+      <div class="r-stars">★★★★</div>
+      <div class="r-job">Power flush — BS9</div>
+      <blockquote>"Eight radiators, six of which were cold at the bottom. Phil did a full power flush and fitted a Fernox TF1 filter. Dropped one star only because the booking took nearly two weeks — he's clearly busy. But the system has been fine since October and our heating bills dropped noticeably."</blockquote>
+      <div class="r-date">December 2025</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-col">
+    <h4>Brightwater Plumbing &amp; Heating Ltd</h4>
+    <address>
+      Phil Okafor<br>
+      Based in Redland, Bristol BS6 6TE<br><br>
+      Tel: 0117 963 8240<br>
+      WhatsApp: 07841 552 903<br>
+      phil@brightwaterplumbing.co.uk
+    </address>
+    <p class="footer-reg">
+      Brightwater Plumbing &amp; Heating Ltd — Company No. 09184723.<br>
+      Gas Safe Reg. No. 553821. VAT No. 214 5532 88.<br>
+      Public liability insured to £2,000,000 (Hiscox HX-PL-2026-338821).
+    </p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#">Emergency Plumbing</a></li>
+      <li><a href="#">Boiler Repair &amp; Service</a></li>
+      <li><a href="#">Gas Safety Certificates</a></li>
+      <li><a href="#">Bathroom Installation</a></li>
+      <li><a href="#">Power Flush</a></li>
+      <li><a href="#">Central Heating</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Areas</h4>
+    <ul>
+      <li><a href="#">BS6 Redland / Cotham</a></li>
+      <li><a href="#">BS7 Bishopston</a></li>
+      <li><a href="#">BS8 Clifton</a></li>
+      <li><a href="#">BS9 Westbury-on-Trym</a></li>
+      <li><a href="#">BS10 Brentry</a></li>
+      <li><a href="#">BS16 Downend</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Important</h4>
+    <ul>
+      <li><a href="#">Fee Guide</a></li>
+      <li><a href="#">Gas Safety Advice</a></li>
+      <li><a href="#">Verify Gas Safe Card</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms &amp; Conditions</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  &copy; 2026 Brightwater Plumbing &amp; Heating Ltd (Co. No. 09184723) | Gas Safe Reg. 553821 | 0117 963 8240 | Redland, Bristol BS6 6TE
+</div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "id": "agencies-portfolio/pixelata-studio-es",
+  "class": "specific",
+  "industry": "agencies-portfolio",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Pixelata Studio, agencia de diseño web y marketing digital en Barcelona (Poblenou). Tres personas del equipo nombradas con roles, estudios universitarios españoles y experiencia real. Stack tecnológico concreto (Next.js, WordPress, Figma, etc.). 4 casos de clientes reales ficticios pero plausibles. Tarifas en euros: web desde 1.500€, tienda online desde 3.000€, mantenimiento mensual 150€. CIF de empresa."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "numero-colegiado", "tarifas-especificas", "especialidades-reales"],
+  "notes": "Agencia de 3 personas en Barcelona (Poblenou) con nombres reales, estudios en ESDI/UPC/UOC, experiencia en empresas conocidas (Wallapop, Privalia, Glovo), stack tecnológico concreto, 4 casos de clientes plausibles con resultados medibles, tarifas en euros y CIF de empresa."
+}

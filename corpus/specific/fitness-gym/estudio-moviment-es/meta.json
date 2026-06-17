@@ -1,0 +1,17 @@
+{
+  "id": "fitness-gym/estudio-moviment-es",
+  "class": "specific",
+  "industry": "fitness-gym",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Estudio Moviment en Carrer de Roc Boronat 77 baixos, Poblenou, Barcelona. Fundadora: Júlia Ferrer (fisioterapeuta, desde 2014). Monitores: Marc Solà (cycling/funcional) y Laia Vidal (yoga). Tarifas: bono 10 clases 85€, mensual 65€, trimestral 170€. Horario de clases detallado con plazas disponibles. Nueva sala CrossFit en septiembre 2025."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "clases-con-monitor", "nueva-sala", "descuento-vecinos"],
+  "notes": "Estudio boutique de Pilates y funcional en Poblenou. Grupos máx. 10 personas. Monitores con nombres, formación y credenciales reales. Nueva sala CrossFit en septiembre 2025. Descuento para empadronados en Poblenou."
+}

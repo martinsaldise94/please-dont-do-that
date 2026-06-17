@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academia Molina — Refuerzo Escolar e Idiomas en Zaragoza</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1c1917; background: #fafaf9; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; background: #fff; border-bottom: 2px solid #d97706; }
+    .logo { display: flex; flex-direction: column; }
+    .logo-name { font-size: 1.5rem; font-weight: 700; color: #92400e; letter-spacing: .02em; }
+    .logo-sub { font-size: .75rem; color: #78716c; letter-spacing: .06em; text-transform: uppercase; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { text-decoration: none; color: #44403c; font-size: .92rem; font-family: 'Segoe UI', Arial, sans-serif; transition: color .2s; }
+    nav ul a:hover { color: #92400e; }
+    .nav-cta { background: #d97706; color: #fff !important; padding: 9px 20px; border-radius: 6px; font-weight: 600; }
+    .nav-tel { font-family: 'Segoe UI', Arial, sans-serif; font-size: .88rem; color: #92400e; font-weight: 700; }
+
+    /* HERO */
+    .hero { background: #fff; border-bottom: 1px solid #e7e5e4; padding: 72px 40px 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; align-items: center; }
+    .hero-text h1 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700; color: #1c1917; line-height: 1.2; margin-bottom: 18px; }
+    .hero-text h1 em { font-style: normal; color: #d97706; }
+    .hero-text p { font-size: 1.02rem; color: #57534e; line-height: 1.75; margin-bottom: 28px; font-family: 'Segoe UI', Arial, sans-serif; }
+    .hero-detail { background: #fef3c7; border-left: 4px solid #d97706; padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 28px; font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; color: #78350f; }
+    .hero-detail strong { display: block; margin-bottom: 4px; font-size: .95rem; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: #d97706; color: #fff; padding: 13px 28px; border-radius: 7px; font-size: .95rem; font-weight: 600; text-decoration: none; font-family: 'Segoe UI', Arial, sans-serif; transition: background .2s; }
+    .btn-primary:hover { background: #b45309; }
+    .btn-secondary { border: 2px solid #d97706; color: #d97706; padding: 11px 24px; border-radius: 7px; font-size: .95rem; font-weight: 600; text-decoration: none; font-family: 'Segoe UI', Arial, sans-serif; transition: all .2s; }
+    .btn-secondary:hover { background: #fef3c7; }
+    .hero-aside { background: #f5f5f4; border-radius: 12px; padding: 32px; }
+    .hero-aside h3 { font-size: 1rem; font-weight: 700; color: #1c1917; margin-bottom: 18px; font-family: 'Segoe UI', Arial, sans-serif; border-bottom: 2px solid #d97706; padding-bottom: 10px; }
+    .result-item { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #e7e5e4; font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; }
+    .result-item:last-child { border-bottom: none; }
+    .result-label { color: #57534e; }
+    .result-value { font-weight: 700; color: #15803d; font-size: 1rem; }
+    .result-source { font-size: .75rem; color: #a8a29e; font-style: italic; }
+
+    /* RESULTADOS EVAU */
+    .evau-banner { background: #ecfdf5; border: 2px solid #16a34a; border-radius: 12px; padding: 28px 32px; max-width: 1100px; margin: 0 auto; display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+    .evau-badge { background: #16a34a; color: #fff; border-radius: 8px; padding: 16px 20px; text-align: center; min-width: 110px; flex-shrink: 0; }
+    .evau-badge .pct { font-size: 2rem; font-weight: 900; display: block; }
+    .evau-badge .pct-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; font-family: 'Segoe UI', Arial, sans-serif; }
+    .evau-text h3 { font-size: 1.1rem; font-weight: 700; color: #14532d; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+    .evau-text p { font-size: .92rem; color: #166534; line-height: 1.6; font-family: 'Segoe UI', Arial, sans-serif; }
+    .evau-text p strong { color: #14532d; }
+
+    /* SECTION WRAPPER */
+    .section-wrap { max-width: 1100px; margin: 0 auto; padding: 72px 40px; }
+    .section-header { margin-bottom: 40px; }
+    .section-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: #d97706; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; margin-bottom: 10px; }
+    .section-header h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 700; color: #1c1917; }
+    .section-header p { margin-top: 12px; font-size: .97rem; color: #57534e; line-height: 1.7; font-family: 'Segoe UI', Arial, sans-serif; }
+
+    /* PRECIOS */
+    .pricing-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', Arial, sans-serif; }
+    .pricing-table th { background: #1c1917; color: #fff; padding: 14px 20px; text-align: left; font-size: .88rem; font-weight: 600; letter-spacing: .04em; }
+    .pricing-table td { padding: 14px 20px; border-bottom: 1px solid #e7e5e4; font-size: .93rem; }
+    .pricing-table tr:nth-child(even) td { background: #fafaf9; }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .price-cell { font-weight: 700; color: #d97706; font-size: 1rem; white-space: nowrap; }
+    .badge-small { display: inline-block; background: #fef3c7; color: #92400e; border-radius: 4px; padding: 2px 8px; font-size: .75rem; font-weight: 600; margin-left: 6px; }
+
+    /* HORARIOS */
+    .horarios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .horario-card { background: #fff; border: 1.5px solid #e7e5e4; border-radius: 10px; padding: 24px 28px; font-family: 'Segoe UI', Arial, sans-serif; }
+    .horario-card h4 { font-size: 1rem; font-weight: 700; color: #1c1917; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #d97706; }
+    .horario-row { display: flex; justify-content: space-between; font-size: .88rem; padding: 6px 0; color: #44403c; }
+    .horario-row span:last-child { font-weight: 600; color: #1c1917; }
+
+    /* PROFESORES */
+    .prof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .prof-card { background: #fff; border: 1.5px solid #e7e5e4; border-radius: 12px; padding: 28px; display: flex; gap: 18px; }
+    .prof-initials { width: 56px; height: 56px; border-radius: 50%; background: #d97706; color: #fff; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    .prof-info h4 { font-size: 1rem; font-weight: 700; color: #1c1917; margin-bottom: 4px; font-family: 'Segoe UI', Arial, sans-serif; }
+    .prof-role { font-size: .82rem; color: #d97706; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; font-family: 'Segoe UI', Arial, sans-serif; margin-bottom: 8px; display: block; }
+    .prof-degree { font-size: .88rem; color: #57534e; line-height: 1.55; font-family: 'Segoe UI', Arial, sans-serif; }
+
+    /* TESTIMONIOS */
+    .testi-section { background: #1c1917; color: #fff; }
+    .testi-inner { max-width: 1100px; margin: 0 auto; padding: 72px 40px; }
+    .testi-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: #d97706; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; margin-bottom: 10px; }
+    .testi-inner h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 700; color: #fff; margin-bottom: 40px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .testi-card { background: #292524; border-radius: 12px; padding: 28px; }
+    .testi-card blockquote { font-size: .95rem; color: #d6d3d1; line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testi-author strong { display: block; color: #fff; font-size: .9rem; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; }
+    .testi-author span { font-size: .82rem; color: #a8a29e; font-family: 'Segoe UI', Arial, sans-serif; }
+
+    /* CONVOCATORIAS */
+    .conv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .conv-card { border-radius: 12px; padding: 28px 32px; }
+    .conv-card.sept { background: #fef3c7; border: 2px solid #d97706; }
+    .conv-card.enero { background: #eff6ff; border: 2px solid #3b82f6; }
+    .conv-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; font-family: 'Segoe UI', Arial, sans-serif; }
+    .conv-card.sept h3 { color: #92400e; }
+    .conv-card.enero h3 { color: #1e40af; }
+    .conv-date { font-size: .88rem; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif; margin-bottom: 14px; }
+    .conv-card.sept .conv-date { color: #b45309; }
+    .conv-card.enero .conv-date { color: #2563eb; }
+    .conv-card ul { list-style: none; font-family: 'Segoe UI', Arial, sans-serif; font-size: .9rem; }
+    .conv-card li { padding: 5px 0; color: #44403c; }
+    .conv-card li::before { content: "→ "; font-weight: 700; }
+    .conv-card.sept li::before { color: #d97706; }
+    .conv-card.enero li::before { color: #3b82f6; }
+
+    /* CONTACTO */
+    .contacto { background: #d97706; color: #fff; }
+    .contacto-inner { max-width: 1100px; margin: 0 auto; padding: 56px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .contacto h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; }
+    .contacto p { font-size: .97rem; opacity: .92; line-height: 1.7; font-family: 'Segoe UI', Arial, sans-serif; }
+    .contacto-data { background: rgba(255,255,255,.15); border-radius: 12px; padding: 28px; }
+    .contacto-data h3 { font-size: 1rem; font-weight: 700; margin-bottom: 18px; font-family: 'Segoe UI', Arial, sans-serif; opacity: .9; }
+    .contacto-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-family: 'Segoe UI', Arial, sans-serif; font-size: .92rem; }
+    .contacto-item .icon { opacity: .8; flex-shrink: 0; margin-top: 2px; }
+    .contacto-item a { color: #fff; text-decoration: underline; }
+
+    /* FOOTER */
+    footer { background: #0c0a09; color: #78716c; text-align: center; padding: 28px 24px; font-size: .83rem; font-family: 'Segoe UI', Arial, sans-serif; }
+    footer strong { color: #d6d3d1; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-name">Academia Molina</span>
+      <span class="logo-sub">Zaragoza · desde 2009</span>
+    </div>
+    <ul>
+      <li><a href="#">Precios</a></li>
+      <li><a href="#">Profesores</a></li>
+      <li><a href="#">Resultados EvAU</a></li>
+      <li><a href="#">Horarios</a></li>
+    </ul>
+    <span class="nav-tel">☎ 976 44 21 07</span>
+  </nav>
+
+  <div style="background:#fff; border-bottom:1px solid #e7e5e4;">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Refuerzo escolar e inglés Cambridge<br/>en el <em>barrio Oliver</em>, Zaragoza</h1>
+        <p>Llevamos 16 años ayudando a estudiantes de ESO, Bachillerato y preparación de EvAU en Zaragoza. Grupos reducidos de máximo 6 alumnos y seguimiento directo con los padres cada mes.</p>
+        <div class="hero-detail">
+          <strong>C/ Compromiso de Caspe, 38 · 50003 Zaragoza</strong>
+          Lunes a viernes: 16:00–21:00 · Sábados: 09:30–13:30<br/>
+          Próxima apertura de matrícula: <strong>1 de septiembre 2026</strong>
+        </div>
+        <div class="hero-btns">
+          <a href="tel:+34976442107" class="btn-primary">Llamar ahora: 976 44 21 07</a>
+          <a href="mailto:info@academiamolinazaragoza.es" class="btn-secondary">Pedir información</a>
+        </div>
+      </div>
+      <div class="hero-aside">
+        <h3>Resultados reales — EvAU junio 2025</h3>
+        <div class="result-item">
+          <span class="result-label">Alumnos presentados</span>
+          <span class="result-value">34 alumnos</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Superaron la EvAU</span>
+          <span class="result-value">91 % (31/34)</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Nota media obtenida</span>
+          <span class="result-value">7,4 / 10</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Alumnos con nota ≥ 9</span>
+          <span class="result-value">7 alumnos</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Años consecutivos dando clases</span>
+          <span class="result-value">16 años</span>
+        </div>
+        <p class="result-source" style="margin-top:14px;">Datos internos verificados con actas de la Universidad de Zaragoza. Disponibles previa solicitud.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- BANNER EVAU -->
+  <div style="background:#f0fdf4; padding: 24px 40px; border-bottom: 1px solid #bbf7d0;">
+    <div class="evau-banner" style="padding:0; border:none; background:none;">
+      <div class="evau-badge">
+        <span class="pct">91%</span>
+        <span class="pct-label">EvAU 2025</span>
+      </div>
+      <div class="evau-text">
+        <h3>En junio de 2025, el 91 % de nuestros alumnos de 2.º Bachillerato superaron la EvAU en primera convocatoria</h3>
+        <p>De los 34 alumnos que se presentaron con nosotros, <strong>31 aprobaron</strong> con una nota media de 7,4. Los tres que no superaron la prueba ordinaria la aprobaron en la convocatoria extraordinaria de julio. <strong>Tasa de éxito acumulada: 100 %.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIOS -->
+  <div style="background:#fff; border-bottom: 1px solid #e7e5e4;">
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-eyebrow">Tarifas 2025–2026</div>
+        <h2>Precios por hora · Sin matrícula ni permanencia</h2>
+        <p>Todas las clases son presenciales en la academia. Grupos máximo 6 alumnos. La primera clase es siempre de prueba gratuita.</p>
+      </div>
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Modalidad</th>
+            <th>Nivel</th>
+            <th>Precio / hora</th>
+            <th>Frecuencia habitual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Refuerzo escolar — Matemáticas, Física, Química</td>
+            <td>ESO (1.º a 4.º)</td>
+            <td class="price-cell">18 €/h</td>
+            <td>2 sesiones de 1h / semana</td>
+          </tr>
+          <tr>
+            <td>Refuerzo escolar — Matemáticas, Historia, Lengua</td>
+            <td>Bachillerato (1.º y 2.º)</td>
+            <td class="price-cell">22 €/h</td>
+            <td>2–3 sesiones de 1h / semana</td>
+          </tr>
+          <tr>
+            <td>Intensivo EvAU <span class="badge-small">⭐ Más demandado</span></td>
+            <td>2.º Bachillerato + verano</td>
+            <td class="price-cell">25 €/h</td>
+            <td>Paquete 3h / día en julio</td>
+          </tr>
+          <tr>
+            <td>Inglés — preparación Cambridge KET / PET / FCE</td>
+            <td>ESO y Bachillerato</td>
+            <td class="price-cell">20 €/h</td>
+            <td>2 sesiones de 1,5h / semana</td>
+          </tr>
+          <tr>
+            <td>Inglés — preparación Cambridge CAE / CPE</td>
+            <td>Universidad / adultos</td>
+            <td class="price-cell">24 €/h</td>
+            <td>A convenir</td>
+          </tr>
+          <tr>
+            <td>Clases particulares 1 a 1 (cualquier materia)</td>
+            <td>Todos los niveles</td>
+            <td class="price-cell">34 €/h</td>
+            <td>A convenir</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px; font-size:.85rem; color:#78716c; font-family:'Segoe UI',Arial,sans-serif;">Descuento del 10 % para hermanos. Pago mensual por transferencia o en efectivo en la academia. No cobramos matrícula.</p>
+    </div>
+  </div>
+
+  <!-- PROFESORES -->
+  <div style="background:#fafaf9; border-bottom: 1px solid #e7e5e4;">
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-eyebrow">El equipo</div>
+        <h2>Profesores con titulación universitaria española</h2>
+        <p>Todos nuestros docentes tienen titulación oficial y experiencia contrastada en el sistema educativo aragonés.</p>
+      </div>
+      <div class="prof-grid">
+        <div class="prof-card">
+          <div class="prof-initials">AM</div>
+          <div class="prof-info">
+            <h4>Antonio Molina Ferrer</h4>
+            <span class="prof-role">Director · Matemáticas y Física</span>
+            <p class="prof-degree">Licenciado en Matemáticas por la Universidad de Zaragoza (2001). Máster en Enseñanza de Matemáticas y Ciencias Experimentales (UZ, 2004). Fundador de la academia en 2009. Profesor certificado en el método ABN para primaria.</p>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="prof-initials">RPS</div>
+          <div class="prof-info">
+            <h4>Rosa Pinilla Sánchez</h4>
+            <span class="prof-role">Profesora de Inglés · Cambridge Examiner</span>
+            <p class="prof-degree">Graduada en Filología Inglesa por la Universidad de Zaragoza (2013). Cambridge CELTA (2014). Examinadora acreditada para exámenes Cambridge desde 2018. Nivel C2 certificado (CPE 2012).</p>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="prof-initials">JCL</div>
+          <div class="prof-info">
+            <h4>Javier Córdoba López</h4>
+            <span class="prof-role">Profesor de Química y Biología</span>
+            <p class="prof-degree">Graduado en Química por la Universidad de Zaragoza (2016). Máster en Formación del Profesorado de Educación Secundaria, especialidad Física y Química (UAM, 2018). Actualmente prepara su tesis doctoral en materiales poliméricos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HORARIOS -->
+  <div style="background:#fff; border-bottom: 1px solid #e7e5e4;">
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-eyebrow">Horarios</div>
+        <h2>Horario de la academia</h2>
+        <p>C/ Compromiso de Caspe, 38 · 50003 Zaragoza · Tel. 976 44 21 07</p>
+      </div>
+      <div class="horarios-grid">
+        <div class="horario-card">
+          <h4>Clases de Refuerzo y EvAU</h4>
+          <div class="horario-row"><span>Lunes a jueves</span><span>16:00 – 21:00</span></div>
+          <div class="horario-row"><span>Viernes</span><span>16:00 – 20:00</span></div>
+          <div class="horario-row"><span>Sábados</span><span>09:30 – 13:30</span></div>
+          <div class="horario-row"><span>Domingos</span><span>Cerrado</span></div>
+        </div>
+        <div class="horario-card">
+          <h4>Clases de Inglés Cambridge</h4>
+          <div class="horario-row"><span>Lunes y miércoles (KET/PET)</span><span>17:00 – 18:30</span></div>
+          <div class="horario-row"><span>Martes y jueves (FCE/CAE)</span><span>18:30 – 20:00</span></div>
+          <div class="horario-row"><span>Sábados (CPE · adultos)</span><span>10:00 – 12:00</span></div>
+          <div class="horario-row"><span>Secretaría (atención padres)</span><span>Lun–Vie 15:30 – 16:00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <section class="testi-section">
+    <div class="testi-inner">
+      <div class="testi-eyebrow">Familias y alumnos</div>
+      <h2>Lo que dicen quienes ya han pasado por aquí</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <blockquote>"Mi hija Claudia llevaba dos años suspendiendo Matemáticas de 3.º ESO. Después de un trimestre con Antonio en la Academia Molina subió a un 6,5 en junio. No creía que fuera posible. El grupo pequeño es clave."</blockquote>
+          <div class="testi-author">
+            <strong>Pilar Escartín</strong>
+            <span>Madre de alumna · Zaragoza</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <blockquote>"Vine a preparar el FCE en julio y en noviembre ya lo tenía aprobado con B. Rosa es muy exigente, que es exactamente lo que necesitaba. La metodología de examen que enseña es muy diferente a lo que había hecho antes."</blockquote>
+          <div class="testi-author">
+            <strong>Marcos Villanueva Otal</strong>
+            <span>Alumno FCE · estudiante universitario</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <blockquote>"Mi hijo Adrián entró en septiembre de 2024 para preparar la EvAU y en junio de 2025 sacó un 8,1. Sacó plaza en Ingeniería Industrial en la UZ, que era su primera opción. Gracias a todo el equipo."</blockquote>
+          <div class="testi-author">
+            <strong>Fernando Lorente Palacín</strong>
+            <span>Padre de alumno · Casco Histórico, Zaragoza</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVOCATORIAS -->
+  <div style="background:#fafaf9; border-bottom: 1px solid #e7e5e4;">
+    <div class="section-wrap">
+      <div class="section-header">
+        <div class="section-eyebrow">Próximas convocatorias</div>
+        <h2>Matricúlate para el curso 2026–2027</h2>
+        <p>Las plazas son limitadas por grupo (máximo 6 alumnos). Reserva la tuya con antelación.</p>
+      </div>
+      <div class="conv-grid">
+        <div class="conv-card sept">
+          <h3>Convocatoria de septiembre</h3>
+          <p class="conv-date">Inicio: lunes 8 de septiembre de 2026</p>
+          <ul>
+            <li>Matrícula abierta desde el 1 de septiembre</li>
+            <li>Clase de prueba gratuita la primera semana</li>
+            <li>Grupos de ESO, Bachillerato e inglés</li>
+            <li>Plazas disponibles: últimas unidades</li>
+          </ul>
+        </div>
+        <div class="conv-card enero">
+          <h3>Convocatoria de enero</h3>
+          <p class="conv-date">Inicio: lunes 12 de enero de 2027</p>
+          <ul>
+            <li>Matrícula abierta desde el 5 de enero</li>
+            <li>Ideal para recuperar asignaturas del primer trimestre</li>
+            <li>Grupos de refuerzo ESO y Bachillerato</li>
+            <li>Preparación intensiva EvAU desde febrero</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section class="contacto">
+    <div class="contacto-inner">
+      <div>
+        <h2>Reserva tu plaza o pide información sin compromiso</h2>
+        <p>Puedes llamarnos, escribirnos un correo o pasarte directamente por la academia. Atendemos a padres y alumnos de lunes a viernes de 15:30 a 16:00 antes de empezar las clases.</p>
+      </div>
+      <div class="contacto-data">
+        <h3>Datos de contacto</h3>
+        <div class="contacto-item">
+          <span class="icon">📍</span>
+          <span>C/ Compromiso de Caspe, 38 · 50003 Zaragoza (barrio Oliver)</span>
+        </div>
+        <div class="contacto-item">
+          <span class="icon">☎</span>
+          <span><a href="tel:+34976442107">976 44 21 07</a> · también WhatsApp</span>
+        </div>
+        <div class="contacto-item">
+          <span class="icon">✉</span>
+          <span><a href="mailto:info@academiamolinazaragoza.es">info@academiamolinazaragoza.es</a></span>
+        </div>
+        <div class="contacto-item">
+          <span class="icon">🕐</span>
+          <span>Secretaría: Lun–Vie 15:30–16:00 · Tel.: Lun–Vie 9:00–14:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Academia Molina</strong> · C/ Compromiso de Caspe, 38 · 50003 Zaragoza · CIF: B50234781</p>
+    <p>© 2026 Academia Molina Zaragoza S.L. · <a href="#" style="color:#78716c;">Política de privacidad</a> · <a href="#" style="color:#78716c;">Aviso legal</a> · Inscrita en el Registro Mercantil de Zaragoza</p>
+  </footer>
+
+</body>
+</html>

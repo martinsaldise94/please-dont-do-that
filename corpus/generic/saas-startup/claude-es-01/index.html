@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync — Optimiza Tu Flujo de Trabajo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #0f172a; background: #fff; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 56px; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 1.35rem; font-weight: 800; color: #0ea5e9; letter-spacing: -.02em; }
+    .logo span { color: #0f172a; }
+    nav ul { list-style: none; display: flex; gap: 36px; }
+    nav ul a { text-decoration: none; color: #475569; font-size: .9rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: #0ea5e9; }
+    .nav-cta { background: #0ea5e9; color: #fff !important; padding: 9px 22px; border-radius: 8px; font-weight: 600 !important; }
+    .nav-login { color: #0f172a !important; }
+
+    /* HERO */
+    .hero { background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #0c4a6e 100%); min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(14,165,233,.25) 0%, transparent 70%); }
+    .hero-blob { position: absolute; width: 500px; height: 500px; background: rgba(14,165,233,.12); border-radius: 50%; filter: blur(80px); top: -100px; right: -100px; }
+    .hero-blob-2 { position: absolute; width: 400px; height: 400px; background: rgba(139,92,246,.1); border-radius: 50%; filter: blur(60px); bottom: -50px; left: -50px; }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(14,165,233,.15); border: 1px solid rgba(14,165,233,.3); color: #7dd3fc; padding: 6px 16px; border-radius: 999px; font-size: .82rem; font-weight: 600; letter-spacing: .05em; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 22px; }
+    .hero h1 .accent { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.15rem; color: #94a3b8; line-height: 1.7; max-width: 580px; margin: 0 auto 40px; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+    .btn-primary { background: #0ea5e9; color: #fff; padding: 15px 32px; border-radius: 10px; font-size: .97rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-primary:hover { background: #0284c7; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.4); }
+    .btn-ghost { border: 1.5px solid rgba(255,255,255,.2); color: #fff; padding: 13px 28px; border-radius: 10px; font-size: .97rem; font-weight: 600; text-decoration: none; transition: all .2s; }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); }
+    .hero-social-proof { display: flex; align-items: center; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .avatars { display: flex; }
+    .avatars span { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #1e293b; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: #fff; margin-left: -8px; }
+    .avatars span:first-child { margin-left: 0; }
+    .proof-text { color: #94a3b8; font-size: .88rem; }
+    .proof-text strong { color: #fff; }
+
+    /* LOGOS */
+    .logos-bar { background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 32px 24px; text-align: center; }
+    .logos-bar p { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: #94a3b8; font-weight: 600; margin-bottom: 20px; }
+    .logo-row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .logo-placeholder { color: #cbd5e1; font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; }
+
+    /* FEATURES */
+    .features { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-tag { display: inline-block; background: #e0f2fe; color: #0284c7; padding: 4px 14px; border-radius: 999px; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -.02em; }
+    .section-sub { font-size: 1.05rem; color: #64748b; max-width: 560px; line-height: 1.7; }
+    .features-header { margin-bottom: 60px; }
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .feat-card { padding: 32px; border: 1.5px solid #e2e8f0; border-radius: 16px; background: #fff; transition: all .25s; }
+    .feat-card:hover { border-color: #bae6fd; box-shadow: 0 8px 32px rgba(14,165,233,.1); transform: translateY(-4px); }
+    .feat-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feat-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .feat-card p { font-size: .93rem; color: #64748b; line-height: 1.65; }
+
+    /* STATS */
+    .stats-section { background: linear-gradient(135deg, #0ea5e9, #8b5cf6); color: #fff; padding: 72px 24px; text-align: center; }
+    .stats-inner { max-width: 900px; margin: 0 auto; }
+    .stats-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 48px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .stat-item .number { font-size: 2.8rem; font-weight: 900; }
+    .stat-item .label { font-size: .9rem; opacity: .85; margin-top: 6px; }
+
+    /* TESTIMONIALS */
+    .testi-section { padding: 100px 24px; background: #f8fafc; }
+    .testi-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .testi-inner .section-tag { margin-bottom: 14px; }
+    .testi-inner .section-title { margin-bottom: 48px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; text-align: left; }
+    .testi-card { background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+    .stars { color: #fbbf24; font-size: 1rem; margin-bottom: 14px; letter-spacing: .05em; }
+    .testi-card blockquote { font-size: .93rem; color: #475569; line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: .85rem; flex-shrink: 0; }
+    .author-info strong { display: block; font-size: .87rem; font-weight: 700; color: #0f172a; }
+    .author-info span { font-size: .78rem; color: #94a3b8; }
+
+    /* PRICING */
+    .pricing { padding: 100px 24px; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .pricing .section-title { margin-bottom: 8px; }
+    .pricing .section-sub { margin: 0 auto 48px; }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: left; }
+    .price-card { border: 2px solid #e2e8f0; border-radius: 20px; padding: 32px 28px; position: relative; }
+    .price-card.popular { border-color: #0ea5e9; background: #f0f9ff; }
+    .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #0ea5e9; color: #fff; padding: 4px 16px; border-radius: 999px; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+    .price-card h3 { font-size: 1rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+    .price-amount { font-size: 2.8rem; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+    .price-amount sub { font-size: 1rem; font-weight: 500; color: #94a3b8; }
+    .price-tagline { font-size: .85rem; color: #64748b; margin-bottom: 24px; }
+    .price-list { list-style: none; margin-bottom: 28px; }
+    .price-list li { font-size: .88rem; color: #475569; padding: 7px 0; border-bottom: 1px solid #f1f5f9; display: flex; gap: 8px; }
+    .price-list li::before { content: "✓"; color: #0ea5e9; font-weight: 700; flex-shrink: 0; }
+    .btn-plan { display: block; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; font-size: .92rem; text-decoration: none; transition: all .2s; }
+    .btn-plan-sky { background: #0ea5e9; color: #fff; }
+    .btn-plan-sky:hover { background: #0284c7; }
+    .btn-plan-outline { border: 2px solid #e2e8f0; color: #0f172a; }
+    .btn-plan-outline:hover { border-color: #0ea5e9; color: #0ea5e9; }
+
+    /* CTA */
+    .cta { background: #0f172a; color: #fff; text-align: center; padding: 80px 24px; }
+    .cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 16px; }
+    .cta p { font-size: 1.05rem; color: #94a3b8; max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-small { display: block; margin-top: 16px; font-size: .82rem; color: #64748b; }
+
+    /* FOOTER */
+    footer { background: #020617; color: #475569; padding: 40px 24px; text-align: center; font-size: .83rem; }
+    footer strong { color: #94a3b8; }
+    footer p + p { margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Flow<span>Sync</span></div>
+    <ul>
+      <li><a href="#">Características</a></li>
+      <li><a href="#">Precios</a></li>
+      <li><a href="#">Clientes</a></li>
+      <li><a href="#" class="nav-login">Iniciar sesión</a></li>
+      <li><a href="#" class="nav-cta">Prueba Gratis</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-blob"></div>
+    <div class="hero-blob-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Nuevo: Inteligencia Artificial integrada</div>
+      <h1>Optimiza Tu <span class="accent">Flujo de Trabajo</span><br/>como Nunca Antes</h1>
+      <p>La plataforma todo-en-uno que transforma la forma en que los equipos modernos colaboran, automatizan y escalan sus procesos empresariales.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Empieza Gratis — 14 días</a>
+        <a href="#" class="btn-ghost">Ver demo en vivo →</a>
+      </div>
+      <div class="hero-social-proof">
+        <div class="avatars">
+          <span>AK</span><span>JM</span><span>SR</span><span>PL</span><span>+</span>
+        </div>
+        <p class="proof-text"><strong>+10.000 equipos</strong> ya confían en FlowSync</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="logos-bar">
+    <p>Con la confianza de empresas innovadoras</p>
+    <div class="logo-row">
+      <span class="logo-placeholder">TechCorp</span>
+      <span class="logo-placeholder">InnoGroup</span>
+      <span class="logo-placeholder">ScaleUp</span>
+      <span class="logo-placeholder">FutureWorks</span>
+      <span class="logo-placeholder">NextLevel</span>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="features-header">
+      <div class="section-tag">Funcionalidades</div>
+      <h2 class="section-title">Todo lo que tu equipo necesita</h2>
+      <p class="section-sub">Deja de usar herramientas dispersas. FlowSync centraliza todo para que tu equipo trabaje de forma más inteligente.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">⚡</div>
+        <h3>Automatización Inteligente</h3>
+        <p>Automatiza tareas repetitivas y libera a tu equipo para que se centre en lo que realmente importa para el crecimiento del negocio.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <h3>Analítica en Tiempo Real</h3>
+        <p>Toma decisiones basadas en datos con dashboards intuitivos que muestran el rendimiento de tu empresa en tiempo real.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔗</div>
+        <h3>Integraciones Seamless</h3>
+        <p>Conecta con todas tus herramientas favoritas en segundos. Más de 200 integraciones disponibles sin necesidad de código.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-inner">
+      <h2 class="stats-title">Números que hablan por sí solos</h2>
+      <div class="stats-grid">
+        <div class="stat-item"><div class="number">+10.000</div><div class="label">Equipos activos</div></div>
+        <div class="stat-item"><div class="number">98%</div><div class="label">Satisfacción de clientes</div></div>
+        <div class="stat-item"><div class="number">3x</div><div class="label">Más productividad</div></div>
+        <div class="stat-item"><div class="number">24/7</div><div class="label">Soporte disponible</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testi-section">
+    <div class="testi-inner">
+      <div class="section-tag">Testimonios</div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"FlowSync ha transformado completamente nuestra forma de trabajar. La productividad del equipo se ha disparado y los procesos son mucho más eficientes. Totalmente recomendado."</blockquote>
+          <div class="testi-author">
+            <div class="avatar">MG</div>
+            <div class="author-info">
+              <strong>María G.</strong>
+              <span>CEO, TechStartup</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Desde que implementamos FlowSync ahorramos más de 20 horas semanales en tareas manuales. El ROI fue positivo desde el primer mes. La mejor inversión que hemos hecho."</blockquote>
+          <div class="testi-author">
+            <div class="avatar">CM</div>
+            <div class="author-info">
+              <strong>Carlos M.</strong>
+              <span>Director de Operaciones</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"La integración con nuestras herramientas fue instantánea. El soporte es excepcional y la plataforma es increíblemente intuitiva. No podemos imaginar trabajar sin FlowSync."</blockquote>
+          <div class="testi-author">
+            <div class="avatar">AR</div>
+            <div class="author-info">
+              <strong>Ana R.</strong>
+              <span>Product Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-tag">Precios</div>
+    <h2 class="section-title">Un plan para cada equipo</h2>
+    <p class="section-sub">Sin sorpresas. Sin letra pequeña. Cancela cuando quieras.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Gratis</h3>
+        <div class="price-amount">0€ <sub>/mes</sub></div>
+        <p class="price-tagline">Para empezar</p>
+        <ul class="price-list">
+          <li>Hasta 3 usuarios</li>
+          <li>5 proyectos activos</li>
+          <li>Integraciones básicas</li>
+          <li>Soporte por email</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-outline">Empezar Gratis</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">⭐ Más Popular</div>
+        <h3>Pro</h3>
+        <div class="price-amount">49€ <sub>/mes</sub></div>
+        <p class="price-tagline">Para equipos en crecimiento</p>
+        <ul class="price-list">
+          <li>Usuarios ilimitados</li>
+          <li>Proyectos ilimitados</li>
+          <li>Todas las integraciones</li>
+          <li>Automatizaciones avanzadas</li>
+          <li>Soporte prioritario 24/7</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-sky">Comenzar Ahora</a>
+      </div>
+      <div class="price-card">
+        <h3>Empresa</h3>
+        <div class="price-amount">Custom</div>
+        <p class="price-tagline">Para grandes organizaciones</p>
+        <ul class="price-list">
+          <li>Todo lo del plan Pro</li>
+          <li>SSO y seguridad avanzada</li>
+          <li>SLA garantizado</li>
+          <li>Implementación asistida</li>
+          <li>Gestor de cuenta dedicado</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-outline">Hablar con Ventas</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Empieza hoy. Sin riesgos.</h2>
+    <p>14 días de prueba gratuita. Sin tarjeta de crédito. Cancela cuando quieras.</p>
+    <a href="#" class="btn-primary">Crear mi cuenta gratis →</a>
+    <span class="cta-small">✓ Sin tarjeta · ✓ Configuración en 5 minutos · ✓ Soporte 24/7</span>
+  </section>
+
+  <footer>
+    <p><strong>FlowSync</strong> — La plataforma para equipos modernos</p>
+    <p>© 2026 FlowSync Technologies S.L. Todos los derechos reservados · <a href="#" style="color:#475569;">Privacidad</a> · <a href="#" style="color:#475569;">Términos</a> · <a href="#" style="color:#475569;">Contacto</a></p>
+  </footer>
+
+</body>
+</html>

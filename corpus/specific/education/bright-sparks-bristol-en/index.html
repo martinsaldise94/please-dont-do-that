@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Sparks Tuition — GCSE &amp; A-Level Tutoring in Bristol</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: #2c2c2c; background: #fdfaf5; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+      background: #fff; border-bottom: 2px solid #e8dfc8;
+    }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .logo-mark {
+      width: 40px; height: 40px; background: #c05a2d; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: #fff;
+    }
+    .logo-text { font-size: 1.2rem; font-weight: 700; color: #2c2c2c; line-height: 1.2; }
+    .logo-text small { display: block; font-size: 0.7rem; font-weight: 400; color: #888; font-family: Arial, sans-serif; letter-spacing: 0.3px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-family: Arial, sans-serif; }
+    .nav-links a { text-decoration: none; color: #444; font-size: 0.9rem; }
+    .nav-links a:hover { color: #c05a2d; }
+    .nav-phone { font-family: Arial, sans-serif; font-size: 0.9rem; color: #c05a2d; font-weight: 700; }
+
+    /* HERO */
+    .hero {
+      background: #2a4a3e; color: #fff;
+      padding: 80px 5% 70px;
+      display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .hero-text { flex: 1 1 420px; }
+    .hero-eyebrow {
+      font-family: Arial, sans-serif; font-size: 0.8rem; font-weight: 700;
+      color: #a8d5b5; text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: 2.6rem; line-height: 1.25; margin-bottom: 1.25rem; color: #fff; }
+    .hero h1 em { color: #f0c06a; font-style: normal; }
+    .hero p { font-family: Arial, sans-serif; font-size: 1rem; color: #c8ddd1; line-height: 1.75; margin-bottom: 1.75rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-main {
+      background: #c05a2d; color: #fff; padding: 0.8rem 1.75rem;
+      border-radius: 6px; text-decoration: none; font-family: Arial, sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+    }
+    .btn-outline {
+      background: transparent; color: #fff; padding: 0.8rem 1.75rem;
+      border-radius: 6px; text-decoration: none; font-family: Arial, sans-serif;
+      font-weight: 700; font-size: 0.95rem; border: 2px solid rgba(255,255,255,0.4);
+    }
+    .hero-aside { flex: 1 1 280px; }
+    .quick-info {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px; padding: 1.75rem;
+    }
+    .quick-info h3 { font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: 700; color: #a8d5b5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+    .quick-info ul { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .quick-info li { font-family: Arial, sans-serif; font-size: 0.9rem; color: #e0ede6; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+    .quick-info li span { font-size: 1rem; flex-shrink: 0; }
+
+    /* RESULTS BANNER */
+    .results-banner {
+      background: #f0c06a; color: #2c2c2c;
+      padding: 1rem 5%; font-family: Arial, sans-serif;
+      display: flex; gap: 3rem; justify-content: center; align-items: center; flex-wrap: wrap;
+      text-align: center;
+    }
+    .result-item .num { font-size: 1.6rem; font-weight: 800; color: #2a4a3e; }
+    .result-item .desc { font-size: 0.78rem; color: #444; margin-top: 2px; }
+
+    /* SUBJECTS */
+    .subjects { padding: 80px 5%; background: #fdfaf5; }
+    .subjects h2 { font-size: 2rem; color: #2c2c2c; margin-bottom: 0.5rem; }
+    .subjects .subtitle { font-family: Arial, sans-serif; font-size: 1rem; color: #666; margin-bottom: 2.5rem; max-width: 600px; line-height: 1.65; }
+    .subjects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .subject-card {
+      background: #fff; border: 1px solid #e8dfc8; border-radius: 10px; padding: 1.5rem;
+    }
+    .subject-level {
+      display: inline-block; font-family: Arial, sans-serif; font-size: 0.72rem; font-weight: 700;
+      padding: 2px 10px; border-radius: 20px; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .level-gcse { background: #d4edda; color: #155724; }
+    .level-alevel { background: #cce5ff; color: #004085; }
+    .subject-card h3 { font-size: 1.1rem; color: #2c2c2c; margin-bottom: 0.4rem; }
+    .subject-card .price {
+      font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: #c05a2d; margin-bottom: 0.6rem;
+    }
+    .subject-card .tutor-name {
+      font-family: Arial, sans-serif; font-size: 0.85rem; color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .subject-card .detail { font-family: Arial, sans-serif; font-size: 0.83rem; color: #777; line-height: 1.55; }
+
+    /* TUTORS */
+    .tutors { padding: 80px 5%; background: #f2ede3; }
+    .tutors h2 { font-size: 2rem; color: #2c2c2c; margin-bottom: 0.5rem; }
+    .tutors .subtitle { font-family: Arial, sans-serif; font-size: 1rem; color: #666; margin-bottom: 2.5rem; }
+    .tutor-grid { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .tutor-card {
+      background: #fff; border-radius: 12px; padding: 2rem;
+      flex: 1 1 300px; border: 1px solid #e8dfc8;
+    }
+    .tutor-photo {
+      width: 72px; height: 72px; border-radius: 50%; background: #2a4a3e;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 1rem; color: #fff; font-weight: 700;
+      font-family: Arial, sans-serif;
+    }
+    .tutor-card h3 { font-size: 1.15rem; color: #2c2c2c; margin-bottom: 0.2rem; }
+    .tutor-card .quals {
+      font-family: Arial, sans-serif; font-size: 0.82rem; color: #c05a2d; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .tutor-card p { font-family: Arial, sans-serif; font-size: 0.88rem; color: #555; line-height: 1.65; }
+
+    /* RESULTS DETAIL */
+    .results { padding: 80px 5%; background: #2a4a3e; color: #fff; }
+    .results h2 { font-size: 2rem; color: #f0c06a; margin-bottom: 0.5rem; }
+    .results .subtitle { font-family: Arial, sans-serif; font-size: 1rem; color: #a8d5b5; margin-bottom: 2.5rem; }
+    .results-list { display: flex; flex-direction: column; gap: 1.25rem; max-width: 680px; }
+    .result-row {
+      background: rgba(255,255,255,0.07); border-left: 4px solid #f0c06a;
+      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem;
+      font-family: Arial, sans-serif;
+    }
+    .result-row .exam { font-size: 0.85rem; color: #a8d5b5; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+    .result-row .stat { font-size: 1.05rem; color: #fff; line-height: 1.5; }
+    .result-row .cohort { font-size: 0.78rem; color: #7aab8a; margin-top: 0.25rem; }
+
+    /* INTAKE */
+    .intake { padding: 70px 5%; background: #fdfaf5; }
+    .intake h2 { font-size: 2rem; color: #2c2c2c; margin-bottom: 0.5rem; }
+    .intake .subtitle { font-family: Arial, sans-serif; font-size: 1rem; color: #666; margin-bottom: 2rem; }
+    .intake-cards { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .intake-card {
+      background: #fff; border: 2px solid #e8dfc8; border-radius: 10px;
+      padding: 1.5rem; flex: 1 1 280px;
+    }
+    .intake-card.next { border-color: #c05a2d; }
+    .intake-date {
+      font-family: Arial, sans-serif; font-size: 1.3rem; font-weight: 800;
+      color: #2a4a3e; margin-bottom: 0.4rem;
+    }
+    .intake-label { font-family: Arial, sans-serif; font-size: 0.8rem; color: #888; margin-bottom: 0.75rem; }
+    .intake-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .intake-card li { font-family: Arial, sans-serif; font-size: 0.88rem; color: #555; }
+    .intake-card li::before { content: '→ '; color: #c05a2d; }
+    .spots-left { font-family: Arial, sans-serif; font-size: 0.8rem; font-weight: 700; color: #c05a2d; margin-top: 0.75rem; }
+
+    /* LOCATION */
+    .location { padding: 70px 5%; background: #f2ede3; }
+    .location h2 { font-size: 2rem; color: #2c2c2c; margin-bottom: 0.5rem; }
+    .location-inner { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; align-items: flex-start; }
+    .location-info { flex: 1 1 280px; font-family: Arial, sans-serif; }
+    .address-block { margin-bottom: 1.5rem; }
+    .address-block h3 { font-size: 1rem; font-weight: 700; color: #2c2c2c; margin-bottom: 0.5rem; }
+    .address-block p { font-size: 0.9rem; color: #555; line-height: 1.75; }
+    .address-block a { color: #c05a2d; }
+    .transport { margin-top: 1.25rem; }
+    .transport h3 { font-size: 0.85rem; font-weight: 700; color: #2a4a3e; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .transport ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .transport li { font-size: 0.875rem; color: #555; }
+    .map-placeholder {
+      flex: 1 1 320px; height: 220px; background: #e8dfc8;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: #888; font-family: Arial, sans-serif; font-size: 0.85rem; text-align: center;
+      padding: 1rem;
+    }
+
+    /* FOOTER */
+    footer { background: #1e3530; color: #7aab8a; padding: 3rem 5%; font-family: Arial, sans-serif; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; }
+    .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; font-family: Georgia, serif; }
+    .footer-brand p { font-size: 0.85rem; max-width: 240px; line-height: 1.65; }
+    .footer-col h4 { color: #a8d5b5; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-col li { font-size: 0.875rem; }
+    .footer-col a { color: #7aab8a; text-decoration: none; }
+    .footer-bottom { background: #162924; text-align: center; padding: 1rem 5%; font-family: Arial, sans-serif; font-size: 0.78rem; color: #3d6b58; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-area">
+      <div class="logo-mark">✦</div>
+      <div class="logo-text">Bright Sparks Tuition <small>Clifton, Bristol · Est. 2018</small></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Subjects &amp; Prices</a></li>
+      <li><a href="#">Our Tutors</a></li>
+      <li><a href="#">Results</a></li>
+      <li><a href="#">Intakes</a></li>
+      <li><a href="#">Find Us</a></li>
+    </ul>
+    <span class="nav-phone">0117 946 3821</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">GCSE &amp; A-Level Tutoring · Clifton, Bristol</div>
+      <h1>Small-group tuition<br/>that gets <em>actual results</em><br/>in Bristol schools</h1>
+      <p>We specialise in GCSE and A-Level Maths, Sciences, and English for students at Bristol Grammar, Clifton College, Redland High, and local state secondaries. Maximum 4 students per group. Sessions every Saturday morning and Tuesday evening.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-main">Book a Free Trial Session</a>
+        <a href="#" class="btn-outline">See Subject Prices</a>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <div class="quick-info">
+        <h3>Next Intake</h3>
+        <ul>
+          <li><span>📅</span> September 2026 intake — enrolment open now</li>
+          <li><span>📍</span> 14 Whiteladies Road, Clifton, Bristol BS8 2PH</li>
+          <li><span>🕐</span> Saturdays 9am–1pm &amp; Tuesdays 5pm–8pm</li>
+          <li><span>👥</span> Max 4 students per group</li>
+          <li><span>📞</span> Call 0117 946 3821 to reserve a place</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS BANNER -->
+  <div class="results-banner">
+    <div class="result-item"><div class="num">94%</div><div class="desc">GCSE Maths grade 7+<br/>(2025 cohort)</div></div>
+    <div class="result-item"><div class="num">88%</div><div class="desc">A-Level Chemistry A/A*<br/>(2025 cohort)</div></div>
+    <div class="result-item"><div class="num">100%</div><div class="desc">GCSE English pass rate<br/>(2025 cohort)</div></div>
+    <div class="result-item"><div class="num">6 yrs</div><div class="desc">Tutoring Bristol students<br/>since 2018</div></div>
+  </div>
+
+  <!-- SUBJECTS -->
+  <section class="subjects">
+    <h2>Subjects &amp; Session Prices</h2>
+    <p class="subtitle">All prices are per student, per 90-minute group session (max 4 students). One-to-one sessions available on request at a supplement of £20.</p>
+    <div class="subjects-grid">
+
+      <div class="subject-card">
+        <span class="subject-level level-gcse">GCSE</span>
+        <h3>Mathematics</h3>
+        <div class="price">£35 / session</div>
+        <div class="tutor-name">Lead tutor: Priya Patel</div>
+        <div class="detail">Higher and Foundation tier. Covering Number, Algebra, Ratio, Geometry, Probability and Statistics. AQA and Edexcel syllabi. Past paper sessions from January of Year 11.</div>
+      </div>
+
+      <div class="subject-card">
+        <span class="subject-level level-alevel">A-Level</span>
+        <h3>Mathematics &amp; Further Maths</h3>
+        <div class="price">£45 / session</div>
+        <div class="tutor-name">Lead tutor: Priya Patel</div>
+        <div class="detail">Pure, Mechanics and Statistics. Further Maths also available for students sitting both A-Level Maths and Further Maths. Edexcel and OCR. Year 12 and Year 13.</div>
+      </div>
+
+      <div class="subject-card">
+        <span class="subject-level level-gcse">GCSE</span>
+        <h3>English Language &amp; Literature</h3>
+        <div class="price">£35 / session</div>
+        <div class="tutor-name">Lead tutor: Owen Griffiths</div>
+        <div class="detail">AQA and Eduqas. Language Paper 1 &amp; 2, Literature set texts (An Inspector Calls, Macbeth, A Christmas Carol). Creative writing and analytical essay technique.</div>
+      </div>
+
+      <div class="subject-card">
+        <span class="subject-level level-alevel">A-Level</span>
+        <h3>Chemistry</h3>
+        <div class="price">£45 / session</div>
+        <div class="tutor-name">Lead tutor: Dr Anya Mehta</div>
+        <div class="detail">AQA Chemistry. Physical, Inorganic and Organic chemistry. Practical endorsement guidance included. Particular strength in Year 13 transition and synoptic exam preparation.</div>
+      </div>
+
+      <div class="subject-card">
+        <span class="subject-level level-gcse">GCSE</span>
+        <h3>Combined Science (Trilogy)</h3>
+        <div class="price">£35 / session</div>
+        <div class="tutor-name">Lead tutor: Dr Anya Mehta</div>
+        <div class="detail">AQA Trilogy. Biology, Chemistry and Physics components. Separate sessions for each science if required. Targeted at students aiming for grade 6-6 and above.</div>
+      </div>
+
+      <div class="subject-card">
+        <span class="subject-level level-alevel">A-Level</span>
+        <h3>English Literature</h3>
+        <div class="price">£45 / session</div>
+        <div class="tutor-name">Lead tutor: Owen Griffiths</div>
+        <div class="detail">OCR and AQA. Prose, poetry and drama. Coursework support and close reading technique. Extended essay guidance for students targeting Oxford and Cambridge.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TUTORS -->
+  <section class="tutors">
+    <h2>Meet Your Tutors</h2>
+    <p class="subtitle">Our tutors are subject specialists, not generalists. Every tutor has taught their subject for at least five years.</p>
+    <div class="tutor-grid">
+
+      <div class="tutor-card">
+        <div class="tutor-photo">PP</div>
+        <h3>Priya Patel</h3>
+        <div class="quals">BSc Mathematics (First Class), University of Cambridge · QTS</div>
+        <p>Priya taught A-Level Maths and Further Maths at Clifton College for seven years before joining Bright Sparks full-time in 2022. She holds a distinction in the Cambridge CELTA and has mentored over 200 students through GCSE and A-Level examinations. In 2025, 18 of her 19 A-Level Maths students achieved an A or A*.</p>
+      </div>
+
+      <div class="tutor-card">
+        <div class="tutor-photo">OG</div>
+        <h3>Owen Griffiths</h3>
+        <div class="quals">MA English Literature, University of Exeter · PGCE Secondary English</div>
+        <p>Owen spent six years as Head of English at Redland High School before moving to independent tutoring in 2021. He specialises in examination technique and creative writing, and has helped twelve students gain places at Oxford and Cambridge to read English. Owen is also a published short-story writer and a First Assessor for the AQA GCSE English Literature paper.</p>
+      </div>
+
+      <div class="tutor-card">
+        <div class="tutor-photo">AM</div>
+        <h3>Dr Anya Mehta</h3>
+        <div class="quals">PhD Organic Chemistry, University of Bristol · PGCE Science</div>
+        <p>Anya completed her doctorate at the University of Bristol in 2016 and spent four years as a research chemist at Syngenta before retraining as a teacher. She joined Bright Sparks in 2020 and leads all chemistry and combined science provision. Anya's students achieved a 100% pass rate in A-Level Chemistry in both 2024 and 2025.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTS DETAIL -->
+  <section class="results">
+    <h2>2025 Exam Results</h2>
+    <p class="subtitle">Results for students who attended at least 80% of sessions in the academic year 2024–25.</p>
+    <div class="results-list">
+      <div class="result-row">
+        <div class="exam">GCSE Mathematics · AQA Higher Tier</div>
+        <div class="stat">94% of students achieved grade 7 or above. 62% achieved grade 9.</div>
+        <div class="cohort">Cohort: 32 students · Lead tutor: Priya Patel</div>
+      </div>
+      <div class="result-row">
+        <div class="exam">A-Level Mathematics · Edexcel</div>
+        <div class="stat">95% of students achieved grade A or A*. Average grade: A.</div>
+        <div class="cohort">Cohort: 19 students · Lead tutor: Priya Patel</div>
+      </div>
+      <div class="result-row">
+        <div class="exam">GCSE English Language &amp; Literature · AQA</div>
+        <div class="stat">100% of students achieved grade 4 or above. 78% achieved grade 6 or above.</div>
+        <div class="cohort">Cohort: 28 students · Lead tutor: Owen Griffiths</div>
+      </div>
+      <div class="result-row">
+        <div class="exam">A-Level Chemistry · AQA</div>
+        <div class="stat">88% of students achieved grade A or A*. 100% achieved grade C or above.</div>
+        <div class="cohort">Cohort: 17 students · Lead tutor: Dr Anya Mehta</div>
+      </div>
+      <div class="result-row">
+        <div class="exam">GCSE Combined Science Trilogy · AQA</div>
+        <div class="stat">91% of students achieved 6-6 or above across the three sciences.</div>
+        <div class="cohort">Cohort: 24 students · Lead tutor: Dr Anya Mehta</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTAKE -->
+  <section class="intake">
+    <h2>Upcoming Intakes</h2>
+    <p class="subtitle">We run two intakes per year. Groups fill quickly — we recommend booking a free trial session at least six weeks before intake.</p>
+    <div class="intake-cards">
+      <div class="intake-card next">
+        <div class="intake-date">September 2026</div>
+        <div class="intake-label">Next intake · Enrolment open</div>
+        <ul>
+          <li>Saturday groups: 6 September 2026</li>
+          <li>Tuesday groups: 9 September 2026</li>
+          <li>Half-term break: 26 Oct – 1 Nov 2026</li>
+          <li>Final session before Christmas: 20 December 2026</li>
+        </ul>
+        <div class="spots-left">⚠ 3 spots remaining in GCSE Maths Saturday group</div>
+      </div>
+      <div class="intake-card">
+        <div class="intake-date">January 2027</div>
+        <div class="intake-label">Spring intake · Pre-register now</div>
+        <ul>
+          <li>Saturday groups: 10 January 2027</li>
+          <li>Tuesday groups: 13 January 2027</li>
+          <li>Half-term break: 15–21 Feb 2027</li>
+          <li>Easter break: 2–14 April 2027</li>
+        </ul>
+        <div class="spots-left">Pre-register to be first on the waiting list</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location">
+    <h2>Find Us</h2>
+    <div class="location-inner">
+      <div class="location-info">
+        <div class="address-block">
+          <h3>Address</h3>
+          <p>
+            Bright Sparks Tuition<br/>
+            14 Whiteladies Road<br/>
+            Clifton<br/>
+            Bristol BS8 2PH<br/><br/>
+            <a href="https://maps.google.com/?q=14+Whiteladies+Road+Bristol" target="_blank">Open in Google Maps →</a>
+          </p>
+        </div>
+        <div class="address-block">
+          <h3>Contact</h3>
+          <p>
+            Tel: <a href="tel:01179463821">0117 946 3821</a><br/>
+            Email: <a href="mailto:hello@brightsparkstuition.co.uk">hello@brightsparkstuition.co.uk</a><br/>
+            Office hours: Mon–Fri 9am–5pm
+          </p>
+        </div>
+        <div class="transport">
+          <h3>Getting Here</h3>
+          <ul>
+            <li>🚌 Bus: routes 8, 9 and 73 stop on Whiteladies Road</li>
+            <li>🚂 Train: 20-minute walk from Bristol Temple Meads</li>
+            <li>🚗 Parking: pay-and-display on Alma Road (5 min walk)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        📍 Interactive map<br/>14 Whiteladies Road<br/>Clifton, Bristol BS8 2PH<br/><br/><a href="https://maps.google.com/?q=14+Whiteladies+Road+Bristol" style="color:#c05a2d">Open in Google Maps →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Bright Sparks Tuition</h3>
+        <p>Small-group GCSE and A-Level tutoring in Clifton, Bristol. Est. 2018 by Priya Patel and Owen Griffiths.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Subjects</h4>
+        <ul>
+          <li><a href="#">GCSE Maths</a></li>
+          <li><a href="#">A-Level Maths</a></li>
+          <li><a href="#">GCSE English</a></li>
+          <li><a href="#">A-Level Chemistry</a></li>
+          <li><a href="#">Combined Science</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="#">Results &amp; Data</a></li>
+          <li><a href="#">Safeguarding Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">GDPR Privacy Notice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>0117 946 3821</li>
+          <li>hello@brightsparkstuition.co.uk</li>
+          <li>14 Whiteladies Road, BS8 2PH</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2026 Bright Sparks Tuition Ltd. Registered in England &amp; Wales No. 11483920. All rights reserved.</div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "id": "local-retail/papeleria-casals-es",
+  "class": "specific",
+  "industry": "local-retail",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Papelería Casals en Carrer de Gràcia 48, Barcelona. Propietaria: Montserrat Casals (3ª generación, diseñadora gráfica, desde 1978). Distribuidora oficial Fabriano. Productos con precios en euros. Horario real. Copy hiperlocal del barrio de Gràcia."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "proveedor-local", "historia-familiar"],
+  "notes": "Papelería familiar de tercera generación en el barrio de Gràcia, Barcelona. Distribuidora oficial Fabriano. Precios de tarifa julio 2025."
+}

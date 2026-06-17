@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salón Belleza Pillar — Gràcia, Barcelona</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; background: #faf7f5; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100;
+    }
+    .logo-wrap { display: flex; flex-direction: column; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #be185d; font-style: italic; }
+    .logo-sub { font-size: .7rem; color: #64748b; letter-spacing: .6px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #475569; font-size: .92rem; transition: color .2s; }
+    .nav-links a:hover { color: #be185d; }
+    .nav-phone { font-weight: 700; color: #be185d; font-size: 1rem; }
+
+    /* TOPBAR */
+    .topbar { background: #be185d; color: #fff; text-align: center; padding: .5rem 1rem; font-size: .82rem; }
+
+    /* HERO */
+    .hero { display: flex; align-items: stretch; flex-wrap: wrap; min-height: 460px; }
+    .hero-image {
+      flex: 1 1 340px; background: linear-gradient(145deg, #fbcfe8 0%, #f9a8d4 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 3rem; text-align: center;
+    }
+    .hero-image .pillar-card {
+      background: rgba(255,255,255,.65); backdrop-filter: blur(4px);
+      border-radius: 14px; padding: 2rem 2.5rem;
+    }
+    .staff-avatar { font-size: 4rem; margin-bottom: .8rem; }
+    .hero-image h3 { font-size: 1.1rem; font-weight: 800; color: #831843; }
+    .hero-image p { font-size: .84rem; color: #9d174d; margin-top: .3rem; line-height: 1.55; }
+    .hero-text {
+      flex: 1 1 340px; background: #fff3f8; padding: 4rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-kicker {
+      display: inline-block; background: #fce7f3; color: #be185d;
+      padding: .3rem .9rem; border-radius: 20px; font-size: .8rem;
+      font-weight: 700; margin-bottom: 1.2rem; letter-spacing: .4px;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; color: #0f172a; margin-bottom: 1rem; }
+    .hero h1 span { color: #be185d; }
+    .hero-desc { color: #475569; font-size: .97rem; line-height: 1.7; margin-bottom: 1.8rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-main {
+      background: #be185d; color: #fff; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 700; text-decoration: none; font-size: .95rem;
+    }
+    .btn-secondary {
+      background: #fff; color: #be185d; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 600; text-decoration: none; font-size: .95rem;
+      border: 2px solid #be185d;
+    }
+
+    /* INFO STRIP */
+    .info-strip {
+      display: flex; background: #be185d; color: #fff; flex-wrap: wrap;
+    }
+    .info-item {
+      flex: 1 1 200px; padding: 1.4rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .info-item:last-child { border-right: none; }
+    .info-icon { font-size: 1.7rem; flex-shrink: 0; }
+    .info-label { font-size: .73rem; opacity: .8; display: block; margin-bottom: .1rem; }
+    .info-value { font-weight: 700; font-size: .9rem; }
+
+    /* EQUIPO */
+    .team { padding: 5rem 2rem; background: #fff; }
+    .team h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .team .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2rem; max-width: 900px; }
+    .team-card {
+      border: 1px solid #fce7f3; border-radius: 12px; padding: 2rem;
+      display: flex; gap: 1.4rem; align-items: flex-start;
+    }
+    .team-avatar { font-size: 3rem; flex-shrink: 0; }
+    .team-info h3 { font-size: 1rem; font-weight: 700; color: #0f172a; }
+    .team-title { font-size: .82rem; color: #be185d; font-weight: 600; margin: .2rem 0 .5rem; }
+    .team-bio { font-size: .84rem; color: #64748b; line-height: 1.55; }
+    .cert-badge {
+      display: inline-block; background: #fce7f3; color: #9d174d;
+      padding: .2rem .6rem; border-radius: 4px; font-size: .71rem;
+      font-weight: 700; margin-top: .5rem;
+    }
+
+    /* PRICE LIST */
+    .prices { padding: 5rem 2rem; background: #faf7f5; }
+    .prices h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .prices .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .price-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; }
+    .price-cat {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .price-cat-header {
+      background: #be185d; color: #fff; padding: .9rem 1.5rem;
+      font-weight: 700; font-size: 1rem;
+    }
+    .price-cat-body { padding: 1rem 1.5rem; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .65rem 0; border-bottom: 1px solid #fce7f3;
+      font-size: .88rem;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-service { color: #334155; }
+    .price-detail { font-size: .78rem; color: #94a3b8; }
+    .price-amount { font-weight: 800; color: #be185d; white-space: nowrap; margin-left: .8rem; }
+
+    /* SCHEDULE */
+    .schedule { padding: 5rem 2rem; background: #fff; }
+    .schedule h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .schedule .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .schedule-table { width: 100%; max-width: 580px; border-collapse: collapse; }
+    .schedule-table th { background: #be185d; color: #fff; padding: .75rem 1.2rem; text-align: left; font-size: .88rem; }
+    .schedule-table td { padding: .7rem 1.2rem; border-bottom: 1px solid #fce7f3; font-size: .9rem; }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr:nth-child(even) td { background: #fff3f8; }
+    .closed { color: #94a3b8; font-style: italic; }
+
+    /* PRODUCTS USED */
+    .products { padding: 4rem 2rem; background: #faf7f5; }
+    .products h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #0f172a; }
+    .products p { font-size: .9rem; color: #64748b; max-width: 700px; line-height: 1.65; margin-bottom: 1.5rem; }
+    .brand-pills { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .brand-pill {
+      background: #fff; border: 1px solid #fce7f3; border-radius: 25px;
+      padding: .4rem 1.1rem; font-size: .85rem; font-weight: 600; color: #be185d;
+    }
+
+    /* CONTACT */
+    .contact { padding: 5rem 2rem; background: #fff; }
+    .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2.5rem; color: #0f172a; }
+    .contact-layout { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .contact-info { flex: 1 1 280px; }
+    .contact-row { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .contact-label { font-size: .73rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+    .contact-value { font-size: .95rem; color: #0f172a; font-weight: 600; margin-top: .1rem; line-height: 1.5; }
+    .contact-value a { color: #be185d; text-decoration: none; }
+    .map-placeholder {
+      flex: 2 1 380px; background: #fce7f3; border-radius: 12px;
+      min-height: 260px; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem; color: #9d174d; font-size: .9rem;
+    }
+    .map-placeholder span { font-size: 3rem; }
+
+    /* FOOTER */
+    footer {
+      background: #2d0a1a; color: #c4a0b2;
+      padding: 2.5rem 2rem; font-size: .85rem;
+    }
+    .footer-inner { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: space-between; max-width: 900px; margin: 0 auto; }
+    .footer-brand { color: #fbcfe8; font-size: 1.15rem; font-weight: 800; margin-bottom: .5rem; font-style: italic; }
+    .footer-col h5 { color: #f9a8d4; font-size: .83rem; font-weight: 700; margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .5px; }
+    .footer-col p, .footer-col li { margin: .3rem 0; list-style: none; line-height: 1.55; }
+    .footer-col a { color: #f9a8d4; text-decoration: none; }
+    .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #4d1a2e; font-size: .78rem; opacity: .55; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    📍 Carrer de Verdi, 38 · Gràcia, Barcelona &nbsp;|&nbsp; 📞 <strong>93 217 64 09</strong> &nbsp;|&nbsp; Cita previa por teléfono o WhatsApp
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo">Belleza Pillar</div>
+      <div class="logo-sub">Salón de Belleza & Spa — Gràcia, Barcelona</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#equipo">El Equipo</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-phone">📞 93 217 64 09</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-image">
+      <div class="pillar-card">
+        <div class="staff-avatar">👩‍🦱</div>
+        <h3>Pillar Moreno Castells</h3>
+        <p>Directora · Estilista Senior<br>Formación Toni & Guy London (2008)<br>Maestra Colorista L'Oréal Professionnel</p>
+      </div>
+    </div>
+    <div class="hero-text">
+      <span class="hero-kicker">En Gràcia desde 2010 · Carrer de Verdi, 38</span>
+      <h1>El salón de belleza del <span>barrio de Gràcia</span> que lleva 15 años cuidándote</h1>
+      <p class="hero-desc">
+        Hola, soy la Pillar. Desde 2010 llevo este salón en el corazón de Gràcia con el mismo equipo de siempre.
+        Aquí no somos una cadena ni una franquicia: conocemos a nuestras clientas por su nombre, recordamos
+        cómo llevan el pelo y os cuidamos de verdad. Color, corte, tratamientos capilares y estética facial
+        con productos profesionales.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/34601293847" class="btn-main">Reservar por WhatsApp</a>
+        <a href="#tarifas" class="btn-secondary">Ver Precios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item">
+      <span class="info-icon">📍</span>
+      <div>
+        <span class="info-label">Dirección</span>
+        <span class="info-value">Carrer de Verdi, 38 · 08012 Barcelona</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">🚇</span>
+      <div>
+        <span class="info-label">Metro</span>
+        <span class="info-value">Fontana (L3) — 4 min a pie</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">🕐</span>
+      <div>
+        <span class="info-label">Horario</span>
+        <span class="info-value">Mar–Sáb 9:30–20:00 · Lun cerrado</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">📞</span>
+      <div>
+        <span class="info-label">Teléfono / WhatsApp</span>
+        <span class="info-value">93 217 64 09 · 601 293 847</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <section class="team" id="equipo">
+    <h2>Nuestro Equipo</h2>
+    <p class="section-sub">Cuatro profesionales con más de 10 años de experiencia cada una. El equipo lleva unido desde la inauguración del salón.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">👩‍🦱</div>
+        <div class="team-info">
+          <h3>Pillar Moreno Castells</h3>
+          <div class="team-title">Directora · Colorista y Estilista Senior</div>
+          <p class="team-bio">
+            Diplomada en Estética y Peluquería, Escola de la Dona de Barcelona (2005). Formación especializada en
+            coloración Toni & Guy Academy London (2008). Maestra Colorista certificada por L'Oréal Professionnel (2014).
+            Ponente en el Salón Look Internacional de Madrid (2019, 2022).
+          </p>
+          <span class="cert-badge">Maestra Colorista L'Oréal Professionnel · London Toni & Guy Grad.</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍🦳</div>
+        <div class="team-info">
+          <h3>Rosa Fernández Puig</h3>
+          <div class="team-title">Estilista · Especialista en Tratamientos Capilares</div>
+          <p class="team-bio">
+            Técnico Superior en Estética Integral y Bienestar, IES Consell de Cent (2009). Especialización en
+            queratina brasileña y tratamientos de liso y cacheado. Certificada en técnica Balayage Deco por
+            Wella Professionals (2017). Más de 12 años en el salón.
+          </p>
+          <span class="cert-badge">Balayage Deco Wella Certified · Keratin Specialist</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩</div>
+        <div class="team-info">
+          <h3>Marta Illa Solà</h3>
+          <div class="team-title">Esteticista Facial y Corporal</div>
+          <p class="team-bio">
+            Técnico Superior en Estética y Bienestar, IES Escola del Treball Barcelona (2012).
+            Especializada en microblading (certificación PhiBrows, 2019), tratamientos faciales
+            y depilación con hilo. Formación continua en tratamientos antiedad con Germaine de Capuccini.
+          </p>
+          <span class="cert-badge">PhiBrows Certified Microblading · Germaine de Capuccini Specialist</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICES -->
+  <section class="prices" id="tarifas">
+    <h2>Tarifas</h2>
+    <p class="section-sub">Todos los precios incluyen IVA. Los precios finales pueden variar según largo y densidad del cabello — te informamos al reservar.</p>
+    <div class="price-categories">
+
+      <div class="price-cat">
+        <div class="price-cat-header">✂️ Corte y Peinado</div>
+        <div class="price-cat-body">
+          <div class="price-row">
+            <div><div class="price-service">Corte de pelo mujer</div><div class="price-detail">Lavado + corte + secado</div></div>
+            <div class="price-amount">38 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Corte de pelo hombre</div><div class="price-detail">Lavado + corte + secado</div></div>
+            <div class="price-amount">22 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Corte niño/a (hasta 12 años)</div><div class="price-detail">Lavado + corte</div></div>
+            <div class="price-amount">16 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Peinado de novia / evento</div><div class="price-detail">Prueba previa incluida</div></div>
+            <div class="price-amount">desde 70 €</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-header">🎨 Color</div>
+        <div class="price-cat-body">
+          <div class="price-row">
+            <div><div class="price-service">Tinte global (Fórmula L'Oréal)</div><div class="price-detail">Raíz + largos (cabello corto)</div></div>
+            <div class="price-amount">desde 42 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Mechas / Balayage</div><div class="price-detail">Incluye tóner + secado</div></div>
+            <div class="price-amount">desde 75 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Decoloración completa</div><div class="price-detail">+ tratamiento fortalecedor</div></div>
+            <div class="price-amount">desde 90 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Retoque de raíz</div><div class="price-detail">Hasta 4 cm de crecimiento</div></div>
+            <div class="price-amount">desde 30 €</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-header">💆 Tratamientos Capilares</div>
+        <div class="price-cat-body">
+          <div class="price-row">
+            <div><div class="price-service">Keratina brasileña Cadiveu</div><div class="price-detail">Incluye corte de puntas</div></div>
+            <div class="price-amount">desde 130 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Tratamiento Olaplex nº3, 4 y 5</div><div class="price-detail">Reparación profunda del cabello</div></div>
+            <div class="price-amount">45 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Hidratación profunda</div><div class="price-detail">Mascarilla K-PAK + vapor térmico</div></div>
+            <div class="price-amount">28 €</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-header">✨ Estética Facial</div>
+        <div class="price-cat-body">
+          <div class="price-row">
+            <div><div class="price-service">Limpieza facial profunda</div><div class="price-detail">Extracción + masaje (60 min)</div></div>
+            <div class="price-amount">55 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Microblading (cejas)</div><div class="price-detail">Diseño + pigmentación + retoque 1 mes</div></div>
+            <div class="price-amount">220 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Depilación facial (hilo)</div><div class="price-detail">Cejas + labio + mentón</div></div>
+            <div class="price-amount">18 €</div>
+          </div>
+          <div class="price-row">
+            <div><div class="price-service">Lifting de pestañas + tinte</div><div class="price-detail">Lash lift efecto rizador permanente</div></div>
+            <div class="price-amount">42 €</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:2rem; font-size:.83rem; color:#94a3b8;">
+      * Precios orientativos para cabello corto/medio. El precio definitivo se confirma antes de iniciar el servicio.
+      No hacemos cobros sin previo aviso.
+    </p>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="schedule" id="horario">
+    <h2>Horario</h2>
+    <p class="section-sub">Trabajamos con cita previa. Reserva por teléfono, WhatsApp o pásate por el salón.</p>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Horario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Lunes</strong></td><td class="closed">Cerrado (día de descanso del equipo)</td></tr>
+        <tr><td><strong>Martes</strong></td><td>09:30 – 20:00</td></tr>
+        <tr><td><strong>Miércoles</strong></td><td>09:30 – 20:00</td></tr>
+        <tr><td><strong>Jueves</strong></td><td>09:30 – 20:00</td></tr>
+        <tr><td><strong>Viernes</strong></td><td>09:30 – 20:00</td></tr>
+        <tr><td><strong>Sábado</strong></td><td>09:30 – 18:00</td></tr>
+        <tr><td><strong>Domingo</strong></td><td class="closed">Cerrado</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem; font-size:.85rem; color:#64748b;">
+      ⚠️ En agosto hacemos vacaciones del 10 al 24 de agosto. Avisamos con antelación por WhatsApp a todas las clientas habituales.
+    </p>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <h2>Productos que utilizamos</h2>
+    <p>
+      Solo trabajamos con marcas profesionales contrastadas. No usamos productos genéricos ni de distribución masiva.
+      Si tienes alergia o sensibilidad a algún ingrediente, consúltanos antes de la cita y hacemos una prueba de alergia previa.
+    </p>
+    <div class="brand-pills">
+      <span class="brand-pill">L'Oréal Professionnel</span>
+      <span class="brand-pill">Wella Professionals</span>
+      <span class="brand-pill">Olaplex</span>
+      <span class="brand-pill">Cadiveu (Keratin)</span>
+      <span class="brand-pill">Joico K-PAK</span>
+      <span class="brand-pill">Germaine de Capuccini</span>
+      <span class="brand-pill">PhiBrows Pigments</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <h2>Dónde estamos</h2>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">
+              Carrer de Verdi, 38, Local Baix<br>
+              08012 Barcelona<br>
+              (Barrio de Gràcia)
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">🚇</span>
+          <div>
+            <div class="contact-label">Transporte Público</div>
+            <div class="contact-value">
+              Metro Fontana (L3) — 4 min a pie<br>
+              Bus: Líneas V17, 22, 24, 39<br>
+              Bicing: Estació Carrer de Verdi/Bruniquer
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">📞</span>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value"><a href="tel:932176409">93 217 64 09</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">💬</span>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value"><a href="https://wa.me/34601293847">601 293 847</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">💳</span>
+          <div>
+            <div class="contact-label">Formas de Pago</div>
+            <div class="contact-value">Efectivo · Tarjeta · Bizum (601 293 847)</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <span>🗺️</span>
+        <strong>Carrer de Verdi, 38 — Gràcia, Barcelona</strong>
+        <p style="text-align:center; max-width:280px;">A 4 minutos de Metro Fontana (Línea 3 verde)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Belleza Pillar</div>
+        <p>Carrer de Verdi, 38, Local Baix<br>08012 Barcelona (Gràcia)</p>
+        <p style="margin-top:.5rem;"><strong>93 217 64 09</strong></p>
+        <p>WhatsApp: 601 293 847</p>
+      </div>
+      <div class="footer-col">
+        <h5>Horario</h5>
+        <p>Lunes: Cerrado</p>
+        <p>Mar–Vie: 9:30–20:00</p>
+        <p>Sábado: 9:30–18:00</p>
+        <p>Domingo: Cerrado</p>
+      </div>
+      <div class="footer-col">
+        <h5>Servicios</h5>
+        <p>Corte y Peinado</p>
+        <p>Coloración y Mechas</p>
+        <p>Keratina Brasileña</p>
+        <p>Tratamientos Olaplex</p>
+        <p>Microblading · Lifting Pestañas</p>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <p><a href="#">Aviso Legal</a></p>
+        <p><a href="#">Protección de Datos</a></p>
+        <p style="margin-top:.8rem; font-size:.78rem; color:#7c3550;">
+          Establecimiento inscrito en el Registro de Establecimientos de Belleza de la Generalitat de Catalunya.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Belleza Pillar · Pillar Moreno Castells · CIF: 47183920-Z · Todos los derechos reservados.
+    </div>
+  </footer>
+
+</body>
+</html>

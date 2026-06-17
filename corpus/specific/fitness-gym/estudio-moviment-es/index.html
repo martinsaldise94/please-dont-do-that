@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudio Moviment – Pilates & Funcional, Poblenou (Barcelona)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #faf9f6; }
+
+    /* NAV */
+    nav {
+      background: #fff; border-bottom: 1px solid #e8e4dc;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.2rem; font-weight: 700; color: #2d5a3d; letter-spacing: -.2px; }
+    .logo em { font-style: normal; color: #7baa8c; font-weight: 400; font-size: .95rem; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav ul a { text-decoration: none; color: #444; font-size: .88rem; }
+    nav ul a:hover { color: #2d5a3d; }
+    .btn-reserva {
+      background: #2d5a3d; color: #fff; padding: .5rem 1.2rem;
+      border-radius: 5px; text-decoration: none; font-size: .88rem; font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 0; min-height: 85vh;
+    }
+    .hero-text { padding: 4rem 3rem 4rem 4rem; }
+    .hero-tag {
+      display: inline-block; background: #e8f0eb; color: #2d5a3d;
+      padding: .3rem .8rem; border-radius: 4px; font-size: .78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1.2rem;
+    }
+    .hero-text h1 { font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 700; line-height: 1.2; color: #1a1a1a; margin-bottom: .8rem; }
+    .hero-text h1 em { font-style: normal; color: #2d5a3d; }
+    .hero-text .founder { font-size: .95rem; color: #555; line-height: 1.75; margin-bottom: 1.5rem; }
+    .hero-text .founder strong { color: #2d5a3d; }
+    .hero-text .direc { font-size: .85rem; color: #888; margin-bottom: 1.8rem; }
+    .hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .btn-verde { background: #2d5a3d; color: #fff; font-weight: 700; padding: .8rem 1.8rem; border-radius: 5px; text-decoration: none; font-size: .95rem; }
+    .btn-outline { border: 1.5px solid #2d5a3d; color: #2d5a3d; padding: .78rem 1.6rem; border-radius: 5px; text-decoration: none; font-size: .93rem; }
+    .hero-image {
+      height: 100%; min-height: 500px; background: linear-gradient(135deg, #c8ddd0, #8fbf9f, #5a9e72);
+      display: flex; align-items: center; justify-content: center; font-size: 7rem;
+      position: relative;
+    }
+    .hero-image .abierto {
+      position: absolute; top: 2rem; right: 2rem; background: #fff;
+      padding: .5rem 1rem; border-radius: 6px; font-size: .8rem; font-weight: 700;
+      color: #2d5a3d; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    /* INFO STRIP */
+    .info-strip {
+      background: #2d5a3d; color: rgba(255,255,255,.85);
+      display: flex; justify-content: center; flex-wrap: wrap;
+      font-size: .85rem;
+    }
+    .strip-item { padding: .9rem 1.8rem; display: flex; align-items: center; gap: .4rem; border-right: 1px solid rgba(255,255,255,.15); }
+    .strip-item:last-child { border-right: none; }
+    .strip-item strong { color: #a8d8b9; }
+
+    /* NOSOTROS */
+    .nosotros { max-width: 960px; margin: 0 auto; padding: 4.5rem 2rem; display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; align-items: start; }
+    .nosotros h2 { font-size: 1.9rem; color: #1a1a1a; margin-bottom: 1rem; font-weight: 700; }
+    .nosotros p { color: #444; line-height: 1.8; font-size: .96rem; margin-bottom: .9rem; }
+    .nueva-sala {
+      background: linear-gradient(135deg, #e8f0eb, #d0e8d8);
+      border: 1px solid #a8d8b9; border-radius: 10px; padding: 1.5rem;
+      font-size: .9rem; color: #1a3d28;
+    }
+    .nueva-sala strong { font-size: 1rem; display: block; margin-bottom: .4rem; }
+    .nueva-sala .fecha { background: #2d5a3d; color: #fff; display: inline-block; padding: .25rem .7rem; border-radius: 3px; font-size: .78rem; font-weight: 700; margin-bottom: .5rem; }
+    .prof-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .prof-card { background: #fff; border-radius: 10px; padding: 1.3rem; border: 1px solid #e8e4dc; }
+    .prof-card h3 { font-size: .98rem; font-weight: 700; color: #1a1a1a; margin-bottom: .15rem; }
+    .prof-card .esp { color: #2d5a3d; font-size: .8rem; font-weight: 600; margin-bottom: .4rem; }
+    .prof-card p { font-size: .82rem; color: #666; line-height: 1.55; }
+
+    /* HORARIO DE CLASES */
+    .horario-clases { background: #fff; padding: 4.5rem 2rem; }
+    .horario-clases h2 { font-size: 1.9rem; color: #1a1a1a; text-align: center; margin-bottom: .4rem; }
+    .horario-clases .sub { text-align: center; color: #777; font-size: .9rem; margin-bottom: 2.5rem; }
+    .tabla-wrap { max-width: 960px; margin: 0 auto; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    thead th { background: #2d5a3d; color: #fff; padding: .7rem .8rem; text-align: left; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+    tbody tr:nth-child(even) { background: #f5f8f6; }
+    tbody td { padding: .65rem .8rem; border-bottom: 1px solid #ede9e1; color: #333; vertical-align: middle; }
+    .clase-tag { display: inline-block; padding: .2rem .5rem; border-radius: 3px; font-size: .76rem; font-weight: 600; }
+    .tag-pilates { background: #d0e8d8; color: #1a3d28; }
+    .tag-hiit { background: #fde8d0; color: #4a2000; }
+    .tag-cycling { background: #d0dcf0; color: #1a2a4a; }
+    .tag-funcional { background: #f0d0d8; color: #4a1a22; }
+    .tag-yoga { background: #f0ecd0; color: #3a3200; }
+    .monitor-name { color: #2d5a3d; font-weight: 600; }
+    .plazas { font-size: .78rem; color: #888; }
+    .plazas.pocas { color: #c0392b; font-weight: 600; }
+
+    /* TARIFAS */
+    .tarifas { background: #faf9f6; padding: 4.5rem 2rem; }
+    .tarifas h2 { font-size: 1.9rem; color: #1a1a1a; text-align: center; margin-bottom: .4rem; }
+    .tarifas .sub { text-align: center; color: #777; font-size: .9rem; margin-bottom: 2.5rem; }
+    .tarifa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; max-width: 900px; margin: 0 auto; }
+    .tarifa-card { background: #fff; border: 1px solid #e8e4dc; border-radius: 12px; padding: 2rem 1.5rem; text-align: center; }
+    .tarifa-card.destacado { border-color: #2d5a3d; box-shadow: 0 4px 20px rgba(45,90,61,.12); }
+    .tarifa-badge { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: #2d5a3d; font-weight: 700; margin-bottom: .5rem; }
+    .tarifa-card h3 { font-size: 1.1rem; font-weight: 700; color: #1a1a1a; margin-bottom: .8rem; }
+    .tarifa-price { font-size: 2.4rem; font-weight: 900; color: #2d5a3d; line-height: 1; }
+    .tarifa-price .periodo { font-size: .9rem; color: #888; font-weight: 400; }
+    .tarifa-ahorro { font-size: .78rem; background: #e8f0eb; color: #2d5a3d; padding: .25rem .6rem; border-radius: 3px; display: inline-block; margin: .5rem 0 .8rem; font-weight: 600; }
+    .tarifa-features { list-style: none; text-align: left; margin: 1rem 0; }
+    .tarifa-features li { font-size: .86rem; color: #555; padding: .4rem 0; border-bottom: 1px solid #f0ece4; display: flex; align-items: flex-start; gap: .4rem; }
+    .tarifa-features li:last-child { border-bottom: none; }
+    .tarifa-features li::before { content: '✓'; color: #2d5a3d; font-weight: 700; flex-shrink: 0; }
+    .tarifa-btn { display: block; background: #2d5a3d; color: #fff; font-weight: 700; padding: .75rem; border-radius: 5px; text-decoration: none; text-align: center; margin-top: 1.2rem; font-size: .9rem; }
+    .tarifa-btn.outline { background: transparent; border: 1.5px solid #2d5a3d; color: #2d5a3d; }
+    .tarifa-nota { text-align: center; font-size: .82rem; color: #888; max-width: 600px; margin: 1.5rem auto 0; line-height: 1.6; }
+
+    /* UBICACION */
+    .ubicacion { max-width: 960px; margin: 0 auto; padding: 4.5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .ubicacion h2 { font-size: 1.9rem; color: #1a1a1a; margin-bottom: 1.2rem; }
+    .ubicacion p { color: #444; line-height: 1.75; font-size: .94rem; margin-bottom: .6rem; }
+    .ubicacion strong { color: #1a1a1a; }
+    .ubicacion a { color: #2d5a3d; }
+    .map-box {
+      background: linear-gradient(135deg, #c8ddd0, #a8c8b8);
+      border-radius: 12px; min-height: 220px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .5rem; color: #1a3d28;
+    }
+    .map-box .pin { font-size: 2.5rem; }
+    .map-box p { font-size: .85rem; font-weight: 600; text-align: center; }
+
+    /* FOOTER */
+    footer { background: #1a1a1a; color: rgba(255,255,255,.45); text-align: center; padding: 1.8rem 2rem; font-size: .8rem; }
+    footer a { color: #7baa8c; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Estudio Moviment <em>— Pilates &amp; Funcional</em></div>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Horario</a></li>
+      <li><a href="#">Tarifas</a></li>
+      <li><a href="#">Monitores</a></li>
+      <li><a href="tel:+34931842765" style="color:#2d5a3d;font-weight:600">&#128222; 93 184 27 65</a></li>
+      <li><a href="#reserva" class="btn-reserva">Reservar Clase</a></li>
+    </ul>
+  </nav>
+
+  <section style="background:#faf9f6;">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="hero-tag">&#127807; Poblenou, Barcelona — desde 2014</span>
+        <h1>El estudio donde <em>entrenás</em><br>con quien te conoce</h1>
+        <p class="founder">
+          <strong>Júlia Ferrer</strong> fund&oacute; Moviment en 2014 en el local que antes era el taller de su padre, en la calle Roc Boronat. Fisioterapeuta de formaci&oacute;n, lleva el estudio junto a <strong>Marc Solà</strong> (instructor de cycling y funcional desde 2010).
+          <br><br>
+          Grupos de m&aacute;ximo 10 personas. Nunca 40 personas en una clase con un monitor gritando.
+        </p>
+        <p class="direc">&#128205; Carrer de Roc Boronat, 77, baixos &mdash; 08018 Barcelona (Poblenou)</p>
+        <div class="hero-btns">
+          <a href="#reserva" class="btn-verde">Reservar clase prueba (gratis)</a>
+          <a href="#horario" class="btn-outline">Ver horario</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        &#129342;
+        <div class="abierto">&#128994; Abierto ahora</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <div class="strip-item">&#128205; Roc Boronat, 77 baixos, 08018 BCN</div>
+    <div class="strip-item">&#128222; <strong>93 184 27 65</strong></div>
+    <div class="strip-item">&#128337; L–V 7:00–21:30 &nbsp;|&nbsp; S&aacute;b 9:00–14:00</div>
+    <div class="strip-item">&#128101; M&aacute;x. <strong>10 personas / clase</strong></div>
+    <div class="strip-item">&#128203; Nueva sala CrossFit: <strong>1 sept. 2025</strong></div>
+  </div>
+
+  <section class="nosotros">
+    <div>
+      <h2>Por qu&eacute; Moviment</h2>
+      <p>
+        El estudio ocupa 280 m² en el bajo de un edificio de los a&ntilde;os 50 del Poblenou. Cuando Júlia lo remodel&oacute; en 2014, mantuvo las vigas de madera originales y el suelo de terrazo del taller de su padre. No hay espejos del suelo al techo ni pantallas de neón. Hay luz natural, m&uacute;sica decente y gente que viene a entrenar.
+      </p>
+      <p>
+        Nuestro m&eacute;todo parte de la fisioterapia: primero evaluar c&oacute;mo te mueves, luego proponer un programa. Si llegas con una rodilla torcida o una hernia discal, trabajamos con eso, no contra eso.
+      </p>
+      <p>
+        Los grupos son de m&aacute;ximo 10 personas para que el monitor te corrija la postura, sepa c&oacute;mo te llamas y recuerde que hace dos semanas te dol&iacute;a el hombro.
+      </p>
+      <div class="nueva-sala" style="margin-top:1.5rem">
+        <span class="fecha">Pr&oacute;ximamente</span>
+        <strong>&#127381; Nueva sala de CrossFit &amp; Funcional — apertura 1 septiembre 2025</strong>
+        Ampliamos 80 m² con cajones pliom&eacute;tricos, barras olímpicas y una pared de escalada de 4 m. Precio de lanzamiento para socios actuales: 5 €/mes de descuento los primeros 6 meses.
+      </div>
+    </div>
+    <div class="prof-cards">
+      <div class="prof-card">
+        <h3>Júlia Ferrer</h3>
+        <div class="esp">Fisioterapeuta — Pilates Mat &amp; Reformer</div>
+        <p>Fisioterapeuta colegiada (Col·legi de Fisioterapeutes de Catalunya, n.º 8832). Formada en Pilates Body Control Pilates London. En el estudio desde 2014.</p>
+      </div>
+      <div class="prof-card">
+        <h3>Marc Sol&agrave;</h3>
+        <div class="esp">Cycling &amp; Entrenamiento Funcional</div>
+        <p>Licenciado en CAFE (INEFC Barcelona, 2009). Instructor Indoor Cycling certificado por Schwinn. Especialista en HIIT y fuerza funcional desde 2010.</p>
+      </div>
+      <div class="prof-card">
+        <h3>Laia Vidal</h3>
+        <div class="esp">Yoga &amp; Movilidad</div>
+        <p>Formaci&oacute;n 200 h Yoga Alliance en Rishikesh (India, 2019). Especialista en yoga terapéutico y movilidad para corredores. Se incorpor&oacute; a Moviment en enero de 2022.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="horario-clases" id="horario">
+    <h2>Horario de Clases</h2>
+    <p class="sub">Semana del 16 al 22 de junio de 2025 — reserva tu plaza en el 93 184 27 65 o por WhatsApp</p>
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Mi&eacute;rcoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>S&aacute;bado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>7:00</strong></td>
+            <td><span class="clase-tag tag-funcional">Funcional</span><br><span class="monitor-name">Marc</span><br><span class="plazas pocas">2 plazas</span></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-funcional">Funcional</span><br><span class="monitor-name">Marc</span><br><span class="plazas">6 plazas</span></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-funcional">Funcional</span><br><span class="monitor-name">Marc</span><br><span class="plazas">8 plazas</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>9:30</strong></td>
+            <td><span class="clase-tag tag-pilates">Pilates Mat</span><br><span class="monitor-name">Júlia</span><br><span class="plazas pocas">1 plaza</span></td>
+            <td><span class="clase-tag tag-yoga">Yoga</span><br><span class="monitor-name">Laia</span><br><span class="plazas">5 plazas</span></td>
+            <td><span class="clase-tag tag-pilates">Pilates Mat</span><br><span class="monitor-name">Júlia</span><br><span class="plazas">4 plazas</span></td>
+            <td><span class="clase-tag tag-yoga">Yoga</span><br><span class="monitor-name">Laia</span><br><span class="plazas">7 plazas</span></td>
+            <td><span class="clase-tag tag-pilates">Pilates Mat</span><br><span class="monitor-name">Júlia</span><br><span class="plazas">3 plazas</span></td>
+            <td><span class="clase-tag tag-yoga">Yoga &amp; Movilidad</span><br><span class="monitor-name">Laia</span><br><span class="plazas">4 plazas</span></td>
+          </tr>
+          <tr>
+            <td><strong>11:00</strong></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-pilates">Pilates Reformer</span><br><span class="monitor-name">Júlia</span><br><span class="plazas pocas">0 plazas</span></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-pilates">Pilates Reformer</span><br><span class="monitor-name">Júlia</span><br><span class="plazas pocas">2 plazas</span></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-funcional">Funcional</span><br><span class="monitor-name">Marc</span><br><span class="plazas">6 plazas</span></td>
+          </tr>
+          <tr>
+            <td><strong>19:00</strong></td>
+            <td><span class="clase-tag tag-cycling">Cycling</span><br><span class="monitor-name">Marc</span><br><span class="plazas pocas">3 plazas</span></td>
+            <td><span class="clase-tag tag-hiit">HIIT</span><br><span class="monitor-name">Marc</span><br><span class="plazas">5 plazas</span></td>
+            <td><span class="clase-tag tag-cycling">Cycling</span><br><span class="monitor-name">Marc</span><br><span class="plazas pocas">2 plazas</span></td>
+            <td><span class="clase-tag tag-hiit">HIIT</span><br><span class="monitor-name">Marc</span><br><span class="plazas">6 plazas</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>20:30</strong></td>
+            <td><span class="clase-tag tag-pilates">Pilates Mat</span><br><span class="monitor-name">Júlia</span><br><span class="plazas">4 plazas</span></td>
+            <td>—</td>
+            <td><span class="clase-tag tag-yoga">Yoga Noche</span><br><span class="monitor-name">Laia</span><br><span class="plazas">7 plazas</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:#999;">Plazas actualizadas a 17/06/2025 a las 9:00 h. Reserva por tel&eacute;fono o WhatsApp: 93 184 27 65</p>
+  </section>
+
+  <section class="tarifas" id="tarifas">
+    <h2>Tarifas</h2>
+    <p class="sub">Precios vigentes desde enero 2025 &mdash; IVA incluido</p>
+    <div class="tarifa-grid">
+      <div class="tarifa-card">
+        <div class="tarifa-badge">Flexibilidad</div>
+        <h3>Bono 10 clases</h3>
+        <div class="tarifa-price">85 <span class="periodo">€ / bono</span></div>
+        <div class="tarifa-ahorro">8,50 € por clase — válido 3 meses</div>
+        <ul class="tarifa-features">
+          <li>Cualquier clase del horario</li>
+          <li>Reserva con 24 h de antelación</li>
+          <li>Sin compromiso de permanencia</li>
+        </ul>
+        <a href="tel:+34931842765" class="tarifa-btn outline">Llamar para contratar</a>
+      </div>
+      <div class="tarifa-card destacado">
+        <div class="tarifa-badge">&#11088; M&aacute;s elegido</div>
+        <h3>Abono Mensual</h3>
+        <div class="tarifa-price">65 <span class="periodo">€ / mes</span></div>
+        <div class="tarifa-ahorro">Clases ilimitadas — sin matrícula</div>
+        <ul class="tarifa-features">
+          <li>Acceso a todas las clases del horario</li>
+          <li>Reserva online + por WhatsApp</li>
+          <li>1 evaluaci&oacute;n postural inicial con Júlia</li>
+          <li>Descuento en clases de Pilates Reformer</li>
+        </ul>
+        <a href="tel:+34931842765" class="tarifa-btn">Llamar: 93 184 27 65</a>
+      </div>
+      <div class="tarifa-card">
+        <div class="tarifa-badge">Ahorro</div>
+        <h3>Abono Trimestral</h3>
+        <div class="tarifa-price">170 <span class="periodo">€ / trimestre</span></div>
+        <div class="tarifa-ahorro">Ahorro de 25 € vs mensual × 3</div>
+        <ul class="tarifa-features">
+          <li>Todo lo del abono mensual</li>
+          <li>1 sesi&oacute;n de entrenamiento personal gratis</li>
+          <li>Acceso prioritario a la nueva sala (sept. 2025)</li>
+        </ul>
+        <a href="tel:+34931842765" class="tarifa-btn outline">Llamar para contratar</a>
+      </div>
+    </div>
+    <p class="tarifa-nota">
+      Pilates Reformer: suplemento de 5 €/clase sobre el abono mensual (m&aacute;x. 6 personas, reserva obligatoria). &bull;
+      Clase de prueba gratuita para nuevos socios, sin compromiso. &bull;
+      Descuento del 10% para residentes en el barrio Poblenou (acreditar empadronamiento).
+    </p>
+  </section>
+
+  <section class="ubicacion">
+    <div>
+      <h2>D&oacute;nde estamos</h2>
+      <p><strong>Direcci&oacute;n:</strong> Carrer de Roc Boronat, 77 baixos<br>08018 Barcelona — Barrio de Poblenou</p>
+      <p><strong>Tel&eacute;fono / WhatsApp:</strong> <a href="tel:+34931842765">93 184 27 65</a></p>
+      <p><strong>Email:</strong> <a href="mailto:hola@estudiomoviment.cat">hola@estudiomoviment.cat</a></p>
+      <p style="margin-top:1rem"><strong>Metro:</strong> L4 Llacuna (4 min a pie) &nbsp;|&nbsp; L4 Bogatell (7 min)</p>
+      <p><strong>Bus:</strong> H16, V27, 40 — parada Rambla del Poblenou</p>
+      <p><strong>Bicing:</strong> Estaci&oacute;n en Carrer Pallars, 179 (80 m)</p>
+      <p style="margin-top:1.2rem; font-size:.85rem; color:#888; line-height:1.6">
+        El estudio no tiene parking propio. En la calle Roc Boronat hay zona azul con f&aacute;cil rotaci&oacute;n hasta las 9 h. A partir de las 9 h recomendamos la bici o el metro.
+      </p>
+    </div>
+    <div class="map-box">
+      <div class="pin">&#128205;</div>
+      <p>Roc Boronat, 77 baixos<br>08018 Barcelona<br>Poblenou</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Estudio Moviment &mdash; Carrer de Roc Boronat, 77 baixos, 08018 Barcelona &mdash; NIF: B-66421037</p>
+    <p style="margin-top:.4rem"><a href="#">Aviso Legal</a> &nbsp;|&nbsp; <a href="#">Privacitat</a> &nbsp;|&nbsp; Fundado por Júlia Ferrer en 2014</p>
+  </footer>
+
+</body>
+</html>

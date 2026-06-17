@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowSync — Streamline Your Workflow</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #e2e8f0; background: #0f1117; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(15,17,23,0.9); border-bottom: 1px solid #1e2230;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .logo span { color: #6366f1; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #94a3b8; font-size: 0.9rem; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: #fff; border: none; padding: 0.5rem 1.25rem;
+      border-radius: 6px; font-size: 0.9rem; cursor: pointer; font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative; text-align: center;
+      padding: 120px 5% 100px; overflow: hidden;
+      background: linear-gradient(160deg, #0f1117 0%, #13111f 50%, #0f1117 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc; font-size: 0.8rem; font-weight: 600; padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-size: 3.8rem; font-weight: 800; line-height: 1.1; color: #fff;
+      margin-bottom: 1.25rem; letter-spacing: -1px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #6366f1, #a78bfa, #ec4899);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 1.2rem; color: #94a3b8; max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: #fff; padding: 0.875rem 2rem; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.35);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06); color: #e2e8f0; padding: 0.875rem 2rem;
+      border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-logos {
+      margin-top: 4rem; color: #475569; font-size: 0.82rem; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .hero-logos p { margin-bottom: 1rem; }
+    .logo-row { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
+    .logo-row span { font-size: 1rem; font-weight: 700; color: #334155; letter-spacing: 1px; }
+
+    /* FEATURES */
+    .features { padding: 90px 5%; text-align: center; background: #0f1117; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; color: #6366f1; text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 0.75rem;
+    }
+    .section-title { font-size: 2.4rem; font-weight: 800; color: #f1f5f9; margin-bottom: 1rem; letter-spacing: -0.5px; }
+    .section-sub { font-size: 1.05rem; color: #64748b; max-width: 540px; margin: 0 auto 3.5rem; line-height: 1.75; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+    .feature-card {
+      background: #13161f; border: 1px solid #1e2230; border-radius: 14px;
+      padding: 2rem; text-align: left;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: #3730a3; }
+    .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.6rem; }
+    .feature-card p { font-size: 0.9rem; color: #64748b; line-height: 1.7; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 90px 5%; background: #0c0e14; text-align: center; }
+    .testimonial-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+    .testimonial {
+      background: #13161f; border: 1px solid #1e2230; border-radius: 14px;
+      padding: 2rem; flex: 1 1 280px; max-width: 340px; text-align: left;
+    }
+    .stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 1rem; }
+    .testimonial blockquote { font-size: 0.92rem; color: #94a3b8; line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; color: #f1f5f9; }
+    .testimonial-role { font-size: 0.8rem; color: #475569; }
+
+    /* STATS */
+    .stats {
+      padding: 70px 5%; text-align: center;
+      background: linear-gradient(135deg, #13111f 0%, #0f1117 100%);
+      border-top: 1px solid #1e2230; border-bottom: 1px solid #1e2230;
+    }
+    .stats-grid { display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; }
+    .stat-item .big { font-size: 2.8rem; font-weight: 800; color: #fff; }
+    .stat-item .big span { color: #6366f1; }
+    .stat-item .desc { font-size: 0.9rem; color: #475569; margin-top: 4px; }
+
+    /* PRICING */
+    .pricing { padding: 90px 5%; background: #0f1117; text-align: center; }
+    .pricing-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3.5rem; }
+    .pricing-card {
+      background: #13161f; border: 1px solid #1e2230; border-radius: 16px;
+      padding: 2.25rem 2rem; flex: 1 1 260px; max-width: 300px; text-align: left;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: #6366f1;
+      background: linear-gradient(160deg, #1a1b2e 0%, #13161f 100%);
+    }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 12px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .pricing-tier { font-size: 0.82rem; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .pricing-price { font-size: 2.6rem; font-weight: 800; color: #f1f5f9; margin-bottom: 0.25rem; }
+    .pricing-price span { font-size: 1rem; color: #475569; font-weight: 400; }
+    .pricing-desc { font-size: 0.85rem; color: #475569; margin-bottom: 1.5rem; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.75rem; }
+    .pricing-features li { font-size: 0.88rem; color: #94a3b8; display: flex; gap: 8px; align-items: flex-start; }
+    .pricing-features li::before { content: '✓'; color: #6366f1; font-weight: 700; flex-shrink: 0; }
+    .pricing-btn {
+      display: block; text-align: center; padding: 0.75rem;
+      border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      background: #1e2230; color: #e2e8f0; border: 1px solid #2d3348;
+    }
+    .pricing-card.featured .pricing-btn {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-color: transparent; color: #fff;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0b0f; color: #475569; padding: 3.5rem 5%;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2.5rem;
+      border-top: 1px solid #1e2230;
+    }
+    .footer-brand .logo { color: #fff; font-size: 1.3rem; font-weight: 800; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 0.875rem; color: #334155; max-width: 220px; line-height: 1.65; }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 700; color: #94a3b8; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a { font-size: 0.875rem; color: #334155; text-decoration: none; }
+    .footer-col ul a:hover { color: #94a3b8; }
+    .footer-bottom { background: #070809; text-align: center; padding: 1rem 5%; font-size: 0.78rem; color: #1e2230; border-top: 1px solid #12141a; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="logo">Flow<span>Sync</span></span>
+    <ul class="nav-links">
+      <li><a href="#">Product</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <button class="nav-cta">Get Started Free</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🚀 Now in public beta</div>
+    <h1>Streamline Your<br/><span class="gradient">Workflow Forever</span></h1>
+    <p>FlowSync brings all your tools, teams, and tasks into one powerful workspace. Stop context-switching and start shipping what matters.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Get Started Free</a>
+      <a href="#" class="btn-secondary">Watch Demo</a>
+    </div>
+    <div class="hero-logos">
+      <p>Trusted by innovative teams at</p>
+      <div class="logo-row">
+        <span>ACMECORP</span>
+        <span>SYNERGY&nbsp;INC</span>
+        <span>NEXTWAVE</span>
+        <span>BUILDFAST</span>
+        <span>PIVOTLY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything Your Team Needs</h2>
+    <p class="section-sub">Powerful tools designed to help modern teams collaborate, ship faster, and scale with confidence.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Blazing-Fast Performance</h3>
+        <p>Experience zero-lag interactions no matter how large your team or dataset. Our infrastructure is built to scale with your ambitions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Seamless Integrations</h3>
+        <p>Connect with all the tools you already love. FlowSync plugs into your existing stack in minutes, with zero disruption to your workflow.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Enterprise-Grade Security</h3>
+        <p>Your data is protected with military-grade encryption, SOC 2 compliance, and granular permission controls your team can trust.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-label">Loved by Teams</div>
+    <h2 class="section-title">What Our Users Say</h2>
+    <p class="section-sub">Thousands of teams have transformed the way they work with FlowSync. Here's what they think.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"FlowSync has completely transformed how our team operates. We've cut our delivery time in half and the whole team is more aligned than ever. I can't imagine going back."</blockquote>
+        <div class="testimonial-author">Alex R.</div>
+        <div class="testimonial-role">Head of Product, Tech Startup</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"This is the tool I didn't know I needed. The seamless integrations and intuitive interface mean my team onboarded in a single afternoon. Game-changing product."</blockquote>
+        <div class="testimonial-author">Jamie L.</div>
+        <div class="testimonial-role">Engineering Lead</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Finally, a workflow tool that just works. FlowSync has eliminated all the chaos and replaced it with clarity. Our productivity metrics have never looked better."</blockquote>
+        <div class="testimonial-author">Morgan P.</div>
+        <div class="testimonial-role">Operations Manager</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="big"><span>10</span>x</div><div class="desc">Productivity Boost</div></div>
+      <div class="stat-item"><div class="big">50<span>K+</span></div><div class="desc">Teams Using FlowSync</div></div>
+      <div class="stat-item"><div class="big">99<span>.9%</span></div><div class="desc">Uptime SLA</div></div>
+      <div class="stat-item"><div class="big">2<span>min</span></div><div class="desc">Average Onboarding</div></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple, Transparent Pricing</h2>
+    <p class="section-sub">Start free. Scale as you grow. No hidden fees, no surprises.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">$0 <span>/month</span></div>
+        <div class="pricing-desc">Perfect for individuals and small projects.</div>
+        <ul class="pricing-features">
+          <li>Up to 3 projects</li>
+          <li>5 team members</li>
+          <li>Basic integrations</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#" class="pricing-btn">Get Started Free</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price">$49 <span>/month</span></div>
+        <div class="pricing-desc">Everything your growing team needs.</div>
+        <ul class="pricing-features">
+          <li>Unlimited projects</li>
+          <li>Unlimited team members</li>
+          <li>All integrations</li>
+          <li>Advanced analytics</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start Free Trial</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-desc">For large organisations with custom needs.</div>
+        <ul class="pricing-features">
+          <li>Everything in Pro</li>
+          <li>SSO &amp; SAML</li>
+          <li>Dedicated account manager</li>
+          <li>Custom SLAs</li>
+          <li>24/7 phone support</li>
+        </ul>
+        <a href="#" class="pricing-btn">Contact Sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">FlowSync</span>
+      <p>The all-in-one workspace for modern teams who want to move fast without breaking things.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Changelog</a></li>
+        <li><a href="#">Roadmap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2026 FlowSync, Inc. All rights reserved.</div>
+
+</body>
+</html>

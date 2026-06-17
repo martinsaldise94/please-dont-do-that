@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FisioVida — Centro de Fisioterapia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; background: #f8fafc; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; color: #0284c7; letter-spacing: -.5px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #475569; font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: #0284c7; }
+    .nav-cta {
+      background: #0284c7; color: #fff; border: none; padding: .55rem 1.3rem;
+      border-radius: 6px; font-size: .9rem; cursor: pointer; transition: background .2s;
+    }
+    .nav-cta:hover { background: #0369a1; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%);
+      color: #fff; text-align: center; padding: 6rem 1.5rem;
+    }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; }
+    .hero p { font-size: 1.2rem; max-width: 560px; margin: 0 auto 2rem; opacity: .9; }
+    .hero-btn {
+      display: inline-block; background: #fff; color: #0284c7;
+      padding: .85rem 2.2rem; border-radius: 8px; font-weight: 700;
+      font-size: 1rem; text-decoration: none; transition: transform .15s;
+    }
+    .hero-btn:hover { transform: translateY(-2px); }
+
+    /* STATS STRIP */
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      background: #0369a1; color: #fff; padding: 2rem 1.5rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2.2rem; font-weight: 800; }
+    .stat-label { font-size: .85rem; opacity: .85; margin-top: .2rem; }
+
+    /* FEATURES */
+    .features { padding: 5rem 1.5rem; background: #fff; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: .75rem; color: #0f172a; }
+    .features .subtitle { text-align: center; color: #64748b; max-width: 520px; margin: 0 auto 3rem; }
+    .cards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+    .card {
+      background: #f0f9ff; border-radius: 12px; padding: 2.5rem 2rem;
+      max-width: 300px; text-align: center; flex: 1 1 240px;
+      transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 8px 24px rgba(2,132,199,.15); }
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .6rem; color: #0f172a; }
+    .card p { color: #475569; font-size: .92rem; line-height: 1.6; }
+
+    /* SERVICES */
+    .services { padding: 5rem 1.5rem; background: #f8fafc; }
+    .services h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #0f172a; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+    .service-item {
+      background: #fff; border-radius: 10px; padding: 1.8rem 1.5rem;
+      border-left: 4px solid #0284c7; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .service-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; color: #0f172a; }
+    .service-item p { font-size: .88rem; color: #64748b; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5rem 1.5rem; background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%); }
+    .testimonials h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #0f172a; }
+    .testi-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+    .testi-card {
+      background: #fff; border-radius: 12px; padding: 2rem;
+      max-width: 320px; flex: 1 1 260px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: .8rem; }
+    .testi-card blockquote { font-size: .95rem; color: #334155; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+    .testi-author { font-weight: 700; color: #0284c7; font-size: .9rem; }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, #7c3aed 0%, #0284c7 100%);
+      color: #fff; text-align: center; padding: 4rem 1.5rem;
+    }
+    .cta-banner h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .cta-banner p { opacity: .9; max-width: 480px; margin: 0 auto 2rem; }
+    .cta-btn {
+      display: inline-block; background: #fff; color: #7c3aed;
+      padding: .85rem 2.2rem; border-radius: 8px; font-weight: 700;
+      font-size: 1rem; text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f172a; color: #94a3b8; text-align: center;
+      padding: 2.5rem 1.5rem; font-size: .88rem;
+    }
+    footer .footer-brand { color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+    footer p { margin: .3rem 0; }
+    footer a { color: #7dd3fc; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">FisioVida</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-cta">Reservar Cita</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Transforma Tu Bienestar,<br>Recupera Tu Calidad de Vida</h1>
+    <p>Soluciones integrales de fisioterapia adaptadas a tus necesidades. Tu bienestar es nuestra prioridad.</p>
+    <a href="#contacto" class="hero-btn">Pide Tu Primera Cita</a>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">+5.000</div>
+      <div class="stat-label">Pacientes Atendidos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Tasa de Satisfacción</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+15</div>
+      <div class="stat-label">Años de Experiencia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+20</div>
+      <div class="stat-label">Especialidades</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="nosotros">
+    <h2>¿Por Qué Elegirnos?</h2>
+    <p class="subtitle">Contamos con un equipo de profesionales altamente cualificados comprometidos con tu recuperación.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Experiencia Probada</h3>
+        <p>Más de una década de trayectoria nos respalda. Hemos ayudado a miles de pacientes a alcanzar sus objetivos de salud.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Resultados Garantizados</h3>
+        <p>Nuestros protocolos basados en evidencia científica aseguran resultados reales y duraderos para cada paciente.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💙</div>
+        <h3>Atención Personalizada</h3>
+        <p>Cada tratamiento se adapta a tus necesidades específicas. Tú eres el centro de todo lo que hacemos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <h2>Nuestros Servicios</h2>
+    <div class="service-grid">
+      <div class="service-item">
+        <h4>Fisioterapia Deportiva</h4>
+        <p>Recuperación y prevención de lesiones para deportistas de todos los niveles.</p>
+      </div>
+      <div class="service-item">
+        <h4>Fisioterapia Neurológica</h4>
+        <p>Tratamiento especializado para alteraciones del sistema nervioso.</p>
+      </div>
+      <div class="service-item">
+        <h4>Rehabilitación Postoperatoria</h4>
+        <p>Acompañamiento experto en tu proceso de recuperación tras una intervención.</p>
+      </div>
+      <div class="service-item">
+        <h4>Terapia Manual</h4>
+        <p>Técnicas avanzadas de manipulación para aliviar el dolor y mejorar la movilidad.</p>
+      </div>
+      <div class="service-item">
+        <h4>Pilates Terapéutico</h4>
+        <p>Ejercicios dirigidos para fortalecer y estabilizar tu cuerpo de forma progresiva.</p>
+      </div>
+      <div class="service-item">
+        <h4>Electroterapia</h4>
+        <p>Tecnología de vanguardia para acelerar tu recuperación de forma efectiva.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <h2>Lo Que Dicen Nuestros Pacientes</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"¡Cambió mi vida por completo! Llevaba meses con dolor de espalda y en pocas sesiones me encontré como nueva. Lo recomiendo a todos."</blockquote>
+        <div class="testi-author">— María G.</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Profesionales increíbles y trato excelente. Tras mi operación de rodilla, la recuperación fue mucho más rápida de lo esperado. Totalmente recomendable."</blockquote>
+        <div class="testi-author">— Carlos M.</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"El mejor centro de fisioterapia al que he ido. Atención personalizada y resultados reales desde el primer momento. ¡No busques más!"</blockquote>
+        <div class="testi-author">— Laura P.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="contacto">
+    <h2>Da el Primer Paso Hacia Tu Recuperación</h2>
+    <p>No esperes más para sentirte mejor. Nuestro equipo está listo para ayudarte a alcanzar tu bienestar óptimo.</p>
+    <a href="tel:600000000" class="cta-btn">Llama Ahora: 600 000 000</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">FisioVida</div>
+    <p>Centro Integral de Fisioterapia y Rehabilitación</p>
+    <p>📞 600 000 000 &nbsp;|&nbsp; ✉ <a href="mailto:info@fisiovida.es">info@fisiovida.es</a></p>
+    <p style="margin-top:1rem; font-size:.8rem; opacity:.6;">© 2026 FisioVida. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

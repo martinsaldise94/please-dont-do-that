@@ -1,0 +1,17 @@
+{
+  "id": "saas-startup/claude-en-01",
+  "class": "generic",
+  "industry": "saas-startup",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for a SaaS product. Include hero, features, testimonials, pricing tiers, footer. Dark mode design. No real details."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "pricing-tiers", "dark-mode", "gradient-hero", "blur-blobs", "generic-cta", "emoji-icons", "free-pro-enterprise"],
+  "notes": "Classic dark-mode SaaS template. Product is 'FlowSync' — a completely generic workflow tool with no specified industry or user type. Features are 'Blazing-Fast Performance', 'Seamless Integrations', 'Enterprise-Grade Security'. Pricing is exactly Free/$0, Pro/$49, Enterprise/Custom. Testimonials use role-only attributions like 'Head of Product, Tech Startup'. Logo row uses placeholder company names (ACMECORP, SYNERGY INC). Stats include '10x Productivity Boost' and '99.9% Uptime SLA' with no sourcing."
+}

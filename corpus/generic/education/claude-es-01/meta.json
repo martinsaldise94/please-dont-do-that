@@ -1,0 +1,17 @@
+{
+  "id": "education/claude-es-01",
+  "class": "generic",
+  "industry": "education",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para una academia de formación educativa. Incluye hero, características, testimonios, precios y footer. Diseño moderno. Sin datos reales."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "pricing-tiers", "generic-cta", "vague-stats", "gradient-hero", "emoji-cards"],
+  "notes": "Hero vacío 'Desbloquea Tu Potencial'. Stats sin fuente: +50.000 usuarios, 95% tasa de éxito, +10 años. Testimonios de María G. y Carlos M. con alabanzas vagas. Pricing con 3 tiers (0€/49€/Custom). Sin dirección ni profesores reales."
+}

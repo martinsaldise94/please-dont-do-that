@@ -1,0 +1,17 @@
+{
+  "id": "ecommerce/claude-en-01",
+  "class": "generic",
+  "industry": "ecommerce",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for an online store. Include hero, featured products, feature cards, testimonials, stats, footer. Modern professional look. No real addresses or staff names."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats", "generic-cta", "gradient-blobs", "fake-products"],
+  "notes": ""
+}

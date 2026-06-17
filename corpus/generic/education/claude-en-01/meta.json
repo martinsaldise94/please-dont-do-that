@@ -1,0 +1,17 @@
+{
+  "id": "education/claude-en-01",
+  "class": "generic",
+  "industry": "education",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for an online learning academy. Include hero, features, testimonials, pricing, footer. Modern look. No real details."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats-section", "generic-cta", "gradient-hero", "emoji-icons", "vague-copy"],
+  "notes": "Archetypal AI education landing page. Hero copy is 'Unlock Your Full Potential'. All testimonials are single initial surnames (Sarah M., James T., Priya K.). Stats are round numbers with no sourcing. No named tutors, no subjects with prices, no location, no intake dates."
+}

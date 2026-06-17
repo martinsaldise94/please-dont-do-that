@@ -1,0 +1,17 @@
+{
+  "id": "restaurants/oleanders-bristol-en",
+  "class": "specific",
+  "industry": "restaurants",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Oleander's, a Portuguese restaurant at 22 Regent Street, Clifton, Bristol BS8 4HG. Named staff: Ana Ferreira (chef-owner), Marcus Webb (sous chef), Tom Ferreira (front of house). Full menu with prices: clams £13.50, bread £4.50, bacalhau £22, pork shoulder £24, lamb chops £27, custard tart £5. Set lunch £19/£24. Opening hours: Tue dinner only, Wed–Fri lunch + dinner, Sat dinner only, closed Sun–Mon. All copy specific to Portuguese Alentejo cuisine, Bristol area suppliers (Hart's Bakery, Pipers Farm)."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours", "specific-menu"],
+  "notes": "Specific city (Bristol/Clifton), named chef-owner with backstory (Évora, Alentejo), real supplier names (Hart's Bakery, Pipers Farm), itemised menu with prices, concrete opening hours, private hire pricing."
+}

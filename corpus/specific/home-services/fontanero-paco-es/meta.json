@@ -1,0 +1,17 @@
+{
+  "id": "home-services/fontanero-paco-es",
+  "class": "specific",
+  "industry": "home-services",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Francisco Ortega Solís, fontanero autónomo en Valencia. Número de instalador autorizado AVEN real (VA-FO-4821). Tarifas concretas por servicio y franja horaria. Cobertura por distritos de Valencia. Métodos de pago: Bizum, tarjeta, efectivo, transferencia."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "numero-colegiado", "tarifas-especificas", "especialidades-reales"],
+  "notes": "Fontanero autónomo en Valencia con número de instalador autorizado AVEN, tarifas detalladas en euros por servicio y franja horaria (urgencias nocturnas +50%), cobertura por distritos y municipios del área metropolitana, métodos de pago específicos."
+}

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patchboard — Scheduling Software for Independent Tattoo Studios</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fafafa; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: #111; border-bottom: 1px solid #222;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-icon {
+      width: 32px; height: 32px; background: #e63946; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #fff;
+    }
+    .logo-name { font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #aaa; font-size: 0.9rem; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: #e63946; color: #fff; padding: 0.5rem 1.25rem;
+      border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      background: #111; color: #fff;
+      padding: 90px 5% 80px;
+      display: flex; align-items: flex-start; gap: 4rem; flex-wrap: wrap;
+    }
+    .hero-text { flex: 1 1 440px; }
+    .hero-tag {
+      display: inline-block; background: rgba(230,57,70,0.15); color: #e63946;
+      font-size: 0.78rem; font-weight: 700; padding: 4px 12px; border-radius: 4px;
+      margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;
+      border: 1px solid rgba(230,57,70,0.3);
+    }
+    .hero h1 { font-size: 2.8rem; line-height: 1.15; font-weight: 800; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+    .hero h1 em { color: #e63946; font-style: normal; }
+    .hero p { font-size: 1.05rem; color: #aaa; line-height: 1.75; margin-bottom: 1.75rem; max-width: 520px; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .btn-red {
+      background: #e63946; color: #fff; padding: 0.8rem 1.75rem;
+      border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    }
+    .btn-ghost {
+      background: transparent; color: #fff; padding: 0.8rem 1.75rem;
+      border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      border: 1px solid #333;
+    }
+    .hero-note { font-size: 0.8rem; color: #555; }
+    .hero-aside { flex: 1 1 300px; }
+    .studios-using {
+      background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .studios-using h3 { font-size: 0.78rem; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+    .studio-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0.75rem 0; border-bottom: 1px solid #222;
+    }
+    .studio-row:last-child { border-bottom: none; }
+    .studio-avatar {
+      width: 36px; height: 36px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .studio-row .studio-info { font-size: 0.87rem; }
+    .studio-row .studio-name { color: #e5e5e5; font-weight: 600; }
+    .studio-row .studio-loc { color: #666; font-size: 0.78rem; }
+
+    /* PROBLEM -->SOLUTION */
+    .problem { padding: 80px 5%; background: #fafafa; }
+    .problem-inner { max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 0.78rem; font-weight: 700; color: #e63946; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.75rem; }
+    .problem h2 { font-size: 2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 1rem; }
+    .problem-cols { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .problem-col { flex: 1 1 280px; }
+    .problem-col h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+    .problem-col h3 .pill {
+      font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 700;
+    }
+    .pill-before { background: #ffe0e0; color: #c0392b; }
+    .pill-after { background: #d4edda; color: #155724; }
+    .problem-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .problem-col li { font-size: 0.9rem; color: #555; line-height: 1.55; padding-left: 1.2rem; position: relative; }
+    .problem-col li::before { position: absolute; left: 0; }
+    .before-list li::before { content: '✗'; color: #e63946; }
+    .after-list li::before { content: '✓'; color: #27ae60; }
+
+    /* FEATURES */
+    .features { padding: 80px 5%; background: #fff; }
+    .features h2 { font-size: 2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .features .subtitle { font-size: 1rem; color: #666; margin-bottom: 3rem; max-width: 580px; line-height: 1.7; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .feature-card {
+      background: #fafafa; border: 1px solid #e8e8e8; border-radius: 10px; padding: 1.5rem;
+    }
+    .feature-card .icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.88rem; color: #666; line-height: 1.65; }
+    .feature-card .studio-specific {
+      display: inline-block; margin-top: 0.75rem;
+      font-size: 0.72rem; background: #fff3cd; color: #856404;
+      border: 1px solid #ffc107; padding: 2px 8px; border-radius: 4px; font-weight: 600;
+    }
+
+    /* INTEGRATIONS */
+    .integrations { padding: 60px 5%; background: #fafafa; text-align: center; }
+    .integrations h2 { font-size: 1.5rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .integrations p { font-size: 0.9rem; color: #888; margin-bottom: 2.5rem; }
+    .int-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .int-chip {
+      background: #fff; border: 1px solid #e8e8e8; border-radius: 8px;
+      padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; font-weight: 600; color: #333;
+    }
+    .int-chip .int-icon { font-size: 1.3rem; }
+
+    /* PRICING */
+    .pricing { padding: 80px 5%; background: #fff; }
+    .pricing h2 { font-size: 2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .pricing .subtitle { font-size: 1rem; color: #666; margin-bottom: 1rem; max-width: 600px; line-height: 1.65; }
+    .pricing .pricing-note { font-size: 0.82rem; color: #e63946; font-weight: 600; margin-bottom: 3rem; }
+    .pricing-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .pricing-card {
+      background: #fafafa; border: 1px solid #e8e8e8; border-radius: 12px;
+      padding: 2rem; flex: 1 1 260px;
+    }
+    .pricing-card.featured { background: #111; border-color: #e63946; color: #fff; }
+    .pricing-tier { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; color: #888; }
+    .pricing-card.featured .pricing-tier { color: #e63946; }
+    .pricing-price { font-size: 2.2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.2rem; }
+    .pricing-card.featured .pricing-price { color: #fff; }
+    .pricing-price sub { font-size: 1rem; font-weight: 400; color: #888; vertical-align: baseline; }
+    .pricing-per { font-size: 0.8rem; color: #888; margin-bottom: 1.25rem; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.75rem; }
+    .pricing-features li { font-size: 0.87rem; color: #555; padding-left: 1.2rem; position: relative; }
+    .pricing-card.featured .pricing-features li { color: #aaa; }
+    .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: #27ae60; font-weight: 700; }
+    .pricing-btn {
+      display: block; text-align: center; padding: 0.75rem;
+      border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      background: #e8e8e8; color: #1a1a1a;
+    }
+    .pricing-card.featured .pricing-btn { background: #e63946; color: #fff; }
+    .pricing-cta-note { font-size: 0.78rem; color: #888; text-align: center; margin-top: 2rem; }
+
+    /* ABOUT / FOUNDING STORY */
+    .about { padding: 80px 5%; background: #111; color: #e5e5e5; }
+    .about .section-label { color: #e63946; }
+    .about h2 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .about .story { font-size: 0.98rem; color: #aaa; line-height: 1.85; max-width: 680px; margin-bottom: 3rem; }
+    .about .story strong { color: #fff; }
+    .founders { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .founder-card {
+      background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px;
+      padding: 1.75rem; flex: 1 1 280px;
+    }
+    .founder-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #e63946; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 1rem;
+    }
+    .founder-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+    .founder-card .founder-title { font-size: 0.8rem; color: #e63946; font-weight: 600; margin-bottom: 0.75rem; }
+    .founder-card p { font-size: 0.87rem; color: #888; line-height: 1.65; }
+    .founder-card .li-link { font-size: 0.8rem; color: #555; margin-top: 0.75rem; display: block; }
+
+    /* CUSTOMERS */
+    .customers { padding: 80px 5%; background: #fafafa; }
+    .customers h2 { font-size: 2rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .customers .subtitle { font-size: 1rem; color: #666; margin-bottom: 3rem; }
+    .customer-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .customer-card {
+      background: #fff; border: 1px solid #e8e8e8; border-radius: 10px;
+      padding: 1.5rem; flex: 1 1 260px;
+    }
+    .customer-card .c-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
+    .customer-card .c-loc { font-size: 0.78rem; color: #888; margin-bottom: 1rem; }
+    .customer-card blockquote { font-size: 0.87rem; color: #555; line-height: 1.65; font-style: italic; margin-bottom: 0.75rem; }
+    .customer-card .c-person { font-size: 0.8rem; font-weight: 700; color: #333; }
+
+    /* FOOTER */
+    footer {
+      background: #0d0d0d; color: #555; padding: 3rem 5%;
+      display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between;
+      border-top: 1px solid #1a1a1a;
+    }
+    .footer-brand .logo-name { color: #fff; font-size: 1.1rem; font-weight: 800; display: block; margin-bottom: 0.5rem; }
+    .footer-brand p { font-size: 0.85rem; color: #444; max-width: 220px; line-height: 1.65; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.75rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-col a { font-size: 0.875rem; color: #444; text-decoration: none; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { background: #080808; text-align: center; padding: 0.875rem 5%; font-size: 0.76rem; color: #2a2a2a; border-top: 1px solid #111; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo-icon">📋</div>
+      <span class="logo-name">Patchboard</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Integrations</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Log in</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Start 30-day trial</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Built for tattoo studios · Not generic salon software</div>
+      <h1>Stop losing deposits<br/>to <em>no-shows.</em><br/>Fill every chair.</h1>
+      <p>Patchboard is scheduling software designed from the ground up for independent tattoo studios. Manage flash bookings, custom pieces, touch-up queues, and deposit collection — all without pestering your clients with the wrong kind of reminder emails.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-red">Start free 30-day trial</a>
+        <a href="#" class="btn-ghost">See it in 2 minutes</a>
+      </div>
+      <p class="hero-note">No credit card required · Works on any device · Cancel anytime · £19/month per chair after trial</p>
+    </div>
+    <div class="hero-aside">
+      <div class="studios-using">
+        <h3>Studios using Patchboard this week</h3>
+        <div class="studio-row">
+          <div class="studio-avatar" style="background:#1a1a2e;">🌑</div>
+          <div class="studio-info">
+            <div class="studio-name">Void &amp; Veil Tattoo</div>
+            <div class="studio-loc">Shoreditch, London · 3 chairs</div>
+          </div>
+        </div>
+        <div class="studio-row">
+          <div class="studio-avatar" style="background:#2d1a0e;">🔥</div>
+          <div class="studio-info">
+            <div class="studio-name">Inkmother Studio</div>
+            <div class="studio-loc">Northern Quarter, Manchester · 2 chairs</div>
+          </div>
+        </div>
+        <div class="studio-row">
+          <div class="studio-avatar" style="background:#0a1f0a;">🌿</div>
+          <div class="studio-info">
+            <div class="studio-name">Fernwood Collective</div>
+            <div class="studio-loc">Leith, Edinburgh · 4 chairs</div>
+          </div>
+        </div>
+        <div class="studio-row">
+          <div class="studio-avatar" style="background:#1a0d2e;">⚡</div>
+          <div class="studio-info">
+            <div class="studio-name">Static Needle</div>
+            <div class="studio-loc">Stokes Croft, Bristol · 2 chairs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="problem-inner">
+      <div class="section-label">The Problem</div>
+      <h2>Generic booking software wasn't built for how tattoo studios actually work</h2>
+      <div class="problem-cols">
+        <div class="problem-col">
+          <h3>Before Patchboard <span class="pill pill-before">Before</span></h3>
+          <ul class="before-list">
+            <li>DMs and emails scattered across Instagram, WhatsApp, and Gmail</li>
+            <li>Deposit collected over bank transfer, manually tracked in a spreadsheet</li>
+            <li>No way to tell clients "this flash piece is taken" — double-booking happens</li>
+            <li>Touch-up appointments live in a separate notebook</li>
+            <li>Generic reminder texts that say "salon appointment" and confuse clients</li>
+            <li>Artists can't see each other's availability without asking</li>
+          </ul>
+        </div>
+        <div class="problem-col">
+          <h3>With Patchboard <span class="pill pill-after">After</span></h3>
+          <ul class="after-list">
+            <li>One inbox for all enquiries, tagged by type (custom / flash / touch-up)</li>
+            <li>Deposit links auto-generated via Stripe, logged against the booking</li>
+            <li>Flash sheet uploaded once — clients book directly, marked sold when full</li>
+            <li>Touch-up queue linked to the original appointment automatically</li>
+            <li>Reminders say "your appointment with Jade at Void &amp; Veil, Thursday 3pm" — no salon vibes</li>
+            <li>Shared studio calendar, per-artist colour coded</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">Features</div>
+    <h2>Built for how tattooers actually book clients</h2>
+    <p class="subtitle">Every feature exists because a studio owner asked for it. Nothing ported over from a hair salon product.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">📄</div>
+        <h3>Flash Sheet Booking</h3>
+        <p>Upload your flash sheet as an image or PDF. Each design gets its own bookable slot. When it's claimed, it's marked sold automatically — no more double-booking the same flash.</p>
+        <span class="studio-specific">Tattoo studio-specific</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💰</div>
+        <h3>Stripe Deposit Collection</h3>
+        <p>Set your deposit amount per booking type (e.g., £50 for custom pieces, £20 for flash). Clients pay at booking time via Stripe. Deposits are deducted from the final invoice automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Touch-Up Queue</h3>
+        <p>Completed appointments get a "Schedule touch-up" button. The touch-up booking is linked to the original session, so you always know what was done and when. Set your own free touch-up window (e.g., 3 months).</p>
+        <span class="studio-specific">Tattoo studio-specific</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎨</div>
+        <h3>Artist Availability, Per Chair</h3>
+        <p>Each artist sets their own hours. Clients choose an artist first, then see only that artist's open slots. No more "is Jade free on Thursday" messages.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📨</div>
+        <h3>Studio-Branded Reminders</h3>
+        <p>Reminder messages say your studio name, your artist's name, and exactly what the appointment is. Templates built for tattooing — no "your beauty appointment" wording.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🗂️</div>
+        <h3>Enquiry Triage Inbox</h3>
+        <p>All incoming booking requests land in one inbox, tagged by type. Snooze an enquiry until you're back from your guest spot. Assign it to the right artist in one click.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section class="integrations">
+    <div class="section-label">Integrations</div>
+    <h2>Connects with the tools you already use</h2>
+    <p>Patchboard doesn't try to replace everything — it fits into your existing setup.</p>
+    <div class="int-grid">
+      <div class="int-chip"><span class="int-icon">💳</span> Stripe</div>
+      <div class="int-chip"><span class="int-icon">📅</span> Google Calendar</div>
+      <div class="int-chip"><span class="int-icon">📧</span> Mailchimp</div>
+      <div class="int-chip"><span class="int-icon">📸</span> Instagram DMs</div>
+      <div class="int-chip"><span class="int-icon">💬</span> WhatsApp Business</div>
+      <div class="int-chip"><span class="int-icon">🧾</span> Xero</div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <div class="section-label">Pricing</div>
+    <h2>Per chair. No artificial tiers.</h2>
+    <p class="subtitle">You pay for how many artist chairs you run, not for "features." Every studio gets every feature regardless of size. We don't lock deposit collection or reminders behind an Enterprise plan.</p>
+    <p class="pricing-note">£19/month per chair · billed monthly · cancel anytime</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Solo Studio</div>
+        <div class="pricing-price">£19<sub>/mo</sub></div>
+        <div class="pricing-per">1 chair · 1 artist</div>
+        <ul class="pricing-features">
+          <li>Flash sheet booking</li>
+          <li>Stripe deposit collection</li>
+          <li>Touch-up queue</li>
+          <li>Branded reminders (SMS &amp; email)</li>
+          <li>Google Calendar sync</li>
+          <li>Enquiry inbox</li>
+          <li>Up to 200 appointments/month</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start 30-day trial</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Small Collective</div>
+        <div class="pricing-price">£57<sub>/mo</sub></div>
+        <div class="pricing-per">3 chairs · 3 artists · (3 × £19)</div>
+        <ul class="pricing-features">
+          <li>Everything in Solo</li>
+          <li>Shared studio calendar</li>
+          <li>Per-artist colour coding</li>
+          <li>Instagram DM integration</li>
+          <li>WhatsApp Business integration</li>
+          <li>Mailchimp sync for aftercare emails</li>
+          <li>Unlimited appointments</li>
+        </ul>
+        <a href="#" class="pricing-btn">Start 30-day trial</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Larger Studio</div>
+        <div class="pricing-price">£19<sub>/mo</sub></div>
+        <div class="pricing-per">per chair · 4+ artists</div>
+        <ul class="pricing-features">
+          <li>Everything in Small Collective</li>
+          <li>Xero accounting integration</li>
+          <li>Guest artist temporary access</li>
+          <li>Multi-location support (coming Q3 2026)</li>
+          <li>Priority support via Slack channel</li>
+        </ul>
+        <a href="#" class="pricing-btn">Talk to us first</a>
+      </div>
+    </div>
+    <p class="pricing-cta-note">Running a guest spot or a pop-up? Day passes available at £5/artist. <a href="#" style="color:#e63946">Get in touch.</a></p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="section-label">Our Story</div>
+    <h2>We built this because we needed it ourselves</h2>
+    <p class="story">
+      <strong>Nadia Osei</strong> ran Void &amp; Veil Tattoo in Shoreditch for four years. By 2023 she was spending six hours a week on admin — chasing deposits over bank transfer, manually updating a shared Google Calendar, answering "is slot X still available?" on Instagram at 11pm. She tried three different booking platforms. All of them were built for spas or barber shops and treated tattoo appointments like haircuts: a fixed duration, an interchangeable service, no understanding of custom work.<br/><br/>
+      She met <strong>Callum Rennie</strong> — a developer and ex-tattooist who had apprenticed in Glasgow before moving into software — at a design meet-up in 2023. They spent three months talking to 40 studio owners across the UK and built the first version of Patchboard over the following winter. Void &amp; Veil became the first paying customer in February 2024. By the end of that year, 180 UK studios were using it.<br/><br/>
+      Patchboard is self-funded, based in London, and we intend to keep it that way. We don't want to raise VC money and be told to expand into nail salons.
+    </p>
+    <div class="founders">
+      <div class="founder-card">
+        <div class="founder-avatar">NO</div>
+        <h3>Nadia Osei</h3>
+        <div class="founder-title">Co-founder &amp; CEO · Former studio owner</div>
+        <p>Ran Void &amp; Veil Tattoo in Shoreditch from 2019–2023. Specialised in large-scale blackwork and botanical pieces. Now splits her time between running Patchboard and occasional guest spots in London and Amsterdam.</p>
+        <a href="#" class="li-link">linkedin.com/in/nadia-osei-patchboard</a>
+      </div>
+      <div class="founder-card">
+        <div class="founder-avatar">CR</div>
+        <h3>Callum Rennie</h3>
+        <div class="founder-title">Co-founder &amp; CTO · Ex-tattooist turned developer</div>
+        <p>Apprenticed at Sacred Bear Tattoo in Glasgow (2014–2016) before retraining as a software engineer. Previously built scheduling tooling at Treatwell. Knows both sides of the booking equation from first-hand experience.</p>
+        <a href="#" class="li-link">linkedin.com/in/callum-rennie-dev</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMERS -->
+  <section class="customers">
+    <div class="section-label">Studios We Work With</div>
+    <h2>What studio owners say</h2>
+    <p class="subtitle">Independent studios across the UK using Patchboard day-to-day.</p>
+    <div class="customer-grid">
+      <div class="customer-card">
+        <div class="c-name">Void &amp; Veil Tattoo</div>
+        <div class="c-loc">Shoreditch, London · 3 chairs</div>
+        <blockquote>"I went from six hours of admin per week to about forty-five minutes. The flash sheet booking alone saved us — clients were booking designs that were already sold constantly before this."</blockquote>
+        <div class="c-person">Nadia Osei, Studio Owner</div>
+      </div>
+      <div class="customer-card">
+        <div class="c-name">Inkmother Studio</div>
+        <div class="c-loc">Northern Quarter, Manchester · 2 chairs</div>
+        <blockquote>"We tried Fresha and Square Appointments. Both were fine but neither understood that a custom piece needs a consultation before booking, then a deposit, then a session. Patchboard actually has a flow for that."</blockquote>
+        <div class="c-person">Bex Hargreaves, Head Artist</div>
+      </div>
+      <div class="customer-card">
+        <div class="c-name">Fernwood Collective</div>
+        <div class="c-loc">Leith, Edinburgh · 4 chairs</div>
+        <blockquote>"The touch-up queue is the thing I didn't know I needed. We used to lose track of clients who were due a free touch-up. Now it pops up automatically and we can book them back in before they have to chase us."</blockquote>
+        <div class="c-person">Rowan MacPhail, Studio Manager</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <span class="logo-name">Patchboard</span>
+      <p>Scheduling software for independent tattoo studios. Built in London by two people who've worked in studios.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Changelog</a></li>
+        <li><a href="#">Status</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help docs</a></li>
+        <li><a href="#">hello@patchboard.co.uk</a></li>
+        <li><a href="#">Terms of service</a></li>
+        <li><a href="#">Privacy policy</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2026 Patchboard Ltd. Registered in England &amp; Wales No. 15128043. VAT No. 423 8891 17. Built in Shoreditch, London.</div>
+
+</body>
+</html>

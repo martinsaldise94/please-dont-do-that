@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agencia Digital | Soluciones Creativas para Tu Negocio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .logo { font-size: 1.4rem; font-weight: 800; background: linear-gradient(90deg,#7c3aed,#ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a { text-decoration: none; color: #374151; font-size: .95rem; }
+    nav ul li a:hover { color: #7c3aed; }
+    .nav-cta { background: linear-gradient(90deg,#7c3aed,#ec4899); color: #fff !important; padding: .5rem 1.3rem; border-radius: 6px; font-weight: 700; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff; text-align: center; padding: 7rem 2rem 6rem; position: relative; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .4;
+    }
+    .blob-1 { width: 400px; height: 400px; background: #7c3aed; top: -100px; left: -100px; }
+    .blob-2 { width: 300px; height: 300px; background: #ec4899; bottom: -80px; right: -80px; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: linear-gradient(90deg,rgba(124,58,237,.3),rgba(236,72,153,.3));
+      border: 1px solid rgba(124,58,237,.4); border-radius: 20px;
+      padding: .3rem 1rem; font-size: .85rem; margin-bottom: 1.5rem; color: #c4b5fd;
+    }
+    .hero h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    .hero h1 .grad { background: linear-gradient(90deg,#a78bfa,#f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.15rem; max-width: 580px; margin: 0 auto 2.5rem; color: #c4b5fd; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-grad {
+      background: linear-gradient(90deg,#7c3aed,#ec4899); color: #fff;
+      padding: .9rem 2.2rem; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem;
+    }
+    .btn-white {
+      background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.3);
+      padding: .9rem 2.2rem; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
+
+    /* STATS */
+    .stats { display: flex; justify-content: center; gap: 4rem; padding: 2.5rem; background: #f9fafb; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat .n { font-size: 2.2rem; font-weight: 800; background: linear-gradient(90deg,#7c3aed,#ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat .l { font-size: .82rem; color: #6b7280; margin-top: .2rem; }
+
+    /* FEATURES */
+    .features { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: .75rem; }
+    .features .sub { text-align: center; color: #6b7280; margin-bottom: 3rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 2rem; }
+    .card {
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem;
+      text-align: center; transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(124,58,237,.12); }
+    .card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; color: #1a1a2e; margin-bottom: .7rem; }
+    .card p { color: #6b7280; font-size: .93rem; line-height: 1.7; }
+
+    /* SERVICES */
+    .services { background: #0f0c29; color: #fff; padding: 5rem 2rem; }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1.5rem; }
+    .svc {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 1.75rem; text-align: center;
+    }
+    .svc .icon { font-size: 2.2rem; margin-bottom: .75rem; }
+    .svc h4 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .svc p { font-size: .83rem; color: #94a3b8; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: #f9fafb; padding: 5rem 2rem; }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .test-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 2rem; }
+    .test-card { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: .75rem; }
+    .test-card p { color: #374151; line-height: 1.7; margin-bottom: 1rem; font-style: italic; font-size: .93rem; }
+    .author { display: flex; align-items: center; gap: .75rem; }
+    .av { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#7c3aed,#ec4899); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; }
+    .av-info .name { font-weight: 700; font-size: .9rem; }
+    .av-info .role { font-size: .78rem; color: #9ca3af; }
+
+    /* CTA */
+    .cta { background: linear-gradient(135deg,#7c3aed,#ec4899); color: #fff; text-align: center; padding: 5rem 2rem; }
+    .cta h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta p { opacity: .9; margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* FOOTER */
+    footer { background: #0f0c29; color: #64748b; padding: 3rem; text-align: center; font-size: .85rem; }
+    footer .fgrid {
+      max-width: 1100px; margin: 0 auto 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 2rem; text-align: left;
+    }
+    footer h4 { color: #fff; margin-bottom: .75rem; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: .4rem; }
+    footer ul li a { color: #64748b; text-decoration: none; font-size: .88rem; }
+    footer ul li a:hover { color: #fff; }
+    footer .copy { border-top: 1px solid rgba(255,255,255,.08); padding-top: 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">✦ CreativaStudio</div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contacto" class="nav-cta">Consulta Gratis</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Agencia Digital de Referencia</div>
+      <h1>Impulsa tu negocio<br />con <span class="grad">soluciones creativas</span></h1>
+      <p>Diseño web, desarrollo y marketing digital a medida. Transformamos tu visión en resultados medibles que hacen crecer tu negocio.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-grad">Solicitar Presupuesto →</a>
+        <a href="#portfolio" class="btn-white">Ver Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="n">+500</div><div class="l">Clientes Satisfechos</div></div>
+    <div class="stat"><div class="n">+15</div><div class="l">Años de Experiencia</div></div>
+    <div class="stat"><div class="n">98%</div><div class="l">Tasa de Éxito</div></div>
+    <div class="stat"><div class="n">+200</div><div class="l">Proyectos Completados</div></div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="nosotros">
+    <h2>¿Por Qué Elegirnos?</h2>
+    <p class="sub">Nos diferencia nuestro compromiso con la excelencia y la innovación constante.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Experiencia Probada</h3>
+        <p>Una trayectoria consolidada que nos posiciona como referentes en el sector digital. Sabemos lo que funciona y lo aplicamos en cada proyecto.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Orientados a Resultados</h3>
+        <p>Cada decisión de diseño y estrategia está orientada a mejorar tus métricas clave. No hacemos webs bonitas; hacemos webs que convierten.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Enfoque en el Cliente</h3>
+        <p>Trabajamos como una extensión de tu equipo. Escuchamos, planificamos contigo y te mantenemos informado en cada etapa del proceso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="services-inner">
+      <h2>Nuestros Servicios</h2>
+      <div class="svc-grid">
+        <div class="svc"><div class="icon">🎨</div><h4>Diseño Web</h4><p>Interfaces modernas, intuitivas y adaptadas a todos los dispositivos.</p></div>
+        <div class="svc"><div class="icon">💻</div><h4>Desarrollo Web</h4><p>Soluciones técnicas robustas y escalables para cualquier necesidad digital.</p></div>
+        <div class="svc"><div class="icon">📱</div><h4>Apps Móviles</h4><p>Aplicaciones nativas y multiplataforma para iOS y Android.</p></div>
+        <div class="svc"><div class="icon">📊</div><h4>Marketing Digital</h4><p>Estrategias SEO, SEM y redes sociales orientadas a resultados.</p></div>
+        <div class="svc"><div class="icon">🛒</div><h4>E-Commerce</h4><p>Tiendas online optimizadas para maximizar tus ventas online.</p></div>
+        <div class="svc"><div class="icon">📈</div><h4>Branding</h4><p>Identidad visual que conecta con tu audiencia y diferencia tu marca.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="portfolio">
+    <div class="testimonials-inner">
+      <h2>Lo Que Dicen Nuestros Clientes</h2>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"Trabajar con CreativaStudio fue una experiencia excepcional. Entendieron perfectamente nuestra visión y la transformaron en una web que supera todas nuestras expectativas."</p>
+          <div class="author">
+            <div class="av">M</div>
+            <div class="av-info"><div class="name">Miguel R.</div><div class="role">CEO, Empresa Tecnológica</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"El equipo es muy profesional y creativo. Nuestras ventas online aumentaron un 40% tras el rediseño de la tienda. Sin duda la mejor inversión que hemos hecho."</p>
+          <div class="author">
+            <div class="av">C</div>
+            <div class="av-info"><div class="name">Carmen T.</div><div class="role">Directora de Marketing</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"Llevamos tres proyectos con ellos y en todos los casos han demostrado ser partners de confianza. Cumplen plazos, presupuestos y siempre van un paso más allá."</p>
+          <div class="author">
+            <div class="av">D</div>
+            <div class="av-info"><div class="name">David M.</div><div class="role">Fundador, Startup SaaS</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contacto">
+    <h2>¿Listo para Crecer Digitalmente?</h2>
+    <p>Hablemos de tu proyecto. Primera consulta gratuita y sin compromiso.</p>
+    <a href="mailto:hola@creativastudio.es" class="btn-grad">Solicitar Consulta Gratuita →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fgrid">
+      <div>
+        <h4>✦ CreativaStudio</h4>
+        <p style="font-size:.88rem;color:#64748b;line-height:1.7">Agencia de diseño y desarrollo digital. Creamos experiencias digitales que impulsan tu negocio.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Diseño Web</a></li>
+          <li><a href="#">Desarrollo</a></li>
+          <li><a href="#">Marketing Digital</a></li>
+          <li><a href="#">E-Commerce</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Quiénes Somos</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>📧 hola@creativastudio.es</li>
+          <li>📞 900 000 000</li>
+          <li>📍 España</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 CreativaStudio. Todos los derechos reservados. | <a href="#" style="color:#64748b">Aviso Legal</a> | <a href="#" style="color:#64748b">Privacidad</a></div>
+  </footer>
+
+</body>
+</html>

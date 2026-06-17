@@ -1,0 +1,17 @@
+{
+  "id": "ecommerce/drogueria-vilaseca-es",
+  "class": "specific",
+  "industry": "ecommerce",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Droguería Vilaseca, ferretería familiar fundada en 1978 en Carrer de Robuster 22, Reus (Tarragona). Tienda online activa desde 2018. Productos con referencias, marcas reales y precios en euros. Política de envíos por zonas con precios. Métodos de pago (Bizum, contrareembolso, transferencia, tarjeta). Horario real de tienda. Personal nombrado (Jordi Vilaseca). Todo el copy específico para este negocio."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "referencias-producto", "marcas-reales", "politica-envios", "bizum", "contrareembolso"],
+  "notes": "Ferretería/droguería familiar en Reus (Tarragona), fundada en 1978. Productos con referencias internas (VIL-*) y marcas reales (Bosch, Titanlux, Fischer, Spontex, Klintek). Tabla de envíos por zonas con precios exactos. Cuatro métodos de pago incluyendo Bizum y contrareembolso. Horario de tienda física con cierre agosto. Personal: Jordi Vilaseca (WhatsApp)."
+}

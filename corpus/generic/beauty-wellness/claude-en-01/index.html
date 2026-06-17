@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuminaGlow Spa &amp; Beauty | Elevate Your Wellness Experience</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e1b2e; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2rem; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; color: #9333ea; font-family: Georgia, serif; letter-spacing: -.3px; }
+    .logo span { color: #ec4899; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { text-decoration: none; color: #4b5563; font-weight: 500; font-size: .93rem; transition: color .2s; }
+    nav ul a:hover { color: #9333ea; }
+    .nav-cta {
+      background: linear-gradient(135deg, #9333ea, #ec4899);
+      color: #fff; border: none; padding: .55rem 1.4rem;
+      border-radius: 999px; font-weight: 600; cursor: pointer;
+      font-size: .92rem; transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #9333ea 0%, #c026d3 40%, #ec4899 100%);
+      color: #fff; text-align: center; padding: 6rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .35; pointer-events: none;
+    }
+    .blob-1 { width: 400px; height: 400px; background: #f0abfc; top: -120px; left: -100px; }
+    .blob-2 { width: 350px; height: 350px; background: #fbcfe8; bottom: -100px; right: -80px; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.4); border-radius: 999px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+      padding: .3rem 1rem; margin-bottom: 1.5rem; text-transform: uppercase;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; font-family: Georgia, serif; }
+    .hero h1 em { font-style: normal; color: #fce7f3; }
+    .hero p { font-size: 1.1rem; opacity: .9; max-width: 540px; margin: 0 auto 2.2rem; line-height: 1.75; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: #fff; color: #9333ea; border: none; padding: .75rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.55); padding: .75rem 2rem; border-radius: 999px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background .2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,.12); }
+
+    /* STATS */
+    .stats { background: #fdf4ff; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 3rem 2rem; border-bottom: 1px solid #f3e8ff; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 2.2rem; font-weight: 800; color: #9333ea; }
+    .stat-label { font-size: .83rem; color: #6b7280; margin-top: .3rem; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* SERVICES */
+    .services { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { text-align: center; font-size: .77rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9333ea; margin-bottom: .75rem; }
+    .section-title { text-align: center; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 1rem; font-family: Georgia, serif; }
+    .section-sub { text-align: center; color: #6b7280; max-width: 520px; margin: 0 auto 3rem; line-height: 1.7; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .card { background: #fff; border: 1px solid #f3e8ff; border-radius: 1.25rem; padding: 2rem 1.75rem; text-align: center; box-shadow: 0 2px 10px rgba(147,51,234,.07); transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(147,51,234,.14); }
+    .card-icon { font-size: 2.6rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .6rem; font-family: Georgia, serif; }
+    .card p { color: #6b7280; line-height: 1.65; font-size: .93rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 100%); padding: 5rem 2rem; }
+    .testimonials-inner { max-width: 980px; margin: 0 auto; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .testi-card { background: #fff; border-radius: 1.25rem; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: .75rem; }
+    .testi-card blockquote { font-size: .97rem; line-height: 1.7; color: #374151; margin-bottom: 1rem; font-style: italic; }
+    .testi-author { font-weight: 700; font-size: .88rem; color: #9333ea; }
+    .testi-role { font-size: .78rem; color: #9ca3af; }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, #9333ea, #ec4899); color: #fff; text-align: center; padding: 4.5rem 2rem; }
+    .cta-band h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 1rem; font-family: Georgia, serif; }
+    .cta-band p { opacity: .9; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* FOOTER */
+    footer { background: #0f0a1e; color: #9ca3af; padding: 3rem 2rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+    .footer-brand p { margin-top: .75rem; font-size: .88rem; line-height: 1.6; }
+    footer h4 { color: #e5e7eb; font-size: .92rem; margin-bottom: 1rem; font-weight: 600; }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    footer ul a { color: #9ca3af; text-decoration: none; font-size: .88rem; transition: color .2s; }
+    footer ul a:hover { color: #e5e7eb; }
+    .footer-bottom { text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #1f1535; font-size: .8rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Lumina<span>Glow</span></div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="nav-cta">Book Now</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Premium Beauty &amp; Wellness</div>
+      <h1>Elevate Your <em>Wellness</em> Experience</h1>
+      <p>Discover the transformative power of holistic beauty and wellness. We offer personalized treatments designed to rejuvenate your body, mind, and soul.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Book Your Session</button>
+        <button class="btn-secondary">Explore Services</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-number">5,000+</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">99%</div>
+      <div class="stat-label">Satisfaction Rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12+</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Premium Treatments</div>
+    </div>
+  </section>
+
+  <!-- SERVICES / FEATURES -->
+  <section class="services">
+    <p class="section-label">Our Offerings</p>
+    <h2 class="section-title">Indulge in Luxury Wellness</h2>
+    <p class="section-sub">Every treatment is tailored to your unique needs, using only the finest products and most advanced techniques available.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>Expert Care</h3>
+        <p>Our certified beauty and wellness specialists bring years of training and passion to every appointment, ensuring an exceptional experience each and every time.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌸</div>
+        <h3>Proven Results</h3>
+        <p>Using science-backed treatments and premium-grade products, we deliver visible, lasting results that go beyond surface-level beauty to restore your natural glow.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💆</div>
+        <h3>Personalized Approach</h3>
+        <p>No two clients are the same. We take the time to understand your goals and craft a bespoke wellness journey that fits your lifestyle and delivers real transformation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <p class="section-label">Client Love</p>
+      <h2 class="section-title">What Our Clients Are Saying</h2>
+      <p class="section-sub">Thousands of clients trust LuminaGlow for their beauty and wellness needs. Here's what they have to say.</p>
+
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Absolutely life-changing! I walked in feeling stressed and exhausted and walked out feeling like a completely new person. The staff are incredible and the atmosphere is divine."</blockquote>
+          <div class="testi-author">Jessica T.</div>
+          <div class="testi-role">Verified Client</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"I've tried so many spas and salons but LuminaGlow is on a completely different level. The personalized attention and amazing results keep me coming back every month."</blockquote>
+          <div class="testi-author">Amanda K.</div>
+          <div class="testi-role">Verified Client</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Highly recommend to absolutely everyone! From the moment you walk through the door you feel pampered and valued. The treatments are outstanding and the results speak for themselves."</blockquote>
+          <div class="testi-author">Rachel B.</div>
+          <div class="testi-role">Verified Client</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2>Your Transformation Awaits</h2>
+    <p>Take the first step toward radiant, confident beauty. Book your personalized consultation today and experience the LuminaGlow difference.</p>
+    <button class="btn-primary">Reserve Your Spot</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="font-size:1.3rem;font-weight:700;color:#c084fc;font-family:Georgia,serif;">Lumina<span style="color:#f9a8d4;">Glow</span></div>
+        <p>Elevating wellness and beauty with personalized, holistic experiences that transform your everyday.</p>
+      </div>
+      <div>
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="#">Facials &amp; Skin Care</a></li>
+          <li><a href="#">Massage Therapy</a></li>
+          <li><a href="#">Body Wraps</a></li>
+          <li><a href="#">Nail Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Membership</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">hello@luminaglow.com</a></li>
+          <li><a href="#">+1 (800) 555-0000</a></li>
+          <li><a href="#">456 Serenity Boulevard</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 LuminaGlow Spa &amp; Beauty. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>

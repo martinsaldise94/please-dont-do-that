@@ -1,0 +1,17 @@
+{
+  "id": "clinics/fisioterapia-rebollo-es",
+  "class": "specific",
+  "industry": "clinics",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Clínica Fisioterapia Rebollo en Calle Payaso Fofó 14, 28018 Madrid (Vallecas). Personal nombrado con número de colegiado del CFCM. Servicios con precios en euros. Horario real. Mutuas aceptadas. Todo el copy específico para esta clínica."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "numero-colegiado", "mutuas"],
+  "notes": "Clínica de fisioterapia en Vallecas (Madrid). Tres fisioterapeutas con número de colegiado del Colegio de Fisioterapeutas de la Comunidad de Madrid. Precios detallados por sesión y bonos. Tabla de horarios real. Patologías tratadas. Mutuas aceptadas."
+}

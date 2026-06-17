@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clarke &amp; Martínez Physiotherapy | Headingley, Leeds</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a2e; background: #fafaf8; line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; background: #fff; border-bottom: 2px solid #2d6a4f;
+    }
+    .logo { font-size: 1.15rem; font-weight: 700; color: #2d6a4f; font-family: Georgia, serif; }
+    .logo small { display: block; font-size: .7rem; font-weight: 400; color: #6b7280; letter-spacing: .03em; font-family: sans-serif; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; font-family: 'Segoe UI', sans-serif; }
+    nav ul a { text-decoration: none; color: #374151; font-size: .92rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: #2d6a4f; }
+    .nav-phone { font-family: 'Segoe UI', sans-serif; font-weight: 700; color: #2d6a4f; font-size: .95rem; }
+
+    /* ALERT BANNER */
+    .banner { background: #2d6a4f; color: #fff; text-align: center; padding: .45rem 1rem; font-family: 'Segoe UI', sans-serif; font-size: .85rem; }
+    .banner a { color: #d1fae5; text-decoration: underline; }
+
+    /* HERO */
+    .hero { background: #fff; padding: 3.5rem 2rem; display: flex; align-items: center; gap: 3rem; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+    .hero-text { flex: 1 1 340px; }
+    .hero-eyebrow { font-family: 'Segoe UI', sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: #2d6a4f; font-weight: 700; margin-bottom: .75rem; }
+    .hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #111827; }
+    .hero h1 em { font-style: normal; color: #2d6a4f; }
+    .hero-desc { font-family: 'Segoe UI', sans-serif; font-size: 1rem; color: #4b5563; max-width: 480px; margin-bottom: 1.5rem; line-height: 1.75; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-book {
+      background: #2d6a4f; color: #fff; border: none;
+      padding: .7rem 1.8rem; border-radius: 6px; font-family: 'Segoe UI', sans-serif;
+      font-weight: 700; font-size: .95rem; cursor: pointer; transition: background .2s;
+    }
+    .btn-book:hover { background: #1e4d39; }
+    .btn-call { font-family: 'Segoe UI', sans-serif; font-weight: 600; color: #2d6a4f; font-size: .95rem; text-decoration: none; }
+    .hero-image { flex: 1 1 300px; background: #d1fae5; border-radius: 12px; height: 280px; display: flex; align-items: center; justify-content: center; color: #2d6a4f; font-size: 4rem; }
+
+    /* PRACTITIONERS */
+    .practitioners { background: #f3faf6; padding: 4rem 2rem; }
+    .practitioners-inner { max-width: 1100px; margin: 0 auto; }
+    .section-title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; margin-bottom: .5rem; }
+    .section-sub { font-family: 'Segoe UI', sans-serif; color: #4b5563; margin-bottom: 2.5rem; max-width: 560px; }
+    .prac-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .prac-card { background: #fff; border: 1px solid #d1fae5; border-radius: 10px; padding: 1.75rem; display: flex; gap: 1.2rem; }
+    .prac-avatar { width: 64px; height: 64px; border-radius: 50%; background: #2d6a4f; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .prac-name { font-weight: 700; font-size: 1.05rem; margin-bottom: .2rem; }
+    .prac-creds { font-family: 'Segoe UI', sans-serif; font-size: .8rem; color: #2d6a4f; font-weight: 600; margin-bottom: .4rem; }
+    .prac-bio { font-family: 'Segoe UI', sans-serif; font-size: .88rem; color: #4b5563; line-height: 1.6; }
+
+    /* SERVICES & PRICES */
+    .services { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .price-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; margin-top: 1.5rem; }
+    .price-table th { text-align: left; padding: .75rem 1rem; background: #2d6a4f; color: #fff; font-size: .88rem; }
+    .price-table td { padding: .75rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: .93rem; }
+    .price-table tr:nth-child(even) td { background: #f9fafb; }
+    .price-table .price { font-weight: 700; color: #2d6a4f; white-space: nowrap; }
+    .price-note { font-family: 'Segoe UI', sans-serif; font-size: .82rem; color: #6b7280; margin-top: .75rem; }
+
+    /* CONDITIONS */
+    .conditions { background: #f3faf6; padding: 4rem 2rem; }
+    .conditions-inner { max-width: 1100px; margin: 0 auto; }
+    .cond-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    .cond-tag {
+      background: #fff; border: 1px solid #2d6a4f; color: #1e4d39;
+      padding: .35rem .9rem; border-radius: 999px;
+      font-family: 'Segoe UI', sans-serif; font-size: .87rem;
+    }
+
+    /* HOURS */
+    .hours-section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; display: flex; gap: 3rem; flex-wrap: wrap; }
+    .hours-block { flex: 1 1 300px; }
+    .hours-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; margin-top: 1rem; }
+    .hours-table td { padding: .5rem 0; font-size: .92rem; border-bottom: 1px solid #e5e7eb; }
+    .hours-table td:last-child { text-align: right; color: #2d6a4f; font-weight: 600; }
+    .hours-table .closed td:last-child { color: #dc2626; font-weight: 400; }
+    .location-block { flex: 1 1 280px; }
+    .address-card { background: #f3faf6; border: 1px solid #d1fae5; border-radius: 10px; padding: 1.5rem; font-family: 'Segoe UI', sans-serif; font-size: .93rem; line-height: 1.8; }
+    .address-card strong { display: block; margin-bottom: .5rem; font-size: 1rem; }
+
+    /* MAP PLACEHOLDER */
+    .map-placeholder { background: #d1fae5; border-radius: 8px; height: 160px; display: flex; align-items: center; justify-content: center; color: #2d6a4f; font-size: 2.5rem; margin-top: 1rem; }
+
+    /* FOOTER */
+    footer { background: #111827; color: #9ca3af; padding: 2.5rem 2rem 1.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-col h4 { color: #e5e7eb; font-family: 'Segoe UI', sans-serif; font-size: .9rem; margin-bottom: .75rem; font-weight: 600; }
+    .footer-col p, .footer-col a { font-family: 'Segoe UI', sans-serif; font-size: .87rem; color: #9ca3af; text-decoration: none; display: block; margin-bottom: .35rem; }
+    .footer-col a:hover { color: #d1fae5; }
+    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; padding-top: 1.25rem; border-top: 1px solid #1f2937; font-family: 'Segoe UI', sans-serif; font-size: .8rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; }
+    .reg-info { color: #6b7280; }
+  </style>
+</head>
+<body>
+
+  <!-- ALERT BANNER -->
+  <div class="banner">
+    New patient? Our next available appointment is <strong>Thursday 19 June</strong>. &nbsp;
+    <a href="#">Book online</a> or call <strong>0113 246 8800</strong>.
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      Clarke &amp; Martínez Physiotherapy
+      <small>Headingley, Leeds · Est. 2011</small>
+    </div>
+    <ul>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Services &amp; Prices</a></li>
+      <li><a href="#">Conditions</a></li>
+      <li><a href="#">Find Us</a></li>
+    </ul>
+    <span class="nav-phone">0113 246 8800</span>
+  </nav>
+
+  <!-- HERO -->
+  <div style="max-width:1100px;margin:0 auto;border-bottom:1px solid #e5e7eb;">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="hero-eyebrow">HCPC-Registered Physiotherapists · Headingley, LS6</p>
+        <h1>Back pain, sports injuries &amp; post-surgery rehab <em>in North Leeds</em></h1>
+        <p class="hero-desc">
+          Clarke &amp; Martínez Physiotherapy has served Headingley, Hyde Park, and Horsforth since 2011.
+          We offer same-week appointments with no GP referral needed.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-book">Book Online</button>
+          <a class="btn-call" href="tel:01132468800">or call 0113 246 8800</a>
+        </div>
+      </div>
+      <div class="hero-image">🏥</div>
+    </div>
+  </div>
+
+  <!-- PRACTITIONERS -->
+  <section class="practitioners">
+    <div class="practitioners-inner">
+      <h2 class="section-title">Meet Your Physiotherapists</h2>
+      <p class="section-sub">All practitioners are registered with the Health &amp; Care Professions Council (HCPC) and members of the Chartered Society of Physiotherapy (CSP).</p>
+
+      <div class="prac-grid">
+        <div class="prac-card">
+          <div class="prac-avatar">EC</div>
+          <div>
+            <div class="prac-name">Dr Emma Clarke</div>
+            <div class="prac-creds">MCSP · BSc (Hons) Physiotherapy · HCPC Reg. PH123456</div>
+            <div class="prac-bio">Emma completed her physiotherapy degree at the University of Leeds in 2007 and has 17 years of clinical experience. She specialises in lumbar spine disorders and ACL rehabilitation, and is a qualified McKenzie Method practitioner.</div>
+          </div>
+        </div>
+        <div class="prac-card">
+          <div class="prac-avatar">DM</div>
+          <div>
+            <div class="prac-name">Diego Martínez</div>
+            <div class="prac-creds">MCSP · MSc Musculoskeletal Physiotherapy · HCPC Reg. PH234567</div>
+            <div class="prac-bio">Originally from Bilbao, Diego trained at King's College London and joined Clarke &amp; Martínez in 2014. He specialises in sports soft-tissue injuries, dry needling, and post-operative shoulder rehabilitation. He is pitch-side physiotherapist for Headingley RUFC.</div>
+          </div>
+        </div>
+        <div class="prac-card">
+          <div class="prac-avatar">SP</div>
+          <div>
+            <div class="prac-name">Simone Patel</div>
+            <div class="prac-creds">MCSP · BSc Physiotherapy · HCPC Reg. PH345678</div>
+            <div class="prac-bio">Simone joined the practice in 2019 after working in the Leeds Teaching Hospitals NHS Trust MSK outpatients department. She has a particular interest in persistent pain conditions and vestibular rehabilitation following concussion.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES & PRICES -->
+  <section class="services">
+    <h2 class="section-title">Services &amp; Prices</h2>
+    <p class="section-sub" style="font-family:sans-serif;color:#4b5563;margin-bottom:0;">All fees are payable on the day. We accept BUPA, AXA Health, Aviva, and Vitality Health on a direct-billing basis — please have your membership number ready.</p>
+
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Duration</th>
+          <th>Practitioner</th>
+          <th>Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Initial Assessment &amp; Treatment</td>
+          <td>60 min</td>
+          <td>Any</td>
+          <td class="price">£65</td>
+        </tr>
+        <tr>
+          <td>Follow-up Treatment Session</td>
+          <td>45 min</td>
+          <td>Any</td>
+          <td class="price">£52</td>
+        </tr>
+        <tr>
+          <td>Sports Massage</td>
+          <td>60 min</td>
+          <td>Diego Martínez</td>
+          <td class="price">£55</td>
+        </tr>
+        <tr>
+          <td>Sports Massage</td>
+          <td>30 min</td>
+          <td>Diego Martínez</td>
+          <td class="price">£35</td>
+        </tr>
+        <tr>
+          <td>Dry Needling / Acupuncture</td>
+          <td>30 min (add-on)</td>
+          <td>Diego Martínez</td>
+          <td class="price">£20</td>
+        </tr>
+        <tr>
+          <td>McKenzie Method Assessment</td>
+          <td>75 min</td>
+          <td>Emma Clarke</td>
+          <td class="price">£75</td>
+        </tr>
+        <tr>
+          <td>Vestibular / Concussion Assessment</td>
+          <td>60 min</td>
+          <td>Simone Patel</td>
+          <td class="price">£65</td>
+        </tr>
+        <tr>
+          <td>Block of 6 Follow-ups (pre-paid)</td>
+          <td>45 min each</td>
+          <td>Any</td>
+          <td class="price">£285 <small style="font-weight:400;color:#6b7280;">(save £27)</small></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="price-note">* Prices correct as of January 2026. Concessionary rates available for full-time students and NHS staff — please ask at reception.</p>
+  </section>
+
+  <!-- CONDITIONS -->
+  <section class="conditions">
+    <div class="conditions-inner">
+      <h2 class="section-title">Conditions We Treat</h2>
+      <p class="section-sub" style="font-family:sans-serif;color:#4b5563;">We regularly treat patients referred from GP surgeries in Headingley, Burley, Kirkstall, and Horsforth.</p>
+      <div class="cond-list">
+        <span class="cond-tag">Lower back pain</span>
+        <span class="cond-tag">Sciatica</span>
+        <span class="cond-tag">Neck pain &amp; whiplash</span>
+        <span class="cond-tag">Shoulder impingement</span>
+        <span class="cond-tag">Rotator cuff tears</span>
+        <span class="cond-tag">ACL / PCL reconstruction rehab</span>
+        <span class="cond-tag">Meniscus injury</span>
+        <span class="cond-tag">Runner's knee (PFPS)</span>
+        <span class="cond-tag">Achilles tendinopathy</span>
+        <span class="cond-tag">Plantar fasciitis</span>
+        <span class="cond-tag">Hip osteoarthritis</span>
+        <span class="cond-tag">Post-hip replacement rehab</span>
+        <span class="cond-tag">Carpal tunnel syndrome</span>
+        <span class="cond-tag">Tennis / golfer's elbow</span>
+        <span class="cond-tag">Persistent pain</span>
+        <span class="cond-tag">Vestibular disorders</span>
+        <span class="cond-tag">Post-concussion syndrome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS & LOCATION -->
+  <section class="hours-section">
+    <div class="hours-block">
+      <h2 class="section-title">Opening Hours</h2>
+      <p style="font-family:sans-serif;font-size:.88rem;color:#4b5563;margin-bottom:.5rem;">Last appointment bookable 30 min before closing.</p>
+      <table class="hours-table">
+        <tbody>
+          <tr><td>Monday</td><td>08:00 – 19:00</td></tr>
+          <tr><td>Tuesday</td><td>08:00 – 19:00</td></tr>
+          <tr><td>Wednesday</td><td>09:00 – 17:00</td></tr>
+          <tr><td>Thursday</td><td>08:00 – 19:00</td></tr>
+          <tr><td>Friday</td><td>08:00 – 18:00</td></tr>
+          <tr><td>Saturday</td><td>09:00 – 14:00</td></tr>
+          <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="location-block">
+      <h2 class="section-title">Find Us</h2>
+      <div class="address-card">
+        <strong>Clarke &amp; Martínez Physiotherapy</strong>
+        12 Otley Road<br />
+        Headingley<br />
+        Leeds, LS6 2AL<br /><br />
+        <strong>Tel:</strong> 0113 246 8800<br />
+        <strong>Email:</strong> hello@clarkemartinezphysio.co.uk<br /><br />
+        <em style="font-size:.82rem;color:#6b7280;">On the 28 / 97 bus route. Free on-street parking on Autumn Avenue after 6pm and all day Saturday.</em>
+      </div>
+      <div class="map-placeholder">📍</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col" style="flex:2 1 280px;">
+        <h4>Clarke &amp; Martínez Physiotherapy</h4>
+        <p>12 Otley Road, Headingley, Leeds LS6 2AL</p>
+        <p>Tel: 0113 246 8800</p>
+        <p>hello@clarkemartinezphysio.co.uk</p>
+        <p style="margin-top:.75rem;">Registered in England &amp; Wales · Company No. 07642891</p>
+      </div>
+      <div class="footer-col">
+        <h4>Practitioners</h4>
+        <a href="#">Dr Emma Clarke MCSP</a>
+        <a href="#">Diego Martínez MCSP</a>
+        <a href="#">Simone Patel MCSP</a>
+      </div>
+      <div class="footer-col">
+        <h4>Useful Links</h4>
+        <a href="#">Book an Appointment</a>
+        <a href="#">Patient Feedback</a>
+        <a href="#">HCPC Register</a>
+        <a href="#">CSP Website</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Clarke &amp; Martínez Physiotherapy Ltd. All rights reserved.</span>
+      <span class="reg-info">HCPC Registered · CSP Members · ICO Registration ZA123456</span>
+    </div>
+  </footer>
+
+</body>
+</html>

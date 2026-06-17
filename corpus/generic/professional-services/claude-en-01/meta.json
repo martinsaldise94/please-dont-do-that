@@ -1,0 +1,17 @@
+{
+  "id": "professional-services/claude-en-01",
+  "class": "generic",
+  "industry": "professional-services",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for a professional services firm. Include hero, features, testimonials, stats, footer. Professional look. No real addresses or staff names."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats", "generic-cta"],
+  "notes": "Classic AI-generated professional services page. Vague headline, emoji feature cards, generic testimonial names, made-up stats, no real address or staff."
+}

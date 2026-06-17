@@ -1,0 +1,17 @@
+{
+  "id": "fitness-gym/ironbridge-fitness-en",
+  "class": "specific",
+  "industry": "fitness-gym",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Ironbridge Fitness, a strength and conditioning studio at Unit 14, Stafford Park 15, Telford TF3 3BB. Named staff: Craig Hennessey (founder/head coach, BSc Sport Science, UKSCA), Priya Nair (conditioning coach, NSCA CSCS), Dom Farquhar (strength coach, competed at British powerlifting nationals), Beth Whitmore (mobility coach, RYT-200). Full class timetable with times and coaches. Membership tiers: Open Gym £38/mo, Unlimited Classes £65/mo (no joining fee June/July 2026), Classes+PT £110/mo (includes 4 PT sessions). Drop-in £14. Student discount 15%."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours", "class-timetable", "trainer-bios"],
+  "notes": "Specific city (Telford, Shropshire), named coaches with qualifications and specialisms, full weekly timetable with class types and coaches, three membership tiers with concrete pricing, drop-in rate, monthly technique clinics with dates, 6-week beginners block pricing."
+}

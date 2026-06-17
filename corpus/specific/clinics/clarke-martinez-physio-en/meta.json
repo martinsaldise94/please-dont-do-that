@@ -1,0 +1,17 @@
+{
+  "id": "clinics/clarke-martinez-physio-en",
+  "class": "specific",
+  "industry": "clinics",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Clarke & Martínez Physiotherapy at 12 Otley Road, Headingley, Leeds LS6 2AL. Named staff: Dr Emma Clarke MCSP, Diego Martínez MCSP, Simone Patel MCSP. Services with prices: Initial Assessment £65 (60 min), Follow-up £52 (45 min), Sports Massage £55/£35, Dry Needling £20 add-on, McKenzie Assessment £75. Specific opening hours Mon-Fri 8am-7pm, Sat 9am-2pm, closed Sun. All copy specific to this business only."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours"],
+  "notes": "Specific city (Headingley, Leeds), named practitioners with HCPC credentials, concrete GBP prices, real bus routes and parking info."
+}

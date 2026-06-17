@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reformas y Servicios del Hogar | Soluciones Profesionales a Tu Medida</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .logo { font-size: 1.4rem; font-weight: 800; color: #ea580c; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a { text-decoration: none; color: #374151; font-size: .95rem; }
+    nav ul li a:hover { color: #ea580c; }
+    .btn-nav {
+      background: #ea580c; color: #fff !important; padding: .5rem 1.2rem;
+      border-radius: 6px; font-weight: 700;
+    }
+
+    /* URGENCY BAR */
+    .urgency-bar {
+      background: #ea580c; color: #fff; text-align: center; padding: .6rem;
+      font-size: .9rem; font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #7c2d12, #ea580c, #f97316);
+      color: #fff; padding: 5rem 2rem; text-align: center;
+    }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+    .hero h1 span { color: #fef08a; }
+    .hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; opacity: .92; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cta {
+      background: #fef08a; color: #7c2d12; padding: .9rem 2.2rem; border-radius: 8px;
+      font-weight: 800; text-decoration: none; font-size: 1.05rem;
+    }
+    .btn-ghost {
+      background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6);
+      padding: .9rem 2.2rem; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      background: #fff7ed; border-bottom: 2px solid #fed7aa;
+      display: flex; justify-content: center; gap: 3rem; padding: 1.5rem 2rem; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: .6rem; font-size: .9rem; color: #7c2d12; font-weight: 600; }
+
+    /* STATS */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 4rem; padding: 2.5rem 2rem;
+      background: #f9fafb; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat .num { font-size: 2.2rem; font-weight: 800; color: #ea580c; }
+    .stat .lbl { font-size: .82rem; color: #6b7280; margin-top: .2rem; }
+
+    /* FEATURES */
+    .features { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: .75rem; }
+    .features .sub { text-align: center; color: #6b7280; margin-bottom: 3rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .card {
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem;
+      text-align: center; transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 6px 24px rgba(234,88,12,.15); }
+    .card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; color: #7c2d12; margin-bottom: .7rem; }
+    .card p { color: #6b7280; line-height: 1.7; font-size: .93rem; }
+
+    /* SERVICES */
+    .services { background: #7c2d12; color: #fff; padding: 4rem 2rem; }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 2.5rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+    .svc {
+      background: rgba(255,255,255,.1); border-radius: 10px; padding: 1.5rem; text-align: center;
+    }
+    .svc .icon { font-size: 2rem; margin-bottom: .6rem; }
+    .svc h4 { font-size: .95rem; font-weight: 700; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: #fff7ed; padding: 5rem 2rem; }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2rem; }
+    .test-card {
+      background: #fff; border-radius: 12px; padding: 1.75rem; box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    }
+    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: .6rem; }
+    .test-card p { color: #374151; line-height: 1.7; margin-bottom: 1rem; font-size: .93rem; font-style: italic; }
+    .author { display: flex; align-items: center; gap: .75rem; }
+    .av { width: 40px; height: 40px; border-radius: 50%; background: #ea580c; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; }
+    .av-info .name { font-weight: 700; font-size: .9rem; }
+    .av-info .role { font-size: .78rem; color: #9ca3af; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, #ea580c, #f97316); color: #fff; text-align: center; padding: 4.5rem 2rem; }
+    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { opacity: .92; margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* FOOTER */
+    footer { background: #111; color: #9ca3af; padding: 2.5rem; text-align: center; font-size: .85rem; }
+    footer .flinks { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    footer .flinks a { color: #6b7280; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="urgency-bar">🚨 Urgencias 24 horas · Atención inmediata · Llámanos ahora</div>
+
+  <nav>
+    <div class="logo">🔧 ServiHogar Pro</div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#testimonios">Opiniones</a></li>
+      <li><a href="#contacto" class="btn-nav">Llamar Ahora</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Soluciones Profesionales<br /><span>a Tu Medida</span></h1>
+    <p>Tu socio de confianza para el hogar. Fontanería, electricidad y reformas integrales con los mejores profesionales. Calidad garantizada en cada trabajo.</p>
+    <div class="hero-actions">
+      <a href="tel:900000000" class="btn-cta">📞 Presupuesto Gratis</a>
+      <a href="#servicios" class="btn-ghost">Ver Servicios</a>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">✅ Presupuesto sin compromiso</div>
+    <div class="trust-item">⚡ Respuesta en menos de 1h</div>
+    <div class="trust-item">🛡️ Garantía en todos los trabajos</div>
+    <div class="trust-item">🏅 Profesionales certificados</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="num">+500</div><div class="lbl">Clientes Satisfechos</div></div>
+    <div class="stat"><div class="num">+15</div><div class="lbl">Años de Experiencia</div></div>
+    <div class="stat"><div class="num">98%</div><div class="lbl">Tasa de Éxito</div></div>
+    <div class="stat"><div class="num">24/7</div><div class="lbl">Servicio de Urgencias</div></div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="nosotros">
+    <h2>¿Por Qué Confiar en Nosotros?</h2>
+    <p class="sub">Nos diferencia nuestro compromiso con la calidad, la puntualidad y la satisfacción del cliente.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Experiencia Probada</h3>
+        <p>Más de quince años de experiencia en el sector nos avalan. Hemos completado cientos de proyectos con éxito en hogares de toda la zona.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Orientados a Resultados</h3>
+        <p>No terminamos hasta que el trabajo está perfecto. Nuestro objetivo es que cada cliente quede completamente satisfecho con el resultado final.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Enfoque en el Cliente</h3>
+        <p>Te mantenemos informado en cada etapa del trabajo. Presupuesto claro, sin costes ocultos y con atención personalizada de principio a fin.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="services-inner">
+      <h2>Nuestros Servicios</h2>
+      <div class="services-grid">
+        <div class="svc"><div class="icon">🚿</div><h4>Fontanería</h4></div>
+        <div class="svc"><div class="icon">⚡</div><h4>Electricidad</h4></div>
+        <div class="svc"><div class="icon">🏠</div><h4>Reformas Integrales</h4></div>
+        <div class="svc"><div class="icon">🔒</div><h4>Cerrajería</h4></div>
+        <div class="svc"><div class="icon">❄️</div><h4>Climatización</h4></div>
+        <div class="svc"><div class="icon">🪟</div><h4>Carpintería</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <div class="testimonials-inner">
+      <h2>Opiniones de Nuestros Clientes</h2>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"Servicio impecable. Vinieron en menos de una hora y solucionaron el problema perfectamente. Muy profesionales y el precio fue justo. Totalmente recomendados."</p>
+          <div class="author">
+            <div class="av">M</div>
+            <div class="av-info"><div class="name">Miguel R.</div><div class="role">Particular</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"Llamé por una urgencia de fontanería a las 11 de la noche y en 45 minutos ya tenía a alguien en casa. Resolvieron todo sin dejar rastro. Excelentes profesionales."</p>
+          <div class="author">
+            <div class="av">C</div>
+            <div class="av-info"><div class="name">Carmen T.</div><div class="role">Propietaria</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="stars">★★★★★</div>
+          <p>"Les contratamos para la reforma completa del baño y cocina. Trabajo impecable, plazos cumplidos y dentro del presupuesto. Sin duda los volvería a contratar."</p>
+          <div class="author">
+            <div class="av">D</div>
+            <div class="av-info"><div class="name">David M.</div><div class="role">Propietario</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contacto">
+    <h2>¿Tienes una Avería o Proyecto?</h2>
+    <p>Contáctanos ahora y recibe un presupuesto gratuito sin compromiso. Disponibles las 24 horas.</p>
+    <a href="tel:900000000" class="btn-cta">📞 Llámanos Gratis: 900 000 000</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="flinks">
+      <a href="#">Aviso Legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+    <p>© 2026 ServiHogar Pro. Todos los derechos reservados. Servicio disponible en toda España.</p>
+  </footer>
+
+</body>
+</html>

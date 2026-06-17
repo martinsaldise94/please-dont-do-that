@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduLearn Academy — Unlock Your Potential</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #222; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: #fff; border-bottom: 1px solid #e8e8e8;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; color: #4a6cf7; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #444; font-size: 0.95rem; }
+    .nav-links a:hover { color: #4a6cf7; }
+    .nav-cta {
+      background: #4a6cf7; color: #fff; border: none; padding: 0.5rem 1.25rem;
+      border-radius: 6px; font-size: 0.95rem; cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #f0f4ff 0%, #fdf6ff 100%);
+      text-align: center; padding: 100px 5% 80px;
+    }
+    .hero-badge {
+      display: inline-block; background: #e8eeff; color: #4a6cf7;
+      font-size: 0.8rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.15; color: #111; margin-bottom: 1.25rem; }
+    .hero h1 span { color: #4a6cf7; }
+    .hero p { font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #4a6cf7; color: #fff; padding: 0.85rem 2rem;
+      border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem;
+    }
+    .btn-secondary {
+      background: #fff; color: #4a6cf7; padding: 0.85rem 2rem;
+      border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem;
+      border: 2px solid #4a6cf7;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 3.5rem; flex-wrap: wrap;
+    }
+    .hero-stat .num { font-size: 2rem; font-weight: 800; color: #4a6cf7; }
+    .hero-stat .label { font-size: 0.85rem; color: #666; margin-top: 2px; }
+
+    /* FEATURES */
+    .features { padding: 80px 5%; text-align: center; background: #fff; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; color: #4a6cf7; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 0.75rem;
+    }
+    .section-title { font-size: 2.2rem; font-weight: 800; color: #111; margin-bottom: 1rem; }
+    .section-sub { font-size: 1.05rem; color: #555; max-width: 560px; margin: 0 auto 3rem; line-height: 1.7; }
+    .cards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+    .card {
+      background: #f8f9ff; border-radius: 12px; padding: 2rem 1.75rem;
+      flex: 1 1 260px; max-width: 300px; text-align: left;
+      border: 1px solid #eaeeff;
+    }
+    .card-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; color: #111; margin-bottom: 0.6rem; }
+    .card p { font-size: 0.95rem; color: #555; line-height: 1.65; }
+
+    /* COURSES */
+    .courses { padding: 80px 5%; background: #f8f9ff; text-align: center; }
+    .course-cards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+    .course-card {
+      background: #fff; border-radius: 12px; padding: 1.75rem;
+      flex: 1 1 260px; max-width: 300px; text-align: left;
+      border: 1px solid #e4e7ff; box-shadow: 0 2px 8px rgba(74,108,247,0.06);
+    }
+    .course-tag {
+      display: inline-block; background: #e8eeff; color: #4a6cf7;
+      font-size: 0.75rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; margin-bottom: 0.75rem;
+    }
+    .course-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: #111; }
+    .course-card p { font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 1rem; }
+    .course-meta { display: flex; gap: 1rem; font-size: 0.82rem; color: #888; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 80px 5%; background: #fff; text-align: center; }
+    .testimonial-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+    .testimonial {
+      background: #f8f9ff; border-radius: 12px; padding: 2rem;
+      flex: 1 1 260px; max-width: 340px; text-align: left;
+      border: 1px solid #eaeeff;
+    }
+    .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 1rem; }
+    .testimonial blockquote { font-size: 0.95rem; color: #444; line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+    .testimonial-author { font-weight: 700; font-size: 0.9rem; color: #111; }
+    .testimonial-role { font-size: 0.82rem; color: #888; }
+
+    /* STATS */
+    .stats { background: linear-gradient(135deg, #4a6cf7 0%, #7c3aed 100%); padding: 60px 5%; text-align: center; }
+    .stats-grid { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+    .stat-item .big { font-size: 3rem; font-weight: 800; color: #fff; }
+    .stat-item .desc { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+    /* FOOTER */
+    footer {
+      background: #111; color: #aaa; padding: 3rem 5%;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;
+    }
+    .footer-brand .logo { color: #fff; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 0.875rem; color: #888; max-width: 240px; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul a { font-size: 0.875rem; color: #888; text-decoration: none; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom { background: #0a0a0a; text-align: center; padding: 1rem 5%; font-size: 0.8rem; color: #555; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="logo">EduLearn</span>
+    <ul class="nav-links">
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <button class="nav-cta">Start Learning Today</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">✨ Trusted by 50,000+ Learners</div>
+    <h1>Unlock Your <span>Full Potential</span><br/>with Expert-Led Learning</h1>
+    <p>Empower yourself with the skills and knowledge you need to succeed. Our world-class curriculum helps you achieve your goals faster than ever before.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Start Learning Today</a>
+      <a href="#" class="btn-secondary">View Courses</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">50K+</div><div class="label">Active Learners</div></div>
+      <div class="hero-stat"><div class="num">200+</div><div class="label">Expert Courses</div></div>
+      <div class="hero-stat"><div class="num">95%</div><div class="label">Success Rate</div></div>
+      <div class="hero-stat"><div class="num">4.9★</div><div class="label">Average Rating</div></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Everything You Need to Succeed</h2>
+    <p class="section-sub">Our platform is designed to give you every advantage on your learning journey. Discover why thousands of students choose EduLearn.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Personalised Learning Paths</h3>
+        <p>Our intelligent system adapts to your learning style and pace, creating a truly personalised experience that maximises your progress and keeps you motivated.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👨‍🏫</div>
+        <h3>Expert Instructors</h3>
+        <p>Learn from industry-leading professionals who bring real-world experience to every lesson. Our instructors are passionate about helping you achieve excellence.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Learn Anywhere, Anytime</h3>
+        <p>Access your courses on any device, at any time. Whether you're at home or on the go, your learning journey never has to pause.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses">
+    <div class="section-label">Our Courses</div>
+    <h2 class="section-title">Explore Popular Subjects</h2>
+    <p class="section-sub">From foundational skills to advanced mastery, we have a course for every learner at every stage of their journey.</p>
+    <div class="course-cards">
+      <div class="course-card">
+        <div class="course-tag">Most Popular</div>
+        <h3>Mathematics &amp; Science</h3>
+        <p>Build a rock-solid foundation in mathematics and science with our comprehensive, step-by-step curriculum designed for all levels.</p>
+        <div class="course-meta"><span>📚 42 lessons</span><span>⭐ 4.9</span><span>🕐 Self-paced</span></div>
+      </div>
+      <div class="course-card">
+        <div class="course-tag">New</div>
+        <h3>English &amp; Communication</h3>
+        <p>Develop confident communication skills and master the English language with engaging, interactive lessons led by expert educators.</p>
+        <div class="course-meta"><span>📚 38 lessons</span><span>⭐ 4.8</span><span>🕐 Self-paced</span></div>
+      </div>
+      <div class="course-card">
+        <div class="course-tag">Trending</div>
+        <h3>Digital Skills &amp; Coding</h3>
+        <p>Future-proof your career by learning the most in-demand digital and coding skills. Perfect for beginners and intermediate learners alike.</p>
+        <div class="course-meta"><span>📚 55 lessons</span><span>⭐ 4.9</span><span>🕐 Self-paced</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-label">Success Stories</div>
+    <h2 class="section-title">What Our Students Say</h2>
+    <p class="section-sub">Thousands of learners have transformed their lives with EduLearn. Here's what some of them have to say.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"EduLearn completely changed my life. The courses are incredibly well-structured and the instructors are so knowledgeable. I went from a complete beginner to feeling genuinely confident in just a few months!"</blockquote>
+        <div class="testimonial-author">Sarah M.</div>
+        <div class="testimonial-role">Student</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I can't believe how much I've learned in such a short time. The personalised approach really works — I feel like every lesson was designed just for me. Highly recommend to anyone looking to level up!"</blockquote>
+        <div class="testimonial-author">James T.</div>
+        <div class="testimonial-role">Working Professional</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The quality of teaching here is second to none. I achieved results I never thought possible. EduLearn gives you everything you need to succeed and then some. Best investment I've ever made."</blockquote>
+        <div class="testimonial-author">Priya K.</div>
+        <div class="testimonial-role">University Student</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="big">50,000+</div><div class="desc">Happy Learners</div></div>
+      <div class="stat-item"><div class="big">200+</div><div class="desc">Expert Courses</div></div>
+      <div class="stat-item"><div class="big">95%</div><div class="desc">Student Success Rate</div></div>
+      <div class="stat-item"><div class="big">4.9/5</div><div class="desc">Average Rating</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">EduLearn</span>
+      <p>Empowering learners worldwide to unlock their full potential through world-class education.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#">Mathematics</a></li>
+        <li><a href="#">English</a></li>
+        <li><a href="#">Science</a></li>
+        <li><a href="#">Digital Skills</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2026 EduLearn Academy. All rights reserved.</div>
+
+</body>
+</html>

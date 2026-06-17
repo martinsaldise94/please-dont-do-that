@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Pepe el Chato – Taberna desde 1963, Lavapiés (Madrid)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e1e1e; background: #fffdf8; }
+
+    /* NAV */
+    nav {
+      background: #1c0a00; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: Georgia, serif; font-size: 1.35rem; color: #f5c97a; }
+    .logo em { font-style: normal; color: rgba(255,255,255,.7); font-size: 1rem; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav ul a { text-decoration: none; color: rgba(255,255,255,.75); font-size: .88rem; }
+    nav ul a:hover { color: #f5c97a; }
+    .tel-nav { color: #f5c97a !important; font-weight: 600; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(170deg, #1c0a00 0%, #3d1500 60%, #6b2b00 100%);
+      color: #fff; padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f5c97a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block; background: #f5c97a; color: #1c0a00;
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .35rem .9rem; border-radius: 3px; margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin-bottom: 1rem; font-weight: 400; }
+    .hero h1 strong { color: #f5c97a; font-weight: 700; }
+    .hero .subtitulo { font-size: 1.05rem; line-height: 1.75; opacity: .85; max-width: 580px; margin: 0 auto 1.5rem; }
+    .hero .address { font-size: .9rem; opacity: .65; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-amber {
+      background: #f5c97a; color: #1c0a00; font-weight: 700; padding: .8rem 2rem;
+      border-radius: 4px; text-decoration: none; font-size: .97rem;
+    }
+    .btn-outline-w {
+      border: 1.5px solid rgba(255,255,255,.5); color: rgba(255,255,255,.9);
+      padding: .78rem 1.8rem; border-radius: 4px; text-decoration: none; font-size: .95rem;
+    }
+
+    /* FRANJA DATOS */
+    .franja {
+      background: #f5c97a; color: #1c0a00;
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .franja-item { padding: 1rem 2rem; font-size: .88rem; font-weight: 600; border-right: 1px solid rgba(0,0,0,.15); }
+    .franja-item:last-child { border-right: none; }
+    .franja-item span { font-weight: 400; font-size: .82rem; }
+
+    /* HISTORIA */
+    .historia { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+    .historia h2 { font-family: Georgia, serif; font-size: 1.9rem; color: #1c0a00; margin-bottom: 1rem; }
+    .historia p { color: #444; line-height: 1.8; font-size: .96rem; margin-bottom: 1rem; }
+    .pepe-card { background: #fff8e8; border-radius: 10px; padding: 1.6rem; text-align: center; border: 1px solid #e8d4a0; }
+    .pepe-avatar { font-size: 3.5rem; margin-bottom: .5rem; }
+    .pepe-card h3 { font-size: 1.05rem; font-weight: 700; color: #1c0a00; margin-bottom: .2rem; }
+    .pepe-card .rol { color: #8b5a00; font-size: .83rem; margin-bottom: .8rem; }
+    .pepe-card p { font-size: .85rem; color: #555; line-height: 1.6; font-style: italic; }
+
+    /* MENU DEL DIA */
+    .menu-dia { background: #1c0a00; color: #fff; padding: 4rem 2rem; }
+    .menu-dia h2 { font-family: Georgia, serif; font-size: 1.9rem; color: #f5c97a; text-align: center; margin-bottom: .4rem; }
+    .menu-dia .menu-precio { text-align: center; color: rgba(255,255,255,.7); font-size: .93rem; margin-bottom: 2.5rem; }
+    .menu-precio strong { color: #f5c97a; font-size: 1.3rem; }
+    .menu-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; max-width: 920px; margin: 0 auto; }
+    .menu-col { background: rgba(255,255,255,.05); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255,255,255,.08); }
+    .menu-col-title { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: #f5c97a; font-weight: 600; margin-bottom: 1rem; }
+    .plato { padding: .55rem 0; border-bottom: 1px solid rgba(255,255,255,.07); font-size: .9rem; color: rgba(255,255,255,.85); }
+    .plato:last-child { border-bottom: none; }
+    .menu-nota { text-align: center; font-size: .82rem; color: rgba(255,255,255,.5); margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* CARTA */
+    .carta { padding: 4rem 2rem; background: #fffdf8; }
+    .carta h2 { font-family: Georgia, serif; font-size: 1.9rem; color: #1c0a00; text-align: center; margin-bottom: .5rem; }
+    .carta .sub { text-align: center; color: #777; font-size: .92rem; margin-bottom: 2.5rem; }
+    .carta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; max-width: 920px; margin: 0 auto; }
+    .carta-item { background: #fff; border-radius: 8px; padding: 1.2rem 1.4rem; border: 1px solid #ede0c4; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .carta-item-left h4 { font-size: .97rem; color: #1c0a00; margin-bottom: .2rem; }
+    .carta-item-left p { font-size: .82rem; color: #777; line-height: 1.45; }
+    .carta-price { font-size: 1.05rem; font-weight: 700; color: #8b5a00; white-space: nowrap; }
+
+    /* HORARIO */
+    .horario { background: #fff8e8; padding: 4rem 2rem; }
+    .horario h2 { font-family: Georgia, serif; font-size: 1.9rem; color: #1c0a00; text-align: center; margin-bottom: 2rem; }
+    .horario-table { max-width: 620px; margin: 0 auto; font-size: .93rem; }
+    .h-row { display: flex; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid #e8d4a0; }
+    .h-row:last-child { border-bottom: none; }
+    .h-row .dia { font-weight: 600; color: #1c0a00; }
+    .h-row .hrs { color: #555; }
+    .h-row .cerrado { color: #c0392b; font-style: italic; }
+    .cocina-note { text-align: center; background: #1c0a00; color: rgba(255,255,255,.75); border-radius: 6px; padding: .8rem 1.2rem; font-size: .83rem; max-width: 620px; margin: 1.5rem auto 0; }
+    .cocina-note strong { color: #f5c97a; }
+
+    /* PROVEEDORES */
+    .proveedores { background: #3d1500; color: rgba(255,255,255,.8); padding: 3rem 2rem; text-align: center; }
+    .proveedores h2 { color: #f5c97a; font-family: Georgia, serif; font-size: 1.4rem; margin-bottom: .8rem; }
+    .proveedores p { font-size: .9rem; line-height: 1.7; max-width: 640px; margin: 0 auto 1.5rem; }
+    .prov-list { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+    .prov-tag { background: rgba(245,201,122,.15); border: 1px solid rgba(245,201,122,.3); color: #f5c97a; padding: .35rem .9rem; border-radius: 20px; font-size: .82rem; }
+
+    /* CONTACTO */
+    .contacto { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contacto h2 { font-family: Georgia, serif; font-size: 1.9rem; color: #1c0a00; margin-bottom: 1.2rem; }
+    .contacto p { color: #444; line-height: 1.75; font-size: .93rem; margin-bottom: .6rem; }
+    .contacto strong { color: #1c0a00; }
+    .contacto a { color: #8b5a00; }
+    .reserva-box { background: #1c0a00; color: #fff; border-radius: 10px; padding: 2rem; }
+    .reserva-box h3 { color: #f5c97a; font-family: Georgia, serif; font-size: 1.2rem; margin-bottom: 1rem; }
+    .reserva-box p { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.75); margin-bottom: .6rem; }
+    .reserva-box .tel-big { font-size: 1.4rem; font-weight: 700; color: #f5c97a; display: block; margin: .8rem 0; }
+    .reserva-box .btn-amber { display: inline-block; margin-top: .5rem; font-size: .9rem; padding: .7rem 1.6rem; }
+
+    /* FOOTER */
+    footer { background: #0d0500; color: rgba(255,255,255,.4); text-align: center; padding: 1.8rem 2rem; font-size: .8rem; }
+    footer a { color: #f5c97a; text-decoration: none; }
+    footer strong { color: rgba(255,255,255,.65); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Bar Pepe el Chato <em>— desde 1963 —</em></div>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Men&uacute; del D&iacute;a</a></li>
+      <li><a href="#">Carta</a></li>
+      <li><a href="#">Horario</a></li>
+      <li><a href="tel:+34913658742" class="tel-nav">&#128222; 91 365 87 42</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Taberna de barrio desde 1963</div>
+      <h1>El bar de Lavapi&eacute;s<br>que <strong>lleva tu apellido</strong></h1>
+      <p class="subtitulo">
+        Tres generaciones de la familia Morales sirviendo croquetas caseras, rabas de calamar y el menú del día más honesto del barrio. Desde que Pepe el Chato puso la primera caña en el 63.
+      </p>
+      <p class="address">&#128205; Calle Embajadores, 38 – Lavapi&eacute;s, Madrid &nbsp;|&nbsp; Metro: Lavapi&eacute;s (L3)</p>
+      <div class="hero-btns">
+        <a href="tel:+34913658742" class="btn-amber">&#128222; Reservar mesa: 91 365 87 42</a>
+        <a href="#menu-dia" class="btn-outline-w">Ver Men&uacute; del D&iacute;a</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="franja">
+    <div class="franja-item">&#128205; Embajadores, 38, 28012 Madrid</div>
+    <div class="franja-item">&#128222; 91 365 87 42</div>
+    <div class="franja-item">&#127869; Men&uacute; del D&iacute;a &nbsp;<strong>12,50 €</strong>&nbsp; <span>(L–V mediod&iacute;a)</span></div>
+    <div class="franja-item">&#128337; Cocina: 13:00–16:00 / 20:30–23:30</div>
+  </div>
+
+  <section class="historia">
+    <div>
+      <h2>La historia del Chato</h2>
+      <p>
+        <strong>Jos&eacute; Morales "Pepe el Chato"</strong> abri&oacute; este bar en el bajo del n&uacute;mero 38 de la calle Embajadores en enero de 1963, cuando Lavapi&eacute;s era el barrio de los taberneros, los carboneros y los artesanos del centro de Madrid. Puso cuatro mesas, una barra de madera y empez&oacute; a servir el vermut con aceitunas de Campo Real.
+      </p>
+      <p>
+        En 1988 tom&oacute; el relevo su hijo <strong>Antonio Morales</strong>, que ampli&oacute; la cocina y puso en carta las croquetas de jam&oacute;n curado que siguen siendo hoy el plato m&aacute;s pedido. El jam&oacute;n lo sirve <em>Embutidos Sierra de C&aacute;diz</em>, el mismo proveedor desde 1991.
+      </p>
+      <p>
+        Desde 2018 llevan el bar <strong>Elena y Rodrigo Morales</strong>, nietos de Pepe. Mantienen el precio del men&uacute; honesto, el vino de la bodega manchega de siempre y las croquetas de la receta original —aunque Elena a&ntilde;adi&oacute; una de bola&ntilde;esa que ya compite con la de jam&oacute;n.
+      </p>
+    </div>
+    <div class="pepe-card">
+      <div class="pepe-avatar">&#128104;&#8205;&#127859;</div>
+      <h3>Rodrigo Morales</h3>
+      <div class="rol">Cocinero &amp; copropietario (3ª gen.)</div>
+      <p>"La receta de las croquetas de mi abuelo tiene un secreto: la bechamel se hace en dos vueltas con 24 horas de reposo. No hay atajo."</p>
+    </div>
+  </section>
+
+  <section class="menu-dia" id="menu-dia">
+    <h2>Men&uacute; del D&iacute;a</h2>
+    <p class="menu-precio">Lunes a viernes, mediod&iacute;a &mdash; <strong>12,50 €</strong> &mdash; Incluye pan, agua o refresco y postre o caf&eacute;</p>
+    <div class="menu-cols">
+      <div class="menu-col">
+        <div class="menu-col-title">Primer plato (a elegir)</div>
+        <div class="plato">Lentejas con chorizo de Salamanca</div>
+        <div class="plato">Ensalada mixta con at&uacute;n de almadraba</div>
+        <div class="plato">Sopa de fideos casera</div>
+        <div class="plato">Judías pintas con morcilla burgalesa</div>
+      </div>
+      <div class="menu-col">
+        <div class="menu-col-title">Segundo plato (a elegir)</div>
+        <div class="plato">Filete de ternera con patatas bravas</div>
+        <div class="plato">Bacalao al pil-pil (viernes)</div>
+        <div class="plato">Pollo al ajillo con arroz blanco</div>
+        <div class="plato">Croquetas caseras (4 ud.) + ensalada</div>
+      </div>
+      <div class="menu-col">
+        <div class="menu-col-title">Postre o caf&eacute;</div>
+        <div class="plato">Flan de huevo casero</div>
+        <div class="plato">Arroz con leche</div>
+        <div class="plato">Fruta del tiempo</div>
+        <div class="plato">Caf&eacute; solo o cortado</div>
+      </div>
+    </div>
+    <p class="menu-nota">El men&uacute; cambia cada semana. V&iacute;no de la casa: Valdepe&ntilde;as DO, bodega Cooperativa de La Solana —0,50 € copa adicional.</p>
+  </section>
+
+  <section class="carta">
+    <h2>Carta</h2>
+    <p class="sub">Precios IVA incluido — temporada verano 2025</p>
+    <div class="carta-grid">
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Croquetas de jam&oacute;n (6 ud.)</h4>
+          <p>Jam&oacute;n curado Embutidos Sierra de C&aacute;diz, bechamel de 24 h</p>
+        </div>
+        <div class="carta-price">8,50 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Croquetas de bola&ntilde;esa (6 ud.)</h4>
+          <p>Ternera picada, tomate casero, la nueva receta de Elena</p>
+        </div>
+        <div class="carta-price">8,50 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Rabas de calamar a la andaluza</h4>
+          <p>Calamar fresco de La Coruña, aceite de oliva virgen extra manchego</p>
+        </div>
+        <div class="carta-price">11,00 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Patatas bravas &quot;del Chato&quot;</h4>
+          <p>Salsa brava con guindilla de La Vera, alioli casero</p>
+        </div>
+        <div class="carta-price">6,00 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Ensaladilla rusa</h4>
+          <p>Con at&uacute;n de almadraba, aceitunas Campo Real, mayonesa casera</p>
+        </div>
+        <div class="carta-price">7,50 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Entrecot de ternera (250 g)</h4>
+          <p>Ternera gallega, a la plancha, patatas fritas caseras</p>
+        </div>
+        <div class="carta-price">18,00 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Torrija de semana santa</h4>
+          <p>Pan brioche, vino dulce Pedro Xim&eacute;nez, canela. Solo temporada.</p>
+        </div>
+        <div class="carta-price">4,50 €</div>
+      </div>
+      <div class="carta-item">
+        <div class="carta-item-left">
+          <h4>Vermut Yzaguirre con boquerones</h4>
+          <p>Vermut rojo DO Tarragona, boquerones en vinagre con piparra</p>
+        </div>
+        <div class="carta-price">5,00 €</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="horario">
+    <h2>Horario</h2>
+    <div class="horario-table">
+      <div class="h-row"><span class="dia">Lunes</span><span class="hrs">8:00–16:30 &nbsp;/&nbsp; 20:00–00:00</span></div>
+      <div class="h-row"><span class="dia">Martes</span><span class="hrs">8:00–16:30 &nbsp;/&nbsp; 20:00–00:00</span></div>
+      <div class="h-row"><span class="dia">Mi&eacute;rcoles</span><span class="hrs">8:00–16:30 &nbsp;/&nbsp; 20:00–00:00</span></div>
+      <div class="h-row"><span class="dia">Jueves</span><span class="hrs">8:00–16:30 &nbsp;/&nbsp; 20:00–00:00</span></div>
+      <div class="h-row"><span class="dia">Viernes</span><span class="hrs">8:00–17:00 &nbsp;/&nbsp; 20:00–01:00</span></div>
+      <div class="h-row"><span class="dia">S&aacute;bado</span><span class="hrs">10:00–17:00 &nbsp;/&nbsp; 20:00–01:00</span></div>
+      <div class="h-row"><span class="dia">Domingo</span><span class="hrs">10:00–17:00 (solo mediod&iacute;a, sin noche)</span></div>
+    </div>
+    <div class="cocina-note"><strong>Cocina:</strong> mediod&iacute;a 13:00–16:00 &nbsp;|&nbsp; noche 20:30–23:30. Fuera de esas horas: tapas fr&iacute;as, cervezas y vermut.</div>
+  </section>
+
+  <section class="proveedores">
+    <h2>De d&oacute;nde viene nuestra comida</h2>
+    <p>No usamos ning&uacute;n distribuidor gen&eacute;rico. Cada producto tiene un origen concreto y un proveedor al que conocemos en persona desde hace a&ntilde;os.</p>
+    <div class="prov-list">
+      <span class="prov-tag">Embutidos Sierra de C&aacute;diz (jam&oacute;n desde 1991)</span>
+      <span class="prov-tag">Bodega Cooperativa La Solana – Valdepe&ntilde;as DO (vino)</span>
+      <span class="prov-tag">Mercamadrid – pescadera Rosa Fern&aacute;ndez (martes y viernes)</span>
+      <span class="prov-tag">Aceitunas Campo Real – cooperativa directa</span>
+      <span class="prov-tag">Yzaguirre vermut &ndash; DO Tarragona</span>
+      <span class="prov-tag">Verduras: Frutas S&aacute;nchez, Lavapi&eacute;s (diario)</span>
+    </div>
+  </section>
+
+  <section class="contacto">
+    <div>
+      <h2>D&oacute;nde estamos</h2>
+      <p><strong>Direcci&oacute;n:</strong> Calle Embajadores, 38<br>28012 Madrid — Barrio de Lavapi&eacute;s</p>
+      <p><strong>Tel&eacute;fono:</strong> <a href="tel:+34913658742">91 365 87 42</a></p>
+      <p><strong>Email:</strong> <a href="mailto:pepielchato@gmail.com">pepielchato@gmail.com</a></p>
+      <p style="margin-top:1rem;"><strong>Metro:</strong> Lavapi&eacute;s (L3) &mdash; 2 min a pie</p>
+      <p><strong>Bus:</strong> C1, 27, 34, 36 — parada Embajadores</p>
+      <p style="margin-top:1.2rem; font-size:.85rem; color:#777; font-style:italic;">
+        No tenemos terraza, s&oacute;lo 8 mesas interiores y la barra. Si venis m&aacute;s de 4, llamad antes.
+      </p>
+    </div>
+    <div class="reserva-box">
+      <h3>Reservar mesa</h3>
+      <p>Para grupos de m&aacute;s de 4 personas recomendamos reservar. Para el men&uacute; del d&iacute;a no hace falta reserva, pero los martes y jueves se llena.</p>
+      <a class="tel-big" href="tel:+34913658742">91 365 87 42</a>
+      <p style="font-size:.8rem;">Lunes a viernes 9:00–11:30 h &mdash; o cualquier hora fuera de servicio de cocina.</p>
+      <a href="mailto:pepielchato@gmail.com" class="btn-amber">Escribirnos por email</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Bar Pepe el Chato</strong> &mdash; Calle Embajadores, 38, 28012 Madrid &mdash; CIF: B-28743921</p>
+    <p style="margin-top:.4rem"><a href="#">Aviso Legal</a> &nbsp;|&nbsp; <a href="#">Privacidad</a> &nbsp;|&nbsp; Fundado en 1963 por Jos&eacute; Morales Garc&iacute;a</p>
+  </footer>
+
+</body>
+</html>

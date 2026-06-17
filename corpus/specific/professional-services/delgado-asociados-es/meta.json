@@ -1,0 +1,17 @@
+{
+  "id": "professional-services/delgado-asociados-es",
+  "class": "specific",
+  "industry": "professional-services",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Delgado & Asociados Abogados en Paseo de la Castellana 89, Madrid. Dos abogados nombrados con número de colegiado ICAM real. Honorarios concretos en euros. Especialidades laborales y civiles reales. Todo el copy específico para este despacho."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "numero-colegiado", "tarifas-especificas", "especialidades-reales"],
+  "notes": "Despacho de abogados en Madrid (ICAM) con dos socios nombrados con número de colegiado, tabla de honorarios en euros, especialidades laborales y civiles concretas, dirección real en Paseo de la Castellana."
+}

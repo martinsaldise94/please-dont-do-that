@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savor | A Culinary Experience</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', 'Times New Roman', serif; color: #2a1f14; background: #fdf9f5; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem; background: rgba(255,255,255,.96);
+      box-shadow: 0 1px 8px rgba(0,0,0,.07); position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.7rem; font-weight: 700; color: #8b1a1a; letter-spacing: 2px; font-style: italic; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #4a3728; font-size: .9rem; letter-spacing: .5px; transition: color .2s; font-family: 'Segoe UI', sans-serif; }
+    nav ul a:hover { color: #8b1a1a; }
+    .reserve-btn {
+      background: #8b1a1a; color: #fff !important; padding: .5rem 1.3rem;
+      border-radius: 4px; font-family: 'Segoe UI', sans-serif !important; font-size: .85rem !important;
+      letter-spacing: 1px !important; text-transform: uppercase; transition: background .2s !important;
+    }
+    .reserve-btn:hover { background: #6e1515 !important; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(30,15,5,.65), rgba(30,15,5,.65)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%238b4513'/%3E%3C/svg%3E");
+      background-color: #8b4513;
+      min-height: 92vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 2rem;
+    }
+    .hero-tag { font-size: .78rem; color: #d4a96a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.4rem; font-family: 'Segoe UI', sans-serif; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); color: #fff; line-height: 1.15; margin-bottom: 1.2rem; font-style: italic; }
+    .hero p { font-size: 1.15rem; color: #d9c8b0; max-width: 540px; line-height: 1.8; margin-bottom: 2.4rem; font-style: italic; }
+    .hero-btns { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .btn-gold {
+      background: #c9984a; color: #fff; padding: .9rem 2.2rem; border-radius: 4px;
+      font-weight: 600; font-size: .9rem; text-decoration: none; letter-spacing: 1px;
+      text-transform: uppercase; font-family: 'Segoe UI', sans-serif; transition: background .2s;
+    }
+    .btn-gold:hover { background: #a07030; }
+    .btn-outline-white {
+      background: transparent; color: #fff; padding: .9rem 2.2rem; border-radius: 4px;
+      font-size: .9rem; text-decoration: none; border: 1px solid rgba(255,255,255,.6);
+      letter-spacing: 1px; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; transition: all .2s;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); }
+
+    /* INTRO */
+    .intro { text-align: center; padding: 5rem 2rem; max-width: 700px; margin: 0 auto; }
+    .divider { width: 60px; height: 2px; background: #c9984a; margin: 0 auto 1.5rem; }
+    .intro h2 { font-size: 1.9rem; color: #2a1f14; margin-bottom: 1.2rem; font-style: italic; }
+    .intro p { font-size: 1.02rem; line-height: 1.9; color: #6b5040; }
+
+    /* STATS */
+    .stats { background: #2a1f14; display: flex; flex-wrap: wrap; justify-content: center; }
+    .stat { text-align: center; padding: 2.4rem 3.5rem; border-right: 1px solid rgba(255,255,255,.08); }
+    .stat:last-child { border-right: none; }
+    .stat-number { font-size: 2.6rem; font-weight: 700; color: #c9984a; }
+    .stat-label { font-size: .82rem; color: #9a7d60; text-transform: uppercase; letter-spacing: 1.5px; margin-top: .3rem; font-family: 'Segoe UI', sans-serif; }
+
+    /* FEATURES */
+    .features { padding: 5rem 2rem; background: #fdf9f5; }
+    .section-title { text-align: center; font-size: 1.9rem; color: #2a1f14; margin-bottom: .5rem; font-style: italic; }
+    .section-sub { text-align: center; color: #9a7d60; font-size: .95rem; max-width: 500px; margin: 0 auto 3.5rem; font-family: 'Segoe UI', sans-serif; letter-spacing: .5px; }
+    .cards { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 1000px; margin: 0 auto; }
+    .card {
+      flex: 1 1 260px; max-width: 300px; background: #fff; border-radius: 8px;
+      border: 1px solid #f0e8dc; padding: 2.5rem 2rem; text-align: center;
+      box-shadow: 0 2px 20px rgba(139,26,26,.05); transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,26,26,.1); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1.1rem; }
+    .card h3 { font-size: 1.1rem; color: #2a1f14; margin-bottom: .7rem; font-style: italic; }
+    .card p { color: #7a5c48; font-size: .92rem; line-height: 1.7; font-family: 'Segoe UI', sans-serif; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5rem 2rem; background: #f5ede0; }
+    .testi-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .testi {
+      flex: 1 1 260px; max-width: 390px; background: #fff; border-radius: 8px;
+      padding: 2.2rem; box-shadow: 0 2px 16px rgba(0,0,0,.06);
+    }
+    .stars { color: #c9984a; font-size: 1rem; margin-bottom: .9rem; }
+    .testi blockquote { font-size: .95rem; color: #5c3d28; line-height: 1.8; font-style: italic; margin-bottom: 1.2rem; }
+    .testi-author { font-weight: 700; color: #2a1f14; font-size: .88rem; font-family: 'Segoe UI', sans-serif; }
+    .testi-role { color: #b09070; font-size: .8rem; font-family: 'Segoe UI', sans-serif; }
+
+    /* RESERVATION CTA */
+    .reservation {
+      background: linear-gradient(135deg, #8b1a1a, #c0392b);
+      color: #fff; text-align: center; padding: 5rem 2rem;
+    }
+    .reservation h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: .8rem; font-style: italic; }
+    .reservation p { font-size: 1.05rem; opacity: .88; max-width: 500px; margin: 0 auto 2.2rem; line-height: 1.7; }
+    .btn-white {
+      background: #fff; color: #8b1a1a; padding: 1rem 2.6rem; border-radius: 4px;
+      font-weight: 700; font-size: .9rem; text-decoration: none; text-transform: uppercase;
+      letter-spacing: 1px; font-family: 'Segoe UI', sans-serif; display: inline-block;
+      transition: transform .2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: #1a1008; color: #9a8060; padding: 3.5rem 2rem 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2.5rem;
+    }
+    .footer-col h4 { color: #d4a96a; font-size: .9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.1rem; font-family: 'Segoe UI', sans-serif; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul a { color: #9a8060; text-decoration: none; font-size: .88rem; font-family: 'Segoe UI', sans-serif; transition: color .2s; }
+    .footer-col ul a:hover { color: #d4a96a; }
+    .footer-col p { font-size: .88rem; line-height: 1.7; font-family: 'Segoe UI', sans-serif; }
+    .footer-bottom { grid-column: 1/-1; border-top: 1px solid #2a2010; padding-top: 1.2rem; text-align: center; font-size: .8rem; color: #5a4830; font-family: 'Segoe UI', sans-serif; }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .stat { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Savor</span>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Private Dining</a></li>
+      <li><a href="#" class="reserve-btn">Reserve a Table</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-tag">Fine Dining · Crafted with Passion</p>
+    <h1>A Culinary Journey<br>Like No Other</h1>
+    <p>We believe that every meal is an opportunity to create something extraordinary. Our chefs transform the finest ingredients into unforgettable dining experiences.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-gold">Reserve a Table</a>
+      <a href="#" class="btn-outline-white">View Menu</a>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="divider"></div>
+    <h2>Where Flavour Meets Excellence</h2>
+    <p>At Savor, we are passionate about delivering an unparalleled dining experience that celebrates the art of fine cuisine. Using only the freshest seasonal ingredients, our team of expert chefs crafts each dish with care, creativity, and a deep respect for culinary tradition.</p>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-number">15+</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat"><div class="stat-number">200+</div><div class="stat-label">5-Star Reviews</div></div>
+    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Dishes on Our Menu</div></div>
+    <div class="stat"><div class="stat-number">3</div><div class="stat-label">Private Dining Rooms</div></div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">The Savor Experience</h2>
+    <p class="section-sub">Everything we do is driven by our passion for great food and exceptional hospitality.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🍽️</div>
+        <h3>Quality Ingredients</h3>
+        <p>We source only the finest local and seasonal produce, building relationships with trusted suppliers who share our commitment to quality and sustainability.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👨‍🍳</div>
+        <h3>Expert Staff</h3>
+        <p>Our dedicated team of professional chefs and front-of-house staff bring passion and expertise to every service, ensuring your experience is truly memorable.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌟</div>
+        <h3>Unmatched Atmosphere</h3>
+        <p>From intimate dinners for two to celebrations with family and friends, our beautifully designed restaurant creates the perfect setting for every occasion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2 class="section-title">What Our Guests Say</h2>
+    <p class="section-sub">We let the experience speak for itself.</p>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"An absolutely stunning dining experience from start to finish. The food was exquisite, the service was impeccable, and the atmosphere was simply perfect. Cannot recommend highly enough."</blockquote>
+        <div class="testi-author">Sarah M.</div>
+        <div class="testi-role">Valued Guest</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We celebrated our anniversary here and it was everything we hoped for and more. The attention to detail in every dish was remarkable. We will absolutely be returning."</blockquote>
+        <div class="testi-author">James & Claire D.</div>
+        <div class="testi-role">Anniversary Celebration</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The tasting menu was an absolute revelation. Each course was better than the last. The staff were knowledgeable, attentive, and made us feel truly special all evening."</blockquote>
+        <div class="testi-author">Michael R.</div>
+        <div class="testi-role">Regular Diner</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reservation">
+    <h2>Make a Reservation</h2>
+    <p>Ready to experience the finest dining in town? Reserve your table today and let us create an unforgettable evening for you and your guests.</p>
+    <a href="#" class="btn-white">Book Your Table Now</a>
+  </section>
+
+  <footer>
+    <div class="footer-col">
+      <h4>Savor</h4>
+      <p>An award-winning dining destination where culinary passion meets warm hospitality. We look forward to welcoming you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">Our Menu</a></li>
+        <li><a href="#">Private Dining</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Gift Vouchers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Allergen Info</a></li>
+        <li><a href="#">Reservations Policy</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📍 1 Restaurant Row, City Centre</p>
+      <p>📞 (555) 123-4567</p>
+      <p>✉️ hello@savorrestaurant.com</p>
+      <p>⏰ Tue–Sun: 12pm – 10pm</p>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Savor Restaurant. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

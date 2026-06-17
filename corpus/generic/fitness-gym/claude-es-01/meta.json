@@ -1,0 +1,17 @@
+{
+  "id": "fitness-gym/claude-es-01",
+  "class": "generic",
+  "industry": "fitness-gym",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para un gimnasio / centro de fitness. Incluye hero, estadísticas, servicios, testimonios, planes de precio y CTA final. Diseño moderno oscuro estilo 'fitness premium'. Sin direcciones ni nombres reales."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats", "pricing-table", "generic-cta"],
+  "notes": ""
+}

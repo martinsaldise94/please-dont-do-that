@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixelata Studio · Agencia de Diseño Web y Marketing Digital · Barcelona</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem; background: #fff; border-bottom: 1px solid #e5e7eb;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: .6rem; }
+    .logo .mark { width: 32px; height: 32px; background: #111; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: .9rem; }
+    .logo .text { font-size: 1.1rem; font-weight: 800; color: #111; letter-spacing: -.5px; }
+    .logo .text span { color: #e11d48; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav ul li a { text-decoration: none; color: #374151; font-size: .9rem; }
+    nav ul li a:hover { color: #111; }
+    .nav-cta { background: #111; color: #fff !important; padding: .45rem 1.1rem; border-radius: 5px; font-weight: 700; }
+    .cif-strip { font-size: .7rem; color: #9ca3af; }
+
+    /* HERO */
+    .hero { background: #fafafa; border-bottom: 1px solid #e5e7eb; padding: 5rem 2.5rem; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: center; }
+    .hero-left .overline {
+      font-size: .75rem; color: #e11d48; text-transform: uppercase; letter-spacing: 2px;
+      font-weight: 700; margin-bottom: 1rem;
+    }
+    .hero-left h1 { font-size: 2.8rem; font-weight: 900; line-height: 1.1; color: #111; margin-bottom: 1.25rem; }
+    .hero-left h1 em { font-style: normal; color: #e11d48; }
+    .hero-left p { color: #6b7280; line-height: 1.8; margin-bottom: 2rem; font-size: .97rem; max-width: 480px; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+    .stack-badge {
+      background: #f3f4f6; color: #374151; font-size: .75rem; font-weight: 600;
+      padding: .3rem .75rem; border-radius: 5px; border: 1px solid #e5e7eb;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark { background: #111; color: #fff; padding: .8rem 1.8rem; border-radius: 6px; font-weight: 700; text-decoration: none; }
+    .btn-outline { border: 2px solid #111; color: #111; padding: .8rem 1.8rem; border-radius: 6px; font-weight: 600; text-decoration: none; }
+    .hero-right { display: flex; flex-direction: column; gap: 1rem; }
+    .stat-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.25rem 1.5rem; }
+    .stat-card .sc-n { font-size: 2rem; font-weight: 900; color: #111; }
+    .stat-card .sc-l { font-size: .82rem; color: #6b7280; margin-top: .1rem; }
+    .stat-card.red .sc-n { color: #e11d48; }
+
+    /* EQUIPO */
+    .equipo { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem; color: #e11d48; text-transform: uppercase; letter-spacing: 2px;
+      font-weight: 700; margin-bottom: .6rem;
+    }
+    .equipo h2 { font-size: 1.9rem; font-weight: 800; color: #111; margin-bottom: 2.5rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .member-card { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+    .member-photo {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+    }
+    .m1 .member-photo { background: #f0fdf4; }
+    .m2 .member-photo { background: #fef3c7; }
+    .m3 .member-photo { background: #eff6ff; }
+    .member-info { padding: 1.25rem; }
+    .member-info .mname { font-size: 1.05rem; font-weight: 800; color: #111; }
+    .member-info .mrole { font-size: .8rem; color: #e11d48; font-weight: 700; margin-bottom: .5rem; }
+    .member-info .medu { font-size: .78rem; color: #6b7280; margin-bottom: .75rem; }
+    .member-info .mstack { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .mstag { background: #f3f4f6; color: #374151; font-size: .7rem; padding: .18rem .5rem; border-radius: 4px; }
+    .member-info p { font-size: .82rem; color: #374151; line-height: 1.6; margin-top: .75rem; }
+
+    /* PORTFOLIO */
+    .portfolio { background: #f9fafb; padding: 5rem 2.5rem; }
+    .portfolio-inner { max-width: 1100px; margin: 0 auto; }
+    .portfolio h2 { font-size: 1.9rem; font-weight: 800; color: #111; margin-bottom: 2.5rem; }
+    .casos-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.5rem; }
+    .caso-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+    .caso-thumb {
+      height: 140px; display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .ct1 { background: #fce7f3; }
+    .ct2 { background: #dbeafe; }
+    .ct3 { background: #dcfce7; }
+    .ct4 { background: #fef9c3; }
+    .caso-info { padding: 1.1rem; }
+    .caso-info .ci-client { font-size: .72rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .3rem; }
+    .caso-info h4 { font-size: 1rem; font-weight: 700; color: #111; margin-bottom: .4rem; }
+    .caso-info p { font-size: .82rem; color: #6b7280; line-height: 1.5; margin-bottom: .75rem; }
+    .caso-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .ctag { background: #f3f4f6; color: #374151; font-size: .7rem; padding: .2rem .5rem; border-radius: 4px; }
+    .resultado { font-size: .78rem; color: #16a34a; font-weight: 700; margin-top: .5rem; }
+
+    /* SERVICIOS Y TARIFAS */
+    .servicios { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    .servicios h2 { font-size: 1.9rem; font-weight: 800; color: #111; margin-bottom: 2.5rem; }
+    .tarifas-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
+    .tarifa-card {
+      border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem;
+      position: relative;
+    }
+    .tarifa-card.featured {
+      border-color: #e11d48; box-shadow: 0 0 0 3px rgba(225,29,72,.1);
+    }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #e11d48; color: #fff; font-size: .72rem; font-weight: 700;
+      padding: .2rem .8rem; border-radius: 20px; white-space: nowrap;
+    }
+    .tarifa-card h3 { font-size: 1.1rem; font-weight: 800; color: #111; margin-bottom: .4rem; }
+    .tarifa-card .price { font-size: 2rem; font-weight: 900; color: #111; margin: .75rem 0 .25rem; }
+    .tarifa-card .price span { font-size: 1rem; font-weight: 400; color: #6b7280; }
+    .tarifa-card .desde { font-size: .75rem; color: #9ca3af; margin-bottom: 1.25rem; }
+    .tarifa-card ul { list-style: none; margin-bottom: 1.5rem; }
+    .tarifa-card ul li { font-size: .87rem; color: #374151; padding: .4rem 0; border-bottom: 1px solid #f3f4f6; display: flex; gap: .5rem; }
+    .tarifa-card ul li::before { content: "✓"; color: #16a34a; font-weight: 700; }
+    .btn-tarifa { display: block; text-align: center; background: #111; color: #fff; padding: .7rem; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: .9rem; }
+    .btn-tarifa.red { background: #e11d48; }
+    .mantenimiento-box {
+      margin-top: 2.5rem; background: #f9fafb; border: 1px solid #e5e7eb;
+      border-radius: 10px; padding: 1.5rem;
+    }
+    .mantenimiento-box h4 { font-weight: 700; margin-bottom: .5rem; }
+    .mantenimiento-box p { font-size: .87rem; color: #6b7280; margin-bottom: 1rem; }
+    .mant-opts { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .mant-opt { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: .75rem 1.25rem; font-size: .85rem; }
+    .mant-opt strong { display: block; font-size: 1.1rem; color: #111; }
+
+    /* CONTACTO */
+    .contacto { background: #111; color: #fff; padding: 5rem 2.5rem; }
+    .contacto-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .contacto h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .contacto p { color: #9ca3af; margin-bottom: 2.5rem; line-height: 1.7; }
+    .contacto-data { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .cdato { text-align: center; }
+    .cdato .cl { font-size: .72rem; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .3rem; }
+    .cdato .cv { color: #fff; font-weight: 600; font-size: .95rem; }
+    .cdato .cv a { color: #f9a8d4; text-decoration: none; }
+    .btn-contact { background: #e11d48; color: #fff; padding: .9rem 2.2rem; border-radius: 7px; font-weight: 800; text-decoration: none; font-size: 1rem; }
+
+    /* FOOTER */
+    footer { background: #0a0a0a; color: #4b5563; padding: 1.5rem 2.5rem; text-align: center; font-size: .82rem; }
+    footer a { color: #6b7280; text-decoration: none; margin: 0 .5rem; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <div class="mark">Px</div>
+      <div class="text">Pixelata<span>Studio</span></div>
+    </div>
+    <ul>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#portfolio">Casos</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#contacto" class="nav-cta">Hablar con el Equipo</a></li>
+    </ul>
+    <div class="cif-strip">CIF: B-67 234 891 · Barcelona</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="overline">Agencia de Diseño Web y Marketing Digital · Barcelona</div>
+        <h1>Hacemos webs<br />que <em>venden</em>,<br />no que decoran.</h1>
+        <p>Somos tres — diseñadora, desarrollador y estratega. Trabajamos con negocios españoles que necesitan presencia digital real: con resultados medibles, sin plantillas de Wix y sin humo.</p>
+        <div class="stack-row">
+          <span class="stack-badge">Next.js</span>
+          <span class="stack-badge">WordPress + ACF</span>
+          <span class="stack-badge">WooCommerce</span>
+          <span class="stack-badge">Figma</span>
+          <span class="stack-badge">Google Ads</span>
+          <span class="stack-badge">Semrush</span>
+          <span class="stack-badge">Shopify</span>
+          <span class="stack-badge">Vercel</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#contacto" class="btn-dark">Cuéntanos tu proyecto</a>
+          <a href="#portfolio" class="btn-outline">Ver casos reales</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="stat-card">
+          <div class="sc-n">34</div>
+          <div class="sc-l">Proyectos entregados desde 2021</div>
+        </div>
+        <div class="stat-card red">
+          <div class="sc-n">+2,4M €</div>
+          <div class="sc-l">Facturación generada para nuestros clientes</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-n">100%</div>
+          <div class="sc-l">Proyectos entregados en plazo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="equipo" id="equipo">
+    <div class="section-label">El equipo</div>
+    <h2>Tres personas. Sin juniors, sin subcontratas.</h2>
+    <div class="team-grid">
+      <div class="member-card m1">
+        <div class="member-photo">🎨</div>
+        <div class="member-info">
+          <div class="mname">Neus Carreras Pla</div>
+          <div class="mrole">Directora de Diseño / Fundadora</div>
+          <div class="medu">Grado en Diseño Gráfico, ESDI – Universitat Ramon Llull (2013) · Máster UX, IED Barcelona (2016)</div>
+          <div class="mstack">
+            <span class="mstag">Figma</span><span class="mstag">Adobe Illustrator</span>
+            <span class="mstag">Framer</span><span class="mstag">Lottie</span>
+          </div>
+          <p>8 años diseñando para e-commerce y SaaS. Ex-Wallapop (2016–2019). Especialista en sistemas de diseño y conversión. Habla catalán, castellano, inglés y francés básico.</p>
+        </div>
+      </div>
+      <div class="member-card m2">
+        <div class="member-photo">💻</div>
+        <div class="member-info">
+          <div class="mname">Jordi Montserrat Valls</div>
+          <div class="mrole">Desarrollador Full-Stack / Co-Fundador</div>
+          <div class="medu">Ingeniería Informática, UPC – Escola Politècnica Superior (2012) · Certificado AWS Solutions Architect (2022)</div>
+          <div class="mstack">
+            <span class="mstag">Next.js</span><span class="mstag">React</span>
+            <span class="mstag">Node.js</span><span class="mstag">WordPress</span><span class="mstag">WooCommerce</span>
+          </div>
+          <p>11 años desarrollando en la web. Ha trabajado para Privalia y Glovo antes de cofundar Pixelata. Especialista en rendimiento web (Core Web Vitals) y seguridad WordPress.</p>
+        </div>
+      </div>
+      <div class="member-card m3">
+        <div class="member-photo">📊</div>
+        <div class="member-info">
+          <div class="mname">Inés Villanueva Ruiz</div>
+          <div class="mrole">Estratega de Marketing Digital</div>
+          <div class="medu">Grado en Publicidad y RRPP, UOC (2015) · Máster en Marketing Digital, IEBS Business School (2018)</div>
+          <div class="mstack">
+            <span class="mstag">Google Ads</span><span class="mstag">Meta Ads</span>
+            <span class="mstag">Semrush</span><span class="mstag">GA4</span><span class="mstag">Hotjar</span>
+          </div>
+          <p>Gestiona cuentas de Google Ads con presupuesto mensual conjunto de +85.000 €. Especialista en SEO local y e-commerce. Certificada Google Ads (Search, Shopping, Display).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-inner">
+      <div class="section-label">Casos reales</div>
+      <h2>Proyectos que nos definen.</h2>
+      <div class="casos-grid">
+        <div class="caso-card">
+          <div class="caso-thumb ct1">🦷</div>
+          <div class="caso-info">
+            <div class="ci-client">Cliente</div>
+            <h4>Clínica Dental Ramírez</h4>
+            <p>Rediseño completo de web y estrategia Google Ads para clínica dental en Terrassa con 4 sedes.</p>
+            <div class="caso-tags">
+              <span class="ctag">WordPress</span><span class="ctag">Google Ads</span><span class="ctag">SEO Local</span>
+            </div>
+            <div class="resultado">→ +68% de citas online en 6 meses</div>
+          </div>
+        </div>
+        <div class="caso-card">
+          <div class="caso-thumb ct2">🍷</div>
+          <div class="caso-info">
+            <div class="ci-client">Cliente</div>
+            <h4>Bodegas Torres del Sur</h4>
+            <p>Tienda online con catálogo de 120 referencias, envíos a Europa y pago en 4 idiomas.</p>
+            <div class="caso-tags">
+              <span class="ctag">WooCommerce</span><span class="ctag">Shopify</span><span class="ctag">WPML</span>
+            </div>
+            <div class="resultado">→ 24.600 € de ventas en el primer trimestre</div>
+          </div>
+        </div>
+        <div class="caso-card">
+          <div class="caso-thumb ct3">🏗️</div>
+          <div class="caso-info">
+            <div class="ci-client">Cliente</div>
+            <h4>Reformas Hnos. Sánchez</h4>
+            <p>Landing de captación para empresa de reformas en Madrid. Integración con CRM Pipedrive.</p>
+            <div class="caso-tags">
+              <span class="ctag">Next.js</span><span class="ctag">Pipedrive API</span><span class="ctag">Meta Ads</span>
+            </div>
+            <div class="resultado">→ Coste por lead: 14,80 € (antes 52 €)</div>
+          </div>
+        </div>
+        <div class="caso-card">
+          <div class="caso-thumb ct4">📚</div>
+          <div class="caso-info">
+            <div class="ci-client">Cliente</div>
+            <h4>Academia Idiomas Valladolid</h4>
+            <p>Plataforma de matrícula online con pasarela de pago, área de alumnos y gestión de horarios.</p>
+            <div class="caso-tags">
+              <span class="ctag">WordPress</span><span class="ctag">LearnDash</span><span class="ctag">Stripe</span>
+            </div>
+            <div class="resultado">→ Elimina 15h/semana de gestión administrativa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFAS -->
+  <section class="servicios" id="tarifas">
+    <div class="section-label">Tarifas 2026</div>
+    <h2>Precios claros. Sin sorpresas al final.</h2>
+    <div class="tarifas-grid">
+      <div class="tarifa-card">
+        <h3>Web Corporativa</h3>
+        <div class="price">1.500 € <span>+ IVA</span></div>
+        <div class="desde">Precio base · presupuesto final según alcance</div>
+        <ul>
+          <li>Hasta 8 secciones / páginas</li>
+          <li>Diseño a medida en Figma</li>
+          <li>WordPress + ACF (sin constructores)</li>
+          <li>SEO técnico básico</li>
+          <li>Integración Google Analytics 4</li>
+          <li>Formularios con RGPD y protección spam</li>
+          <li>Hosting recomendado + SSL configurado</li>
+          <li>Plazo: 4 semanas</li>
+        </ul>
+        <a href="#contacto" class="btn-tarifa">Pedir presupuesto</a>
+      </div>
+      <div class="tarifa-card featured">
+        <div class="popular-badge">Más solicitado</div>
+        <h3>Tienda Online</h3>
+        <div class="price">3.000 € <span>+ IVA</span></div>
+        <div class="desde">Precio base · incluye hasta 50 productos</div>
+        <ul>
+          <li>WooCommerce o Shopify (según caso)</li>
+          <li>Diseño a medida + fotografía de producto</li>
+          <li>Pasarela de pago (Stripe, Redsys, PayPal)</li>
+          <li>Gestión de envíos + MRW / SEUR API</li>
+          <li>Emails transaccionales personalizados</li>
+          <li>SEO técnico e-commerce</li>
+          <li>Formación al equipo (2h incluidas)</li>
+          <li>Plazo: 6–8 semanas</li>
+        </ul>
+        <a href="#contacto" class="btn-tarifa red">Pedir presupuesto</a>
+      </div>
+      <div class="tarifa-card">
+        <h3>Landing de Captación</h3>
+        <div class="price">900 € <span>+ IVA</span></div>
+        <div class="desde">Página única · optimizada para conversión</div>
+        <ul>
+          <li>Una URL · diseño de alta conversión</li>
+          <li>A/B testing configurado</li>
+          <li>Integración CRM (HubSpot, Pipedrive, Mailchimp)</li>
+          <li>Google Ads / Meta Ads ready</li>
+          <li>Velocidad &gt;90 en PageSpeed</li>
+          <li>Plazo: 2 semanas</li>
+        </ul>
+        <a href="#contacto" class="btn-tarifa">Pedir presupuesto</a>
+      </div>
+    </div>
+
+    <div class="mantenimiento-box">
+      <h4>🛠️ Mantenimiento y Marketing Mensual</h4>
+      <p>Planes recurrentes para mantener tu web segura y activa, y/o gestión de campañas de publicidad online.</p>
+      <div class="mant-opts">
+        <div class="mant-opt"><strong>150 €/mes</strong> Mantenimiento web (actualizaciones, backups, monitoreo 24h)</div>
+        <div class="mant-opt"><strong>350 €/mes</strong> SEO + contenidos (4 artículos + optimización técnica mensual)</div>
+        <div class="mant-opt"><strong>600 €/mes</strong> Gestión Google Ads (presupuesto pub. no incluido, mín. 500 €)</div>
+        <div class="mant-opt"><strong>950 €/mes</strong> Pack completo (mantenimiento + SEO + Ads)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="contacto-inner">
+      <h2>Hablemos de tu proyecto.</h2>
+      <p>Respondemos en menos de 24 horas en días laborables. Si tienes prisa, escríbenos por WhatsApp y Jordi o Neus te contestan directamente.</p>
+      <div class="contacto-data">
+        <div class="cdato">
+          <div class="cl">Email</div>
+          <div class="cv"><a href="mailto:hola@pixelatastudio.es">hola@pixelatastudio.es</a></div>
+        </div>
+        <div class="cdato">
+          <div class="cl">WhatsApp</div>
+          <div class="cv"><a href="https://wa.me/34622891345">622 891 345</a></div>
+        </div>
+        <div class="cdato">
+          <div class="cl">Oficina</div>
+          <div class="cv">Carrer de Pallars 193, 2n 2a<br />08005 Barcelona (Poblenou)</div>
+        </div>
+        <div class="cdato">
+          <div class="cl">Horario</div>
+          <div class="cv">Lun–Vie: 9:00 – 18:00</div>
+        </div>
+      </div>
+      <a href="mailto:hola@pixelatastudio.es" class="btn-contact">Enviar brief del proyecto</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 Pixelata Studio S.L. · CIF: B-67 234 891 · Carrer de Pallars 193, 2n 2a · 08005 Barcelona ·
+      <a href="#">Aviso Legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+    </p>
+  </footer>
+
+</body>
+</html>

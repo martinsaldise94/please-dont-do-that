@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Droguería Vilaseca — Ferretería y Hogar desde 1978 | Envíos a España</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; background: #f8fafc; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100;
+    }
+    .logo-wrap { display: flex; flex-direction: column; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #b45309; }
+    .logo-sub { font-size: .7rem; color: #64748b; letter-spacing: .5px; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #475569; font-size: .92rem; transition: color .2s; }
+    .nav-links a:hover { color: #b45309; }
+    .nav-actions { display: flex; gap: 1rem; align-items: center; }
+    .cart-btn {
+      background: #b45309; color: #fff; padding: .5rem 1.1rem; border-radius: 6px;
+      font-size: .88rem; font-weight: 700; text-decoration: none; display: flex; gap: .5rem; align-items: center;
+    }
+
+    /* TOPBAR */
+    .topbar { background: #92400e; color: #fef3c7; text-align: center; padding: .5rem 1rem; font-size: .82rem; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 4rem 2rem; display: flex; gap: 3rem; flex-wrap: wrap; align-items: center;
+    }
+    .hero-text { flex: 1 1 380px; }
+    .hero-badge {
+      display: inline-block; background: #b45309; color: #fff;
+      padding: .3rem .9rem; border-radius: 20px; font-size: .8rem;
+      font-weight: 700; margin-bottom: 1.2rem; letter-spacing: .4px;
+    }
+    .hero h1 { font-size: 2.3rem; font-weight: 800; line-height: 1.2; color: #0f172a; margin-bottom: 1rem; }
+    .hero h1 span { color: #b45309; }
+    .hero-desc { color: #475569; font-size: .97rem; line-height: 1.7; margin-bottom: 1.8rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-main {
+      background: #b45309; color: #fff; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 700; text-decoration: none; font-size: .95rem;
+    }
+    .btn-secondary {
+      background: #fff; color: #b45309; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 600; text-decoration: none; font-size: .95rem;
+      border: 2px solid #b45309;
+    }
+    .hero-visual {
+      flex: 1 1 280px; background: #fff; border-radius: 16px;
+      padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    }
+    .hero-visual h3 { font-size: .95rem; font-weight: 700; margin-bottom: 1rem; color: #0f172a; }
+    .hero-perks { list-style: none; }
+    .hero-perks li {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .55rem 0; border-bottom: 1px solid #f1f5f9;
+      font-size: .88rem; color: #334155;
+    }
+    .hero-perks li:last-child { border-bottom: none; }
+    .perk-icon { font-size: 1.2rem; }
+
+    /* STATS */
+    .stats {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      background: #92400e; color: #fff; padding: 2rem 1.5rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: #fde68a; }
+    .stat-label { font-size: .8rem; opacity: .85; margin-top: .2rem; }
+
+    /* PRODUCTS */
+    .products { padding: 5rem 2rem; background: #fff; }
+    .products h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .products .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; max-width: 1100px; }
+    .product-card {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      border: 1px solid #e2e8f0; transition: box-shadow .2s;
+    }
+    .product-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+    .product-img { height: 160px; background: #fef9eb; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .product-body { padding: 1.2rem; }
+    .product-ref { font-size: .72rem; color: #94a3b8; font-family: monospace; margin-bottom: .3rem; }
+    .product-name { font-weight: 700; font-size: .95rem; color: #0f172a; margin-bottom: .25rem; }
+    .product-brand { font-size: .8rem; color: #64748b; margin-bottom: .6rem; }
+    .product-desc { font-size: .82rem; color: #64748b; line-height: 1.5; margin-bottom: .9rem; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.1rem; font-weight: 800; color: #b45309; }
+    .product-stock { font-size: .75rem; color: #16a34a; font-weight: 600; }
+    .add-btn {
+      background: #b45309; color: #fff; border: none; padding: .4rem .9rem;
+      border-radius: 6px; font-size: .82rem; cursor: pointer; font-weight: 700;
+    }
+
+    /* CATEGORIES */
+    .categories { padding: 4rem 2rem; background: #fef3c7; }
+    .categories h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2.5rem; color: #0f172a; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.2rem; max-width: 900px; }
+    .cat-card {
+      background: #fff; border-radius: 10px; padding: 1.5rem 1rem;
+      text-align: center; border: 2px solid transparent;
+      transition: border-color .2s; cursor: pointer; text-decoration: none; color: inherit;
+    }
+    .cat-card:hover { border-color: #b45309; }
+    .cat-icon { font-size: 2.2rem; margin-bottom: .6rem; display: block; }
+    .cat-name { font-size: .88rem; font-weight: 700; color: #0f172a; }
+    .cat-count { font-size: .75rem; color: #94a3b8; margin-top: .2rem; }
+
+    /* SHIPPING */
+    .shipping { padding: 5rem 2rem; background: #fff; }
+    .shipping h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .shipping .section-sub { color: #64748b; margin-bottom: 3rem; }
+    .shipping-layout { display: flex; gap: 2.5rem; flex-wrap: wrap; max-width: 960px; }
+    .shipping-table-wrap { flex: 2 1 360px; }
+    .ship-table { width: 100%; border-collapse: collapse; }
+    .ship-table th { background: #b45309; color: #fff; padding: .75rem 1rem; text-align: left; font-size: .88rem; }
+    .ship-table td { padding: .7rem 1rem; border-bottom: 1px solid #e2e8f0; font-size: .88rem; }
+    .ship-table tr:last-child td { border-bottom: none; }
+    .ship-table tr:nth-child(even) td { background: #fef9eb; }
+    .free { color: #16a34a; font-weight: 700; }
+    .payment-box { flex: 1 1 220px; background: #fef3c7; border-radius: 12px; padding: 2rem; align-self: flex-start; }
+    .payment-box h4 { font-weight: 700; font-size: 1rem; margin-bottom: 1rem; color: #92400e; }
+    .pay-method { display: flex; align-items: center; gap: .7rem; font-size: .88rem; padding: .5rem 0; color: #334155; border-bottom: 1px solid #fde68a; }
+    .pay-method:last-child { border-bottom: none; }
+    .pay-icon { font-size: 1.4rem; }
+
+    /* RETURNS */
+    .returns { padding: 4rem 2rem; background: #fef3c7; }
+    .returns h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem; color: #0f172a; }
+    .returns-text { font-size: .9rem; color: #475569; max-width: 700px; line-height: 1.7; }
+    .returns-text strong { color: #b45309; }
+
+    /* TIENDA FÍSICA */
+    .store { padding: 5rem 2rem; background: #fff; }
+    .store h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .store .section-sub { color: #64748b; margin-bottom: 3rem; }
+    .store-layout { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .store-info { flex: 1 1 280px; }
+    .store-row { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.4rem; }
+    .store-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .store-label { font-size: .73rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+    .store-value { font-size: .93rem; color: #0f172a; font-weight: 600; margin-top: .1rem; line-height: 1.5; }
+    .store-value a { color: #b45309; text-decoration: none; }
+    .map-placeholder {
+      flex: 2 1 380px; background: #fef9eb; border-radius: 12px;
+      min-height: 240px; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem; color: #92400e; font-size: .9rem;
+    }
+    .map-placeholder span { font-size: 3rem; }
+
+    /* FOOTER */
+    footer {
+      background: #1c0f02; color: #a88060;
+      padding: 2.5rem 2rem; font-size: .85rem;
+    }
+    .footer-inner { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: space-between; max-width: 1000px; margin: 0 auto; }
+    .footer-brand { color: #fde68a; font-size: 1.15rem; font-weight: 800; margin-bottom: .5rem; }
+    .footer-col h5 { color: #fcd34d; font-size: .83rem; font-weight: 700; margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .5px; }
+    .footer-col p, .footer-col li { margin: .3rem 0; list-style: none; line-height: 1.55; }
+    .footer-col a { color: #fcd34d; text-decoration: none; }
+    .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #3d1f00; font-size: .78rem; opacity: .55; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    🚚 Envío GRATUITO en pedidos superiores a 49 € (Península) &nbsp;·&nbsp; 📦 Preparamos tu pedido en 24h · Entrega en 24-48h laborables
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo">Droguería Vilaseca</div>
+      <div class="logo-sub">Ferretería, Pintura y Hogar — Online y en Reus desde 1978</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#envios">Envíos</a></li>
+      <li><a href="#tienda">Tienda Física</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="cart-btn">🛒 Cesta (0)</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-badge">Ferretería familiar en Reus desde 1978</span>
+      <h1>Todo lo que necesitas para el <span>hogar y el bricolaje</span>, enviado a toda España</h1>
+      <p class="hero-desc">
+        Somos la Droguería Vilaseca, negocio familiar fundado por Joan Vilaseca en 1978 en Reus (Tarragona).
+        Llevamos más de 45 años vendiendo productos de ferretería, pintura, droguería y hogar.
+        Desde 2018 también tienes nuestra tienda online con más de 3.800 referencias, entrega en 24-48h
+        a toda la Península y precio de ferretería de barrio sin intermediarios.
+      </p>
+      <div class="hero-ctas">
+        <a href="#productos" class="btn-main">Ver Catálogo</a>
+        <a href="#envios" class="btn-secondary">Política de Envíos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <h3>¿Por qué comprarnos a nosotros?</h3>
+      <ul class="hero-perks">
+        <li><span class="perk-icon">🏠</span><span>Negocio familiar de Reus, 45+ años de historia</span></li>
+        <li><span class="perk-icon">📦</span><span>Más de 3.800 referencias en stock</span></li>
+        <li><span class="perk-icon">🚚</span><span>Envío gratis desde 49 € (Península)</span></li>
+        <li><span class="perk-icon">⚡</span><span>Preparación del pedido en 24h laborables</span></li>
+        <li><span class="perk-icon">💬</span><span>Asesoramiento por WhatsApp y teléfono</span></li>
+        <li><span class="perk-icon">🔄</span><span>Devoluciones en 30 días sin preguntas</span></li>
+        <li><span class="perk-icon">💳</span><span>Bizum, tarjeta, transferencia, contrareembolso</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">1978</div>
+      <div class="stat-label">Año de fundación</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+3.800</div>
+      <div class="stat-label">Referencias en catálogo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+12.000</div>
+      <div class="stat-label">Pedidos online enviados</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4,8 ⭐</div>
+      <div class="stat-label">Valoración Google (547 opiniones)</div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="productos">
+    <h2>Productos más vendidos</h2>
+    <p class="section-sub">Los artículos que más piden nuestros clientes esta semana.</p>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">🪣</div>
+        <div class="product-body">
+          <div class="product-ref">Ref: VIL-P-2241</div>
+          <div class="product-name">Pintura Plástica Interior Blanco Mate</div>
+          <div class="product-brand">Titanlux · 15 litros</div>
+          <div class="product-desc">Pintura acrílica lavable para paredes y techos interiores. Alta cobertura, bajo olor. 1 litro cubre ~12 m².</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">38,90 €</div>
+              <div class="product-stock">✓ En stock (34 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🔧</div>
+        <div class="product-body">
+          <div class="product-ref">Ref: VIL-F-0817</div>
+          <div class="product-name">Taladro Percutor Inalámbrico 18V</div>
+          <div class="product-brand">Bosch Professional · GSB 18V-55</div>
+          <div class="product-desc">Taladro percutor brushless 18V. Par máx. 55 Nm. Incluye 2 baterías 2Ah, cargador y maletín L-BOXX.</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">189,00 €</div>
+              <div class="product-stock">✓ En stock (8 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🧴</div>
+        <div class="product-body">
+          <div class="product-ref">Ref: VIL-D-1103</div>
+          <div class="product-name">Desengrasante Multiusos Concentrado</div>
+          <div class="product-brand">Klintek Pro · 5 litros</div>
+          <div class="product-desc">Limpiador alcalino concentrado para cocina, taller y exteriores. Diluible 1:10 a 1:50 según suciedad.</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">12,40 €</div>
+              <div class="product-stock">✓ En stock (67 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🔩</div>
+        <div class="product-body">
+          <div class="product-ref">Ref: VIL-F-3302</div>
+          <div class="product-name">Caja Tornillos Aglomerado 4x40 mm</div>
+          <div class="product-brand">Fischer · Caja 500 uds.</div>
+          <div class="product-desc">Tornillo para madera con cabeza avellanada Phillips zincado blanco. Autorroscante. Caja de 500 unidades.</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">8,75 €</div>
+              <div class="product-stock">✓ En stock (120 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🪟</div>
+        <div class="product-body">
+          <div class="product-ref">VIL-P-5540</div>
+          <div class="product-name">Esmalte Sintético Brillante Blanco</div>
+          <div class="product-brand">Esmaltes Valentine · 750 ml</div>
+          <div class="product-desc">Esmalte alquídico de alta calidad para madera y metal. Secado al tacto 4h. Resistente a humedad y rayos UV.</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">14,20 €</div>
+              <div class="product-stock">✓ En stock (29 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🧹</div>
+        <div class="product-body">
+          <div class="product-ref">VIL-H-0229</div>
+          <div class="product-name">Fregona Industrial Microfibra 400 g</div>
+          <div class="product-brand">Spontex Pro · con palo telescópico</div>
+          <div class="product-desc">Fregona de microfibra 400 g para superficies grandes. Palo aluminio telescópico 130-160 cm incluido.</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">18,60 €</div>
+              <div class="product-stock">✓ En stock (45 uds.)</div>
+            </div>
+            <button class="add-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categorias">
+    <h2>Nuestras Categorías</h2>
+    <div class="cat-grid">
+      <a href="#" class="cat-card"><span class="cat-icon">🪣</span><div class="cat-name">Pintura</div><div class="cat-count">428 productos</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🔧</span><div class="cat-name">Ferretería</div><div class="cat-count">1.240 productos</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🧴</span><div class="cat-name">Droguería</div><div class="cat-count">356 productos</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">💡</span><div class="cat-name">Electricidad</div><div class="cat-count">290 productos</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🚿</span><div class="cat-name">Fontanería</div><div class="cat-count">215 productos</div></a>
+      <a href="#" class="cat-card"><span class="cat-icon">🏡</span><div class="cat-name">Jardín</div><div class="cat-count">187 productos</div></a>
+    </div>
+  </section>
+
+  <!-- SHIPPING & PAYMENT -->
+  <section class="shipping" id="envios">
+    <h2>Envíos y Formas de Pago</h2>
+    <p class="section-sub">Enviamos con GLS y SEUR a toda España. El pedido se prepara en nuestro almacén de Reus el mismo día si el pedido llega antes de las 13:00 h.</p>
+    <div class="shipping-layout">
+      <div class="shipping-table-wrap">
+        <table class="ship-table">
+          <thead>
+            <tr>
+              <th>Zona</th>
+              <th>Plazo</th>
+              <th>Coste (pedidos &lt; 49 €)</th>
+              <th>Pedidos ≥ 49 €</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Península (zona 1)</td>
+              <td>24-48h lab.</td>
+              <td>4,95 €</td>
+              <td class="free">GRATIS</td>
+            </tr>
+            <tr>
+              <td>Baleares</td>
+              <td>48-72h lab.</td>
+              <td>9,95 €</td>
+              <td>9,95 €</td>
+            </tr>
+            <tr>
+              <td>Canarias</td>
+              <td>4-6 días lab.</td>
+              <td>14,95 €</td>
+              <td>14,95 €</td>
+            </tr>
+            <tr>
+              <td>Ceuta y Melilla</td>
+              <td>5-7 días lab.</td>
+              <td>14,95 €</td>
+              <td>14,95 €</td>
+            </tr>
+            <tr>
+              <td>Portugal Continental</td>
+              <td>48-72h lab.</td>
+              <td>6,95 €</td>
+              <td>6,95 €</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:1rem; font-size:.82rem; color:#64748b;">
+          ⚠️ Artículos con peligrosidad (aerosoles, disolventes &gt; 3L, gases) sólo se envían a Península.
+          Los bultos de más de 30 kg o voluminosos pueden tener coste adicional de manipulación (te avisamos antes de confirmar).
+        </p>
+      </div>
+      <div class="payment-box">
+        <h4>💳 Métodos de Pago</h4>
+        <div class="pay-method"><span class="pay-icon">💳</span><span>Tarjeta Visa / Mastercard</span></div>
+        <div class="pay-method"><span class="pay-icon">📱</span><span>Bizum (677 204 391)</span></div>
+        <div class="pay-method"><span class="pay-icon">🏦</span><span>Transferencia bancaria (CaixaBank)</span></div>
+        <div class="pay-method"><span class="pay-icon">💵</span><span>Contrareembolso (+2,50 €)</span></div>
+        <div class="pay-method"><span class="pay-icon">🏪</span><span>En tienda: efectivo o tarjeta</span></div>
+        <p style="margin-top:1rem; font-size:.78rem; color:#92400e; line-height:1.5;">
+          Pago por transferencia: enviamos el pedido tras confirmar el ingreso. Puede tardar 24h adicionales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETURNS -->
+  <section class="returns">
+    <h2>Devoluciones y Garantías</h2>
+    <p class="returns-text">
+      Tienes <strong>30 días</strong> desde la recepción para devolver cualquier artículo sin utilizar en su embalaje original.
+      Los gastos de devolución corren a cargo del cliente (salvo artículos defectuosos o error nuestro en el pedido).
+      Para iniciar una devolución, escríbenos a <strong>devoluciones@drogueria-vilaseca.es</strong> o llama al
+      <strong>977 31 08 47</strong> de lunes a viernes de 9:00 a 14:00 h y de 16:00 a 19:00 h.<br><br>
+      Todos los artículos tienen la garantía legal del fabricante (mínimo 2 años para consumidores según la normativa europea).
+      Para herramientas eléctricas Bosch y Makita, el servicio técnico oficial en Reus está en el
+      Polígono Agrobotànic, Av. Bellissens 4, y podemos gestionarlo nosotros si nos traes la herramienta a la tienda.
+    </p>
+  </section>
+
+  <!-- TIENDA FÍSICA -->
+  <section class="store" id="tienda">
+    <h2>Tienda Física en Reus</h2>
+    <p class="section-sub">También puedes venir a vernos. Tenemos el almacén y la tienda en el mismo local de siempre.</p>
+    <div class="store-layout">
+      <div class="store-info">
+        <div class="store-row">
+          <span class="store-icon">📍</span>
+          <div>
+            <div class="store-label">Dirección</div>
+            <div class="store-value">
+              Carrer de Robuster, 22<br>
+              43203 Reus (Tarragona)
+            </div>
+          </div>
+        </div>
+        <div class="store-row">
+          <span class="store-icon">🕐</span>
+          <div>
+            <div class="store-label">Horario tienda</div>
+            <div class="store-value">
+              Lun–Vie: 9:00–14:00 y 16:00–19:30<br>
+              Sábado: 9:00–14:00<br>
+              Agosto: solo mañanas (9:00–13:30)
+            </div>
+          </div>
+        </div>
+        <div class="store-row">
+          <span class="store-icon">📞</span>
+          <div>
+            <div class="store-label">Teléfono</div>
+            <div class="store-value"><a href="tel:977310847">977 31 08 47</a></div>
+          </div>
+        </div>
+        <div class="store-row">
+          <span class="store-icon">💬</span>
+          <div>
+            <div class="store-label">WhatsApp</div>
+            <div class="store-value"><a href="https://wa.me/34677204391">677 204 391</a> (Jordi Vilaseca)</div>
+          </div>
+        </div>
+        <div class="store-row">
+          <span class="store-icon">✉️</span>
+          <div>
+            <div class="store-label">Email</div>
+            <div class="store-value"><a href="mailto:pedidos@drogueria-vilaseca.es">pedidos@drogueria-vilaseca.es</a></div>
+          </div>
+        </div>
+        <div class="store-row">
+          <span class="store-icon">🚌</span>
+          <div>
+            <div class="store-label">Transporte</div>
+            <div class="store-value">
+              Bus urbano Reus: Línea 1 (parada Pg. Prim) — 5 min a pie<br>
+              Parking gratuito en C/ Prat de la Riba
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <span>🗺️</span>
+        <strong>Carrer de Robuster, 22 — 43203 Reus</strong>
+        <p style="text-align:center; max-width:280px;">A 5 min a pie del Bus Línea 1, parada Passeig Prim</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Droguería Vilaseca</div>
+        <p>Carrer de Robuster, 22<br>43203 Reus (Tarragona)</p>
+        <p style="margin-top:.5rem;">Tienda: <strong>977 31 08 47</strong></p>
+        <p>WhatsApp: 677 204 391</p>
+        <p>pedidos@drogueria-vilaseca.es</p>
+      </div>
+      <div class="footer-col">
+        <h5>Horario</h5>
+        <p>Lun–Vie: 9:00–14:00 / 16:00–19:30</p>
+        <p>Sábado: 9:00–14:00</p>
+        <p>Domingo: Cerrado</p>
+        <p>Agosto: Solo mañanas</p>
+      </div>
+      <div class="footer-col">
+        <h5>Categorías</h5>
+        <p>Pintura · Ferretería</p>
+        <p>Droguería · Electricidad</p>
+        <p>Fontanería · Jardín</p>
+        <p>Herramientas eléctricas</p>
+      </div>
+      <div class="footer-col">
+        <h5>Información</h5>
+        <p><a href="#">Política de Envíos</a></p>
+        <p><a href="#">Devoluciones</a></p>
+        <p><a href="#">Aviso Legal</a></p>
+        <p><a href="#">Política de Privacidad</a></p>
+        <p><a href="#">Política de Cookies</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Droguería Vilaseca S.C.P. · CIF: J-43112847 · Inscrita en el Registro Mercantil de Tarragona · Todos los derechos reservados.
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Profesional | Tu Socio de Confianza para el Éxito</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .logo { font-size: 1.4rem; font-weight: 700; color: #2563eb; letter-spacing: -0.5px; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a { text-decoration: none; color: #374151; font-size: .95rem; transition: color .2s; }
+    nav ul li a:hover { color: #2563eb; }
+    nav .cta-nav {
+      background: #2563eb; color: #fff !important; padding: .5rem 1.2rem;
+      border-radius: 6px; font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #7c3aed 100%);
+      color: #fff; text-align: center; padding: 6rem 2rem 5rem;
+    }
+    .hero .badge {
+      display: inline-block; background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3); border-radius: 20px;
+      padding: .3rem 1rem; font-size: .85rem; margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+    .hero h1 span { color: #fbbf24; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2.5rem; opacity: .9; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #fbbf24; color: #1a1a2e; padding: .85rem 2rem;
+      border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem; transition: transform .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6);
+      padding: .85rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none;
+      font-size: 1rem; transition: border-color .2s;
+    }
+    .btn-secondary:hover { border-color: #fff; }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+      display: flex; justify-content: center; gap: 4rem; padding: 2rem; flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .number { font-size: 2rem; font-weight: 800; color: #2563eb; }
+    .stat-item .label { font-size: .85rem; color: #64748b; margin-top: .2rem; }
+
+    /* FEATURES */
+    .features { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: .75rem; }
+    .features .subtitle {
+      text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.05rem;
+    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card {
+      border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem;
+      text-align: center; transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(37,99,235,.12); }
+    .card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: .75rem; color: #1e3a8a; }
+    .card p { color: #64748b; line-height: 1.7; font-size: .95rem; }
+
+    /* SERVICES */
+    .services { background: #1e3a8a; color: #fff; padding: 5rem 2rem; }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .service-item {
+      background: rgba(255,255,255,.1); border-radius: 10px; padding: 1.5rem; text-align: center;
+    }
+    .service-item .icon { font-size: 2rem; margin-bottom: .75rem; }
+    .service-item h4 { font-size: 1rem; font-weight: 600; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5rem 2rem; background: #f8fafc; }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testimonials h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .testimonial-card {
+      background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+    .stars { color: #fbbf24; font-size: 1.2rem; margin-bottom: .75rem; }
+    .testimonial-card p { color: #374151; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .author { display: flex; align-items: center; gap: .75rem; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%; background: #2563eb;
+      display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700;
+    }
+    .author-info .name { font-weight: 700; font-size: .95rem; }
+    .author-info .role { font-size: .8rem; color: #64748b; }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff; text-align: center; padding: 5rem 2rem;
+    }
+    .cta-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { font-size: 1.1rem; opacity: .9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer { background: #0f172a; color: #94a3b8; padding: 3rem 2rem; text-align: center; }
+    footer .footer-grid {
+      max-width: 1100px; margin: 0 auto 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left;
+    }
+    footer h4 { color: #fff; font-size: 1rem; margin-bottom: 1rem; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: .5rem; font-size: .9rem; }
+    footer ul li a { color: #94a3b8; text-decoration: none; }
+    footer ul li a:hover { color: #fff; }
+    footer .copy { font-size: .85rem; border-top: 1px solid #1e293b; padding-top: 1.5rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">⚖️ ProLex Asesores</div>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto" class="cta-nav">Consulta Gratuita</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">✨ Tu Éxito Es Nuestra Prioridad</div>
+    <h1>Tu Socio de Confianza<br />para el <span>Éxito</span></h1>
+    <p>Ofrecemos soluciones profesionales a tu medida. Nuestro equipo de expertos está aquí para guiarte en cada paso del camino hacia tus objetivos.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-primary">Consulta Gratuita →</a>
+      <a href="#servicios" class="btn-secondary">Ver Servicios</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="number">+500</div>
+      <div class="label">Clientes Satisfechos</div>
+    </div>
+    <div class="stat-item">
+      <div class="number">+15</div>
+      <div class="label">Años de Experiencia</div>
+    </div>
+    <div class="stat-item">
+      <div class="number">98%</div>
+      <div class="label">Tasa de Éxito</div>
+    </div>
+    <div class="stat-item">
+      <div class="number">24/7</div>
+      <div class="label">Soporte Disponible</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="nosotros">
+    <h2>¿Por Qué Elegirnos?</h2>
+    <p class="subtitle">Nos diferenciamos por nuestro compromiso, profesionalidad y orientación al cliente.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Experiencia Probada</h3>
+        <p>Más de una década de trayectoria nos avala. Hemos ayudado a cientos de clientes a alcanzar sus metas con resultados excepcionales.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Orientados a Resultados</h3>
+        <p>No nos conformamos con hacer el trabajo: nos comprometemos con los resultados. Cada proyecto es una oportunidad para superar expectativas.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Enfoque en el Cliente</h3>
+        <p>El cliente es el centro de todo lo que hacemos. Escuchamos, entendemos y actuamos para que tu experiencia sea siempre positiva y satisfactoria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <div class="services-inner">
+      <h2>Nuestros Servicios Profesionales</h2>
+      <div class="services-grid">
+        <div class="service-item"><div class="icon">📋</div><h4>Asesoría Integral</h4></div>
+        <div class="service-item"><div class="icon">🛡️</div><h4>Defensa Legal</h4></div>
+        <div class="service-item"><div class="icon">📊</div><h4>Gestión Documental</h4></div>
+        <div class="service-item"><div class="icon">🔍</div><h4>Consultoría Estratégica</h4></div>
+        <div class="service-item"><div class="icon">💼</div><h4>Representación</h4></div>
+        <div class="service-item"><div class="icon">🌐</div><h4>Ámbito Internacional</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <div class="testimonials-inner">
+      <h2>Lo Que Dicen Nuestros Clientes</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Un servicio excepcional de principio a fin. El equipo estuvo disponible en todo momento y los resultados superaron mis expectativas. Totalmente recomendable."</p>
+          <div class="author">
+            <div class="avatar">M</div>
+            <div class="author-info">
+              <div class="name">Miguel R.</div>
+              <div class="role">Empresario</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Profesionales de primer nivel. Resolvieron mi caso de forma rápida y eficiente. Me explicaron todo con claridad y siempre sentí que estaba en buenas manos."</p>
+          <div class="author">
+            <div class="avatar">C</div>
+            <div class="author-info">
+              <div class="name">Carmen T.</div>
+              <div class="role">Autónoma</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Llevamos tres años trabajando juntos y la relación no podría ser mejor. Son de confianza, honestos y realmente se preocupan por el éxito de sus clientes."</p>
+          <div class="author">
+            <div class="avatar">D</div>
+            <div class="author-info">
+              <div class="name">David M.</div>
+              <div class="role">Director General</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contacto">
+    <h2>¿Listo para Dar el Siguiente Paso?</h2>
+    <p>Contacta con nosotros hoy y descubre cómo podemos ayudarte a alcanzar tus objetivos profesionales.</p>
+    <a href="mailto:info@prolexasesores.es" class="btn-primary">Solicitar Consulta Gratuita →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>⚖️ ProLex Asesores</h4>
+        <p style="font-size:.9rem;line-height:1.7">Soluciones profesionales a medida para particulares y empresas. Experiencia, confianza y resultados.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Asesoría Legal</a></li>
+          <li><a href="#">Gestión Empresarial</a></li>
+          <li><a href="#">Consultoría</a></li>
+          <li><a href="#">Representación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Quiénes Somos</a></li>
+          <li><a href="#">Nuestro Equipo</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>📧 info@prolexasesores.es</li>
+          <li>📞 900 000 000</li>
+          <li>📍 España</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 ProLex Asesores. Todos los derechos reservados. | <a href="#">Aviso Legal</a> | <a href="#">Política de Privacidad</a></div>
+  </footer>
+
+</body>
+</html>

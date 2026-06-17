@@ -1,0 +1,17 @@
+{
+  "id": "beauty-wellness/okonkwo-beauty-studio-en",
+  "class": "specific",
+  "industry": "beauty-wellness",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Okonkwo Beauty Studio at 7A Rye Lane, Peckham, London SE15 4RU. Named staff: Chidinma Okonkwo (founder, NVQ Level 3, trichology diploma), Abena Boateng (senior stylist, wig specialist), Funmi Odebode (beauty therapist). Services with prices: Box Braids £140, Knotless Box Braids £165, Silk Press £65, Gel Manicure £35, Facial £50, etc. Opening hours Mon-Fri 10am-8pm (Wed closed), Sat 9am-6pm. All copy specific to this business and location only."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours", "niche-specialism"],
+  "notes": "Specific neighbourhood (Peckham, SE15), named stylists with real qualifications and backstories, detailed GBP price menu, West African specialism, local transport info, concrete booking policies."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "home-services/brightwater-plumbing-en",
+  "class": "specific",
+  "industry": "home-services",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Brightwater Plumbing & Heating Ltd, run by Phil Okafor, based in Redland Bristol BS6 6TE. Gas Safe Reg No. 553821. Call-out fee structure: £65 standard, £85 evening, £95 weekend, £120 overnight, plus £48-78/hr labour. Covers BS6-BS10, BS16. Specific reviewer names, job types, dates from Google Reviews and Checkatrade. Company No. 09184723, CIPHE member 84291, Hiscox insurance HX-PL-2026-338821."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "credentials", "postcode-coverage", "gas-safe-number", "real-reviews", "fee-table"],
+  "notes": "Bristol emergency plumber with named engineer (Phil Okafor), apprentice (Marcus Threlfall), Gas Safe reg number verifiable at gassaferegister.co.uk, itemised call-out fee table by time of day, specific postcode coverage map with drive times, company registration, public liability insurance policy number, and named reviewer examples with dates and job types."
+}

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Fisioterapia Rebollo — Vallecas, Madrid</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; background: #f8fafc; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100;
+    }
+    .logo-wrap { display: flex; flex-direction: column; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: #1d4ed8; }
+    .logo-sub { font-size: .72rem; color: #64748b; letter-spacing: .5px; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #475569; font-size: .92rem; transition: color .2s; }
+    .nav-links a:hover { color: #1d4ed8; }
+    .nav-phone { font-weight: 700; color: #1d4ed8; font-size: 1rem; }
+
+    /* TOPBAR */
+    .topbar {
+      background: #1d4ed8; color: #fff; text-align: center;
+      padding: .5rem 1rem; font-size: .82rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex; align-items: stretch; flex-wrap: wrap;
+      min-height: 480px;
+    }
+    .hero-text {
+      flex: 1 1 340px; background: #eff6ff;
+      padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-kicker {
+      display: inline-block; background: #dbeafe; color: #1d4ed8;
+      padding: .3rem .9rem; border-radius: 20px; font-size: .8rem;
+      font-weight: 700; margin-bottom: 1.2rem; letter-spacing: .4px;
+    }
+    .hero h1 { font-size: 2.3rem; font-weight: 800; line-height: 1.2; color: #0f172a; margin-bottom: 1rem; }
+    .hero h1 span { color: #1d4ed8; }
+    .hero-desc { color: #475569; font-size: 1rem; line-height: 1.7; margin-bottom: 1.8rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-main {
+      background: #1d4ed8; color: #fff; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 700; text-decoration: none; font-size: .95rem;
+    }
+    .btn-secondary {
+      background: #fff; color: #1d4ed8; padding: .8rem 1.8rem;
+      border-radius: 7px; font-weight: 600; text-decoration: none; font-size: .95rem;
+      border: 2px solid #1d4ed8;
+    }
+    .hero-image {
+      flex: 1 1 340px; background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 3rem; color: #fff; text-align: center;
+    }
+    .hero-image .staff-card {
+      background: rgba(255,255,255,.15); border-radius: 14px; padding: 2rem 2.5rem;
+    }
+    .staff-avatar { font-size: 4rem; margin-bottom: .8rem; }
+    .hero-image h3 { font-size: 1.15rem; font-weight: 700; }
+    .hero-image p { font-size: .85rem; opacity: .9; margin-top: .3rem; line-height: 1.5; }
+
+    /* INFO STRIP */
+    .info-strip {
+      display: flex; gap: 0; background: #1d4ed8; color: #fff;
+      flex-wrap: wrap;
+    }
+    .info-item {
+      flex: 1 1 200px; padding: 1.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; gap: .9rem;
+    }
+    .info-item:last-child { border-right: none; }
+    .info-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .info-label { font-size: .75rem; opacity: .8; display: block; margin-bottom: .1rem; }
+    .info-value { font-weight: 700; font-size: .95rem; }
+
+    /* EQUIPO */
+    .team { padding: 5rem 2rem; background: #fff; }
+    .team h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .team .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 960px; }
+    .team-card {
+      border: 1px solid #e2e8f0; border-radius: 12px; padding: 2rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .team-avatar { font-size: 3rem; flex-shrink: 0; }
+    .team-info h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    .team-title { font-size: .82rem; color: #1d4ed8; font-weight: 600; margin: .2rem 0 .5rem; }
+    .team-bio { font-size: .85rem; color: #64748b; line-height: 1.55; }
+    .colegiado-badge {
+      display: inline-block; background: #dbeafe; color: #1e40af;
+      padding: .2rem .6rem; border-radius: 4px; font-size: .72rem;
+      font-weight: 700; margin-top: .5rem; letter-spacing: .3px;
+    }
+
+    /* SERVICES / PRICES */
+    .services { padding: 5rem 2rem; background: #f8fafc; }
+    .services h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .services .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .services-layout { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .service-list { flex: 2 1 380px; }
+    .service-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 0; border-bottom: 1px solid #e2e8f0;
+    }
+    .service-row:last-child { border-bottom: none; }
+    .service-name { font-weight: 600; font-size: .95rem; color: #0f172a; }
+    .service-detail { font-size: .82rem; color: #64748b; margin-top: .15rem; }
+    .service-price { font-weight: 800; font-size: 1.05rem; color: #1d4ed8; white-space: nowrap; margin-left: 1rem; }
+    .price-note { font-size: .75rem; color: #94a3b8; display: block; }
+    .insurance-box {
+      flex: 1 1 250px; background: #eff6ff; border-radius: 12px;
+      padding: 2rem; border: 2px solid #bfdbfe; align-self: flex-start;
+    }
+    .insurance-box h4 { font-size: 1rem; font-weight: 700; color: #1d4ed8; margin-bottom: 1rem; }
+    .insurance-list { list-style: none; }
+    .insurance-list li { font-size: .88rem; color: #334155; padding: .35rem 0; }
+    .insurance-list li::before { content: '✓ '; color: #1d4ed8; font-weight: 700; }
+
+    /* SCHEDULE */
+    .schedule { padding: 5rem 2rem; background: #fff; }
+    .schedule h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: .5rem; color: #0f172a; }
+    .schedule .section-sub { color: #64748b; font-size: .95rem; margin-bottom: 3rem; }
+    .schedule-table { width: 100%; max-width: 600px; border-collapse: collapse; }
+    .schedule-table th {
+      background: #1d4ed8; color: #fff; padding: .8rem 1.2rem;
+      text-align: left; font-size: .88rem; font-weight: 700;
+    }
+    .schedule-table td {
+      padding: .75rem 1.2rem; border-bottom: 1px solid #e2e8f0;
+      font-size: .9rem;
+    }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr:nth-child(even) td { background: #f8fafc; }
+    .closed { color: #94a3b8; font-style: italic; }
+
+    /* CONDITIONS */
+    .conditions { padding: 5rem 2rem; background: #f8fafc; }
+    .conditions h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2.5rem; color: #0f172a; }
+    .conditions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 900px; }
+    .condition-item {
+      background: #fff; border-radius: 10px; padding: 1.5rem;
+      border-left: 4px solid #1d4ed8; box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .condition-item h4 { font-weight: 700; font-size: .95rem; margin-bottom: .4rem; color: #0f172a; }
+    .condition-item p { font-size: .85rem; color: #64748b; line-height: 1.55; }
+
+    /* MAP / CONTACT */
+    .contact { padding: 5rem 2rem; background: #fff; }
+    .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 2.5rem; color: #0f172a; }
+    .contact-layout { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .contact-info { flex: 1 1 280px; }
+    .contact-row { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .contact-label { font-size: .75rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+    .contact-value { font-size: .95rem; color: #0f172a; font-weight: 600; margin-top: .1rem; line-height: 1.5; }
+    .contact-value a { color: #1d4ed8; text-decoration: none; }
+    .map-placeholder {
+      flex: 2 1 380px; background: #e2e8f0; border-radius: 12px;
+      min-height: 280px; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem; color: #64748b; font-size: .9rem;
+    }
+    .map-placeholder span { font-size: 3rem; }
+
+    /* FOOTER */
+    footer {
+      background: #0f172a; color: #94a3b8;
+      padding: 2.5rem 2rem; font-size: .85rem;
+    }
+    .footer-inner { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: space-between; max-width: 960px; margin: 0 auto; }
+    .footer-brand { color: #fff; font-size: 1.15rem; font-weight: 800; margin-bottom: .5rem; }
+    .footer-col h5 { color: #cbd5e1; font-size: .85rem; font-weight: 700; margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .5px; }
+    .footer-col p, .footer-col li { margin: .3rem 0; list-style: none; line-height: 1.55; }
+    .footer-col a { color: #93c5fd; text-decoration: none; }
+    .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1e293b; font-size: .78rem; opacity: .55; }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    📍 Clínica en Vallecas, Madrid &nbsp;|&nbsp; 📞 <strong>91 478 22 35</strong> &nbsp;|&nbsp; Colegiados en el Colegio de Fisioterapeutas de la Comunidad de Madrid
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo">Fisioterapia Rebollo</div>
+      <div class="logo-sub">Clínica de Fisioterapia — Vallecas, Madrid</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#servicios">Servicios y Tarifas</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#contacto">Cómo Llegar</a></li>
+    </ul>
+    <div class="nav-phone">📞 91 478 22 35</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-kicker">Fisioterapia en Vallecas desde 2009</span>
+      <h1>La clínica de <span>fisioterapia de referencia</span> en el Puente de Vallecas</h1>
+      <p class="hero-desc">
+        Somos un equipo de fisioterapeutas colegiados en Madrid especializados en patología músculo-esquelética,
+        suelo pélvico y rehabilitación postoperatoria. Atendemos con cita previa de lunes a sábado en
+        nuestra clínica de la Calle Payaso Fofó, a dos minutos del Metro Portazgo.
+      </p>
+      <div class="hero-ctas">
+        <a href="tel:914782235" class="btn-main">Pedir Cita: 91 478 22 35</a>
+        <a href="#servicios" class="btn-secondary">Ver Tarifas</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="staff-card">
+        <div class="staff-avatar">👨‍⚕️</div>
+        <h3>David Rebollo Ortega</h3>
+        <p>Fisioterapeuta · Colegiado nº M-4872<br>Colegio de Fisioterapeutas de Madrid<br>Máster en Osteopatía, UCM (2011)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item">
+      <span class="info-icon">📍</span>
+      <div>
+        <span class="info-label">Dirección</span>
+        <span class="info-value">C/ Payaso Fofó, 14 · 28018 Madrid</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">🚇</span>
+      <div>
+        <span class="info-label">Metro</span>
+        <span class="info-value">Portazgo (L1) — 2 min a pie</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">🕐</span>
+      <div>
+        <span class="info-label">Horario</span>
+        <span class="info-value">Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">📞</span>
+      <div>
+        <span class="info-label">Teléfono</span>
+        <span class="info-value">91 478 22 35</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPO -->
+  <section class="team" id="equipo">
+    <h2>Nuestro Equipo</h2>
+    <p class="section-sub">Todos nuestros profesionales están colegiados en el Colegio de Fisioterapeutas de la Comunidad de Madrid.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">👨‍⚕️</div>
+        <div class="team-info">
+          <h3>David Rebollo Ortega</h3>
+          <div class="team-title">Director y Fisioterapeuta Principal</div>
+          <p class="team-bio">
+            Graduado en Fisioterapia por la Universidad Complutense de Madrid (2007). Máster en Osteopatía Estructural,
+            UCM (2011). Especializado en patología cervical, lumbalgia crónica y lesiones deportivas.
+            Colaborador docente en el Grado de Fisioterapia de la UCM desde 2018.
+          </p>
+          <span class="colegiado-badge">Nº Colegiado: M-4872 · CFCM Madrid</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍⚕️</div>
+        <div class="team-info">
+          <h3>Beatriz Sánchez Llorente</h3>
+          <div class="team-title">Fisioterapeuta — Suelo Pélvico</div>
+          <p class="team-bio">
+            Graduada en Fisioterapia, Universidad Rey Juan Carlos (2013). Máster en Fisioterapia Obstétrica
+            y del Suelo Pélvico, URJC (2015). Certificada en Pilates Terapéutico (STOTT, 2016).
+            Especialista en incontinencia urinaria, diastasis abdominal y rehabilitación postparto.
+          </p>
+          <span class="colegiado-badge">Nº Colegiado: M-6941 · CFCM Madrid</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👨‍⚕️</div>
+        <div class="team-info">
+          <h3>Alejandro Muro Castillejo</h3>
+          <div class="team-title">Fisioterapeuta — Deportiva y Neurológica</div>
+          <p class="team-bio">
+            Graduado en Fisioterapia, Universidad Autónoma de Madrid (2016). Experto Universitario en
+            Fisioterapia Deportiva, RFEF (2018). Fisioterapeuta colaborador del Club Atlético de Madrid
+            de balonmano durante las temporadas 2019-2022.
+          </p>
+          <span class="colegiado-badge">Nº Colegiado: M-8204 · CFCM Madrid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <h2>Servicios y Tarifas</h2>
+    <p class="section-sub">Precios por sesión individual. Pregúntenos por bonos de 5 y 10 sesiones con descuento.</p>
+    <div class="services-layout">
+      <div class="service-list">
+        <div class="service-row">
+          <div>
+            <div class="service-name">Primera Valoración</div>
+            <div class="service-detail">Exploración completa + diagnóstico fisioterápico (60 min)</div>
+          </div>
+          <div class="service-price">50 €<span class="price-note">primera visita</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Sesión de Fisioterapia General</div>
+            <div class="service-detail">Terapia manual, movilizaciones articulares, estiramientos (45 min)</div>
+          </div>
+          <div class="service-price">45 €<span class="price-note">por sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Bono 5 Sesiones</div>
+            <div class="service-detail">Fisioterapia general · Válido 3 meses desde la primera sesión</div>
+          </div>
+          <div class="service-price">200 €<span class="price-note">40 €/sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Bono 10 Sesiones</div>
+            <div class="service-detail">Fisioterapia general · Válido 6 meses desde la primera sesión</div>
+          </div>
+          <div class="service-price">370 €<span class="price-note">37 €/sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Fisioterapia de Suelo Pélvico</div>
+            <div class="service-detail">Valoración + tratamiento con Beatriz Sánchez (50 min)</div>
+          </div>
+          <div class="service-price">55 €<span class="price-note">por sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Pilates Terapéutico (individual)</div>
+            <div class="service-detail">Sesión individual adaptada a tu patología (50 min)</div>
+          </div>
+          <div class="service-price">50 €<span class="price-note">por sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Punción Seca</div>
+            <div class="service-detail">Tratamiento de puntos gatillo miofasciales (30 min)</div>
+          </div>
+          <div class="service-price">40 €<span class="price-note">por sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Electroterapia + Ultrasonidos</div>
+            <div class="service-detail">TENS, EMS, ultrasonidos terapéuticos (30 min)</div>
+          </div>
+          <div class="service-price">30 €<span class="price-note">por sesión</span></div>
+        </div>
+        <div class="service-row">
+          <div>
+            <div class="service-name">Domicilio (Vallecas y Vicálvaro)</div>
+            <div class="service-detail">Consultar disponibilidad · Solo pacientes con movilidad reducida</div>
+          </div>
+          <div class="service-price">70 €<span class="price-note">por sesión</span></div>
+        </div>
+      </div>
+      <div class="insurance-box">
+        <h4>🏥 Mutuas y Seguros Aceptados</h4>
+        <ul class="insurance-list">
+          <li>Adeslas</li>
+          <li>Asisa</li>
+          <li>DKV Seguros</li>
+          <li>Sanitas</li>
+          <li>Mapfre Salud</li>
+          <li>Generali Salud</li>
+          <li>Muface (autorización previa)</li>
+        </ul>
+        <p style="margin-top:1rem; font-size:.8rem; color:#475569; line-height:1.5;">
+          Para mutuas, trae tu volante de derivación y tarjeta de asegurado.
+          Consultad también con vuestro seguro si cubre fisioterapia en clínicas privadas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="schedule" id="horario">
+    <h2>Horario de Atención</h2>
+    <p class="section-sub">Atendemos con cita previa. Llama al 91 478 22 35 o escríbenos a cita@fisioterapiarebollo.es</p>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Horario</th>
+          <th>Fisioterapeuta disponible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lunes</strong></td>
+          <td>09:00 – 20:00</td>
+          <td>David / Alejandro</td>
+        </tr>
+        <tr>
+          <td><strong>Martes</strong></td>
+          <td>09:00 – 20:00</td>
+          <td>David / Beatriz</td>
+        </tr>
+        <tr>
+          <td><strong>Miércoles</strong></td>
+          <td>09:00 – 20:00</td>
+          <td>David / Alejandro / Beatriz</td>
+        </tr>
+        <tr>
+          <td><strong>Jueves</strong></td>
+          <td>09:00 – 20:00</td>
+          <td>David / Beatriz</td>
+        </tr>
+        <tr>
+          <td><strong>Viernes</strong></td>
+          <td>09:00 – 19:00</td>
+          <td>David / Alejandro</td>
+        </tr>
+        <tr>
+          <td><strong>Sábado</strong></td>
+          <td>09:00 – 14:00</td>
+          <td>David</td>
+        </tr>
+        <tr>
+          <td><strong>Domingo</strong></td>
+          <td class="closed">Cerrado</td>
+          <td class="closed">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.2rem; font-size:.85rem; color:#64748b;">
+      ⚠️ La clínica permanece cerrada los días festivos de la Comunidad de Madrid y durante la última semana de agosto.
+    </p>
+  </section>
+
+  <!-- CONDITIONS TREATED -->
+  <section class="conditions">
+    <h2>Patologías que Tratamos</h2>
+    <div class="conditions-grid">
+      <div class="condition-item">
+        <h4>Cervicalgia y Cefaleas</h4>
+        <p>Dolor cervical, tortícolis, cefaleas tensionales y neuralgias del nervio occipital.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Lumbalgia y Ciática</h4>
+        <p>Dolor lumbar agudo y crónico, hernia discal, síndrome piriforme, ciatalgia.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Lesiones de Hombro</h4>
+        <p>Síndrome subacromial, rotura del manguito rotador, luxaciones, hombro congelado.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Rodilla y Tobillo</h4>
+        <p>Ligamento cruzado, meniscopatías, condropatía rotuliana, esguinces y tendinopatías.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Suelo Pélvico</h4>
+        <p>Incontinencia urinaria, diastasis recti, dolor pélvico crónico, recuperación postparto.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Neurológico</h4>
+        <p>Rehabilitación post-ACV, Parkinson, esclerosis múltiple, síndrome de Guillain-Barré.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <h2>Cómo Llegar</h2>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">
+              Calle Payaso Fofó, 14, Local 2<br>
+              28018 Madrid<br>
+              (Barrio Puente de Vallecas)
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">🚇</span>
+          <div>
+            <div class="contact-label">Transporte Público</div>
+            <div class="contact-value">
+              Metro Portazgo (L1) — 2 min a pie<br>
+              Bus EMT: Líneas 54, 57, 63, 130<br>
+              Parking zona azul en C/ Canarias
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">📞</span>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value"><a href="tel:914782235">91 478 22 35</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:cita@fisioterapiarebollo.es">cita@fisioterapiarebollo.es</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon">💳</span>
+          <div>
+            <div class="contact-label">Formas de Pago</div>
+            <div class="contact-value">Efectivo · Tarjeta · Bizum (691 344 502)</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <span>🗺️</span>
+        <strong>C/ Payaso Fofó, 14 — 28018 Madrid</strong>
+        <p style="text-align:center; max-width:280px;">A 2 minutos a pie de Metro Portazgo (Línea 1)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Fisioterapia Rebollo</div>
+        <p>Calle Payaso Fofó, 14, Local 2<br>28018 Madrid (Vallecas)</p>
+        <p style="margin-top:.5rem;"><strong>91 478 22 35</strong></p>
+        <p>cita@fisioterapiarebollo.es</p>
+      </div>
+      <div class="footer-col">
+        <h5>Horario</h5>
+        <p>Lun–Vie: 9:00–20:00</p>
+        <p>Sábado: 9:00–14:00</p>
+        <p>Domingo: Cerrado</p>
+      </div>
+      <div class="footer-col">
+        <h5>Especialidades</h5>
+        <p>Fisioterapia Deportiva</p>
+        <p>Suelo Pélvico</p>
+        <p>Rehabilitación Post-Quirúrgica</p>
+        <p>Pilates Terapéutico</p>
+        <p>Punción Seca</p>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <p><a href="#">Aviso Legal</a></p>
+        <p><a href="#">Política de Privacidad</a></p>
+        <p><a href="#">Política de Cookies</a></p>
+        <p style="margin-top:.8rem; font-size:.78rem; color:#475569;">
+          Todos nuestros fisioterapeutas están colegiados en el Colegio de Fisioterapeutas de la Comunidad de Madrid (CFCM).
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Clínica Fisioterapia Rebollo S.L. · CIF: B-87234156 · Todos los derechos reservados.
+    </div>
+  </footer>
+
+</body>
+</html>

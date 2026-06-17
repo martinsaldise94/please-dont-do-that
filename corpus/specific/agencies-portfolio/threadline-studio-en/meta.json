@@ -1,0 +1,17 @@
+{
+  "id": "agencies-portfolio/threadline-studio-en",
+  "class": "specific",
+  "industry": "agencies-portfolio",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Threadline Studio, a 3-person web design & dev agency based in Edinburgh (Unit 4, Argyle House, 3 Lady Lawson Street, Edinburgh EH3 9DR). Named team: Orla Brennan (design, ECA grad 2014), Callum Strachan (frontend, Heriot-Watt 2013, ex-FanDuel), Priya Mistry (brand/copy, CIM Diploma). Tech stack: Next.js, React, TypeScript, Tailwind, Sanity, Vercel, Framer Motion. 4 real case studies with metrics. Pricing bands £3.5k–£18k. Company No. SC648291, VAT 364 7728 11."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "credentials", "case-studies", "tech-stack", "real-metrics", "company-registration"],
+  "notes": "Edinburgh web studio with 3 named team members (education backgrounds, previous employers), explicit tech stack with version numbers, 4 named client case studies with quantified outcomes, tiered pricing with timelines, company registration and VAT numbers, current availability date."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "beauty-wellness/belleza-pillar-es",
+  "class": "specific",
+  "industry": "beauty-wellness",
+  "language": "es",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Crea una landing page para Belleza Pillar, salón de peluquería y estética en Carrer de Verdi 38, Barcelona (Gràcia). Personal nombrado con formación acreditada. Lista de precios en euros. Horario real. Productos profesionales utilizados. Todo el copy específico para este negocio."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["personal-nombrado", "direccion-real", "precios-especificos", "horario-real", "certificaciones", "productos-reales"],
+  "notes": "Salón de belleza en Gràcia (Barcelona). Directora Pillar Moreno Castells con formación en Toni & Guy London y certificación Maestra Colorista L'Oréal. Lista de precios detallada por categoría. Horario cierra lunes. Productos profesionales nombrados (L'Oréal, Wella, Olaplex, Cadiveu)."
+}

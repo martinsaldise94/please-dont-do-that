@@ -1,0 +1,17 @@
+{
+  "id": "education/bright-sparks-bristol-en",
+  "class": "specific",
+  "industry": "education",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for a small-group GCSE and A-Level tutoring centre in Clifton, Bristol. Named tutors with qualifications. Specific subjects with session prices. Next intake dates. Physical address. Exam results with real percentages and cohort sizes."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-team", "specific-pricing", "physical-address", "intake-dates", "real-results-data", "niche-product", "uk-education"],
+  "notes": "Tutoring centre at 14 Whiteladies Road, Clifton, Bristol BS8 2PH. Three named tutors: Priya Patel (BSc Maths Cambridge), Owen Griffiths (MA English Exeter), Dr Anya Mehta (PhD Chemistry Bristol). Session prices are non-round (£35/£45 per 90-min group session). Results include specific cohort sizes and percentages (e.g., '94% of 32 GCSE Maths students achieved grade 7+, 2025'). Two intake dates: September 2026 and January 2027. Phone number 0117 946 3821. Registered company number 11483920."
+}

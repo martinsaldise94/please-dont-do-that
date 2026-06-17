@@ -1,0 +1,17 @@
+{
+  "id": "local-retail/foxlane-books-en",
+  "class": "specific",
+  "industry": "local-retail",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Fox Lane Books, a second-hand bookshop at 14 Cheltenham Crescent, Harrogate HG1 1DH. Named staff: Peter Ashworth (owner/founder), Margaret Tolley (senior bookseller), Declan Farr (cataloguer), Anya Kowalski (weekend bookseller). Services with prices: paperbacks £1.50–£4.50, hardbacks £3–£18, free house-clearance collections (Harrogate), postal orders £2.80. Specific opening hours per day. All copy specific to Yorkshire local history, vintage crime, natural history specialisms."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "real-hours"],
+  "notes": "Specific city (Harrogate, North Yorkshire), named owner/staff with bios, concrete prices, specialisms tied to location, local customer reviews with names and dates."
+}

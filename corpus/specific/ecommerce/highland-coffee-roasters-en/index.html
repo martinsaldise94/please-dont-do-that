@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Highland Coffee Roasters | Single-Origin Specialty Coffee · Inverness</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1c1917; background: #fafaf7; line-height: 1.6; }
+
+    /* TOP BAR */
+    .top-bar { background: #292524; color: #d6d3d1; text-align: center; padding: .4rem 1rem; font-size: .82rem; }
+    .top-bar a { color: #fde68a; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; background: #fff; border-bottom: 2px solid #78350f;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: Georgia, serif; }
+    .logo-name { font-size: 1.2rem; font-weight: 700; color: #78350f; }
+    .logo-sub { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: #78716c; }
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav ul a { text-decoration: none; color: #44403c; font-size: .92rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: #78350f; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-bag { font-size: .88rem; color: #78350f; font-weight: 700; text-decoration: none; }
+    .btn-shop { background: #78350f; color: #fff; border: none; padding: .5rem 1.2rem; border-radius: 5px; font-weight: 700; font-size: .88rem; cursor: pointer; transition: background .2s; }
+    .btn-shop:hover { background: #92400e; }
+
+    /* HERO */
+    .hero { background: #292524; color: #fafaf7; display: flex; align-items: center; gap: 3rem; max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; flex-wrap: wrap; }
+    .hero-text { flex: 1 1 360px; }
+    .hero-eyebrow { font-size: .77rem; text-transform: uppercase; letter-spacing: .1em; color: #fde68a; font-weight: 700; margin-bottom: .75rem; }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+    .hero h1 em { font-style: normal; color: #fcd34d; }
+    .hero-desc { font-size: .97rem; color: #d6d3d1; max-width: 450px; margin-bottom: 1.5rem; line-height: 1.8; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-hero { background: #f59e0b; color: #1c0a00; border: none; padding: .7rem 1.9rem; border-radius: 5px; font-weight: 800; font-size: .97rem; cursor: pointer; transition: background .2s; }
+    .btn-hero:hover { background: #d97706; }
+    .btn-hero-ghost { color: #fde68a; font-weight: 600; font-size: .95rem; text-decoration: underline; background: none; border: none; cursor: pointer; }
+    .hero-visual { flex: 1 1 280px; background: #3c2a1e; border-radius: 12px; height: 280px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+
+    /* ORIGIN STORY */
+    .origin { background: #fff; padding: 4rem 2rem; }
+    .origin-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 3rem; align-items: flex-start; flex-wrap: wrap; }
+    .origin-text { flex: 2 1 380px; }
+    .section-title { font-family: Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; margin-bottom: .75rem; }
+    .origin-text p { font-size: .95rem; color: #44403c; line-height: 1.8; margin-bottom: 1rem; }
+    .origin-aside { flex: 1 1 240px; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; padding: 1.5rem; }
+    .origin-aside h4 { font-family: Georgia, serif; font-size: 1rem; font-weight: 700; margin-bottom: .75rem; color: #78350f; }
+    .origin-aside ul { list-style: none; }
+    .origin-aside li { font-size: .88rem; color: #44403c; padding: .35rem 0; border-bottom: 1px solid #fde68a; line-height: 1.5; }
+    .origin-aside li:last-child { border-bottom: none; }
+
+    /* PRODUCTS */
+    .products { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .product-card { border: 1px solid #e7e5e4; border-radius: 10px; overflow: hidden; background: #fff; transition: box-shadow .2s; }
+    .product-card:hover { box-shadow: 0 8px 24px rgba(120,53,15,.12); }
+    .product-image { background: #3c2a1e; height: 180px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .product-body { padding: 1.25rem; }
+    .product-origin-flag { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: #fef3c7; color: #92400e; border-radius: 4px; padding: .15rem .5rem; margin-bottom: .5rem; }
+    .product-name { font-family: Georgia, serif; font-weight: 700; font-size: 1rem; margin-bottom: .2rem; }
+    .product-variety { font-size: .82rem; color: #78716c; margin-bottom: .6rem; }
+    .tasting-notes { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .9rem; }
+    .note-tag { background: #f5f5f4; border: 1px solid #e7e5e4; color: #57534e; font-size: .75rem; padding: .15rem .5rem; border-radius: 4px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-weight { font-size: .8rem; color: #78716c; }
+    .product-price { font-weight: 800; color: #78350f; font-size: 1.1rem; }
+    .btn-add-bag { background: #78350f; color: #fff; border: none; padding: .4rem .9rem; border-radius: 5px; font-size: .83rem; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .btn-add-bag:hover { background: #92400e; }
+    .subscription-badge { margin-top: .5rem; font-size: .78rem; color: #78350f; font-weight: 600; }
+
+    /* ROASTERY */
+    .roastery { background: #292524; color: #fafaf7; padding: 4rem 2rem; }
+    .roastery-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 3rem; flex-wrap: wrap; }
+    .roastery-text { flex: 1 1 360px; }
+    .roastery h2 { font-family: Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; margin-bottom: 1rem; color: #fafaf7; }
+    .roastery p { font-size: .95rem; color: #d6d3d1; line-height: 1.8; margin-bottom: 1rem; }
+    .roast-schedule { flex: 1 1 280px; }
+    .roast-schedule h3 { font-family: Georgia, serif; color: #fde68a; font-size: 1.05rem; margin-bottom: 1rem; }
+    .roast-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .roast-table td { padding: .5rem 0; border-bottom: 1px solid #44403c; color: #d6d3d1; }
+    .roast-table td:last-child { text-align: right; color: #fde68a; font-weight: 600; }
+
+    /* SUBSCRIPTION */
+    .subscription { background: #fff; padding: 4rem 2rem; }
+    .subscription-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .subscription h2 { font-family: Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 700; margin-bottom: 1rem; }
+    .subscription p { color: #44403c; max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .sub-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .sub-plan { border: 2px solid #e7e5e4; border-radius: 10px; padding: 1.5rem; text-align: left; transition: border-color .2s; }
+    .sub-plan:hover { border-color: #78350f; }
+    .sub-plan.featured { border-color: #78350f; background: #fffbf5; }
+    .sub-tag { font-size: .72rem; text-transform: uppercase; font-weight: 700; letter-spacing: .06em; color: #78350f; margin-bottom: .5rem; display: block; }
+    .sub-name { font-family: Georgia, serif; font-weight: 700; font-size: 1.05rem; margin-bottom: .25rem; }
+    .sub-freq { font-size: .85rem; color: #78716c; margin-bottom: .75rem; }
+    .sub-price { font-size: 1.6rem; font-weight: 800; color: #78350f; margin-bottom: .5rem; }
+    .sub-price span { font-size: .85rem; font-weight: 400; color: #78716c; }
+    .sub-features { list-style: none; font-size: .85rem; color: #44403c; line-height: 1.8; }
+    .sub-features li::before { content: "✓ "; color: #78350f; font-weight: 700; }
+    .btn-sub { margin-top: 1rem; width: 100%; background: #78350f; color: #fff; border: none; padding: .6rem; border-radius: 5px; font-weight: 700; cursor: pointer; transition: background .2s; font-size: .9rem; }
+    .btn-sub:hover { background: #92400e; }
+
+    /* SHIPPING INFO */
+    .shipping { background: #fef9ee; border-top: 1px solid #fde68a; border-bottom: 1px solid #fde68a; padding: 2.5rem 2rem; }
+    .shipping-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .ship-item h4 { font-size: .9rem; font-weight: 700; color: #78350f; margin-bottom: .35rem; }
+    .ship-item p { font-size: .85rem; color: #44403c; line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: #1c1917; color: #a8a29e; padding: 3rem 2rem 1.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-col h4 { color: #e7e5e4; font-size: .9rem; margin-bottom: .75rem; font-weight: 600; }
+    .footer-col p, .footer-col a { font-size: .85rem; color: #a8a29e; text-decoration: none; display: block; margin-bottom: .3rem; }
+    .footer-col a:hover { color: #fde68a; }
+    .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; padding-top: 1.2rem; border-top: 1px solid #292524; font-size: .78rem; color: #78716c; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    We roast every Tuesday and Thursday in Inverness — orders placed before Monday 5pm ship same week.
+    <a href="#">Track your order →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-name">Highland Coffee Roasters</div>
+      <div class="logo-sub">Inverness · Est. 2014 · Specialty Grade</div>
+    </div>
+    <ul>
+      <li><a href="#">Our Coffees</a></li>
+      <li><a href="#">Subscribe</a></li>
+      <li><a href="#">Roastery</a></li>
+      <li><a href="#">Visit Us</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-bag" href="#">🛍 Bag (0)</a>
+      <button class="btn-shop">Shop Now</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div style="background:#292524;">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Specialty Coffee · Roasted in Inverness, Scotland</p>
+        <h1>Single-origin beans, <em>roasted to order</em> in the Highlands</h1>
+        <p class="hero-desc">
+          Founded by Alasdair Munro in 2014, Highland Coffee Roasters sources micro-lot beans directly from
+          producers in Ethiopia, Colombia, and Honduras. We roast on Tuesdays and Thursdays on our 15kg
+          Probat drum roaster in our Crown Avenue warehouse — then ship the same week.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-hero">Browse Coffees</button>
+          <button class="btn-hero-ghost">Our sourcing story →</button>
+        </div>
+      </div>
+      <div class="hero-visual">☕</div>
+    </div>
+  </div>
+
+  <!-- ORIGIN STORY -->
+  <section class="origin">
+    <div class="origin-inner">
+      <div class="origin-text">
+        <h2 class="section-title">Why we started — and why it still matters</h2>
+        <p>Alasdair Munro spent eight years as a barista in Edinburgh before moving north with his partner Fiona in 2012. Frustrated that every specialty roaster he admired was based in London or Manchester, he imported a second-hand Probat L12 roaster, leased a unit on Crown Avenue, and started roasting for local cafés in Inverness and Nairn.</p>
+        <p>Today HCR supplies seventeen independent cafés across the Highlands and Islands, runs a weekly subscription service with just over 400 household subscribers, and makes two direct-trade sourcing trips a year — one to the Sidama zone of Ethiopia (October) and one to Antioquia, Colombia (March).</p>
+        <p>Roasting stays in-house. We don't outsource, we don't co-roast, and we don't sell anything we haven't personally cupped. Our minimum lot size is 30kg green, which means we work with small farms and cooperatives who rarely get access to the UK specialty market.</p>
+      </div>
+      <div class="origin-aside">
+        <h4>The numbers (as of Jan 2026)</h4>
+        <ul>
+          <li>Roastery: Crown Avenue Industrial Estate, Inverness IV3 8TH</li>
+          <li>Roast days: Tuesday &amp; Thursday</li>
+          <li>Roaster: Probat P25 drum (since 2021)</li>
+          <li>Direct-trade farms: 6 active relationships</li>
+          <li>Café wholesale accounts: 17</li>
+          <li>Subscription households: 412</li>
+          <li>SCA-certified Q Grader: Alasdair Munro (2019)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <h2 class="section-title">Current Offerings</h2>
+    <p style="font-size:.9rem;color:#57534e;margin-bottom:0;">All prices are per 250g unless stated. Roasted to order — dispatched within 48 hrs of roast day.</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">🍫</div>
+        <div class="product-body">
+          <span class="product-origin-flag">Ethiopia · Sidama</span>
+          <div class="product-name">Daye Bensa Natural</div>
+          <div class="product-variety">Variety: Heirloom · Altitude: 1,900–2,100 m · Process: Natural</div>
+          <div class="tasting-notes">
+            <span class="note-tag">Blueberry</span>
+            <span class="note-tag">Dark Chocolate</span>
+            <span class="note-tag">Rose Hip</span>
+          </div>
+          <div class="product-footer">
+            <span class="product-weight">250g</span>
+            <span class="product-price">£12.50</span>
+          </div>
+          <button class="btn-add-bag" style="margin-top:.75rem;width:100%;">Add to Bag</button>
+          <div class="subscription-badge">☑ Available on subscription — from £11.25/bag</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">🌿</div>
+        <div class="product-body">
+          <span class="product-origin-flag">Colombia · Antioquia</span>
+          <div class="product-name">Finca La Primavera Washed</div>
+          <div class="product-variety">Variety: Castillo · Altitude: 1,750 m · Process: Washed</div>
+          <div class="tasting-notes">
+            <span class="note-tag">Caramel</span>
+            <span class="note-tag">Apricot</span>
+            <span class="note-tag">Almond</span>
+          </div>
+          <div class="product-footer">
+            <span class="product-weight">250g</span>
+            <span class="product-price">£11.00</span>
+          </div>
+          <button class="btn-add-bag" style="margin-top:.75rem;width:100%;">Add to Bag</button>
+          <div class="subscription-badge">☑ Available on subscription — from £9.90/bag</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">🌄</div>
+        <div class="product-body">
+          <span class="product-origin-flag">Honduras · Santa Bárbara</span>
+          <div class="product-name">Las Flores Honey</div>
+          <div class="product-variety">Variety: Pacas · Altitude: 1,450–1,600 m · Process: Yellow Honey</div>
+          <div class="tasting-notes">
+            <span class="note-tag">Brown Sugar</span>
+            <span class="note-tag">Peach</span>
+            <span class="note-tag">Hazelnut</span>
+          </div>
+          <div class="product-footer">
+            <span class="product-weight">250g</span>
+            <span class="product-price">£10.50</span>
+          </div>
+          <button class="btn-add-bag" style="margin-top:.75rem;width:100%;">Add to Bag</button>
+          <div class="subscription-badge">☑ Available on subscription — from £9.45/bag</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">🏔️</div>
+        <div class="product-body">
+          <span class="product-origin-flag">Blend · Espresso</span>
+          <div class="product-name">Cairngorm Espresso Blend</div>
+          <div class="product-variety">Colombia 60% + Honduras 40% · Medium-Dark Roast</div>
+          <div class="tasting-notes">
+            <span class="note-tag">Dark Chocolate</span>
+            <span class="note-tag">Toasted Walnut</span>
+            <span class="note-tag">Dried Fruit</span>
+          </div>
+          <div class="product-footer">
+            <span class="product-weight">250g</span>
+            <span class="product-price">£9.50</span>
+          </div>
+          <button class="btn-add-bag" style="margin-top:.75rem;width:100%;">Add to Bag</button>
+          <div class="subscription-badge">☑ Available on subscription — from £8.55/bag</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROASTERY -->
+  <section class="roastery">
+    <div class="roastery-inner">
+      <div class="roastery-text">
+        <h2>The Roastery</h2>
+        <p>We roast at Unit 4, Crown Avenue Industrial Estate, Inverness IV3 8TH. The roastery is open for collection on roast days (Tuesday and Thursday, 10am–4pm) — just mention you're collecting when you place your order and we'll hold it for you.</p>
+        <p>We also run a monthly public cupping session on the first Saturday of each month at 10am. Tickets are £8 and available through our website. Capacity is limited to 12 people per session.</p>
+        <p>Wholesale enquiries: email <strong style="color:#fde68a;">wholesale@highlandcoffeeroasters.co.uk</strong> or call Alasdair directly on 01463 728 400.</p>
+      </div>
+      <div class="roast-schedule">
+        <h3>Weekly Roast &amp; Dispatch Schedule</h3>
+        <table class="roast-table">
+          <tbody>
+            <tr><td>Monday (order cutoff: 5pm)</td><td>Tue roast</td></tr>
+            <tr><td>Tuesday</td><td>Roast + dispatch</td></tr>
+            <tr><td>Wednesday (order cutoff: 5pm)</td><td>Thu roast</td></tr>
+            <tr><td>Thursday</td><td>Roast + dispatch</td></tr>
+            <tr><td>Friday / Weekend</td><td>No roasting</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.8rem;color:#a8a29e;margin-top:.75rem;">Royal Mail Tracked 48 — typically 2 working days after dispatch. UK mainland only at standard rates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION -->
+  <section class="subscription">
+    <div class="subscription-inner">
+      <h2 class="section-title">Subscribe &amp; Save 10%</h2>
+      <p>Never run out of good coffee. Choose your bag, your grind, your frequency. Cancel or pause anytime — no questions asked.</p>
+
+      <div class="sub-plans">
+        <div class="sub-plan">
+          <span class="sub-tag">Flexible</span>
+          <div class="sub-name">Pick-Your-Own</div>
+          <div class="sub-freq">Every 2, 3, or 4 weeks</div>
+          <div class="sub-price">10% <span>off every bag</span></div>
+          <ul class="sub-features">
+            <li>Choose any single coffee</li>
+            <li>Choose your grind size</li>
+            <li>Free UK shipping</li>
+            <li>Skip or pause anytime</li>
+          </ul>
+          <button class="btn-sub">Start Subscription</button>
+        </div>
+
+        <div class="sub-plan featured">
+          <span class="sub-tag">Most Popular ★</span>
+          <div class="sub-name">Roaster's Choice</div>
+          <div class="sub-freq">Every 2 weeks</div>
+          <div class="sub-price">From £10.00 <span>/ bag</span></div>
+          <ul class="sub-features">
+            <li>Alasdair picks each fortnight</li>
+            <li>Seasonal &amp; limited lots included</li>
+            <li>Tasting note card included</li>
+            <li>Free UK shipping</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <button class="btn-sub">Start Roaster's Choice</button>
+        </div>
+
+        <div class="sub-plan">
+          <span class="sub-tag">Office</span>
+          <div class="sub-name">Office &amp; Café Bundle</div>
+          <div class="sub-freq">Weekly or fortnightly</div>
+          <div class="sub-price">From £45 <span>/ kg</span></div>
+          <ul class="sub-features">
+            <li>1kg bags (whole bean only)</li>
+            <li>Wholesale pricing</li>
+            <li>Invoice billing available</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <button class="btn-sub">Enquire Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHIPPING INFO -->
+  <section class="shipping">
+    <div class="shipping-inner">
+      <div class="ship-item">
+        <h4>Shipping rates</h4>
+        <p>UK mainland: £2.95 (Tracked 48) or £4.50 (Tracked 24). Free on orders over £30. Scottish Highlands &amp; Islands: £4.50 flat. Sorry, no international shipping yet.</p>
+      </div>
+      <div class="ship-item">
+        <h4>When will my order ship?</h4>
+        <p>We only ship fresh-roasted coffee. Orders placed before Monday 5pm dispatch Tuesday. Orders placed before Wednesday 5pm dispatch Thursday. Other orders wait for the next roast day.</p>
+      </div>
+      <div class="ship-item">
+        <h4>Roast date guarantee</h4>
+        <p>Every bag is labelled with its roast date. We never ship anything older than 10 days from roast. If your bag arrives and the roast date is more than 10 days ago, email us and we'll replace it.</p>
+      </div>
+      <div class="ship-item">
+        <h4>Grind options</h4>
+        <p>Whole Bean · Espresso · Moka Pot · Filter (medium) · French Press (coarse) · Pour-over / Chemex. Please specify at checkout.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col" style="flex:2 1 260px;">
+        <h4>Highland Coffee Roasters</h4>
+        <p>Unit 4, Crown Avenue Industrial Estate</p>
+        <p>Inverness, IV3 8TH · Scotland</p>
+        <p>Tel: 01463 728 400</p>
+        <p>hello@highlandcoffeeroasters.co.uk</p>
+        <p style="margin-top:.75rem;">Registered in Scotland · Company No. SC456789</p>
+      </div>
+      <div class="footer-col">
+        <h4>Our Coffees</h4>
+        <a href="#">Daye Bensa Natural (Ethiopia)</a>
+        <a href="#">Finca La Primavera (Colombia)</a>
+        <a href="#">Las Flores Honey (Honduras)</a>
+        <a href="#">Cairngorm Espresso Blend</a>
+      </div>
+      <div class="footer-col">
+        <h4>The Roastery</h4>
+        <a href="#">About Alasdair &amp; Fiona</a>
+        <a href="#">Direct Trade Sourcing</a>
+        <a href="#">Monthly Cupping Sessions</a>
+        <a href="#">Wholesale Enquiries</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Subscription FAQ</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Grind Guide</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Highland Coffee Roasters Ltd. All rights reserved.</span>
+      <span>VAT No. GB 345 6789 01 · ICO Reg. ZC789012</span>
+    </div>
+  </footer>
+
+</body>
+</html>

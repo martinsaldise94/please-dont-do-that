@@ -1,0 +1,17 @@
+{
+  "id": "agencies-portfolio/claude-en-01",
+  "class": "generic",
+  "industry": "agencies-portfolio",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for a digital/design/marketing agency. Include hero, features, testimonials, stats, footer. Professional look. No real addresses or staff names."
+  },
+  "expectedScores": { "aiSmell": [70, 100], "businessSpecificity": [0, 30] },
+  "tags": ["hero", "feature-cards", "testimonials", "stats", "generic-cta", "gradient-blob", "dark-hero"],
+  "notes": "Quintessential AI-generated agency page: purple-to-pink gradient, blur blobs in hero, emoji service cards with identical generic titles (Expertise/Results/Client-Focused), Michael R./Jennifer T. testimonials, made-up stats, no team names, no tech stack, no real projects, no pricing."
+}

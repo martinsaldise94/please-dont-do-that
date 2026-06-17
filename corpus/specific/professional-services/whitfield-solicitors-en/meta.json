@@ -1,0 +1,17 @@
+{
+  "id": "professional-services/whitfield-solicitors-en",
+  "class": "specific",
+  "industry": "professional-services",
+  "language": "en",
+  "format": "html",
+  "source": {
+    "type": "ai",
+    "tool": "Claude",
+    "model": "claude-sonnet-4-6",
+    "date": "2026-06-17",
+    "prompt": "Create a landing page for Whitfield & Norbury Solicitors at 14 Campo Lane, Sheffield S1 2EG. Named partners James Whitfield (LLB, 18 years employment law, SRA 412885) and Claire Norbury (LLB, 14 years family law, SRA 481902). Services with fixed fees and hourly rates. Conveyancing, employment law, family law. Real address, phone 0114 276 4490, SRA regulation number. Postcode coverage S1-S20. Case study examples."
+  },
+  "expectedScores": { "aiSmell": [0, 30], "businessSpecificity": [70, 100] },
+  "tags": ["named-staff", "real-address", "specific-prices", "credentials", "postcode-coverage", "case-studies", "accreditations"],
+  "notes": "Sheffield law firm with two named partners (SRA numbers, years of experience), itemised fixed-fee schedule, specific postcode coverage, real company registration, Legal Aid contract reference, and anonymised case outcomes."
+}

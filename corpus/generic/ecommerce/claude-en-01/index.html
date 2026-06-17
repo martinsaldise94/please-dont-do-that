@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopNexus | Discover. Shop. Thrive.</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #111827; background: #fff; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e5e7eb;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: #2563eb; letter-spacing: -.5px; }
+    .logo span { color: #f59e0b; }
+    .nav-links { list-style: none; display: flex; gap: 1.75rem; }
+    .nav-links a { text-decoration: none; color: #4b5563; font-weight: 500; font-size: .93rem; transition: color .2s; }
+    .nav-links a:hover { color: #2563eb; }
+    .nav-right { display: flex; gap: 1rem; align-items: center; }
+    .nav-search { border: 1px solid #d1d5db; border-radius: 999px; padding: .45rem 1rem; font-size: .88rem; width: 200px; outline: none; }
+    .nav-search:focus { border-color: #2563eb; }
+    .nav-cart { background: #2563eb; color: #fff; border: none; padding: .5rem 1.2rem; border-radius: 999px; font-weight: 600; cursor: pointer; font-size: .88rem; transition: background .2s; }
+    .nav-cart:hover { background: #1d4ed8; }
+
+    /* PROMO BANNER */
+    .promo-banner { background: linear-gradient(90deg, #2563eb, #7c3aed); color: #fff; text-align: center; padding: .5rem 1rem; font-size: .85rem; font-weight: 500; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0ea5e9 100%);
+      color: #fff; padding: 5.5rem 2rem;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: .25; pointer-events: none; }
+    .hero-blob-1 { width: 500px; height: 500px; background: #60a5fa; top: -150px; left: -150px; }
+    .hero-blob-2 { width: 400px; height: 400px; background: #a78bfa; bottom: -120px; right: -100px; }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.4); border-radius: 999px; font-size: .78rem; font-weight: 700; letter-spacing: .08em; padding: .3rem 1rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero h1 em { font-style: normal; color: #fde68a; }
+    .hero p { font-size: 1.1rem; opacity: .9; margin-bottom: 2.2rem; line-height: 1.7; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-hero-primary { background: #f59e0b; color: #1c1917; border: none; padding: .8rem 2.2rem; border-radius: 999px; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .btn-hero-secondary { background: rgba(255,255,255,.12); color: #fff; border: 2px solid rgba(255,255,255,.5); padding: .8rem 2.2rem; border-radius: 999px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background .2s; }
+    .btn-hero-secondary:hover { background: rgba(255,255,255,.2); }
+
+    /* TRUST BADGES */
+    .trust { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 2.5rem 2rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 1.8rem; margin-bottom: .4rem; }
+    .trust-label { font-size: .82rem; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+
+    /* FEATURED PRODUCTS */
+    .featured { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-label { text-align: center; font-size: .77rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #2563eb; margin-bottom: .75rem; }
+    .section-title { text-align: center; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-bottom: 1rem; }
+    .section-sub { text-align: center; color: #6b7280; max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-card { border: 1px solid #e5e7eb; border-radius: 1rem; overflow: hidden; transition: transform .2s, box-shadow .2s; background: #fff; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(37,99,235,.12); }
+    .product-image { background: linear-gradient(135deg, #dbeafe, #ede9fe); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .product-body { padding: 1.25rem; }
+    .product-badge { display: inline-block; background: #fef3c7; color: #92400e; border-radius: 999px; font-size: .72rem; font-weight: 700; padding: .2rem .65rem; margin-bottom: .6rem; }
+    .product-name { font-weight: 700; font-size: 1rem; margin-bottom: .3rem; }
+    .product-desc { font-size: .85rem; color: #6b7280; margin-bottom: 1rem; line-height: 1.5; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.25rem; font-weight: 800; color: #2563eb; }
+    .product-price .original { font-size: .85rem; text-decoration: line-through; color: #9ca3af; margin-left: .4rem; font-weight: 400; }
+    .btn-add { background: #2563eb; color: #fff; border: none; padding: .45rem 1rem; border-radius: 6px; font-weight: 600; font-size: .85rem; cursor: pointer; transition: background .2s; }
+    .btn-add:hover { background: #1d4ed8; }
+
+    /* FEATURES / WHY US */
+    .features { background: linear-gradient(135deg, #eff6ff, #f5f3ff); padding: 5rem 2rem; }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .feature-card { background: #fff; border-radius: 1.25rem; padding: 2rem 1.75rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+    .feature-card p { font-size: .92rem; color: #6b7280; line-height: 1.65; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .testi-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 1.25rem; padding: 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .stars { color: #f59e0b; margin-bottom: .75rem; font-size: 1rem; }
+    .testi-card blockquote { font-size: .95rem; color: #374151; line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+    .testi-author { font-weight: 700; font-size: .88rem; color: #2563eb; }
+    .testi-role { font-size: .78rem; color: #9ca3af; }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; text-align: center; padding: 5rem 2rem; }
+    .cta-band h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-band p { opacity: .9; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* FOOTER */
+    footer { background: #0f172a; color: #94a3b8; padding: 3rem 2rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .footer-brand p { margin-top: .75rem; font-size: .88rem; line-height: 1.6; }
+    footer h4 { color: #e2e8f0; font-size: .9rem; margin-bottom: .9rem; font-weight: 600; }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    footer ul a { color: #94a3b8; text-decoration: none; font-size: .87rem; transition: color .2s; }
+    footer ul a:hover { color: #e2e8f0; }
+    .footer-bottom { text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #1e293b; font-size: .8rem; }
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">🎉 Free shipping on orders over $50 · Use code WELCOME10 for 10% off your first order</div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Shop<span>Nexus</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Shop All</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Best Sellers</a></li>
+      <li><a href="#">Deals</a></li>
+    </ul>
+    <div class="nav-right">
+      <input class="nav-search" type="text" placeholder="Search products..." />
+      <button class="nav-cart">🛒 Cart (0)</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">New Arrivals — Summer Collection</div>
+      <h1>Shop Smarter. Live <em>Better.</em></h1>
+      <p>Discover thousands of premium products curated for your lifestyle. From everyday essentials to unique finds, ShopNexus brings innovation and quality to your doorstep.</p>
+      <div class="hero-buttons">
+        <button class="btn-hero-primary">Shop Now</button>
+        <button class="btn-hero-secondary">View Deals</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES -->
+  <section class="trust">
+    <div class="trust-item">
+      <div class="trust-icon">🚚</div>
+      <div class="trust-label">Free Shipping $50+</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔄</div>
+      <div class="trust-label">30-Day Returns</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      <div class="trust-label">Secure Checkout</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div class="trust-label">50,000+ Reviews</div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured">
+    <p class="section-label">Featured Products</p>
+    <h2 class="section-title">Best Sellers This Week</h2>
+    <p class="section-sub">Our most-loved products, hand-picked by our curation team for exceptional quality and value.</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">🎧</div>
+        <div class="product-body">
+          <span class="product-badge">Best Seller</span>
+          <div class="product-name">Premium Wireless Headphones</div>
+          <div class="product-desc">Immersive sound quality with active noise cancellation and 30-hour battery life.</div>
+          <div class="product-footer">
+            <div class="product-price">$89.99 <span class="original">$129.99</span></div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">💼</div>
+        <div class="product-body">
+          <span class="product-badge">New</span>
+          <div class="product-name">Executive Laptop Bag</div>
+          <div class="product-desc">Sleek, durable, and designed for the modern professional. Fits up to 15.6" laptops.</div>
+          <div class="product-footer">
+            <div class="product-price">$59.99</div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">💡</div>
+        <div class="product-body">
+          <span class="product-badge">Popular</span>
+          <div class="product-name">Smart LED Desk Lamp</div>
+          <div class="product-desc">Adjustable brightness and color temperature with USB charging port and touch controls.</div>
+          <div class="product-footer">
+            <div class="product-price">$39.99 <span class="original">$54.99</span></div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">🏋️</div>
+        <div class="product-body">
+          <span class="product-badge">Trending</span>
+          <div class="product-name">Resistance Band Set</div>
+          <div class="product-desc">Complete home workout solution with 5 resistance levels and carry bag included.</div>
+          <div class="product-footer">
+            <div class="product-price">$29.99</div>
+            <button class="btn-add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-inner">
+      <p class="section-label">Why ShopNexus</p>
+      <h2 class="section-title">Shopping, Reimagined</h2>
+      <p class="section-sub">We've reinvented the online shopping experience so you can focus on what matters most — finding products you love.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Expert Care</h3>
+          <p>Our dedicated product specialists carefully vet every item in our catalog, ensuring only the highest quality products make it to our store.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Proven Results</h3>
+          <p>With over 50,000 five-star reviews and a 98% customer satisfaction rate, our track record speaks for itself. Your happiness is our priority.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Personalized Approach</h3>
+          <p>Our smart recommendation engine learns your preferences and surfaces products tailored just for you, saving you time and helping you discover new favorites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <p class="section-label">Customer Stories</p>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Join thousands of happy shoppers who trust ShopNexus for their everyday needs.</p>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Absolutely love this store! The products are amazing quality and delivery was so fast. I've recommended ShopNexus to all my friends and family. Will definitely be back!"</blockquote>
+        <div class="testi-author">Mike T.</div>
+        <div class="testi-role">Verified Buyer</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Best online shopping experience I've ever had. Everything arrived exactly as described and the customer support team was incredibly helpful when I had a question."</blockquote>
+        <div class="testi-author">Lauren S.</div>
+        <div class="testi-role">Verified Buyer</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Highly recommend to anyone looking for quality products at fair prices. The 30-day return policy gave me total peace of mind. ShopNexus has a customer for life!"</blockquote>
+        <div class="testi-author">Carlos M.</div>
+        <div class="testi-role">Verified Buyer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2>Start Shopping Today</h2>
+    <p>Join over 100,000 satisfied customers and discover why ShopNexus is the most trusted online store for quality products.</p>
+    <button class="btn-hero-primary">Explore All Products</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="font-size:1.4rem;font-weight:800;color:#60a5fa;">Shop<span style="color:#fbbf24;">Nexus</span></div>
+        <p>Your one-stop destination for premium products delivered with speed, care, and exceptional value.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">All Products</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Deals &amp; Offers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Track My Order</a></li>
+          <li><a href="#">Returns &amp; Refunds</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">support@shopnexus.com</a></li>
+          <li><a href="#">+1 (800) 000-0000</a></li>
+          <li><a href="#">789 Commerce Avenue</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 ShopNexus Inc. All rights reserved. · Privacy Policy · Terms of Service</div>
+  </footer>
+
+</body>
+</html>

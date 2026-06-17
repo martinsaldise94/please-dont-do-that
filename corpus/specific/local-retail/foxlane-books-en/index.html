@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fox Lane Books — Independent Bookshop in Harrogate, North Yorkshire</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; color: #2c2416; background: #faf8f3; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 2rem; background: #2c2416; color: #f5f0e8;
+    }
+    .logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name { font-size: 1.3rem; font-weight: 700; color: #f5d89a; letter-spacing: .5px; }
+    .logo-tag { font-size: .72rem; color: #c2a96a; letter-spacing: 1.5px; text-transform: uppercase; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+    nav ul a { text-decoration: none; color: #d9cdb8; font-size: .9rem; transition: color .2s; font-family: 'Segoe UI', sans-serif; }
+    nav ul a:hover { color: #f5d89a; }
+    .nav-tel { font-family: 'Segoe UI', sans-serif; font-size: .85rem; color: #f5d89a; font-weight: 600; }
+
+    /* HERO */
+    .hero {
+      background: #2c2416;
+      color: #f5f0e8;
+      padding: 5rem 2rem 4.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-text h1 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.25; margin-bottom: 1.1rem; color: #f5d89a; }
+    .hero-text h1 span { color: #f5f0e8; }
+    .hero-text p { font-size: 1.05rem; line-height: 1.8; color: #c2b89e; margin-bottom: 1.6rem; }
+    .hero-meta { display: flex; flex-direction: column; gap: .4rem; font-family: 'Segoe UI', sans-serif; font-size: .88rem; color: #a0906d; }
+    .hero-meta strong { color: #f5d89a; }
+    .hero-img-placeholder {
+      background: #3d3020; border-radius: 8px; height: 320px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #6d5c3a; font-size: 4rem; gap: .5rem;
+    }
+    .hero-img-placeholder span { font-size: .85rem; font-family: 'Segoe UI', sans-serif; color: #7a6644; letter-spacing: 1px; }
+
+    /* ABOUT */
+    .about {
+      background: #faf8f3; padding: 4.5rem 2rem;
+      max-width: 860px; margin: 0 auto; text-align: center;
+    }
+    .about h2 { font-size: 1.7rem; color: #2c2416; margin-bottom: 1rem; }
+    .about p { font-size: 1.02rem; line-height: 1.85; color: #5c4a2e; margin-bottom: 1rem; }
+    .owner-card {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      background: #fff; border: 1px solid #e8dcc8; border-radius: 10px;
+      padding: 1.8rem; margin-top: 2.5rem; text-align: left;
+    }
+    .owner-avatar {
+      width: 72px; height: 72px; border-radius: 50%; background: #2c2416;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; flex-shrink: 0;
+    }
+    .owner-info h3 { font-size: 1.1rem; color: #2c2416; margin-bottom: .2rem; }
+    .owner-info .role { font-size: .82rem; color: #9a7d50; text-transform: uppercase; letter-spacing: 1px; font-family: 'Segoe UI', sans-serif; margin-bottom: .6rem; }
+    .owner-info p { font-size: .93rem; line-height: 1.7; color: #5c4a2e; font-style: italic; }
+
+    /* STAFF */
+    .staff { background: #2c2416; padding: 4rem 2rem; }
+    .staff h2 { text-align: center; color: #f5d89a; font-size: 1.7rem; margin-bottom: 2.5rem; }
+    .staff-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .staff-card {
+      background: #3d3020; border-radius: 10px; padding: 1.6rem 1.4rem;
+      flex: 1 1 200px; max-width: 240px; text-align: center;
+    }
+    .staff-avatar { font-size: 2.5rem; margin-bottom: .8rem; }
+    .staff-card h3 { color: #f5d89a; font-size: 1rem; margin-bottom: .15rem; }
+    .staff-card .role { font-size: .78rem; color: #9a7d50; text-transform: uppercase; letter-spacing: 1px; font-family: 'Segoe UI', sans-serif; margin-bottom: .6rem; }
+    .staff-card p { font-size: .85rem; color: #c2b89e; line-height: 1.6; }
+
+    /* SPECIALISMS */
+    .specialisms { padding: 4.5rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .specialisms h2 { font-size: 1.7rem; color: #2c2416; text-align: center; margin-bottom: .5rem; }
+    .specialisms .sub { text-align: center; color: #9a7d50; font-family: 'Segoe UI', sans-serif; font-size: .95rem; margin-bottom: 2.5rem; }
+    .spec-grid { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; }
+    .spec-chip {
+      background: #fff; border: 1px solid #e0d0b0; border-radius: 24px;
+      padding: .5rem 1.2rem; font-size: .9rem; color: #5c4a2e;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* FEATURED STOCK */
+    .featured { background: #fff; padding: 4.5rem 2rem; }
+    .featured h2 { font-size: 1.7rem; color: #2c2416; text-align: center; margin-bottom: .4rem; }
+    .featured .sub { text-align: center; color: #9a7d50; font-family: 'Segoe UI', sans-serif; font-size: .92rem; margin-bottom: 2.5rem; }
+    .book-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 1000px; margin: 0 auto; }
+    .book-card {
+      flex: 1 1 180px; max-width: 210px; background: #faf8f3;
+      border: 1px solid #e8dcc8; border-radius: 8px; padding: 1.4rem 1.2rem;
+    }
+    .book-spine {
+      height: 140px; border-radius: 5px; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    }
+    .book-card h4 { font-size: .92rem; color: #2c2416; margin-bottom: .15rem; line-height: 1.3; }
+    .book-card .author { font-size: .8rem; color: #9a7d50; font-style: italic; margin-bottom: .5rem; }
+    .book-card .price { font-size: 1rem; font-weight: 700; color: #2c2416; font-family: 'Segoe UI', sans-serif; }
+    .book-card .condition { font-size: .75rem; color: #9a7d50; font-family: 'Segoe UI', sans-serif; }
+
+    /* SERVICES + HOURS */
+    .info-strip {
+      background: #f0e8d4; padding: 4rem 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 900px; margin: 0 auto;
+    }
+    .info-strip h2 { font-size: 1.4rem; color: #2c2416; margin-bottom: 1.2rem; }
+    .service-list { list-style: none; }
+    .service-list li { padding: .55rem 0; border-bottom: 1px solid #d8c8a0; font-size: .93rem; color: #5c4a2e; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: space-between; }
+    .service-list li:last-child { border-bottom: none; }
+    .price-tag { font-weight: 700; color: #2c2416; }
+    .hours-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; font-size: .9rem; }
+    .hours-table td { padding: .45rem 0; color: #5c4a2e; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: #2c2416; }
+    .hours-table tr.today td { color: #8a6020; font-weight: 700; }
+    .closed { color: #c0392b !important; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 4.5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .testimonials h2 { font-size: 1.7rem; color: #2c2416; margin-bottom: 2.5rem; text-align: center; }
+    .testi-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .testi {
+      flex: 1 1 260px; max-width: 400px; background: #fff;
+      border: 1px solid #e8dcc8; border-radius: 10px; padding: 1.8rem;
+    }
+    .stars { color: #d4a017; margin-bottom: .7rem; font-size: 1rem; }
+    .testi blockquote { font-size: .94rem; color: #5c4a2e; line-height: 1.75; font-style: italic; margin-bottom: 1rem; }
+    .testi-author { font-weight: 700; font-size: .88rem; color: #2c2416; font-family: 'Segoe UI', sans-serif; }
+    .testi-detail { font-size: .8rem; color: #9a7d50; font-family: 'Segoe UI', sans-serif; }
+
+    /* FIND US */
+    .find-us { background: #2c2416; color: #f5f0e8; padding: 4rem 2rem; }
+    .find-us-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .find-us h2 { font-size: 1.7rem; color: #f5d89a; margin-bottom: 1.2rem; }
+    .find-us p { font-size: .92rem; line-height: 1.7; color: #c2b89e; margin-bottom: .5rem; font-family: 'Segoe UI', sans-serif; }
+    .find-us strong { color: #f5d89a; }
+    .map-placeholder {
+      background: #3d3020; border-radius: 8px; height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: #6d5c3a;
+    }
+    .directions-note { font-size: .83rem; color: #9a7d50; margin-top: .8rem; line-height: 1.6; font-family: 'Segoe UI', sans-serif; }
+
+    /* FOOTER */
+    footer { background: #1a1208; color: #9a8060; padding: 1.5rem 2rem; text-align: center; font-family: 'Segoe UI', sans-serif; font-size: .83rem; }
+    footer a { color: #c2a96a; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-img-placeholder { height: 200px; }
+      .info-strip { grid-template-columns: 1fr; }
+      .find-us-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-name">Fox Lane Books</span>
+      <span class="logo-tag">Est. 2009 · Harrogate</span>
+    </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Browse Stock</a></li>
+      <li><a href="#">Sell Books</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <span class="nav-tel">01423 884 201</span>
+  </nav>
+
+  <div style="background:#2c2416; padding:0 2rem;">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>North Yorkshire's corner for <span>second-hand</span> and rare books</h1>
+        <p>We've been a fixture on Cheltenham Crescent since 2009. Three rooms, forty thousand books, and Margaret at the front desk who's read most of them.</p>
+        <div class="hero-meta">
+          <span><strong>Address:</strong> 14 Cheltenham Crescent, Harrogate, HG1 1DH</span>
+          <span><strong>Phone:</strong> 01423 884 201</span>
+          <span><strong>Today (Tuesday):</strong> Open 9:30 am – 5:30 pm</span>
+        </div>
+      </div>
+      <div class="hero-img-placeholder">
+        📚
+        <span>Interior photos coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="about">
+    <h2>A shop run by book people, for book people</h2>
+    <p>Fox Lane Books started as a box of crime novels on a trestle table at the Harrogate Antiques Fair. Owner <strong>Peter Ashworth</strong> — a former secondary-school English teacher from Knaresborough — spent two years hunting for the right premises before signing the lease on the Cheltenham Crescent shop in November 2009.</p>
+    <p>Today we carry around 40,000 titles across three connected rooms. We specialise in <strong>Yorkshire local history, vintage crime fiction</strong>, and <strong>natural history</strong>, but you'll also find healthy shelves of literature, cookery, art, and children's classics. Everything is priced fairly: most paperbacks between £1.50 and £4.50, hardbacks from £3.</p>
+    <div class="owner-card">
+      <div class="owner-avatar">👨‍🏫</div>
+      <div class="owner-info">
+        <h3>Peter Ashworth</h3>
+        <div class="role">Owner &amp; Founder</div>
+        <p>"I taught English for eighteen years and spent every spare penny on books I had nowhere to put. Opening the shop was the only logical outcome. I still can't resist a good Dales walking guide or a tatty first-edition Agatha Christie."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="staff">
+    <h2>The Team</h2>
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="staff-avatar">👩‍💼</div>
+        <h3>Margaret Tolley</h3>
+        <div class="role">Senior Bookseller</div>
+        <p>Has been with Fox Lane since 2011. Unbeatable on mid-century crime fiction and children's illustrated books. Ask her about Rosemary Sutcliff.</p>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">👨‍🎓</div>
+        <h3>Declan Farr</h3>
+        <div class="role">Cataloguer</div>
+        <p>Former librarian at Leeds Central Library. Maintains the online catalogue and handles all postal orders. Specialist in natural history and Pelicans.</p>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">👩‍🎨</div>
+        <h3>Anya Kowalski</h3>
+        <div class="role">Weekend Bookseller</div>
+        <p>Fine art student at Leeds Arts University. Manages the small but carefully chosen art &amp; architecture section and the window displays.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="specialisms">
+    <h2>What We're Known For</h2>
+    <p class="sub">Areas where we carry serious depth — not just a shelf, but a whole room's worth</p>
+    <div class="spec-grid">
+      <span class="spec-chip">Yorkshire Local History</span>
+      <span class="spec-chip">Vintage Crime Fiction (pre-1980)</span>
+      <span class="spec-chip">British Natural History</span>
+      <span class="spec-chip">OS Maps &amp; Walking Guides</span>
+      <span class="spec-chip">Illustrated Children's Classics</span>
+      <span class="spec-chip">Penguin &amp; Pelican Originals</span>
+      <span class="spec-chip">Cookery (pre-1990)</span>
+      <span class="spec-chip">Dales &amp; Moors Topography</span>
+      <span class="spec-chip">Military History (WWI/WWII)</span>
+      <span class="spec-chip">Gardening &amp; Horticulture</span>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Recently In</h2>
+    <p class="sub">A small selection from this week's acquisitions — stock changes daily</p>
+    <div class="book-grid">
+      <div class="book-card">
+        <div class="book-spine" style="background:#7b4f2e; color:#f5d89a;">📗</div>
+        <h4>A History of Harrogate &amp; Knaresborough</h4>
+        <div class="author">Bernard Jennings, 1970</div>
+        <div class="price">£12.00</div>
+        <div class="condition">Hardback — Good</div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine" style="background:#2c4a3e; color:#a8d4b8;">📘</div>
+        <h4>The Murder at the Vicarage</h4>
+        <div class="author">Agatha Christie, 1st ed. facsimile</div>
+        <div class="price">£8.50</div>
+        <div class="condition">Hardback — Very Good</div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine" style="background:#4a3060; color:#d4b8f0;">📙</div>
+        <h4>Collins Bird Guide (2nd ed.)</h4>
+        <div class="author">Svensson et al.</div>
+        <div class="price">£9.00</div>
+        <div class="condition">Paperback — Good</div>
+      </div>
+      <div class="book-card">
+        <div class="book-spine" style="background:#3a2010; color:#f5d89a;">📕</div>
+        <h4>The Wainwright Pictorial Guides (complete set)</h4>
+        <div class="author">Alfred Wainwright</div>
+        <div class="price">£55.00 (set)</div>
+        <div class="condition">Paperbacks — Good–Fine</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:#f0e8d4;">
+    <div class="info-strip">
+      <div>
+        <h2>Services &amp; Prices</h2>
+        <ul class="service-list">
+          <li><span>Paperbacks (most titles)</span><span class="price-tag">£1.50 – £4.50</span></li>
+          <li><span>Hardbacks</span><span class="price-tag">£3.00 – £18.00</span></li>
+          <li><span>Book valuations (up to 10 books)</span><span class="price-tag">Free</span></li>
+          <li><span>House-clearance collections (Harrogate)</span><span class="price-tag">Free</span></li>
+          <li><span>House-clearance collections (outside HG)</span><span class="price-tag">From £20</span></li>
+          <li><span>Postal orders (UK)</span><span class="price-tag">£2.80 standard</span></li>
+          <li><span>Gift vouchers</span><span class="price-tag">£5 / £10 / £20</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Opening Hours</h2>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>9:30 am – 5:30 pm</td></tr>
+          <tr class="today"><td>Tuesday ★</td><td>9:30 am – 5:30 pm</td></tr>
+          <tr><td>Wednesday</td><td>9:30 am – 5:30 pm</td></tr>
+          <tr><td>Thursday</td><td>9:30 am – 5:30 pm</td></tr>
+          <tr><td>Friday</td><td>9:30 am – 6:00 pm</td></tr>
+          <tr><td>Saturday</td><td>9:00 am – 6:00 pm</td></tr>
+          <tr><td>Sunday</td><td>10:30 am – 4:30 pm</td></tr>
+        </table>
+        <p style="margin-top:.8rem; font-size:.8rem; color:#9a7d50; font-family:'Segoe UI',sans-serif;">Bank holidays: 10:30 am – 4:00 pm. We close Christmas Day, Boxing Day, and New Year's Day.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="testimonials">
+    <h2>What Customers Say</h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Came in looking for a Wainwright guide and left with six books and a very informed conversation with Margaret about post-war fell walking. The Yorkshire Local History room alone is worth the trip from Leeds."</blockquote>
+        <div class="testi-author">Rob C., Leeds</div>
+        <div class="testi-detail">Google Review · March 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Peter came to clear my late mother's library — he treated every single book with real care and gave us a fair and honest valuation. Not something you always get. Highly recommend."</blockquote>
+        <div class="testi-author">Diane T., Ripon</div>
+        <div class="testi-detail">Google Review · January 2026</div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★☆</div>
+        <blockquote>"A proper bookshop — cramped, wonderfully disorganised, and full of things you didn't know you needed. Declan sorted me out a first-edition Henry Williamson in about three minutes flat. This is what bookshops should be."</blockquote>
+        <div class="testi-author">Alison M., Harrogate</div>
+        <div class="testi-detail">Google Review · February 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="find-us">
+    <div class="find-us-inner">
+      <div>
+        <h2>Find Us</h2>
+        <p><strong>Address:</strong><br>Fox Lane Books<br>14 Cheltenham Crescent<br>Harrogate, HG1 1DH</p>
+        <br>
+        <p><strong>Phone:</strong> 01423 884 201</p>
+        <p><strong>Email:</strong> books@foxlanebooks.co.uk</p>
+        <br>
+        <p class="directions-note">We're on the ground floor of the Cheltenham Crescent terrace, two minutes' walk from Harrogate station. There's Pay &amp; Display parking on Cheltenham Mount (max 2 hours, £1.20/hr). The No. 36 bus from Leeds stops on Parliament Street, a 5-minute walk away.</p>
+      </div>
+      <div>
+        <div class="map-placeholder">🗺️</div>
+        <p class="directions-note" style="text-align:center; margin-top:.5rem;">
+          <a href="https://maps.google.com/?q=14+Cheltenham+Crescent+Harrogate" style="color:#c2a96a;">Open in Google Maps ↗</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Fox Lane Books &middot; 14 Cheltenham Crescent, Harrogate HG1 1DH &middot; 01423 884 201 &middot; <a href="mailto:books@foxlanebooks.co.uk">books@foxlanebooks.co.uk</a></p>
+    <p style="margin-top:.4rem;">&copy; 2026 Fox Lane Books Ltd. Registered in England No. 07182934.</p>
+  </footer>
+
+</body>
+</html>

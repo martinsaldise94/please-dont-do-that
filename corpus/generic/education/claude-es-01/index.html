@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academia EduFuture — Desbloquea Tu Potencial</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 1.4rem; font-weight: 800; color: #4f46e5; }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { text-decoration: none; color: #374151; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: #4f46e5; }
+    .nav-cta { background: #4f46e5; color: #fff !important; padding: 10px 22px; border-radius: 8px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); color: #fff; text-align: center; padding: 110px 24px 100px; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,.2); backdrop-filter: blur(8px); padding: 6px 18px; border-radius: 999px; font-size: .85rem; font-weight: 600; letter-spacing: .05em; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: #fbbf24; }
+    .hero p { font-size: 1.2rem; opacity: .9; max-width: 580px; margin: 0 auto 40px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: #fbbf24; color: #1a1a2e; padding: 16px 36px; border-radius: 10px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(251,191,36,.4); }
+    .btn-secondary { background: rgba(255,255,255,.15); color: #fff; padding: 16px 36px; border-radius: 10px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid rgba(255,255,255,.4); transition: background .2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,.25); }
+
+    /* STATS */
+    .stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; background: #f8f7ff; padding: 48px 24px; border-bottom: 1px solid #e8e4ff; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 2.4rem; font-weight: 900; color: #4f46e5; }
+    .stat-label { font-size: .9rem; color: #6b7280; margin-top: 4px; }
+
+    /* FEATURES */
+    .features { padding: 96px 24px; text-align: center; }
+    .section-tag { display: inline-block; background: #ede9fe; color: #4f46e5; padding: 4px 14px; border-radius: 999px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+    .section-title { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 16px; color: #111827; }
+    .section-sub { font-size: 1.05rem; color: #6b7280; max-width: 540px; margin: 0 auto 56px; line-height: 1.65; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 28px; max-width: 960px; margin: 0 auto; }
+    .card { background: #fff; border: 1.5px solid #e8e4ff; border-radius: 16px; padding: 36px 28px; text-align: left; transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(79,70,229,.1); }
+    .card-icon { font-size: 2.4rem; margin-bottom: 18px; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: #111827; }
+    .card p { font-size: .95rem; color: #6b7280; line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: linear-gradient(180deg, #f8f7ff 0%, #ede9fe 100%); padding: 96px 24px; text-align: center; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 860px; margin: 0 auto; }
+    .testi-card { background: #fff; border-radius: 16px; padding: 32px 28px; text-align: left; box-shadow: 0 4px 16px rgba(79,70,229,.08); }
+    .stars { color: #fbbf24; font-size: 1.1rem; margin-bottom: 16px; }
+    .testi-card blockquote { font-size: .97rem; color: #374151; line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5, #a855f7); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: .95rem; }
+    .author-info strong { display: block; font-size: .9rem; font-weight: 700; color: #111827; }
+    .author-info span { font-size: .8rem; color: #9ca3af; }
+
+    /* PRICING */
+    .pricing { padding: 96px 24px; text-align: center; background: #fff; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .price-card { border: 2px solid #e5e7eb; border-radius: 20px; padding: 36px 28px; position: relative; transition: border-color .2s; }
+    .price-card.popular { border-color: #4f46e5; }
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #4f46e5; color: #fff; padding: 4px 16px; border-radius: 999px; font-size: .78rem; font-weight: 700; white-space: nowrap; }
+    .price-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .price { font-size: 2.6rem; font-weight: 900; color: #4f46e5; margin: 16px 0 6px; }
+    .price span { font-size: 1rem; font-weight: 500; color: #9ca3af; }
+    .price-desc { font-size: .88rem; color: #6b7280; margin-bottom: 24px; }
+    .price-features { list-style: none; text-align: left; margin-bottom: 28px; }
+    .price-features li { font-size: .9rem; color: #374151; padding: 7px 0; border-bottom: 1px solid #f3f4f6; display: flex; gap: 8px; }
+    .price-features li::before { content: "✓"; color: #4f46e5; font-weight: 700; flex-shrink: 0; }
+    .btn-plan { display: block; padding: 13px; border-radius: 10px; font-weight: 700; font-size: .95rem; text-decoration: none; transition: all .2s; }
+    .btn-plan-outline { border: 2px solid #4f46e5; color: #4f46e5; }
+    .btn-plan-outline:hover { background: #4f46e5; color: #fff; }
+    .btn-plan-fill { background: #4f46e5; color: #fff; }
+    .btn-plan-fill:hover { background: #4338ca; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta-section h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+    .cta-section p { font-size: 1.05rem; opacity: .9; max-width: 480px; margin: 0 auto 36px; }
+
+    /* FOOTER */
+    footer { background: #111827; color: #9ca3af; text-align: center; padding: 36px 24px; font-size: .88rem; }
+    footer strong { color: #fff; }
+    footer p + p { margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">EduFuture</div>
+    <ul>
+      <li><a href="#">Método</a></li>
+      <li><a href="#">Cursos</a></li>
+      <li><a href="#">Resultados</a></li>
+      <li><a href="#" class="nav-cta">Empieza Ya</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">✨ La Plataforma Educativa del Futuro</div>
+    <h1>Desbloquea <span>Tu Potencial</span><br/>Académico</h1>
+    <p>Transformamos tu manera de aprender con metodologías innovadoras y un enfoque personalizado que garantiza el éxito de cada estudiante.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Comienza Gratis Hoy</a>
+      <a href="#" class="btn-secondary">Ver Cómo Funciona</a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-number">+50.000</div>
+      <div class="stat-label">Estudiantes Satisfechos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">95%</div>
+      <div class="stat-label">Tasa de Éxito</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">+10 años</div>
+      <div class="stat-label">De Experiencia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4.9★</div>
+      <div class="stat-label">Valoración Media</div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="section-tag">Nuestras Ventajas</div>
+    <h2 class="section-title">Todo lo que necesitas para triunfar</h2>
+    <p class="section-sub">Nuestra plataforma combina tecnología de vanguardia con pedagogía de excelencia para ofrecerte la mejor experiencia de aprendizaje.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Aprendizaje Personalizado</h3>
+        <p>Adaptamos cada lección a tu ritmo y estilo de aprendizaje único para maximizar tu rendimiento académico.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Resultados Garantizados</h3>
+        <p>Nuestra metodología innovadora ha demostrado mejorar el rendimiento de miles de estudiantes en todo el país.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Profesores de Élite</h3>
+        <p>Nuestro equipo de docentes altamente cualificados está comprometido con tu éxito académico en todo momento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="section-tag">Testimonios</div>
+    <h2 class="section-title">Lo que dicen nuestros alumnos</h2>
+    <p class="section-sub">Miles de estudiantes ya han transformado su futuro académico con EduFuture.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Gracias a EduFuture pude superar todos mis exámenes. El método es increíble y los profesores están siempre disponibles. Totalmente recomendado."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">MG</div>
+          <div class="author-info">
+            <strong>María G.</strong>
+            <span>Estudiante universitaria</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Mi rendimiento mejoró un 40% en solo tres meses. EduFuture cambió completamente mi forma de estudiar. No podría imaginar mi vida sin esta plataforma."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">CM</div>
+          <div class="author-info">
+            <strong>Carlos M.</strong>
+            <span>Alumno de Bachillerato</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"La flexibilidad y la calidad del contenido son incomparables. Conseguí mi objetivo académico en tiempo récord gracias al equipo de EduFuture."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">LR</div>
+          <div class="author-info">
+            <strong>Laura R.</strong>
+            <span>Opositora</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="section-tag">Planes</div>
+    <h2 class="section-title">Elige el plan perfecto para ti</h2>
+    <p class="section-sub">Sin permanencia. Cancela cuando quieras.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Básico</h3>
+        <div class="price">0€ <span>/mes</span></div>
+        <p class="price-desc">Para empezar</p>
+        <ul class="price-features">
+          <li>Acceso a contenido básico</li>
+          <li>1 materia incluida</li>
+          <li>Soporte por email</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-outline">Empieza Gratis</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">⭐ Más Popular</div>
+        <h3>Pro</h3>
+        <div class="price">49€ <span>/mes</span></div>
+        <p class="price-desc">Para estudiantes serios</p>
+        <ul class="price-features">
+          <li>Acceso completo ilimitado</li>
+          <li>Todas las materias</li>
+          <li>Tutor personalizado</li>
+          <li>Soporte prioritario 24/7</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-fill">Comenzar Ahora</a>
+      </div>
+      <div class="price-card">
+        <h3>Empresa</h3>
+        <div class="price">Custom</div>
+        <p class="price-desc">Para centros educativos</p>
+        <ul class="price-features">
+          <li>Todo lo del plan Pro</li>
+          <li>Panel de administración</li>
+          <li>Informes avanzados</li>
+          <li>Gestor de cuenta dedicado</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-outline">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>¿Listo para transformar tu futuro?</h2>
+    <p>Únete a más de 50.000 estudiantes que ya están alcanzando su máximo potencial.</p>
+    <a href="#" class="btn-primary">Empieza Gratis — Sin Tarjeta</a>
+  </section>
+
+  <footer>
+    <p><strong>EduFuture</strong> — La plataforma educativa del futuro</p>
+    <p>© 2026 EduFuture. Todos los derechos reservados. · <a href="#" style="color:#9ca3af;">Privacidad</a> · <a href="#" style="color:#9ca3af;">Términos</a></p>
+  </footer>
+
+</body>
+</html>
