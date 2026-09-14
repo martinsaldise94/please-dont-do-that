@@ -38,7 +38,8 @@ export function parseHTML(content, filePath) {
   // Strip script/style for clean text extraction
   const stripped = content
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<!doctype[^>]*>/gi, '');
   const rootText = parse(stripped);
 
   const headings = rootText

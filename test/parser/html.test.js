@@ -100,6 +100,12 @@ test('body text separates adjacent block elements but keeps inline words whole',
   assert.equal(r.bodyText, 'dry needling shockwave Getting started');
 });
 
+test('body text does not include the doctype declaration', () => {
+  const html = `<!DOCTYPE html><html><body><p>Hola</p></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.equal(r.bodyText, 'Hola');
+});
+
 test('extracts stat patterns', () => {
   const html = `<html><body><p>Over 5,000+ clients trust us. 98% satisfaction rate.</p></body></html>`;
   const r = parseHTML(html, 'test.html');
