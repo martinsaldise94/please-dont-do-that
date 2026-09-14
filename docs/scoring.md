@@ -79,16 +79,25 @@ Activated by `--industry <id>`. It sharpens the question to:
 
 A clinic page that says "excellent care with a holistic approach" could be any of ten thousand clinics. One that says "ACL rehabilitation, dry needling, HCPC" could not.
 
-Each industry has a lexicon in `core/scorer/industries/<id>.js`: concrete vocabulary in exactly three categories, in English and Spanish. The page's body text is matched case- and accent-insensitively, whole words and phrases only. Each distinct term counts once, since repetition is not specificity. `en` and `es` pages use their own term set; `unknown` uses both.
+Each industry has a lexicon in `core/scorer/industries/<id>.js`: concrete vocabulary in exactly three categories, in English and Spanish.
+
+Matching rules:
+
+- Case- and accent-insensitive, whole words and phrases only. Hyphens count as spaces, so `free-range` matches "free range".
+- A term matches its plural or singular form (`fichaje` matches "fichajes", `bolígrafos` matches "bolígrafo"). Pairs that fold to the same form count once.
+- All-caps acronyms match case-sensitively, so `ESO` does not match the Spanish word "eso".
+- A page uses the term set of its detected language. Terms containing a capital letter or a digit (brands, acronyms, proper nouns) also count from the other language, because they read the same in both. `unknown` pages use both sets.
+- Each distinct term counts once, since repetition is not specificity.
 
 | Distinct terms matched | Base adjustment |
 |---|---|
-| 0 | −30 |
-| 1–2 | −10 |
+| 0–2 | 0 |
 | 3–5 | +10 |
 | 6 or more | +20 |
 
-Plus a breadth bonus of +5 per matched category beyond the first, capped at +10. The bonus applies whatever the sign of the base, so the total ranges from −30 to +30.
+When the base is positive, a breadth bonus adds +5 per matched category beyond the first, capped at +10. The total ranges from 0 to +30.
+
+**Missing vocabulary never subtracts.** The first version penalised pages with few matches by up to −30. Validation against 43 real small-business homepages showed that almost always meant the lexicon lacked that niche's vocabulary, not that the business was generic. Different-niche pages averaged −20. One or two matches earn nothing either, because isolated hits (a cookie banner, a business name) are noise.
 
 The adjustment is added to `businessSpecificity` before the 0–100 clamp. `aiSmell` and `humanity` are untouched. Without `--industry` the engine v1 value is reported unchanged.
 

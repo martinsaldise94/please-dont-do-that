@@ -70,9 +70,9 @@
         },
         "adjustment": {
           "type": "integer",
-          "minimum": -30,
+          "minimum": 0,
           "maximum": 30,
-          "description": "Signed total applied to businessSpecificity, base plus breadth bonus."
+          "description": "Non-negative total added to businessSpecificity, base plus breadth bonus. Missing vocabulary never subtracts."
         }
       }
     },

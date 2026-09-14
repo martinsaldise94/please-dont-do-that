@@ -14,10 +14,8 @@ export const education = {
     en: {
       qualifications: [
         'GCSE',
-        'GCSEs',
         'IGCSE',
         'A-Level',
-        'A-Levels',
         '11+',
         'Common Entrance',
         'KS2 SATs',
@@ -48,7 +46,6 @@ export const education = {
         'one-to-one tuition',
         'trial session',
         'past paper',
-        'past papers',
         'mock exams',
         'exam technique',
         'revision course',

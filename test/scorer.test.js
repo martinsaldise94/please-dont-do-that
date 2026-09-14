@@ -65,15 +65,25 @@ test('no industry profile leaves businessSpecificity untouched', () => {
   assert.equal(withoutArg.industrySignals, null);
 });
 
-test('industry profile applies its adjustment to businessSpecificity', () => {
+test('industry profile adds its adjustment to businessSpecificity', () => {
+  const body =
+    'Dry needling, sports massage and ACL rehabilitation. HCPC registered, MCSP. ' +
+    'We treat sciatica, whiplash and plantar fasciitis.';
+  const base = computeScores(makeModel(body), []);
+  const scored = computeScores(makeModel(body), [], resolveIndustry('clinics'));
+  assert.ok(scored.industrySignals.adjustment > 0);
+  assert.equal(
+    scored.scores.businessSpecificity,
+    Math.min(100, base.scores.businessSpecificity + scored.industrySignals.adjustment),
+  );
+});
+
+test('generic copy under an industry keeps its engine v1 businessSpecificity', () => {
   const body = 'We provide excellent care with a holistic approach. Book now.';
   const base = computeScores(makeModel(body), []);
   const scored = computeScores(makeModel(body), [], resolveIndustry('clinics'));
-  assert.equal(scored.industrySignals.adjustment, -30);
-  assert.equal(
-    scored.scores.businessSpecificity,
-    Math.max(0, base.scores.businessSpecificity - 30),
-  );
+  assert.equal(scored.industrySignals.adjustment, 0);
+  assert.equal(scored.scores.businessSpecificity, base.scores.businessSpecificity);
 });
 
 test('adjusted businessSpecificity stays clamped to 0-100', () => {

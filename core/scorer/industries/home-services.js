@@ -18,7 +18,6 @@ export const homeServices = {
         'power flush',
         'CP12',
         'Gas Safety Certificate',
-        'Gas Safety Certificates',
         'EICR',
         'leak detection',
         'underfloor heating',

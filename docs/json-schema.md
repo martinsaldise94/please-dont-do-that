@@ -62,7 +62,7 @@ Without `--industry` the shape is identical: `engineVersion` is `"v1"`, and `ind
 | `industrySignals.matchedTerms` | string[] (max 12) | Distinct lexicon terms found, in lexicon declaration order |
 | `industrySignals.matchedCategories` | string[] | Lexicon categories with at least one match |
 | `industrySignals.missingCategories` | string[] | Lexicon categories with no match |
-| `industrySignals.adjustment` | integer −30…+30 | Total applied to `businessSpecificity` (base + breadth bonus) |
+| `industrySignals.adjustment` | integer 0…+30 | Total added to `businessSpecificity` (base + breadth bonus); never negative |
 | `scores.aiSmell` | integer 0–100 | Generic landing-page pattern density |
 | `scores.businessSpecificity` | integer 0–100 | How specific to this actual business; includes `adjustment` |
 | `scores.humanity` | integer 0–100 | Real, verifiable elements present |

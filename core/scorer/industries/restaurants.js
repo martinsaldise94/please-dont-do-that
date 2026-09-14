@@ -34,7 +34,6 @@ export const restaurants = {
         'last orders',
         'wine pairing',
         'by the glass',
-        'by-the-glass',
         'private hire',
         'sous chef',
         'chef-owner',

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalize } from '../core/scorer/industry-signals.js';
+import { normalize, termKey } from '../core/scorer/industry-signals.js';
 import { INDUSTRIES, INDUSTRY_IDS, resolveIndustry } from '../core/scorer/industries/index.js';
 import { EN_BUZZWORDS } from '../rules/v1/dictionaries/en.js';
 import { ES_BUZZWORDS } from '../rules/v1/dictionaries/es.js';
@@ -102,6 +102,16 @@ test('every alias resolves to its own industry', () => {
   for (const industry of INDUSTRIES) {
     for (const alias of industry.aliases) {
       assert.equal(resolveIndustry(alias)?.id, industry.id, `alias "${alias}"`);
+    }
+  }
+});
+
+test('no two terms in one language fold to the same singular form', () => {
+  for (const industry of INDUSTRIES) {
+    for (const lang of ['en', 'es']) {
+      const keys = Object.values(industry.terms[lang]).flat().map(termKey);
+      const dupes = keys.filter((k, i) => keys.indexOf(k) !== i);
+      assert.deepEqual(dupes, [], `${industry.id}.${lang}: singular/plural pairs`);
     }
   }
 });
