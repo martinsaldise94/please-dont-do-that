@@ -1,6 +1,6 @@
 {
   "name": "pdtd",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A CLI that scores how generic a frontend project is — could this site belong to any other business unchanged?",
   "type": "module",
   "bin": {

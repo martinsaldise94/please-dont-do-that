@@ -1,3 +1,5 @@
+export const MISSING_VALUE = Symbol('missing-value');
+
 export function parseArgs(argv) {
   const args = argv.slice(2);
   const opts = {
@@ -22,11 +24,14 @@ export function parseArgs(argv) {
     } else if (arg === '--rules') {
       opts.rules = args[++i] ?? 'v1';
     } else if (arg === '--industry') {
-      opts.industry = args[++i] ?? null;
+      const next = args[i + 1];
+      // a following flag means the value is missing, not that the flag is the value
+      opts.industry = next === undefined || next.startsWith('-') ? MISSING_VALUE : args[++i];
     } else if (arg.startsWith('--rules=')) {
       opts.rules = arg.slice('--rules='.length);
     } else if (arg.startsWith('--industry=')) {
-      opts.industry = arg.slice('--industry='.length);
+      const value = arg.slice('--industry='.length);
+      opts.industry = value === '' ? MISSING_VALUE : value;
     } else if (!opts.command) {
       opts.command = arg;
     } else if (!opts.path) {

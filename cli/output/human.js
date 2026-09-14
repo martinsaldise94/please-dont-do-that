@@ -5,9 +5,23 @@ export function formatHuman(result) {
   const lines = ['', 'PDTD — Scan Results', SEP, ''];
 
   lines.push(`AI Smell Score:        ${bar(result.scores.aiSmell)} ${result.scores.aiSmell}/100`);
-  lines.push(`Business Specificity:  ${bar(result.scores.businessSpecificity)} ${result.scores.businessSpecificity}/100`);
+  lines.push(
+    `Business Specificity:  ${bar(result.scores.businessSpecificity)} ${result.scores.businessSpecificity}/100`,
+  );
   lines.push(`Humanity Score:        ${bar(result.scores.humanity)} ${result.scores.humanity}/100`);
   lines.push('');
+
+  if (result.industry) {
+    const { matchedTerms, matchedCategories, missingCategories } = result.industrySignals;
+    const total = matchedCategories.length + missingCategories.length;
+    lines.push(
+      `Industry: ${result.industry} — ${matchedCategories.length}/${total} signal groups matched`,
+    );
+    if (matchedTerms.length) {
+      lines.push(`       ${matchedTerms.slice(0, 6).join(', ')}`);
+    }
+    lines.push('');
+  }
 
   if (result.issues.length === 0) {
     lines.push('✅  No issues detected.');
@@ -22,7 +36,9 @@ export function formatHuman(result) {
   }
 
   lines.push('');
-  lines.push(`Engine v1 · Rules ${result.rulesVersion} · Lang: ${result.detectedLang} · pdtd ${result.pdtdVersion}`);
+  lines.push(
+    `Engine ${result.engineVersion} · Rules ${result.rulesVersion} · Lang: ${result.detectedLang} · pdtd ${result.pdtdVersion}`,
+  );
   lines.push('');
 
   return lines.join('\n');

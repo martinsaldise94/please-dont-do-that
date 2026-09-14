@@ -71,6 +71,49 @@ Specificity signals (additive, capped at 50):
 | Specific price with currency (per price, up to 3) | 8 |
 | Professional credential/licence number | 20 |
 
+### Industry-aware specificity (engine v2)
+
+Activated by `--industry <id>`. It sharpens the question to:
+
+> Could this site belong to **another business in the same industry** unchanged?
+
+A clinic page that says "excellent care with a holistic approach" could be any of ten thousand clinics. One that says "ACL rehabilitation, dry needling, HCPC" could not.
+
+Each industry has a lexicon in `core/scorer/industries/<id>.js`: concrete vocabulary in exactly three categories, in English and Spanish. The page's body text is matched case- and accent-insensitively, whole words and phrases only. Each distinct term counts once, since repetition is not specificity. `en` and `es` pages use their own term set; `unknown` uses both.
+
+| Distinct terms matched | Base adjustment |
+|---|---|
+| 0 | −30 |
+| 1–2 | −10 |
+| 3–5 | +10 |
+| 6 or more | +20 |
+
+Plus a breadth bonus of +5 per matched category beyond the first, capped at +10. The bonus applies whatever the sign of the base, so the total ranges from −30 to +30.
+
+The adjustment is added to `businessSpecificity` before the 0–100 clamp. `aiSmell` and `humanity` are untouched. Without `--industry` the engine v1 value is reported unchanged.
+
+A term earns its place only if a real business in that industry would write it and a generic template for that industry would not. Lexicons therefore exclude buzzwords, words naming the industry itself, and any vocabulary found on the generic corpus pages of that industry.
+
+Canonical ids (aliases in brackets are examples; each lexicon lists its own):
+
+| Id | Example aliases |
+|---|---|
+| `agencies-portfolio` | design agency, agencia |
+| `beauty-wellness` | beauty salon, peluqueria |
+| `clinics` | physiotherapy, fisioterapia |
+| `ecommerce` | online shop, tienda online |
+| `education` | tutoring, academia |
+| `fitness-gym` | gym, gimnasio |
+| `home-services` | plumber, fontanero |
+| `local-retail` | local shop, comercio local |
+| `professional-services` | solicitors, abogados |
+| `restaurants` | restaurant, restaurante |
+| `saas-startup` | saas, software |
+
+An unknown id or alias exits with status 1 and lists the valid ids. The flag never degrades silently to a no-op.
+
+**Known limits.** Each lexicon was derived from one English and one Spanish real-business page. Across the corpus no lexicon scores positive on another industry's pages, but coverage *within* an industry is thin where the corpus is narrow. `saas-startup` leans towards booking software for studios, and `local-retail` towards bookshops and stationers.
+
 ---
 
 ## Humanity Score

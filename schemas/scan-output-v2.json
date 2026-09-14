@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/martinsaldise94/please-dont-do-that/schemas/scan-output-v2.json",
+  "title": "PDTD Scan Output — Schema v2",
+  "description": "Machine-readable output of pdtd scan --json. Frozen at schema version 2. Never changed without a MAJOR CLI version bump.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "pdtdVersion",
+    "engineVersion",
+    "rulesVersion",
+    "detectedLang",
+    "industry",
+    "industrySignals",
+    "scores",
+    "issues"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "2",
+      "description": "Schema contract version. Always '2' for this file."
+    },
+    "pdtdVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer of the pdtd CLI that produced this output."
+    },
+    "engineVersion": {
+      "type": "string",
+      "pattern": "^v\\d+$",
+      "description": "Analysis engine version. v1 = AST+heuristics; v2 = v1 plus industry-aware specificity scoring, reported only when --industry is supplied."
+    },
+    "rulesVersion": {
+      "type": "string",
+      "pattern": "^v\\d+$",
+      "description": "Rule set version used during the scan."
+    },
+    "detectedLang": {
+      "type": "string",
+      "enum": ["en", "es", "unknown"],
+      "description": "Language detected in the project content."
+    },
+    "industry": {
+      "type": ["string", "null"],
+      "description": "Canonical industry id the scan was scored against, or null when --industry was not supplied."
+    },
+    "industrySignals": {
+      "type": ["object", "null"],
+      "description": "Breakdown of the industry vocabulary match, or null when --industry was not supplied.",
+      "additionalProperties": false,
+      "required": ["matchedTerms", "matchedCategories", "missingCategories", "adjustment"],
+      "properties": {
+        "matchedTerms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 12,
+          "description": "Distinct lexicon terms found, in lexicon declaration order."
+        },
+        "matchedCategories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Lexicon categories with at least one match."
+        },
+        "missingCategories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Lexicon categories with no match."
+        },
+        "adjustment": {
+          "type": "integer",
+          "minimum": -30,
+          "maximum": 30,
+          "description": "Signed total applied to businessSpecificity, base plus breadth bonus."
+        }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "required": ["aiSmell", "businessSpecificity", "humanity"],
+      "additionalProperties": false,
+      "properties": {
+        "aiSmell": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How much the site matches generic AI-generated landing-page patterns. Higher = more generic."
+        },
+        "businessSpecificity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How specific the site is to its actual business. Higher = more specific. Includes the industry adjustment when industry is non-null."
+        },
+        "humanity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Presence of real, verifiable elements (names, credentials, prices). Higher = more real."
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "description": "List of detected issues, one per rule that fired.",
+      "items": {
+        "type": "object",
+        "required": ["ruleId", "dimension", "severity", "message"],
+        "additionalProperties": false,
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "description": "Stable rule identifier (e.g. 'C01'). Never changes within a rules version."
+          },
+          "dimension": {
+            "type": "string",
+            "enum": ["copy", "layout", "visual", "credibility"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable description of the issue."
+          },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Excerpts or class names that triggered the rule."
+          },
+          "location": {
+            "type": "string",
+            "description": "File path relative to the scanned root, always with forward slashes, identical on every platform."
+          }
+        }
+      }
+    }
+  }
+}

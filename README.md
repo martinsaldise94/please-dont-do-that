@@ -189,6 +189,12 @@ pdtd scan . --json
 pdtd scan . --industry physiotherapy
 ```
 
+`--industry` takes a canonical id or an alias (`physiotherapy` → `clinics`, `fontanero` → `home-services`):
+
+`agencies-portfolio`, `beauty-wellness`, `clinics`, `ecommerce`, `education`, `fitness-gym`, `home-services`, `local-retail`, `professional-services`, `restaurants`, `saas-startup`
+
+It adjusts Business Specificity by how much concrete vocabulary of that industry the page uses. See [docs/scoring.md](docs/scoring.md).
+
 ---
 
 ## 🚀 FUTURE (MCP / AGENTS)

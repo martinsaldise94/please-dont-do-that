@@ -1,15 +1,26 @@
-const DIMENSION_WEIGHTS = { copy: 0.40, layout: 0.30, visual: 0.20, credibility: 0.10 };
+import { computeIndustrySignals } from './industry-signals.js';
+
+const DIMENSION_WEIGHTS = { copy: 0.4, layout: 0.3, visual: 0.2, credibility: 0.1 };
 const RULES_PER_DIMENSION = { copy: 3, layout: 3, visual: 3, credibility: 2 };
 const SEVERITY_SCORE = { high: 3, medium: 2, low: 1 };
 
-export function computeScores(model, hits) {
+export function computeScores(model, hits, industryProfile = null) {
   const aiSmell = computeAISmell(hits);
-  const businessSpecificity = computeBusinessSpecificity(model, aiSmell);
-  const humanity = computeHumanity(model);
+  let businessSpecificity = computeBusinessSpecificity(model, aiSmell);
+
+  let industrySignals = null;
+  if (industryProfile) {
+    industrySignals = computeIndustrySignals(model, industryProfile);
+    businessSpecificity += industrySignals.adjustment;
+  }
+
   return {
-    aiSmell: clamp(Math.round(aiSmell)),
-    businessSpecificity: clamp(Math.round(businessSpecificity)),
-    humanity: clamp(Math.round(humanity)),
+    scores: {
+      aiSmell: clamp(Math.round(aiSmell)),
+      businessSpecificity: clamp(Math.round(businessSpecificity)),
+      humanity: clamp(Math.round(computeHumanity(model))),
+    },
+    industrySignals,
   };
 }
 
@@ -30,7 +41,11 @@ function computeBusinessSpecificity(model, aiSmell) {
   const allText = model.files.map((f) => f.bodyText).join('\n');
 
   // Street address
-  if (/\d+\s+[A-Za-záéíóú]{3,}[^\n,]{0,20}(?:Street|Road|Avenue|Lane|Drive|Close|Way|Calle|Carrer|Paseo|Avenida|Plaza|Rua)/i.test(allText)) {
+  if (
+    /\d+\s+[A-Za-záéíóú]{3,}[^\n,]{0,20}(?:Street|Road|Avenue|Lane|Drive|Close|Way|Calle|Carrer|Paseo|Avenida|Plaza|Rua)/i.test(
+      allText,
+    )
+  ) {
     signals += 25;
   }
   // Postal code (UK or ES)
@@ -45,7 +60,9 @@ function computeBusinessSpecificity(model, aiSmell) {
   const prices = allText.match(/[£€$]\s*\d+/g) || [];
   signals += Math.min(prices.length, 3) * 8;
   // Credential / licence number
-  if (/\b(?:Gas Safe|SRA|MCSP|HPC Reg|CIF|ICAM|CFCM|NIF|AVEN|Col\.|Colegio)\b.*?\d+/i.test(allText)) {
+  if (
+    /\b(?:Gas Safe|SRA|MCSP|HPC Reg|CIF|ICAM|CFCM|NIF|AVEN|Col\.|Colegio)\b.*?\d+/i.test(allText)
+  ) {
     signals += 20;
   }
 
@@ -57,7 +74,11 @@ function computeHumanity(model) {
   const allText = model.files.map((f) => f.bodyText).join('\n');
 
   // Physical address
-  if (/\d+\s+[A-Za-záéíóú]{3,}[^\n,]{0,20}(?:Street|Road|Avenue|Calle|Carrer|Paseo|Plaza)/i.test(allText)) {
+  if (
+    /\d+\s+[A-Za-záéíóú]{3,}[^\n,]{0,20}(?:Street|Road|Avenue|Calle|Carrer|Paseo|Plaza)/i.test(
+      allText,
+    )
+  ) {
     points += 25;
   }
   // Phone number
@@ -65,8 +86,10 @@ function computeHumanity(model) {
     points += 10;
   }
   // Named person with professional credential next to their name
-  if (/\b[A-ZÁÉÍÓÚ][a-záéíóú]+ [A-ZÁÉÍÓÚ][a-záéíóú]+\b/.test(allText) &&
-      /\b(?:MCSP|SRA|Gas Safe|CFCM|LLB|PhD|MD|Dra?\.|Colegiado|Col\.)\b/i.test(allText)) {
+  if (
+    /\b[A-ZÁÉÍÓÚ][a-záéíóú]+ [A-ZÁÉÍÓÚ][a-záéíóú]+\b/.test(allText) &&
+    /\b(?:MCSP|SRA|Gas Safe|CFCM|LLB|PhD|MD|Dra?\.|Colegiado|Col\.)\b/i.test(allText)
+  ) {
     points += 20;
   }
   // Licence / registration number

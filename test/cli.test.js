@@ -4,8 +4,12 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const bin = fileURLToPath(new URL('../bin/pdtd.js', import.meta.url));
-const corpusGeneric = fileURLToPath(new URL('../corpus/generic/clinics/claude-en-01', import.meta.url));
-const corpusSpecific = fileURLToPath(new URL('../corpus/specific/clinics/clarke-martinez-physio-en', import.meta.url));
+const corpusGeneric = fileURLToPath(
+  new URL('../corpus/generic/clinics/claude-en-01', import.meta.url),
+);
+const corpusSpecific = fileURLToPath(
+  new URL('../corpus/specific/clinics/clarke-martinez-physio-en', import.meta.url),
+);
 
 function runCli(args, opts = {}) {
   try {
@@ -69,11 +73,11 @@ test('scan on a generic corpus example exits 0 and prints scores', () => {
   assert.match(stdout, /Humanity Score/);
 });
 
-test('scan --json outputs valid JSON conforming to schema v1', () => {
+test('scan --json outputs valid JSON conforming to schema v2', () => {
   const { code, stdout } = runCli(['scan', corpusGeneric, '--json']);
   assert.equal(code, 0);
   const parsed = JSON.parse(stdout);
-  assert.equal(parsed.schemaVersion, '1');
+  assert.equal(parsed.schemaVersion, '2');
   assert.match(parsed.pdtdVersion, /^\d+\.\d+\.\d+$/);
   assert.equal(parsed.engineVersion, 'v1');
   assert.equal(parsed.rulesVersion, 'v1');
@@ -91,7 +95,7 @@ test('generic corpus example scores higher AI Smell than specific', () => {
   const specific = JSON.parse(sOut);
   assert.ok(
     generic.scores.aiSmell > specific.scores.aiSmell,
-    `Expected generic aiSmell (${generic.scores.aiSmell}) > specific aiSmell (${specific.scores.aiSmell})`
+    `Expected generic aiSmell (${generic.scores.aiSmell}) > specific aiSmell (${specific.scores.aiSmell})`,
   );
 });
 
@@ -118,4 +122,30 @@ test('roast --json produces same scores as scan --json', () => {
   const scan = JSON.parse(sOut);
   assert.deepEqual(roast.scores, scan.scores);
   assert.deepEqual(roast.issues, scan.issues);
+});
+
+test('scan --industry with an unknown id exits non-zero', () => {
+  const { code, stderr } = runCli(['scan', corpusGeneric, '--industry', 'taxidermy']);
+  assert.notEqual(code, 0);
+  assert.match(stderr, /Unknown industry/i);
+});
+
+test('scan --industry with no value exits non-zero instead of eating the next flag', () => {
+  const { code, stderr } = runCli(['scan', corpusGeneric, '--industry', '--json']);
+  assert.notEqual(code, 0);
+  assert.match(stderr, /--industry/);
+});
+
+test('scan --industry as the last argument exits non-zero', () => {
+  const { code, stderr } = runCli(['scan', corpusGeneric, '--industry']);
+  assert.notEqual(code, 0);
+  assert.match(stderr, /--industry requires a value/);
+});
+
+test('scan --industry with a valid id exits 0 and reports engine v2', () => {
+  const { code, stdout } = runCli(['scan', corpusGeneric, '--industry', 'clinics', '--json']);
+  assert.equal(code, 0);
+  const parsed = JSON.parse(stdout);
+  assert.equal(parsed.engineVersion, 'v2');
+  assert.equal(parsed.industry, 'clinics');
 });

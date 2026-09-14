@@ -39,11 +39,35 @@ for (const rel of SAMPLE) {
 
     assert.ok(
       result.scores.aiSmell >= aiRange[0] && result.scores.aiSmell <= aiRange[1],
-      `${rel} — aiSmell ${result.scores.aiSmell} not in [${aiRange}]`
+      `${rel} — aiSmell ${result.scores.aiSmell} not in [${aiRange}]`,
     );
     assert.ok(
-      result.scores.businessSpecificity >= bsRange[0] && result.scores.businessSpecificity <= bsRange[1],
-      `${rel} — businessSpecificity ${result.scores.businessSpecificity} not in [${bsRange}]`
+      result.scores.businessSpecificity >= bsRange[0] &&
+        result.scores.businessSpecificity <= bsRange[1],
+      `${rel} — businessSpecificity ${result.scores.businessSpecificity} not in [${bsRange}]`,
+    );
+  });
+}
+
+// the product claim: naming the industry must sharpen the generic/specific split,
+// not merely shift both scores in the same direction
+for (const specificRel of SAMPLE.filter((rel) => rel.startsWith('specific/'))) {
+  const meta = JSON.parse(readFileSync(join(corpusRoot, specificRel, 'meta.json'), 'utf8'));
+  const genericRel = `generic/${meta.industry}/claude-${meta.language}-01`;
+
+  test(`separation widens with --industry ${meta.industry} (${meta.language})`, async () => {
+    const gap = async (opts) => {
+      const generic = await runScan(join(corpusRoot, genericRel), opts);
+      const specific = await runScan(join(corpusRoot, specificRel), opts);
+      return specific.scores.businessSpecificity - generic.scores.businessSpecificity;
+    };
+
+    const plainGap = await gap({});
+    const industryGap = await gap({ industry: meta.industry });
+
+    assert.ok(
+      industryGap > plainGap,
+      `${meta.industry}: gap did not widen — without ${plainGap}, with ${industryGap}`,
     );
   });
 }
