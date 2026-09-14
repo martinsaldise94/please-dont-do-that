@@ -106,6 +106,24 @@ test('body text does not include the doctype declaration', () => {
   assert.equal(r.bodyText, 'Hola');
 });
 
+test('body text ignores noscript fallbacks', () => {
+  const html = `<html><body><p>Visible copy</p><noscript><img src="pixel.gif"><p>Enable JavaScript</p></noscript></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.equal(r.bodyText, 'Visible copy');
+});
+
+test('pre blocks are parsed as markup, not kept as raw text', () => {
+  const html = `<html><body><pre class="review-widget"><div class="stars">Five stars from Ana</div></pre></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.equal(r.bodyText, 'Five stars from Ana');
+});
+
+test('adjacent inline links do not fuse into one word', () => {
+  const html = `<html><body><nav><a href="/r">Remortgaging</a><a href="/t">Transfer of equity</a></nav></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.equal(r.bodyText, 'Remortgaging Transfer of equity');
+});
+
 test('extracts stat patterns', () => {
   const html = `<html><body><p>Over 5,000+ clients trust us. 98% satisfaction rate.</p></body></html>`;
   const r = parseHTML(html, 'test.html');

@@ -39,8 +39,11 @@ export function parseHTML(content, filePath) {
   const stripped = content
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-    .replace(/<!doctype[^>]*>/gi, '');
-  const rootText = parse(stripped);
+    .replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, '')
+    .replace(/<!doctype[^>]*>/gi, '')
+    .replace(/(<\/[a-zA-Z][^>]*>)(<[a-zA-Z])/g, '$1 $2');
+  // the parser keeps pre content as raw text by default, but review widgets nest real markup in it
+  const rootText = parse(stripped, { blockTextElements: {} });
 
   const headings = rootText
     .querySelectorAll('h1, h2, h3, h4')
