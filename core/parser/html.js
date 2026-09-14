@@ -29,7 +29,10 @@ export function parseHTML(content, filePath) {
   const cssClasses = new Set();
   for (const node of rootFull.querySelectorAll('[class]')) {
     const cls = node.getAttribute('class') || '';
-    cls.split(/\s+/).filter(Boolean).forEach((c) => cssClasses.add(c));
+    cls
+      .split(/\s+/)
+      .filter(Boolean)
+      .forEach((c) => cssClasses.add(c));
   }
 
   // Strip script/style for clean text extraction
@@ -40,15 +43,16 @@ export function parseHTML(content, filePath) {
 
   const headings = rootText
     .querySelectorAll('h1, h2, h3, h4')
-    .map((n) => n.text.trim())
+    .map((n) => n.text.replace(/\s+/g, ' ').trim())
     .filter(Boolean);
 
   const ctaTexts = rootText
     .querySelectorAll('button, a, [role="button"]')
-    .map((n) => n.text.trim())
+    .map((n) => n.text.replace(/\s+/g, ' ').trim())
     .filter((t) => t.length >= 2 && t.length <= 80);
 
-  const bodyText = rootText.text.replace(/\s+/g, ' ').trim();
+  // structuredText breaks between block elements, so adjacent <li>s don't fuse into one word
+  const bodyText = rootText.structuredText.replace(/\s+/g, ' ').trim();
 
   const sectionTypes = detectSections(rootFull, headings);
   const testimonialCount = countTestimonials(rootFull);
@@ -133,9 +137,12 @@ function countFeatureCards(root) {
 function extractStats(text) {
   const patterns = [];
   // Percentages (likely "98% satisfaction rate" etc.)
-  for (const m of text.matchAll(/\d+\s*%/g)) patterns.push(m[0].trim());
+  for (const m of text.matchAll(/\d+(?:[.,]\d+)?\s*%/g)) patterns.push(m[0].trim());
   // Large counts with social-proof context words (exclude specific industry terms)
-  for (const m of text.matchAll(/[\d,]+\s*\+?\s*(?:clients?|users?|customers?|clientes?|usuarios?|businesses?|empresas?|teams?)/gi)) {
+  // singular "team" is a plan limit ("5 team members"), only plural teams read as social proof
+  for (const m of text.matchAll(
+    /(?<![\d.,])\d+(?:[.,]\d{3})*\s*\+?\s*(?:clients?|users?|customers?|clientes?|clientas?|usuari[oa]s?|businesses?|empresas?|teams)\b/gi,
+  )) {
     patterns.push(m[0].trim());
   }
   // Revenue/savings claims (large round numbers: £2M, $1M+) — not individual product prices

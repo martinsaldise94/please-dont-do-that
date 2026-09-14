@@ -94,8 +94,47 @@ test('detects Spanish language', () => {
   assert.equal(r.lang, 'es');
 });
 
+test('body text separates adjacent block elements but keeps inline words whole', () => {
+  const html = `<html><body><ul><li>dry needling</li><li>shockwave</li></ul><p>Get<strong>ting</strong> started</p></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.equal(r.bodyText, 'dry needling shockwave Getting started');
+});
+
 test('extracts stat patterns', () => {
   const html = `<html><body><p>Over 5,000+ clients trust us. 98% satisfaction rate.</p></body></html>`;
   const r = parseHTML(html, 'test.html');
   assert.ok(r.statPatterns.length >= 1);
+});
+
+test('headings and CTA texts collapse internal whitespace from line breaks', () => {
+  const html = `<html><body><h1>Streamline Your<br/><span>Workflow Forever</span></h1>
+    <button>Get
+      Started</button></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.deepEqual(r.headings, ['Streamline Your Workflow Forever']);
+  assert.ok(r.ctaTexts.includes('Get Started'));
+});
+
+test('stat patterns keep decimal percentages whole', () => {
+  const html = `<html><body><p>99.9% uptime and 98% satisfaction.</p></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.deepEqual(r.statPatterns, ['99.9%', '98%']);
+});
+
+test('stat patterns require a number before the social-proof noun', () => {
+  const html = `<html><body><p>All your tools, teams, and tasks. Loved by 1,200 clients.</p></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.deepEqual(r.statPatterns, ['1,200 clients']);
+});
+
+test('stat patterns keep spanish thousands separators and feminine nouns whole', () => {
+  const html = `<html><body><p>Reserva Tu Sesión +8.000 Clientas Felices</p></body></html>`;
+  const r = parseHTML(html, 'es.html');
+  assert.deepEqual(r.statPatterns, ['8.000 Clientas']);
+});
+
+test('a plan limit like "5 team members" is not a social-proof stat', () => {
+  const html = `<html><body><ul><li>5 team members</li></ul><p>Used by 300 teams.</p></body></html>`;
+  const r = parseHTML(html, 'test.html');
+  assert.deepEqual(r.statPatterns, ['300 teams']);
 });

@@ -18,20 +18,26 @@ export function parseJSX(content, filePath) {
 
   const headings = [];
   for (const m of content.matchAll(/<h([1-4])[^>]*>([^<]+)<\/h\1>/g)) {
-    headings.push(m[2].trim());
+    headings.push(m[2].replace(/\s+/g, ' ').trim());
   }
 
   const ctaTexts = [];
   for (const m of content.matchAll(/<(?:button|a)[^>]*>([^<]{2,60})<\/(?:button|a)>/g)) {
-    ctaTexts.push(m[1].trim());
+    ctaTexts.push(m[1].replace(/\s+/g, ' ').trim());
   }
 
   const cssClasses = new Set();
   for (const m of content.matchAll(/className=["']([^"']+)["']/g)) {
-    m[1].split(/\s+/).filter(Boolean).forEach((c) => cssClasses.add(c));
+    m[1]
+      .split(/\s+/)
+      .filter(Boolean)
+      .forEach((c) => cssClasses.add(c));
   }
   for (const m of content.matchAll(/className=\{`([^`]+)`\}/g)) {
-    m[1].split(/\s+/).filter(Boolean).forEach((c) => cssClasses.add(c));
+    m[1]
+      .split(/\s+/)
+      .filter(Boolean)
+      .forEach((c) => cssClasses.add(c));
   }
 
   return {
